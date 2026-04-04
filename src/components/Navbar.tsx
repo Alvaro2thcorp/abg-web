@@ -130,6 +130,7 @@ export default function Navbar() {
                         src="/images/abglogo.png"
                         alt="ABG Frame — Agencia Diseño Web y SEO Alicante"
                         height="32"
+                        className="nav-logo-img"
                         style={{ display: "block", height: "32px", width: "auto" }}
                     />
                 </a>
@@ -196,6 +197,7 @@ export default function Navbar() {
                         }}
                     >
                         <span
+                            className="nav-menu-label"
                             style={{
                                 fontFamily: "'Syne Mono', monospace",
                                 fontSize: "0.65rem",
@@ -396,8 +398,13 @@ export default function Navbar() {
         }
         @media (max-width: 767px) {
           nav[style*="position: fixed"] {
-            padding: 1rem 1.5rem !important;
-            height: 70px !important;
+            padding: 0 1rem !important;
+            height: 56px !important;
+            max-width: 100vw !important;
+            overflow: hidden !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
           }
           .mobile-menu-overlay {
             background: #080808 !important;
@@ -444,6 +451,19 @@ export default function Navbar() {
         .nav-cta-btn:hover {
           transform: translateY(-2px) !important;
           box-shadow: 0 8px 24px rgba(240, 78, 35, 0.35) !important;
+        }
+        @media (max-width: 767px) {
+          .nav-logo-img {
+            height: 24px !important;
+          }
+          .nav-cta-btn {
+            padding: 0.45rem 0.9rem !important;
+            font-size: 0.75rem !important;
+            white-space: nowrap !important;
+          }
+          .nav-menu-label {
+            font-size: 0.65rem !important;
+          }
         }
       `}</style>
         </>
