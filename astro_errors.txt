@@ -1,0 +1,370 @@
+﻿[2m13:32:49[22m [34m[content][39m Syncing content
+[2m13:32:49[22m [34m[content][39m Synced content
+[2m13:32:49[22m [34m[types][39m Generated [2m382ms[22m
+[2m13:32:49[22m [34m[check][39m Getting diagnostics for Astro files in C:\Users\alvar\Desktop\abgframe-web-v2...
+[96msrc/components/HowItWorks.tsx[0m:[93m28[0m:[93m38[0m - [93mwarning[0m[90m ts(6133): [0m'index' is declared but its value is never read.
+
+[7m28[0m         terminalLines.forEach((line, index) => {
+[7m  [0m [93m                                     ~~~~~[0m
+[96msrc/components/HowItWorks.tsx[0m:[93m10[0m:[93m26[0m - [93mwarning[0m[90m ts(6133): [0m'setCurrentIndex' is declared but its value is never read.
+
+[7m10[0m     const [currentIndex, setCurrentIndex] = useState(0);
+[7m  [0m [93m                         ~~~~~~~~~~~~~~~[0m
+[96msrc/components/HowItWorks.tsx[0m:[93m10[0m:[93m12[0m - [93mwarning[0m[90m ts(6133): [0m'currentIndex' is declared but its value is never read.
+
+[7m10[0m     const [currentIndex, setCurrentIndex] = useState(0);
+[7m  [0m [93m           ~~~~~~~~~~~~[0m
+[96msrc/components/HowItWorks.tsx[0m:[93m4[0m:[93m40[0m - [93mwarning[0m[90m ts(6133): [0m'useTransform' is declared but its value is never read.
+
+[7m4[0m import { motion, useScroll, useSpring, useTransform, AnimatePresence } from "framer-motion";
+[7m [0m [93m                                       ~~~~~~~~~~~~[0m
+
+[96msrc/components/LightPillar.tsx[0m:[93m339[0m:[93m93[0m - [91merror[0m[90m ts(2322): [0mType 'string' is not assignable to type 'MixBlendMode | undefined'.
+
+[7m339[0m   return <div ref={containerRef} className={`light-pillar-container ${className}`} style={{ mixBlendMode }} />;
+[7m   [0m [91m                                                                                            ~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m333[0m:[93m70[0m - [91merror[0m[90m ts(2322): [0mType 'string' is not assignable to type 'MixBlendMode | undefined'.
+
+[7m333[0m       <div className={`light-pillar-fallback ${className}`} style={{ mixBlendMode }}>
+[7m   [0m [91m                                                                     ~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m306[0m:[93m29[0m - [91merror[0m[90m ts(2339): [0mProperty 'dispose' does not exist on type 'never'.
+
+[7m306[0m         geometryRef.current.dispose();
+[7m   [0m [91m                            ~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m303[0m:[93m29[0m - [91merror[0m[90m ts(2339): [0mProperty 'dispose' does not exist on type 'never'.
+
+[7m303[0m         materialRef.current.dispose();
+[7m   [0m [91m                            ~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m299[0m:[93m53[0m - [91merror[0m[90m ts(2339): [0mProperty 'domElement' does not exist on type 'never'.
+
+[7m299[0m           container.removeChild(rendererRef.current.domElement);
+[7m   [0m [91m                                                    ~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m299[0m:[93m21[0m - [91merror[0m[90m ts(2339): [0mProperty 'removeChild' does not exist on type 'never'.
+
+[7m299[0m           container.removeChild(rendererRef.current.domElement);
+[7m   [0m [91m                    ~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m298[0m:[93m52[0m - [91merror[0m[90m ts(2339): [0mProperty 'domElement' does not exist on type 'never'.
+
+[7m298[0m         if (container.contains(rendererRef.current.domElement)) {
+[7m   [0m [91m                                                   ~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m298[0m:[93m23[0m - [91merror[0m[90m ts(2339): [0mProperty 'contains' does not exist on type 'never'.
+
+[7m298[0m         if (container.contains(rendererRef.current.domElement)) {
+[7m   [0m [91m                      ~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m297[0m:[93m29[0m - [91merror[0m[90m ts(2339): [0mProperty 'forceContextLoss' does not exist on type 'never'.
+
+[7m297[0m         rendererRef.current.forceContextLoss();
+[7m   [0m [91m                            ~~~~~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m296[0m:[93m29[0m - [91merror[0m[90m ts(2339): [0mProperty 'dispose' does not exist on type 'never'.
+
+[7m296[0m         rendererRef.current.dispose();
+[7m   [0m [91m                            ~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m290[0m:[93m19[0m - [91merror[0m[90m ts(2339): [0mProperty 'removeEventListener' does not exist on type 'never'.
+
+[7m290[0m         container.removeEventListener('mousemove', handleMouseMove);
+[7m   [0m [91m                  ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m281[0m:[93m29[0m - [91merror[0m[90m ts(2339): [0mProperty 'uniforms' does not exist on type 'never'.
+
+[7m281[0m         materialRef.current.uniforms.uResolution.value.set(newWidth, newHeight);
+[7m   [0m [91m                            ~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m280[0m:[93m29[0m - [91merror[0m[90m ts(2339): [0mProperty 'setSize' does not exist on type 'never'.
+
+[7m280[0m         rendererRef.current.setSize(newWidth, newHeight);
+[7m   [0m [91m                            ~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m279[0m:[93m48[0m - [91merror[0m[90m ts(2339): [0mProperty 'clientHeight' does not exist on type 'never'.
+
+[7m279[0m         const newHeight = containerRef.current.clientHeight;
+[7m   [0m [91m                                               ~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m278[0m:[93m47[0m - [91merror[0m[90m ts(2339): [0mProperty 'clientWidth' does not exist on type 'never'.
+
+[7m278[0m         const newWidth = containerRef.current.clientWidth;
+[7m   [0m [91m                                              ~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m272[0m:[93m11[0m - [91merror[0m[90m ts(7005): [0mVariable 'resizeTimeout' implicitly has an 'any' type.
+
+[7m272[0m       if (resizeTimeout) {
+[7m   [0m [91m          ~~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m270[0m:[93m9[0m - [91merror[0m[90m ts(7034): [0mVariable 'resizeTimeout' implicitly has type 'any' in some locations where its type cannot be determined.
+
+[7m270[0m     let resizeTimeout = null;
+[7m   [0m [91m        ~~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m268[0m:[93m5[0m - [91merror[0m[90m ts(2322): [0mType 'number' is not assignable to type 'null'.
+
+[7m268[0m     rafRef.current = requestAnimationFrame(animate);
+[7m   [0m [91m    ~~~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m266[0m:[93m7[0m - [91merror[0m[90m ts(2322): [0mType 'number' is not assignable to type 'null'.
+
+[7m266[0m       rafRef.current = requestAnimationFrame(animate);
+[7m   [0m [91m      ~~~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m262[0m:[93m29[0m - [91merror[0m[90m ts(2339): [0mProperty 'render' does not exist on type 'never'.
+
+[7m262[0m         rendererRef.current.render(sceneRef.current, cameraRef.current);
+[7m   [0m [91m                            ~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m261[0m:[93m29[0m - [91merror[0m[90m ts(2339): [0mProperty 'uniforms' does not exist on type 'never'.
+
+[7m261[0m         materialRef.current.uniforms.uRotSin.value = Math.sin(t * 0.3);
+[7m   [0m [91m                            ~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m260[0m:[93m29[0m - [91merror[0m[90m ts(2339): [0mProperty 'uniforms' does not exist on type 'never'.
+
+[7m260[0m         materialRef.current.uniforms.uRotCos.value = Math.cos(t * 0.3);
+[7m   [0m [91m                            ~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m259[0m:[93m29[0m - [91merror[0m[90m ts(2339): [0mProperty 'uniforms' does not exist on type 'never'.
+
+[7m259[0m         materialRef.current.uniforms.uTime.value = t;
+[7m   [0m [91m                            ~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m251[0m:[93m21[0m - [91merror[0m[90m ts(7006): [0mParameter 'currentTime' implicitly has an 'any' type.
+
+[7m251[0m     const animate = currentTime => {
+[7m   [0m [91m                    ~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m244[0m:[93m17[0m - [91merror[0m[90m ts(2339): [0mProperty 'addEventListener' does not exist on type 'never'.
+
+[7m244[0m       container.addEventListener('mousemove', handleMouseMove, { passive: true });
+[7m   [0m [91m                ~~~~~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m237[0m:[93m30[0m - [91merror[0m[90m ts(2339): [0mProperty 'getBoundingClientRect' does not exist on type 'never'.
+
+[7m237[0m       const rect = container.getBoundingClientRect();
+[7m   [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m231[0m:[93m11[0m - [91merror[0m[90m ts(7005): [0mVariable 'mouseMoveTimeout' implicitly has an 'any' type.
+
+[7m231[0m       if (mouseMoveTimeout) return;
+[7m   [0m [91m          ~~~~~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m228[0m:[93m29[0m - [91merror[0m[90m ts(7006): [0mParameter 'event' implicitly has an 'any' type.
+
+[7m228[0m     const handleMouseMove = event => {
+[7m   [0m [91m                            ~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m227[0m:[93m9[0m - [91merror[0m[90m ts(7034): [0mVariable 'mouseMoveTimeout' implicitly has type 'any' in some locations where its type cannot be determined.
+
+[7m227[0m     let mouseMoveTimeout = null;
+[7m   [0m [91m        ~~~~~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m223[0m:[93m5[0m - [91merror[0m[90m ts(2322): [0mType 'PlaneGeometry' is not assignable to type 'null'.
+
+[7m223[0m     geometryRef.current = geometry;
+[7m   [0m [91m    ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m220[0m:[93m5[0m - [91merror[0m[90m ts(2322): [0mType 'ShaderMaterial' is not assignable to type 'null'.
+
+[7m220[0m     materialRef.current = material;
+[7m   [0m [91m    ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m92[0m:[93m24[0m - [91merror[0m[90m ts(7006): [0mParameter 'hex' implicitly has an 'any' type.
+
+[7m92[0m     const parseColor = hex => {
+[7m  [0m [91m                       ~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m90[0m:[93m5[0m - [91merror[0m[90m ts(2322): [0mType 'WebGLRenderer' is not assignable to type 'null'.
+
+[7m90[0m     rendererRef.current = renderer;
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m89[0m:[93m15[0m - [91merror[0m[90m ts(2339): [0mProperty 'appendChild' does not exist on type 'never'.
+
+[7m89[0m     container.appendChild(renderer.domElement);
+[7m  [0m [91m              ~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m70[0m:[93m22[0m - [91merror[0m[90m ts(7053): [0mElement implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ low: { iterations: number; waveIterations: number; pixelRatio: number; precision: string; stepMultiplier: number; }; medium: { iterations: number; waveIterations: number; pixelRatio: number; precision: string; stepMultiplier: number; }; high: { ...; }; }'.
+  No index signature with a parameter of type 'string' was found on type '{ low: { iterations: number; waveIterations: number; pixelRatio: number; precision: string; stepMultiplier: number; }; medium: { iterations: number; waveIterations: number; pixelRatio: number; precision: string; stepMultiplier: number; }; high: { ...; }; }'.
+
+[7m70[0m     const settings = qualitySettings[effectiveQuality] || qualitySettings.medium;
+[7m  [0m [91m                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m49[0m:[93m5[0m - [91merror[0m[90m ts(2322): [0mType 'OrthographicCamera' is not assignable to type 'null'.
+
+[7m49[0m     cameraRef.current = camera;
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m47[0m:[93m5[0m - [91merror[0m[90m ts(2322): [0mType 'Scene' is not assignable to type 'null'.
+
+[7m47[0m     sceneRef.current = scene;
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m44[0m:[93m30[0m - [91merror[0m[90m ts(2339): [0mProperty 'clientHeight' does not exist on type 'never'.
+
+[7m44[0m     const height = container.clientHeight;
+[7m  [0m [91m                             ~~~~~~~~~~~~[0m
+[96msrc/components/LightPillar.tsx[0m:[93m43[0m:[93m29[0m - [91merror[0m[90m ts(2339): [0mProperty 'clientWidth' does not exist on type 'never'.
+
+[7m43[0m     const width = container.clientWidth;
+[7m  [0m [91m                            ~~~~~~~~~~~[0m
+
+[96msrc/components/SectionTransition.tsx[0m:[93m21[0m:[93m11[0m - [93mwarning[0m[90m ts(6133): [0m'isDown' is declared but its value is never read.
+
+[7m21[0m     const isDown = direction === "down";
+[7m  [0m [93m          ~~~~~~[0m
+[96msrc/components/SectionTransition.tsx[0m:[93m4[0m:[93m1[0m - [93mwarning[0m[90m ts(6133): [0m'motion' is declared but its value is never read.
+
+[7m4[0m import { motion } from "framer-motion";
+[7m [0m [93m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/components/reactbits/SplitText.tsx[0m:[93m25[0m:[93m5[0m - [93mwarning[0m[90m ts(6133): [0m'splitBy' is declared but its value is never read.
+
+[7m25[0m     splitBy = 'words',
+[7m  [0m [93m    ~~~~~~~[0m
+[96msrc/components/reactbits/SplitText.tsx[0m:[93m1[0m:[93m29[0m - [93mwarning[0m[90m ts(6133): [0m'useState' is declared but its value is never read.
+
+[7m1[0m import { useRef, useEffect, useState } from 'react';
+[7m [0m [93m                            ~~~~~~~~[0m
+[96msrc/components/reactbits/SplitText.tsx[0m:[93m1[0m:[93m18[0m - [93mwarning[0m[90m ts(6133): [0m'useEffect' is declared but its value is never read.
+
+[7m1[0m import { useRef, useEffect, useState } from 'react';
+[7m [0m [93m                 ~~~~~~~~~[0m
+
+[96msrc/components/sobre/Valores.tsx[0m:[93m117[0m:[93m11[0m - [93mwarning[0m[90m ts(6133): [0m'ease' is declared but its value is never read.
+
+[7m117[0m     const ease = [0.16, 1, 0.3, 1] as any;
+[7m   [0m [93m          ~~~~[0m
+
+[96msrc/components/ui/RotatingText.tsx[0m:[93m3[0m:[93m38[0m - [93mwarning[0m[90m ts(6133): [0m'useCallback' is declared but its value is never read.
+
+[7m3[0m import React, { useEffect, useState, useCallback } from "react";
+[7m [0m [93m                                     ~~~~~~~~~~~[0m
+
+[96msrc/layouts/Layout.astro[0m:[93m37[0m:[93m11[0m - [93mwarning[0m[90m astro(4000): [0mThis script will be treated as if it has the `is:inline` directive because it contains an attribute. Therefore, features that require processing (e.g. using TypeScript or npm packages in the script) are unavailable.
+
+See docs for more details: https://docs.astro.build/en/guides/client-side-scripts/#script-processing.
+
+Add the `is:inline` directive explicitly to silence this hint.
+
+[7m37[0m   <script type="application/ld+json">
+[7m  [0m [93m          ~~~~[0m
+
+[96msrc/pages/contacto.astro[0m:[93m4[0m:[93m8[0m - [91merror[0m[90m ts(2440): [0mImport declaration conflicts with local declaration of 'Contacto'.
+
+[7m4[0m import Contacto from '../components/contacto/Contacto';
+[7m [0m [91m       ~~~~~~~~[0m
+[96msrc/pages/contacto.astro[0m:[93m12[0m:[93m13[0m - [93mwarning[0m[90m astro(4000): [0mThis script will be treated as if it has the `is:inline` directive because it contains an attribute. Therefore, features that require processing (e.g. using TypeScript or npm packages in the script) are unavailable.
+
+See docs for more details: https://docs.astro.build/en/guides/client-side-scripts/#script-processing.
+
+Add the `is:inline` directive explicitly to silence this hint.
+
+[7m12[0m     <script type="application/ld+json">
+[7m  [0m [93m            ~~~~[0m
+
+[96msrc/pages/servicios.astro[0m:[93m71[0m:[93m9[0m - [93mwarning[0m[90m astro(4000): [0mThis script will be treated as if it has the `is:inline` directive because it contains an attribute. Therefore, features that require processing (e.g. using TypeScript or npm packages in the script) are unavailable.
+
+See docs for more details: https://docs.astro.build/en/guides/client-side-scripts/#script-processing.
+
+Add the `is:inline` directive explicitly to silence this hint.
+
+[7m71[0m         type="application/ld+json"
+[7m  [0m [93m        ~~~~[0m
+
+[96msrc/pages/sobre-nosotros.astro[0m:[93m15[0m:[93m13[0m - [93mwarning[0m[90m astro(4000): [0mThis script will be treated as if it has the `is:inline` directive because it contains an attribute. Therefore, features that require processing (e.g. using TypeScript or npm packages in the script) are unavailable.
+
+See docs for more details: https://docs.astro.build/en/guides/client-side-scripts/#script-processing.
+
+Add the `is:inline` directive explicitly to silence this hint.
+
+[7m15[0m     <script type="application/ld+json">
+[7m  [0m [93m            ~~~~[0m
+
+[96msrc/pages/blog/[slug].astro[0m:[93m118[0m:[93m31[0m - [91merror[0m[90m ts(7006): [0mParameter 'tag' implicitly has an 'any' type.
+
+[7m118[0m           {post.data.tags.map(tag => (
+[7m   [0m [91m                              ~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m118[0m:[93m17[0m - [91merror[0m[90m ts(2339): [0mProperty 'data' does not exist on type 'never'.
+
+[7m118[0m           {post.data.tags.map(tag => (
+[7m   [0m [91m                ~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m95[0m:[93m19[0m - [91merror[0m[90m ts(2339): [0mProperty 'data' does not exist on type 'never'.
+
+[7m95[0m             {post.data.author}
+[7m  [0m [91m                  ~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m85[0m:[93m15[0m - [91merror[0m[90m ts(2339): [0mProperty 'data' does not exist on type 'never'.
+
+[7m85[0m         {post.data.description}
+[7m  [0m [91m              ~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m80[0m:[93m15[0m - [91merror[0m[90m ts(2339): [0mProperty 'data' does not exist on type 'never'.
+
+[7m80[0m         {post.data.title}
+[7m  [0m [91m              ~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m74[0m:[93m17[0m - [91merror[0m[90m ts(2339): [0mProperty 'data' does not exist on type 'never'.
+
+[7m74[0m           {post.data.readingTime} MIN LECTURA
+[7m  [0m [91m                ~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m68[0m:[93m17[0m - [91merror[0m[90m ts(2339): [0mProperty 'data' does not exist on type 'never'.
+
+[7m68[0m           {post.data.category}
+[7m  [0m [91m                ~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m62[0m:[93m23[0m - [91merror[0m[90m ts(2339): [0mProperty 'data' does not exist on type 'never'.
+
+[7m62[0m         {" / "} {post.data.category}
+[7m  [0m [91m                      ~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m47[0m:[93m50[0m - [91merror[0m[90m ts(2339): [0mProperty 'slug' does not exist on type 'never'.
+
+[7m47[0m         "@id": `https://abgframe.com/blog/${post.slug}`
+[7m  [0m [91m                                                 ~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m37[0m:[93m22[0m - [91merror[0m[90m ts(2339): [0mProperty 'data' does not exist on type 'never'.
+
+[7m37[0m         "name": post.data.author,
+[7m  [0m [91m                     ~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m34[0m:[93m54[0m - [91merror[0m[90m ts(2339): [0mProperty 'data' does not exist on type 'never'.
+
+[7m34[0m       "dateModified": (post.data.updatedDate || post.data.pubDate).toISOString(),
+[7m  [0m [91m                                                     ~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m34[0m:[93m29[0m - [91merror[0m[90m ts(2339): [0mProperty 'data' does not exist on type 'never'.
+
+[7m34[0m       "dateModified": (post.data.updatedDate || post.data.pubDate).toISOString(),
+[7m  [0m [91m                            ~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m33[0m:[93m29[0m - [91merror[0m[90m ts(2339): [0mProperty 'data' does not exist on type 'never'.
+
+[7m33[0m       "datePublished": post.data.pubDate.toISOString(),
+[7m  [0m [91m                            ~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m32[0m:[93m27[0m - [91merror[0m[90m ts(2339): [0mProperty 'data' does not exist on type 'never'.
+
+[7m32[0m       "description": post.data.description,
+[7m  [0m [91m                          ~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m31[0m:[93m24[0m - [91merror[0m[90m ts(2339): [0mProperty 'data' does not exist on type 'never'.
+
+[7m31[0m       "headline": post.data.title,
+[7m  [0m [91m                       ~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m25[0m:[93m21[0m - [91merror[0m[90m ts(2339): [0mProperty 'data' does not exist on type 'never'.
+
+[7m25[0m   description={post.data.description}
+[7m  [0m [91m                    ~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m24[0m:[93m18[0m - [91merror[0m[90m ts(2339): [0mProperty 'data' does not exist on type 'never'.
+
+[7m24[0m   title={`${post.data.title} ┬À ABG Blog`}
+[7m  [0m [91m                 ~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m17[0m:[93m40[0m - [91merror[0m[90m ts(2339): [0mProperty 'data' does not exist on type 'never'.
+
+[7m17[0m const pubDateFormatted = new Date(post.data.pubDate)
+[7m  [0m [91m                                       ~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m15[0m:[93m32[0m - [91merror[0m[90m ts(2339): [0mProperty 'render' does not exist on type 'never'.
+
+[7m15[0m const { Content } = await post.render();
+[7m  [0m [91m                               ~~~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m8[0m:[93m20[0m - [91merror[0m[90m ts(7006): [0mParameter 'post' implicitly has an 'any' type.
+
+[7m8[0m   return posts.map(post => ({
+[7m [0m [91m                   ~~~~[0m
+[96msrc/pages/blog/[slug].astro[0m:[93m28[0m:[93m13[0m - [93mwarning[0m[90m astro(4000): [0mThis script will be treated as if it has the `is:inline` directive because it contains an attribute. Therefore, features that require processing (e.g. using TypeScript or npm packages in the script) are unavailable.
+
+See docs for more details: https://docs.astro.build/en/guides/client-side-scripts/#script-processing.
+
+Add the `is:inline` directive explicitly to silence this hint.
+
+[7m28[0m     <script type="application/ld+json" set:html={JSON.stringify({
+[7m  [0m [93m            ~~~~[0m
+
+[96msrc/pages/blog/index.astro[0m:[93m105[0m:[93m31[0m - [91merror[0m[90m ts(7006): [0mParameter 'post' implicitly has an 'any' type.
+
+[7m105[0m             {regularPosts.map(post => (
+[7m   [0m [91m                              ~~~~[0m
+[96msrc/pages/blog/index.astro[0m:[93m76[0m:[93m32[0m - [91merror[0m[90m ts(7006): [0mParameter 'post' implicitly has an 'any' type.
+
+[7m76[0m             {featuredPosts.map(post => (
+[7m  [0m [91m                               ~~~~[0m
+[96msrc/pages/blog/index.astro[0m:[93m12[0m:[93m41[0m - [91merror[0m[90m ts(7006): [0mParameter 'p' implicitly has an 'any' type.
+
+[7m12[0m const regularPosts = sortedPosts.filter(p => !p.data.featured);
+[7m  [0m [91m                                        ~[0m
+[96msrc/pages/blog/index.astro[0m:[93m11[0m:[93m42[0m - [91merror[0m[90m ts(7006): [0mParameter 'p' implicitly has an 'any' type.
+
+[7m11[0m const featuredPosts = sortedPosts.filter(p => p.data.featured);
+[7m  [0m [91m                                         ~[0m
+[96msrc/pages/blog/index.astro[0m:[93m9[0m:[93m7[0m - [91merror[0m[90m ts(7006): [0mParameter 'b' implicitly has an 'any' type.
+
+[7m9[0m   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+[7m [0m [91m      ~[0m
+[96msrc/pages/blog/index.astro[0m:[93m9[0m:[93m4[0m - [91merror[0m[90m ts(7006): [0mParameter 'a' implicitly has an 'any' type.
+
+[7m9[0m   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+[7m [0m [91m   ~[0m
+
+Result (34 files): 
+- 66 errors
+- 0 warnings
+- 16 hints
+

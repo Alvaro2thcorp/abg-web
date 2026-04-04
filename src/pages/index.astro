@@ -1,11 +1,48 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import HowItWorks from "../components/HowItWorks";
+import WhyABG from "../components/WhyABG";
+import HomeProyectos from "../components/HomeProyectos";
+import FinalCTA from "../components/FinalCTA";
+import SectionTransition from "../components/SectionTransition";
+import ProblemaHome from "../components/ProblemaHome";
+import TechBanner from "../components/TechBanner";
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+	title="Diseño Web Premium en Alicante | ABG Frame — Webs Que Atraen Clientes"
+	description="Agencia de diseño web premium en Alicante para negocios de alto ticket. Web + SEO local + Google Ads. Solicita tu análisis gratuito sin compromiso."
+>
+	<meta
+		slot="head"
+		name="keywords"
+		content="diseño web Alicante, agencia SEO Alicante, diseño web premium, agencia digital Alicante, web para náutica, web inmobiliaria lujo, SEO local Alicante"
+	/>
+
+	<Navbar client:load />
+
+	<main>
+		<Hero client:load />
+
+		<TechBanner client:load />
+
+		<SectionTransition
+			client:load
+			from="#080808"
+			to="#F2F0ED"
+			height="20vh"
+		/>
+
+		<ProblemaHome client:load />
+
+		<HowItWorks client:load />
+
+		<WhyABG client:load />
+
+		<HomeProyectos client:load />
+
+		<FinalCTA client:load />
+	</main>
 </Layout>

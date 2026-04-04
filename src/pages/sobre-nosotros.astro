@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar';
+import SobreHero from '../components/sobre/SobreHero';
+import Equipo from '../components/sobre/Equipo';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://abgframe.com" },
+    { "@type": "ListItem", "position": 2, "name": "Sobre nosotros", "item": "https://abgframe.com/sobre-nosotros" }
+  ]
+};
+
+const aboutPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Sobre ABG Frame",
+  "url": "https://abgframe.com/sobre-nosotros",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "ABG Frame",
+    "url": "https://abgframe.com",
+    "founder": {
+      "@type": "Person",
+      "name": "Álvaro Bergillos",
+      "jobTitle": "Fundador y Director Creativo",
+      "worksFor": { "@type": "Organization", "name": "ABG Frame" }
+    }
+  }
+};
+---
+
+<Layout
+  title="Sobre ABG Frame | Agencia de Diseño Web en San Juan de Alicante"
+  description="Conoce a Álvaro Bergillos, fundador de ABG Frame. Agencia de diseño web premium y SEO local en San Juan de Alicante para negocios de alto ticket."
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(aboutPageSchema)} />
+  </Fragment>
+
+  <Navbar client:load />
+  <SobreHero client:load />
+  <Equipo client:load />
+</Layout>

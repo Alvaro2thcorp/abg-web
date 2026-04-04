@@ -1,0 +1,41 @@
+﻿src/components/LightPillar.tsx(43,29): error TS2339: Property 'clientWidth' does not exist on type 'never'.
+src/components/LightPillar.tsx(44,30): error TS2339: Property 'clientHeight' does not exist on type 'never'.
+src/components/LightPillar.tsx(47,5): error TS2322: Type 'Scene' is not assignable to type 'null'.
+src/components/LightPillar.tsx(49,5): error TS2322: Type 'OrthographicCamera' is not assignable to type 'null'.
+src/components/LightPillar.tsx(70,22): error TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ low: { iterations: number; waveIterations: number; pixelRatio: number; precision: string; stepMultiplier: number; }; medium: { iterations: number; waveIterations: number; pixelRatio: number; precision: string; stepMultiplier: number; }; high: { ...; }; }'.
+  No index signature with a parameter of type 'string' was found on type '{ low: { iterations: number; waveIterations: number; pixelRatio: number; precision: string; stepMultiplier: number; }; medium: { iterations: number; waveIterations: number; pixelRatio: number; precision: string; stepMultiplier: number; }; high: { ...; }; }'.
+src/components/LightPillar.tsx(89,15): error TS2339: Property 'appendChild' does not exist on type 'never'.
+src/components/LightPillar.tsx(90,5): error TS2322: Type 'WebGLRenderer' is not assignable to type 'null'.
+src/components/LightPillar.tsx(92,24): error TS7006: Parameter 'hex' implicitly has an 'any' type.
+src/components/LightPillar.tsx(220,5): error TS2322: Type 'ShaderMaterial' is not assignable to type 'null'.
+src/components/LightPillar.tsx(223,5): error TS2322: Type 'PlaneGeometry' is not assignable to type 'null'.
+src/components/LightPillar.tsx(227,9): error TS7034: Variable 'mouseMoveTimeout' implicitly has type 'any' in some locations where its type cannot be determined.
+src/components/LightPillar.tsx(228,29): error TS7006: Parameter 'event' implicitly has an 'any' type.
+src/components/LightPillar.tsx(231,11): error TS7005: Variable 'mouseMoveTimeout' implicitly has an 'any' type.
+src/components/LightPillar.tsx(237,30): error TS2339: Property 'getBoundingClientRect' does not exist on type 'never'.
+src/components/LightPillar.tsx(244,17): error TS2339: Property 'addEventListener' does not exist on type 'never'.
+src/components/LightPillar.tsx(251,21): error TS7006: Parameter 'currentTime' implicitly has an 'any' type.
+src/components/LightPillar.tsx(259,29): error TS2339: Property 'uniforms' does not exist on type 'never'.
+src/components/LightPillar.tsx(260,29): error TS2339: Property 'uniforms' does not exist on type 'never'.
+src/components/LightPillar.tsx(261,29): error TS2339: Property 'uniforms' does not exist on type 'never'.
+src/components/LightPillar.tsx(262,29): error TS2339: Property 'render' does not exist on type 'never'.
+src/components/LightPillar.tsx(266,7): error TS2322: Type 'number' is not assignable to type 'null'.
+src/components/LightPillar.tsx(268,5): error TS2322: Type 'number' is not assignable to type 'null'.
+src/components/LightPillar.tsx(270,9): error TS7034: Variable 'resizeTimeout' implicitly has type 'any' in some locations where its type cannot be determined.
+src/components/LightPillar.tsx(272,11): error TS7005: Variable 'resizeTimeout' implicitly has an 'any' type.
+src/components/LightPillar.tsx(278,47): error TS2339: Property 'clientWidth' does not exist on type 'never'.
+src/components/LightPillar.tsx(279,48): error TS2339: Property 'clientHeight' does not exist on type 'never'.
+src/components/LightPillar.tsx(280,29): error TS2339: Property 'setSize' does not exist on type 'never'.
+src/components/LightPillar.tsx(281,29): error TS2339: Property 'uniforms' does not exist on type 'never'.
+src/components/LightPillar.tsx(290,19): error TS2339: Property 'removeEventListener' does not exist on type 'never'.
+src/components/LightPillar.tsx(296,29): error TS2339: Property 'dispose' does not exist on type 'never'.
+src/components/LightPillar.tsx(297,29): error TS2339: Property 'forceContextLoss' does not exist on type 'never'.
+src/components/LightPillar.tsx(298,23): error TS2339: Property 'contains' does not exist on type 'never'.
+src/components/LightPillar.tsx(298,52): error TS2339: Property 'domElement' does not exist on type 'never'.
+src/components/LightPillar.tsx(299,21): error TS2339: Property 'removeChild' does not exist on type 'never'.
+src/components/LightPillar.tsx(299,53): error TS2339: Property 'domElement' does not exist on type 'never'.
+src/components/LightPillar.tsx(303,29): error TS2339: Property 'dispose' does not exist on type 'never'.
+src/components/LightPillar.tsx(306,29): error TS2339: Property 'dispose' does not exist on type 'never'.
+src/components/LightPillar.tsx(333,70): error TS2322: Type 'string' is not assignable to type 'MixBlendMode | undefined'.
+src/components/LightPillar.tsx(339,93): error TS2322: Type 'string' is not assignable to type 'MixBlendMode | undefined'.
+src/content/config.ts(1,37): error TS2307: Cannot find module 'astro:content' or its corresponding type declarations.

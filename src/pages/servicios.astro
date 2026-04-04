@@ -1,0 +1,105 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar";
+import ServiciosHero from "../components/servicios/ServiciosHero";
+import SistemaOverview from "../components/servicios/SistemaOverview";
+import ServicioWeb from "../components/servicios/ServicioWeb";
+import ServicioSEO from "../components/servicios/ServicioSEO";
+import ServicioAds from "../components/servicios/ServicioAds";
+import SistemaCompleto from "../components/servicios/SistemaCompleto";
+import Precios from "../components/servicios/Precios";
+import ServiciosCTA from "../components/servicios/ServiciosCTA";
+
+const title =
+    "Servicios de Diseño Web, SEO y Ads en Alicante | ABG Frame";
+const description =
+    "Diseño web premium, SEO local y Google Ads para negocios de alto ticket en Alicante. Webs que posicionan y convierten desde el primer día.";
+
+const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Diseño Web Premium y SEO Local Alicante",
+    provider: {
+        "@type": "LocalBusiness",
+        name: "ABG",
+        image: "https://abgframe.com/logo.png",
+        address: {
+            "@type": "PostalAddress",
+            addressLocality: "Alicante",
+            addressCountry: "ES",
+        },
+    },
+    hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Servicios ABG",
+        itemListElement: [
+            {
+                "@type": "Offer",
+                itemOffered: {
+                    "@type": "Service",
+                    name: "Diseño Web Premium",
+                    description:
+                        "Web a medida con arquitectura SEO integrada y Core Web Vitals perfectos para negocios de alto ticket en Alicante.",
+                },
+            },
+            {
+                "@type": "Offer",
+                itemOffered: {
+                    "@type": "Service",
+                    name: "SEO Local Alicante",
+                    description:
+                        "Posicionamiento orgánico en Alicante y provincia. Tus clientes te encuentran en Google cuando buscan tus servicios.",
+                },
+            },
+            {
+                "@type": "Offer",
+                itemOffered: {
+                    "@type": "Service",
+                    name: "Google Ads",
+                    description:
+                        "Campañas de búsqueda en Google para captar clientes activos en Alicante y provincia que ya están buscando tus servicios.",
+                },
+            },
+        ],
+    },
+};
+
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://abgframe.com" },
+        { "@type": "ListItem", "position": 2, "name": "Servicios", "item": "https://abgframe.com/servicios" }
+    ]
+};
+---
+
+<Layout title={title} description={description}>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+    <main style="background-color: #080808;">
+        <Navbar client:load />
+
+        <ServiciosHero client:load />
+        <SistemaOverview client:visible />
+        <ServicioWeb client:visible />
+        <ServicioSEO client:visible />
+        <ServicioAds client:visible />
+        <SistemaCompleto client:visible />
+        <Precios client:visible />
+        <ServiciosCTA client:visible />
+    </main>
+</Layout>
+
+<style is:global>
+    /* Aseguramos que el scroll sea fluido para los anchors de precios */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Prevenir flashing de colores entre secciones si hay lags en carga */
+    body {
+        background-color: #080808;
+    }
+</style>

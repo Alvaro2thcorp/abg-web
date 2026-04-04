@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+.highlight-word {
+  position: relative;
+  display: inline-block;
+  color: inherit;
+  z-index: 1;
+}
+
+.highlight-word::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  top: 8%;
+  bottom: 8%;
+  background-color: #F04E23;
+  opacity: 0.18;
+  z-index: -1;
+  transform: skewX(-3deg);
+}

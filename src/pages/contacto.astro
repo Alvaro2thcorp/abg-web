@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar';
+import ContactoComponent from '../components/contacto/Contacto';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://abgframe.com" },
+    { "@type": "ListItem", "position": 2, "name": "Contacto", "item": "https://abgframe.com/contacto" }
+  ]
+};
+
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contacto ABG Frame",
+  "url": "https://abgframe.com/contacto",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "ABG Frame",
+    "email": "hola@abgframe.com",
+    "url": "https://abgframe.com",
+    "areaServed": ["Alicante", "España", "Europa"],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "email": "hola@abgframe.com",
+      "availableLanguage": ["Spanish", "English"]
+    }
+  }
+};
+---
+
+<Layout
+  title="Contacta con ABG Frame | Presupuesto Web y Marketing Digital"
+  description="Solicita presupuesto de diseño web o análisis SEO gratuito en Alicante. Sin compromiso, respuesta en 48h. ABG Frame — tu agencia digital."
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(contactPageSchema)} />
+  </Fragment>
+
+  <Navbar client:load />
+  <ContactoComponent client:load />
+</Layout>

@@ -1,0 +1,105 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar';
+import SistemaPage from '../components/sistema/SistemaPage';
+
+const sistemaSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "El Sistema ABG",
+    "description": "Sistema integrado de captación digital: web premium + SEO local + Social Media y Meta Ads multiidioma para negocios de alto ticket en Alicante.",
+    "provider": {
+        "@type": "Organization",
+        "name": "ABG Frame",
+        "url": "https://abgframe.com"
+    },
+    "areaServed": ["Alicante", "España", "Reino Unido", "Francia"],
+    "offers": {
+        "@type": "Offer",
+        "price": "2350",
+        "priceCurrency": "EUR",
+        "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "2350",
+            "priceCurrency": "EUR",
+            "unitText": "MONTH"
+        }
+    }
+};
+
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "¿Hay permanencia o contrato mínimo?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. ABG Frame trabaja mes a mes porque confía en sus resultados. Si en algún momento sientes que el sistema no te compensa, puedes cancelar sin dramas."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "¿Qué pasa si ya tengo una web?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Si tu web está bien construida y convierte, la mantenemos. Pero si tiene errores técnicos que lastran el SEO, rehacerla de cero está incluido en El Sistema."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "¿Qué tecnología usáis para construir las webs?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Depende del proyecto. ABG Frame trabaja con Astro, React, WordPress o la herramienta que mejor encaje con los objetivos del negocio. Lo que nunca cambia es el enfoque: sin atajos, sin plantillas genéricas y con el SEO técnico integrado desde el primer día."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "¿En cuánto tiempo tendré clientes?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "La web vuela en 3-5 semanas. Los anuncios (Ads) traen tráfico desde el día 1. El SEO es una maratón: notarás el crecimiento real en Google a partir del tercer o cuarto mes."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "¿Este sistema sirve para cualquier sector?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. El Sistema ABG está diseñado para negocios de alto ticket donde un solo cliente captado justifica la inversión: inmobiliarias, náutica, reformas, clínicas o B2B."
+            }
+        }
+    ]
+};
+
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://abgframe.com" },
+        { "@type": "ListItem", "position": 2, "name": "El Sistema", "item": "https://abgframe.com/el-sistema" }
+    ]
+};
+---
+
+<Layout
+    title="Web + SEO + Ads: El Sistema Completo para Tu Negocio | ABG Frame"
+    description="Web premium + SEO local + Social Media y Ads en Alicante. Sistema completo de captación digital para negocios de alto ticket. Sin permanencia."
+>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(sistemaSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+    <main style="background-color: #080808;">
+        <Navbar client:load />
+        <SistemaPage client:load />
+    </main>
+</Layout>
+
+<style is:global>
+    body {
+        background-color: #080808;
+    }
+</style>
