@@ -93,8 +93,7 @@ export default function CasoYatesAlicante() {
           {/* Breadcrumb */}
           <nav style={{ marginBottom: '3rem' }}>
             <p style={{ fontFamily: 'Syne Mono, monospace', fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(242, 240, 237, 0.25)' }}>
-              <a href="/" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#F04E23'} onMouseLeave={(e) => e.currentTarget.style.color = 'inherit'}>ABG</a> / 
-              <a href="/proyectos" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s', marginLeft: '0.25rem' }} onMouseEnter={(e) => e.currentTarget.style.color = '#F04E23'} onMouseLeave={(e) => e.currentTarget.style.color = 'inherit'}> PROYECTOS</a> / 
+              <a href="/" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#F04E23'} onMouseLeave={(e) => e.currentTarget.style.color = 'inherit'}>ABG</a> /
               <span style={{ marginLeft: '0.25rem' }}>YATES ALICANTE</span>
             </p>
           </nav>

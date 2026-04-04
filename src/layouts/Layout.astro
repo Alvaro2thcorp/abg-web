@@ -12,7 +12,7 @@ const { title, description, ogImage, ogType = "website" } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, "https://abgframe.com").href;
 const ogImageURL = ogImage
 	? `https://abgframe.com${ogImage}`
-	: "https://abgframe.com/images/og-default.jpg";
+	: "https://abgframe.com/images/abglogo.png";
 ---
 
 <!doctype html>
@@ -67,7 +67,7 @@ const ogImageURL = ogImage
 				"name": "ABG Frame",
 				"url": "https://abgframe.com",
 				"logo": "https://abgframe.com/images/abglogo.png",
-				"image": "https://abgframe.com/images/og-default.jpg",
+				"image": "https://abgframe.com/images/abglogo.png",
 				"description": "Agencia de diseño web premium y SEO local para negocios de alto ticket en San Juan de Alicante. Especialistas en náutica, inmobiliaria de lujo, clínicas y hoteles boutique.",
 				"address": {
 					"@type": "PostalAddress",
@@ -160,7 +160,7 @@ const ogImageURL = ogImage
 		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<!-- End Google Tag Manager (noscript) -->
 		<slot />
-		<WhatsAppButton client:load />
+		<WhatsAppButton client:idle />
 	</body>
 </html>
 

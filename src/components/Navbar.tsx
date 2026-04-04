@@ -15,10 +15,9 @@ const links: NavLink[] = [
     { num: "01", label: "INICIO", href: "/" },
     { num: "02", label: "SERVICIOS", href: "/servicios" },
     { num: "03", label: "EL SISTEMA", href: "/el-sistema" },
-    { num: "04", label: "PROYECTOS", href: "/proyectos" },
-    { num: "05", label: "SOBRE NOSOTROS", href: "/sobre-nosotros" },
-    { num: "06", label: "BLOG", href: "/blog" },
-    { num: "07", label: "CONTACTO", href: "/contacto" },
+    { num: "04", label: "SOBRE NOSOTROS", href: "/sobre-nosotros" },
+    { num: "05", label: "BLOG", href: "/blog" },
+    { num: "06", label: "CONTACTO", href: "/contacto" },
 ];
 
 

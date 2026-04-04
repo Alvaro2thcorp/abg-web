@@ -332,7 +332,7 @@ export default function Contacto() {
                             <option value="Sistema Completo (Web + SEO + Ads)">Sistema Completo (Web + SEO + Ads)</option>
                             <option value="Solo Web Premium">Solo Web Premium</option>
                             <option value="Solo SEO Internacional">Solo SEO Internacional</option>
-                            <option value="Solo Meta Ads">Solo Meta Ads</option>
+                            <option value="Solo Google Ads">Solo Google Ads</option>
                             <option value="No lo tengo claro aún">No lo tengo claro aún</option>
                         </select>
                         <div style={{

@@ -234,6 +234,13 @@ export default function ServiciosHero() {
                             <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1rem", color: "#F2F0ED", lineHeight: "1" }}>3 idiomas</span>
                             <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.52rem", color: "rgba(242, 240, 237, 0.25)", textTransform: "uppercase" }}>ES · EN · FR</span>
                         </div>
+
+                        <div className="bottom-bar-separator" style={{ borderRight: "1px solid rgba(242, 240, 237, 0.08)", height: "2rem" }} />
+
+                        <div style={{ display: "flex", flexDirection: "column", gap: "0.3rem" }}>
+                            <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1rem", color: "#F2F0ED", lineHeight: "1" }}>Plataformas</span>
+                            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.52rem", color: "rgba(242, 240, 237, 0.25)", textTransform: "uppercase" }}>ASTRO · WP · SHOPIFY · WOO</span>
+                        </div>
                     </div>
 
                     <a

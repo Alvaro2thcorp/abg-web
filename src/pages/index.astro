@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import HowItWorks from "../components/HowItWorks";
 import WhyABG from "../components/WhyABG";
-import HomeProyectos from "../components/HomeProyectos";
+// import HomeProyectos from "../components/HomeProyectos";
 import FinalCTA from "../components/FinalCTA";
 import SectionTransition from "../components/SectionTransition";
 import ProblemaHome from "../components/ProblemaHome";
@@ -15,34 +15,28 @@ import TechBanner from "../components/TechBanner";
 	title="Diseño Web Premium en Alicante | ABG Frame — Webs Que Atraen Clientes"
 	description="Agencia de diseño web premium en Alicante para negocios de alto ticket. Web + SEO local + Google Ads. Solicita tu análisis gratuito sin compromiso."
 >
-	<meta
-		slot="head"
-		name="keywords"
-		content="diseño web Alicante, agencia SEO Alicante, diseño web premium, agencia digital Alicante, web para náutica, web inmobiliaria lujo, SEO local Alicante"
-	/>
-
 	<Navbar client:load />
 
 	<main>
 		<Hero client:load />
 
-		<TechBanner client:load />
+		<TechBanner client:visible />
 
 		<SectionTransition
-			client:load
+			client:visible
 			from="#080808"
 			to="#F2F0ED"
 			height="20vh"
 		/>
 
-		<ProblemaHome client:load />
+		<ProblemaHome client:visible />
 
-		<HowItWorks client:load />
+		<HowItWorks client:visible />
 
-		<WhyABG client:load />
+		<WhyABG client:visible />
 
-		<HomeProyectos client:load />
+		{/* <HomeProyectos client:load /> */}
 
-		<FinalCTA client:load />
+		<FinalCTA client:visible />
 	</main>
 </Layout>

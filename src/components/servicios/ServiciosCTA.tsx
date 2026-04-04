@@ -141,7 +141,7 @@ export default function ServiciosCTA() {
 
                     <div>
                         <a
-                            href="https://wa.me/34XXXXXXXXX"
+                            href="https://wa.me/34601058997"
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{

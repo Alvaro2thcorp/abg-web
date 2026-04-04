@@ -24,9 +24,9 @@ export default function SistemaOverview() {
         },
         {
             num: "03",
-            tag: "SOCIAL + ADS",
-            title: "Social Media + Meta Ads",
-            desc: "Contenido orgánico que construye marca y campañas de pago que atraen clientes de España, Reino Unido y Francia.",
+            tag: "GOOGLE ADS",
+            title: "Google Ads",
+            desc: "Campañas de búsqueda que capturan demanda activa en Alicante y provincia. Segmentación ES · EN · FR para negocios de alto ticket.",
             stats: ["ES · EN · FR", "RETARGETING INCLUIDO"],
             href: "#social-ads"
         }
@@ -219,7 +219,7 @@ export default function SistemaOverview() {
                             marginTop: "0.5rem",
                         }}
                     >
-                        Web + SEO + Social Ads. Todo integrado en un solo sistema.
+                        Web + SEO + Google Ads. Todo integrado en un solo sistema.
                     </p>
                 </div>
                 <a

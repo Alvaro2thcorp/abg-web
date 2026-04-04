@@ -297,11 +297,11 @@ export default function WhyABG() {
                     />
                     <EditorialStatement
                         num="03"
-                        tag="Sin Permanencias"
-                        title="No te atamos."
-                        italic="Nos ganamos tu confianza."
-                        description="Muchas agencias te meten en contratos de 12 meses porque saben que los resultados tardan en llegar y para entonces ya has pagado. ABG Frame no. El Sistema funciona mes a mes. Si en 90 días no ves un cambio real en tus consultas o en tu tráfico orgánico, te vas sin penalización. Así de claro."
-                        pills={["Sin contrato mínimo", "Resultados medibles", "Transparencia total"]}
+                        tag="Captación"
+                        title="Web, SEO y Ads"
+                        italic="trabajando juntos."
+                        description="Diseño web que convierte, SEO local que atrae tráfico orgánico y Google Ads que acelera los resultados desde el día uno. Todo coordinado, todo medible."
+                        pills={["Google Ads", "SEO orgánico", "Sistema integrado"]}
                         delay={0.4}
                     />
                 </div>

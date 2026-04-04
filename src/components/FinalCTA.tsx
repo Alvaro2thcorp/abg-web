@@ -10,7 +10,6 @@ const FinalCTA = () => {
     const navLinks = [
         { name: "Servicios", href: "/servicios" },
         { name: "El Sistema", href: "/el-sistema" },
-        { name: "Proyectos", href: "/proyectos" },
         { name: "Blog", href: "/blog" },
         { name: "Sobre nosotros", href: "/sobre-nosotros" },
         { name: "Contacto", href: "/contacto" }
@@ -164,7 +163,7 @@ const FinalCTA = () => {
                 </div>
 
                 <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.58rem", color: "rgba(8,8,8,0.2)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                    Diseño web Alicante · SEO · Meta Ads
+                    Diseño web Alicante · SEO · Google Ads
                 </div>
 
                 <div style={{ display: "flex", gap: "1.5rem" }}>

@@ -227,7 +227,7 @@ export default function SobreHero() {
 
                     {/* Derecha - Botones */}
                     <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" as const }}>
-                        <a
+                        {/* <a
                             href="/proyectos"
                             style={{
                                 display: "inline-block",
@@ -251,7 +251,7 @@ export default function SobreHero() {
                             }}
                         >
                             Ver proyectos →
-                        </a>
+                        </a> */}
                         <a
                             href="/el-sistema"
                             style={{

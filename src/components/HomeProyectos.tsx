@@ -121,7 +121,7 @@ export default function HomeProyectos() {
                             flexWrap: "wrap",
                         }}
                     >
-                        <a
+                        {/* <a
                             href="/proyectos"
                             className="hp-btn-primary"
                             style={{
@@ -138,7 +138,7 @@ export default function HomeProyectos() {
                             }}
                         >
                             Ver proyectos →
-                        </a>
+                        </a> */}
                         <a
                             href="/contacto"
                             className="hp-btn-secondary"
