@@ -295,7 +295,7 @@ export default function Navbar() {
                                                 style={{
                                                     fontFamily: "Syne, sans-serif",
                                                     fontWeight: 800,
-                                                    fontSize: "clamp(1.5rem, 4vw, 3.5rem)",
+                                                    fontSize: "clamp(1.5rem, 5vw, 3.5rem)",
                                                     color: hoveredIndex === i ? "#080808" : "rgba(8,8,8,0.2)",
                                                     lineHeight: 0.95,
                                                     transition: "color 0.2s ease",
@@ -413,11 +413,23 @@ export default function Navbar() {
             padding-top: 6rem !important;
             padding-left: 1.5rem !important;
             padding-right: 1.5rem !important;
+            width: 100% !important;
+            overflow: hidden !important;
+          }
+          .mobile-menu-nav ul {
+            width: 100% !important;
+            overflow: hidden !important;
+          }
+          .mobile-menu-nav li a {
+            width: 100% !important;
+            overflow: hidden !important;
+            max-width: 100% !important;
           }
           .mobile-nav-label {
-            font-size: 2.5rem !important;
+            font-size: clamp(1.4rem, 8.5vw, 2.5rem) !important;
             font-weight: 800 !important;
             color: rgba(242, 240, 237, 0.2) !important;
+            white-space: nowrap !important;
           }
           .mobile-nav-label-active {
             color: #F2F0ED !important;
