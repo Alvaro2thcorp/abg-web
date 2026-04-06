@@ -161,28 +161,6 @@ const EditorialStatement = ({
                         {description}
                     </p>
 
-                    {/* Pills */}
-                    <div style={{ marginTop: "1.5rem", display: "flex", gap: "0.6rem", flexWrap: "wrap" }}>
-                        {pills.map((pill, i) => (
-                            <span
-                                key={i}
-                                className="pill-editorial"
-                                style={{
-                                    fontFamily: "'Syne Mono', monospace",
-                                    fontSize: "0.55rem",
-                                    border: "1px solid rgba(242,240,237,0.08)",
-                                    color: "rgba(242,240,237,0.2)",
-                                    padding: "0.3rem 0.9rem",
-                                    borderRadius: "100px",
-                                    transition: "all 0.3s ease",
-                                    cursor: "default",
-                                    textTransform: "uppercase"
-                                }}
-                            >
-                                {pill}
-                            </span>
-                        ))}
-                    </div>
                 </div>
             </div>
 
