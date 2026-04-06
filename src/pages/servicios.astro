@@ -1,19 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar";
-import ServiciosHero from "../components/servicios/ServiciosHero";
-import SistemaOverview from "../components/servicios/SistemaOverview";
-import ServicioWeb from "../components/servicios/ServicioWeb";
-import ServicioSEO from "../components/servicios/ServicioSEO";
-import ServicioAds from "../components/servicios/ServicioAds";
-import SistemaCompleto from "../components/servicios/SistemaCompleto";
-import Precios from "../components/servicios/Precios";
-import ServiciosCTA from "../components/servicios/ServiciosCTA";
 
-const title =
-    "Servicios de Diseño Web, SEO y Ads en Alicante | ABG Frame";
+const title = "Servicios de Diseño Web y SEO en Alicante | ABG Frame";
 const description =
-    "Diseño web premium, SEO local y Google Ads para negocios de alto ticket en Alicante. Webs que posicionan y convierten desde el primer día.";
+    "Diseño web premium, SEO local y sistema integrado para negocios en Alicante. Webs que posicionan y convierten desde el primer día.";
 
 const serviceSchema = {
     "@context": "https://schema.org",
@@ -31,15 +22,14 @@ const serviceSchema = {
     },
     hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "Servicios ABG",
+        name: "Servicios ABG Frame",
         itemListElement: [
             {
                 "@type": "Offer",
                 itemOffered: {
                     "@type": "Service",
-                    name: "Diseño Web Premium",
-                    description:
-                        "Web a medida con arquitectura SEO integrada y Core Web Vitals perfectos para negocios de alto ticket en Alicante.",
+                    name: "Desarrollo Web",
+                    description: "Web a medida con UX/UI premium, Astro, WordPress, Shopify y Core Web Vitals perfectos.",
                 },
             },
             {
@@ -47,17 +37,15 @@ const serviceSchema = {
                 itemOffered: {
                     "@type": "Service",
                     name: "SEO Local Alicante",
-                    description:
-                        "Posicionamiento orgánico en Alicante y provincia. Tus clientes te encuentran en Google cuando buscan tus servicios.",
+                    description: "Posicionamiento orgánico en Alicante. Arquitectura semántica, Google Business Profile y SEO técnico.",
                 },
             },
             {
                 "@type": "Offer",
                 itemOffered: {
                     "@type": "Service",
-                    name: "Google Ads",
-                    description:
-                        "Campañas de búsqueda en Google para captar clientes activos en Alicante y provincia que ya están buscando tus servicios.",
+                    name: "El Sistema",
+                    description: "Web + SEO + Ads + Social. Todo integrado. Disponible en ES, EN y FR.",
                 },
             },
         ],
@@ -67,10 +55,10 @@ const serviceSchema = {
 const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://abgframe.com" },
-        { "@type": "ListItem", "position": 2, "name": "Servicios", "item": "https://abgframe.com/servicios" }
-    ]
+    itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Inicio", item: "https://abgframe.com" },
+        { "@type": "ListItem", position: 2, name: "Servicios", item: "https://abgframe.com/servicios" },
+    ],
 };
 ---
 
@@ -78,28 +66,439 @@ const breadcrumbSchema = {
     <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
-    <main style="background-color: #080808;">
-        <Navbar client:load />
+    <Navbar client:load />
 
-        <ServiciosHero client:load />
-        <SistemaOverview client:visible />
-        <ServicioWeb client:visible />
-        <ServicioSEO client:visible />
-        <ServicioAds client:visible />
-        <SistemaCompleto client:visible />
-        <Precios client:visible />
-        <ServiciosCTA client:visible />
+    <main>
+
+        <!-- ══════════════════════════════════════════════════════ HERO -->
+        <section
+            id="servicios-hero"
+            aria-label="ABG Frame — Servicios de diseño web y SEO en Alicante"
+        >
+            <div class="hero-inner">
+                <p class="hero-eyebrow">ABG FRAME · ALICANTE</p>
+                <h1 class="hero-title">
+                    Desarrollo web<br />y SEO.
+                </h1>
+                <div class="hero-line"></div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════ SERVICIOS -->
+        <section id="servicios-cards" aria-label="Servicios ABG Frame">
+            <div class="section-inner">
+
+                <!-- 01 DESARROLLO WEB -->
+                <article class="card" data-index="01">
+                    <div class="card-num" aria-hidden="true">01</div>
+                    <div class="card-body">
+                        <p class="card-tag">DESARROLLO WEB</p>
+                        <h2 class="card-title">La web que tu negocio merece.</h2>
+                        <ul class="card-bullets">
+                            <li>Diseño UX/UI a medida</li>
+                            <li>Astro · WordPress · Shopify · WooCommerce</li>
+                            <li>Core Web Vitals 100/100</li>
+                            <li>Entrega en 3–5 semanas</li>
+                        </ul>
+                        <a href="/contacto" class="card-cta">Hablar del proyecto →</a>
+                    </div>
+                </article>
+
+                <!-- 02 SEO LOCAL -->
+                <article class="card" data-index="02">
+                    <div class="card-num" aria-hidden="true">02</div>
+                    <div class="card-body">
+                        <p class="card-tag">SEO LOCAL</p>
+                        <h2 class="card-title">Que te encuentren en Alicante.</h2>
+                        <ul class="card-bullets">
+                            <li>Posicionamiento en Alicante</li>
+                            <li>Arquitectura semántica</li>
+                            <li>Google Business Profile</li>
+                            <li>SEO técnico y on-page</li>
+                            <li>Informes mensuales</li>
+                        </ul>
+                        <a href="/contacto" class="card-cta">Hablar del proyecto →</a>
+                    </div>
+                </article>
+
+                <!-- 03 EL SISTEMA -->
+                <article class="card card--featured" data-index="03">
+                    <div class="card-num card-num--featured" aria-hidden="true">03</div>
+                    <div class="card-body">
+                        <p class="card-tag card-tag--featured">EL SISTEMA</p>
+                        <h2 class="card-title">Web + SEO + Ads + Social.</h2>
+                        <p class="card-desc">
+                            Todo integrado. La forma en que trabajamos por defecto.
+                        </p>
+                        <ul class="card-bullets">
+                            <li>Sin permanencia</li>
+                            <li>Disponible en ES · EN · FR</li>
+                            <li>Dashboard en tiempo real</li>
+                        </ul>
+                        <a href="/el-sistema" class="card-cta card-cta--featured">Ver El Sistema →</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════ PLATAFORMAS -->
+        <section id="plataformas" aria-label="Tecnología y plataformas ABG Frame">
+            <div class="section-inner">
+                <p class="tech-label">TECNOLOGÍA</p>
+                <div class="tech-row">
+                    <span>ASTRO</span>
+                    <span>WORDPRESS</span>
+                    <span>SHOPIFY</span>
+                    <span>WOOCOMMERCE</span>
+                    <span>REACT</span>
+                    <span>TAILWIND</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════════ CTA FINAL -->
+        <section id="servicios-cta" aria-label="Contactar con ABG Frame">
+            <div class="cta-inner">
+                <p class="cta-eyebrow">CONTACTO</p>
+                <h2 class="cta-title">¿Hablamos?</h2>
+                <p class="cta-sub">Cuéntanos tu proyecto. Respuesta en 48h.</p>
+                <a href="/contacto" class="cta-btn">Contactar →</a>
+            </div>
+        </section>
+
     </main>
 </Layout>
 
 <style is:global>
-    /* Aseguramos que el scroll sea fluido para los anchors de precios */
-    html {
-        scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
+    body { background: #F2F0ED; }
+</style>
 
-    /* Prevenir flashing de colores entre secciones si hay lags en carga */
-    body {
-        background-color: #080808;
+<style>
+/* ── Tokens ──────────────────────────────────────────────────────────────── */
+:root {
+    --cream:  #F2F0ED;
+    --dark:   #080808;
+    --orange: #F04E23;
+    --mono:   'Syne Mono', monospace;
+    --display: 'Cabinet Grotesk', 'Syne', sans-serif;
+    --body:   'Epilogue', sans-serif;
+}
+
+/* ── Hero ────────────────────────────────────────────────────────────────── */
+#servicios-hero {
+    background: var(--cream);
+    padding: 10rem clamp(1.5rem, 5vw, 5rem) 5rem;
+}
+.hero-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin: 0 0 1.5rem;
+}
+.hero-title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    color: var(--dark);
+    letter-spacing: -0.04em;
+    line-height: 0.92;
+    margin: 0 0 2.5rem;
+}
+.hero-line {
+    width: 80px;
+    height: 2px;
+    background: var(--orange);
+}
+
+/* ── Shared section layout ───────────────────────────────────────────────── */
+.section-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 5rem);
+}
+
+/* ── Servicios cards ─────────────────────────────────────────────────────── */
+#servicios-cards {
+    background: var(--dark);
+    padding: 5rem 0 6rem;
+    border-top: 1px solid rgba(242,240,237,0.06);
+}
+#servicios-cards .section-inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    align-items: stretch;
+}
+
+/* Card base */
+.card {
+    background: rgba(242,240,237,0.03);
+    border: 1px solid rgba(242,240,237,0.07);
+    border-radius: 2px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.35s ease, background 0.35s ease;
+}
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--orange);
+    transition: width 0.45s cubic-bezier(0.16,1,0.3,1);
+}
+.card:hover::before { width: 100%; }
+.card:hover {
+    border-color: rgba(240,78,35,0.2);
+    background: rgba(242,240,237,0.05);
+}
+
+/* Decorative number */
+.card-num {
+    position: absolute;
+    top: -0.5rem; right: 1.5rem;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(5rem, 8vw, 9rem);
+    color: rgba(242,240,237,0.04);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    transition: color 0.4s ease;
+}
+.card:hover .card-num { color: rgba(240,78,35,0.07); }
+
+.card-body {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.card-tag {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin: 0 0 1.25rem;
+}
+.card-title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+    color: #F2F0ED;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin: 0 0 1.5rem;
+}
+.card-desc {
+    font-family: var(--body);
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: rgba(242,240,237,0.45);
+    line-height: 1.7;
+    margin: 0 0 1.25rem;
+}
+.card-bullets {
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+}
+.card-bullets li {
+    font-family: var(--body);
+    font-weight: 300;
+    font-size: 0.88rem;
+    color: rgba(242,240,237,0.45);
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.5;
+}
+.card-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--orange);
+    font-size: 0.75rem;
+}
+.card-cta {
+    display: inline-block;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: #F2F0ED;
+    text-decoration: none;
+    border: 1px solid rgba(242,240,237,0.15);
+    border-radius: 100px;
+    padding: 0.65rem 1.4rem;
+    align-self: flex-start;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+.card-cta:hover {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: #fff;
+}
+
+/* Featured card (03 — El Sistema) */
+.card--featured {
+    background: var(--orange);
+    border-color: var(--orange);
+}
+.card--featured::before { background: #fff; }
+.card--featured:hover {
+    background: #d93e16;
+    border-color: #d93e16;
+}
+.card--featured .card-num--featured {
+    color: rgba(255,255,255,0.08);
+}
+.card--featured:hover .card-num--featured {
+    color: rgba(255,255,255,0.12);
+}
+.card-tag--featured {
+    color: rgba(255,255,255,0.7) !important;
+}
+.card--featured .card-title {
+    color: #fff;
+}
+.card--featured .card-desc {
+    color: rgba(255,255,255,0.7);
+}
+.card--featured .card-bullets li {
+    color: rgba(255,255,255,0.7);
+}
+.card--featured .card-bullets li::before {
+    color: rgba(255,255,255,0.5);
+}
+.card-cta--featured {
+    background: #fff;
+    border-color: #fff;
+    color: var(--orange) !important;
+}
+.card-cta--featured:hover {
+    background: var(--dark) !important;
+    border-color: var(--dark) !important;
+    color: #fff !important;
+}
+
+/* ── Plataformas ─────────────────────────────────────────────────────────── */
+#plataformas {
+    background: var(--dark);
+    padding: 3rem 0 3.5rem;
+    border-top: 1px solid rgba(242,240,237,0.06);
+}
+.tech-label {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    color: rgba(242,240,237,0.2);
+    text-transform: uppercase;
+    margin: 0 0 1.5rem;
+}
+.tech-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 2rem;
+    align-items: center;
+}
+.tech-row span {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    color: rgba(242,240,237,0.18);
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+    cursor: default;
+}
+.tech-row span:hover { color: rgba(242,240,237,0.55); }
+
+/* ── CTA final ───────────────────────────────────────────────────────────── */
+#servicios-cta {
+    background: var(--cream);
+    padding: 7rem clamp(1.5rem, 5vw, 5rem);
+    border-top: 1px solid rgba(8,8,8,0.06);
+}
+.cta-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.cta-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin: 0 0 1.25rem;
+}
+.cta-title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(3rem, 7vw, 6rem);
+    color: var(--dark);
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    margin: 0 0 1rem;
+}
+.cta-sub {
+    font-family: var(--body);
+    font-weight: 300;
+    font-size: 1rem;
+    color: rgba(8,8,8,0.45);
+    margin: 0 0 2.5rem;
+}
+.cta-btn {
+    display: inline-block;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #fff;
+    background: var(--dark);
+    text-decoration: none;
+    border-radius: 100px;
+    padding: 1rem 2.5rem;
+    transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+.cta-btn:hover {
+    background: var(--orange);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(240,78,35,0.35);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+    #servicios-cards .section-inner {
+        grid-template-columns: repeat(2, 1fr);
     }
+    .card--featured {
+        grid-column: 1 / -1;
+    }
+}
+@media (max-width: 767px) {
+    #servicios-hero { padding-top: 7rem; padding-bottom: 3.5rem; }
+    #servicios-cards .section-inner {
+        grid-template-columns: 1fr;
+    }
+    .card--featured { grid-column: auto; }
+    .card { padding: 2rem 1.5rem; }
+    .card-num { font-size: 5rem; }
+    .tech-row { gap: 0.6rem 1.25rem; }
+    #servicios-cta { padding-top: 5rem; padding-bottom: 5rem; }
+}
 </style>
