@@ -426,7 +426,7 @@ export default function Navbar() {
             max-width: 100% !important;
           }
           .mobile-nav-label {
-            font-size: clamp(1.4rem, 8.5vw, 2.5rem) !important;
+            font-size: clamp(1rem, 6vw, 2rem) !important;
             font-weight: 800 !important;
             color: rgba(242, 240, 237, 0.2) !important;
             white-space: nowrap !important;
