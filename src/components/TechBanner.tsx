@@ -70,7 +70,7 @@ export default function TechBanner() {
             style={{
                 background: "#080808",
                 borderTop: "1px solid rgba(242,240,237,0.06)",
-                padding: "0.75rem 0",
+                padding: "0.35rem 0",
                 overflow: "hidden",
                 position: "relative",
             }}
