@@ -70,7 +70,7 @@ export default function TechBanner() {
             style={{
                 background: "#080808",
                 borderTop: "1px solid rgba(242,240,237,0.06)",
-                padding: "0.35rem 0",
+                padding: "0.1rem 0",
                 overflow: "hidden",
                 position: "relative",
             }}
@@ -87,12 +87,14 @@ export default function TechBanner() {
                             flexShrink: 0,
                         }}
                     >
-                        {tech.svg}
+                        <span style={{ display: "flex", alignItems: "center", width: "16px", height: "16px", flexShrink: 0 }}>
+                            {React.cloneElement(tech.svg as React.ReactElement, { style: { width: "16px", height: "16px" } })}
+                        </span>
                         <span
                             style={{
                                 fontFamily: "'Cabinet Grotesk', sans-serif",
                                 fontWeight: 600,
-                                fontSize: "0.82rem",
+                                fontSize: "0.65rem",
                                 color: "rgba(242,240,237,0.45)",
                                 letterSpacing: "0.02em",
                                 whiteSpace: "nowrap",
