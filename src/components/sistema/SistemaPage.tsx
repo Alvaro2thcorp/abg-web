@@ -37,32 +37,44 @@ const pasos = [
     {
         num: "01",
         semana: "SEMANA 1",
-        titulo: "La Estrategia",
-        desc: "Nos sentamos (posiblemente con un café en el centro de Alicante) y diseccionamos tu negocio. No empezamos a diseñar hasta que entendemos quién es tu cliente de alto ticket y qué está buscando exactamente.",
+        titulo: "Estrategia y análisis.",
+        desc: "Antes de escribir una línea de código, entendemos tu negocio. Analizamos tu mercado, tu competencia real en Alicante y el perfil exacto de tu cliente ideal.",
+        badge: "AUDITORÍA · KEYWORDS · COMPETENCIA",
     },
     {
         num: "02",
-        semana: "SEMANAS 1-3",
-        titulo: "Desarrollo de Élite",
-        desc: "Álvaro programa tu web desde cero, con la tecnología que mejor se adapta al proyecto. Estructura limpia, ultra-rápida y optimizada para SEO desde la primera línea de código.",
+        semana: "SEMANAS 2-4",
+        titulo: "Desarrollo web.",
+        desc: "Diseño UX/UI a medida y desarrollo con la tecnología adecuada para tu proyecto. El SEO técnico no entra al final — entra desde el primer commit.",
+        badge: "ASTRO · WORDPRESS · SHOPIFY · CORE WEB VITALS 100",
     },
     {
         num: "03",
-        semana: "SEMANA 3-4",
-        titulo: "Inyección de Autoridad",
-        desc: "Configuramos el SEO técnico y el contenido estratégico. Tu negocio empieza a 'existir' para Google con una autoridad que tu competencia ni sueña.",
+        semana: "MES 1",
+        titulo: "Lanzamiento.",
+        desc: "Tu web sale al mundo configurada para convertir. Google Analytics, Search Console, Schema markup y seguimiento de conversiones desde el minuto uno.",
+        badge: "GA4 · GSC · SCHEMA · INDEXACIÓN",
     },
     {
         num: "04",
-        semana: "SEMANA 4-5",
-        titulo: "Lanzamiento",
-        desc: "Tu web sale al mundo. Configuramos analytics, Google Search Console y los primeros seguimientos de conversión. El SEO ya está trabajando desde el primer minuto indexado.",
+        semana: "RECURRENTE",
+        titulo: "SEO mes a mes.",
+        desc: "Posicionamiento continuo. Contenido optimizado, arquitectura semántica en evolución y seguimiento de posiciones. El orgánico trabaja aunque tú no estés.",
+        badge: "ON-PAGE · LINKBUILDING · INFORMES MENSUALES",
     },
     {
         num: "05",
-        semana: "MES 2 →",
-        titulo: "Google Ads y Escalada",
-        desc: "Encendemos Google Ads. Capturamos la demanda activa mientras el SEO escala solo. Cada semana afinamos pujas, anuncios y landing pages con datos reales.",
+        semana: "RECURRENTE",
+        titulo: "Contenido y redes sociales.",
+        desc: "Pablo Lizón analiza los datos, define la estrategia de contenido y desarrolla los guiones. Grabamos, editamos y distribuimos en Instagram, TikTok y LinkedIn.",
+        badge: "PABLO LIZÓN · INSTAGRAM · TIKTOK · LINKEDIN",
+    },
+    {
+        num: "06",
+        semana: "CUANDO PROCEDE",
+        titulo: "Google Ads.",
+        desc: "Cuando el orgánico necesita aceleración, activamos campañas de búsqueda. Captamos demanda activa en Alicante en ES, EN y FR. Solo cuando tiene sentido para tu negocio.",
+        badge: "BÚSQUEDA · RETARGETING · ES · EN · FR",
     },
 ];
 
@@ -800,9 +812,9 @@ function ComoFuncionaSection() {
                             letterSpacing: "-0.03em",
                         }}
                     >
-                        De cero a sistema
+                        Cómo trabajamos,
                         <br />
-                        <span className="highlight-word">en 5 semanas.</span>
+                        <span className="highlight-word">paso a paso.</span>
                     </h2>
                 </motion.div>
 
@@ -812,65 +824,92 @@ function ComoFuncionaSection() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={vp}
-                        transition={{ duration: 0.7, delay: i * 0.1, ease }}
+                        transition={{ duration: 0.7, delay: i * 0.08, ease }}
                         style={{
-                            display: "flex",
+                            display: "grid",
+                            gridTemplateColumns: "5rem 1fr",
                             gap: "2rem",
                             alignItems: "flex-start",
-                            padding: "2rem 0",
-                            borderBottom: i < pasos.length - 1 ? "1px solid rgba(8,8,8,0.06)" : "none",
+                            padding: "2.5rem 0",
+                            borderTop: "1px solid rgba(8,8,8,0.08)",
                         }}
                     >
+                        {/* Número grande */}
                         <div
-                            className="paso-num"
                             style={{
                                 fontFamily: "var(--font-display)",
                                 fontWeight: 800,
-                                fontSize: "2.5rem",
+                                fontSize: "clamp(3rem,5vw,4.5rem)",
                                 color: "#F04E23",
-                                opacity: 0.3,
                                 lineHeight: 1,
-                                minWidth: "3rem",
                                 flexShrink: 0,
                             }}
                         >
                             {paso.num}
                         </div>
-                        <div>
+
+                        {/* Contenido */}
+                        <div style={{ paddingTop: "0.25rem" }}>
+                            {/* Etiqueta de tiempo */}
                             <p
                                 style={{
                                     fontFamily: "var(--font-mono)",
-                                    fontSize: "0.55rem",
-                                    color: "rgba(8,8,8,0.3)",
+                                    fontSize: "0.58rem",
+                                    color: "rgba(8,8,8,0.35)",
                                     textTransform: "uppercase" as const,
-                                    letterSpacing: "0.1em",
-                                    marginBottom: "0.4rem",
+                                    letterSpacing: "0.18em",
+                                    marginBottom: "0.6rem",
                                 }}
                             >
                                 {paso.semana}
                             </p>
+
+                            {/* Título */}
                             <h3
                                 style={{
                                     fontFamily: "var(--font-display)",
-                                    fontWeight: 700,
-                                    fontSize: "1.1rem",
+                                    fontWeight: 800,
+                                    fontSize: "clamp(1.4rem,2.5vw,2rem)",
                                     color: "#080808",
-                                    marginBottom: "0.4rem",
+                                    letterSpacing: "-0.025em",
+                                    lineHeight: 1.1,
+                                    marginBottom: "0.9rem",
                                 }}
                             >
                                 {paso.titulo}
                             </h3>
+
+                            {/* Descripción */}
                             <p
                                 style={{
                                     fontFamily: "var(--font-body)",
                                     fontWeight: 300,
-                                    fontSize: "0.875rem",
-                                    color: "rgba(8,8,8,0.5)",
-                                    lineHeight: 1.7,
+                                    fontSize: "0.9rem",
+                                    color: "rgba(8,8,8,0.55)",
+                                    lineHeight: 1.75,
+                                    marginBottom: "1.1rem",
+                                    maxWidth: "52ch",
                                 }}
                             >
                                 {paso.desc}
                             </p>
+
+                            {/* Badge técnico */}
+                            <span
+                                style={{
+                                    display: "inline-block",
+                                    fontFamily: "var(--font-mono)",
+                                    fontSize: "0.55rem",
+                                    letterSpacing: "0.12em",
+                                    textTransform: "uppercase" as const,
+                                    color: "#F2F0ED",
+                                    background: "#080808",
+                                    borderRadius: "100px",
+                                    padding: "0.35rem 0.9rem",
+                                }}
+                            >
+                                {paso.badge}
+                            </span>
                         </div>
                     </motion.div>
                 ))}
