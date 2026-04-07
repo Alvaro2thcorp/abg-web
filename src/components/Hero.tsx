@@ -13,10 +13,10 @@ export default function Hero() {
                 position: "relative",
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "center",
+                justifyContent: "flex-start",
                 overflow: "hidden",
                 background: "#080808",
-                padding: "5rem clamp(1.5rem, 5vw, 5rem) 0",
+                padding: "clamp(6rem, 18vh, 12rem) clamp(1.5rem, 5vw, 5rem) 3rem",
                 marginBottom: 0,
             }}
         >
