@@ -51,7 +51,7 @@ export default function SistemaOverview() {
                         style={{
                             fontFamily: "var(--font-mono)",
                             fontSize: "0.6rem",
-                            color: "#F04E23",
+                            color: "#CC0000",
                             textTransform: "uppercase",
                             letterSpacing: "0.2em",
                             display: "block",
@@ -135,7 +135,7 @@ export default function SistemaOverview() {
 
                             <div style={{ position: "relative", zIndex: 1 }}>
                                 <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "2rem" }}>
-                                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "#F04E23", border: "1px solid rgba(240, 78, 35, 0.25)", borderRadius: "4px", padding: "0.2rem 0.5rem" }}>
+                                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "#CC0000", border: "1px solid rgba(204, 0, 0, 0.25)", borderRadius: "4px", padding: "0.2rem 0.5rem" }}>
                                         {card.num}
                                     </span>
                                     <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "rgba(8, 8, 8, 0.35)", textTransform: "uppercase", letterSpacing: "0.12em" }}>
@@ -166,7 +166,7 @@ export default function SistemaOverview() {
                                         display: "inline-block",
                                         fontFamily: "var(--font-mono)",
                                         fontSize: "0.6rem",
-                                        color: "#F04E23",
+                                        color: "#CC0000",
                                         textTransform: "uppercase",
                                         letterSpacing: "0.1em",
                                         textDecoration: "none",
@@ -226,7 +226,7 @@ export default function SistemaOverview() {
                     href="/el-sistema"
                     className="sistema-bridge-btn"
                     style={{
-                        background: "#F04E23",
+                        background: "#CC0000",
                         color: "#080808",
                         fontFamily: "var(--font-display)",
                         fontWeight: 700,

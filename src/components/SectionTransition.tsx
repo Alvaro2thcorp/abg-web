@@ -38,7 +38,7 @@ const SectionTransition: React.FC<SectionTransitionProps> = ({
                     position: "absolute",
                     width: "100%",
                     height: "1px",
-                    background: "rgba(240, 78, 35, 0.2)",
+                    background: "rgba(204, 0, 0, 0.2)",
                     left: 0,
                     top: "50%",
                     transform: "translateY(-50%)"
@@ -51,7 +51,7 @@ const SectionTransition: React.FC<SectionTransitionProps> = ({
                     position: "absolute",
                     width: "150px",
                     height: "1px",
-                    background: "linear-gradient(to right, transparent, #F04E23, transparent)",
+                    background: "linear-gradient(to right, transparent, #CC0000, transparent)",
                     bottom: "20%",
                     left: "50%",
                     transform: "translateX(-50%)",

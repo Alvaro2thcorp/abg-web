@@ -72,7 +72,7 @@ export default function Precios() {
                         style={{
                             fontFamily: "var(--font-mono)",
                             fontSize: "0.6rem",
-                            color: "#F04E23",
+                            color: "#CC0000",
                             textTransform: "uppercase",
                             letterSpacing: "0.2em",
                         }}
@@ -130,7 +130,7 @@ export default function Precios() {
                             transition={{ duration: 0.8, delay: i * 0.15, ease }}
                             style={{
                                 background: tier.accent ? "#080808" : "#FFFFFF",
-                                border: tier.accent ? "1px solid rgba(240, 78, 35, 0.3)" : "1px solid rgba(8, 8, 8, 0.08)",
+                                border: tier.accent ? "1px solid rgba(204, 0, 0, 0.3)" : "1px solid rgba(8, 8, 8, 0.08)",
                                 borderRadius: "20px",
                                 padding: "2rem",
                                 display: "flex",
@@ -148,7 +148,7 @@ export default function Precios() {
                                     position: "absolute",
                                     top: "1.5rem",
                                     right: "1.5rem",
-                                    background: "#F04E23",
+                                    background: "#CC0000",
                                     color: "#080808",
                                     fontFamily: "var(--font-mono)",
                                     fontSize: "0.58rem",
@@ -197,7 +197,7 @@ export default function Precios() {
                                             fontWeight: 300,
                                             color: tier.accent ? "rgba(242, 240, 237, 0.55)" : "rgba(8, 8, 8, 0.55)"
                                         }}>
-                                            <div style={{ width: "5px", height: "5px", background: "#F04E23", borderRadius: "50%", flexShrink: 0, marginTop: "6px" }} />
+                                            <div style={{ width: "5px", height: "5px", background: "#CC0000", borderRadius: "50%", flexShrink: 0, marginTop: "6px" }} />
                                             {feature}
                                         </li>
                                     ))}
@@ -212,7 +212,7 @@ export default function Precios() {
                                     width: "100%",
                                     textAlign: "center",
                                     padding: tier.accent ? "1rem 0" : "0.9rem 0",
-                                    background: tier.accent ? "#F04E23" : "transparent",
+                                    background: tier.accent ? "#CC0000" : "transparent",
                                     border: tier.accent ? "none" : "1.5px solid rgba(8, 8, 8, 0.15)",
                                     color: tier.accent ? "#080808" : "rgba(8, 8, 8, 0.6)",
                                     borderRadius: "100px",
@@ -255,8 +255,8 @@ export default function Precios() {
             <style dangerouslySetInnerHTML={{
                 __html: `
                 .pricing-btn-normal:hover {
-                    border-color: #F04E23 !important;
-                    color: #F04E23 !important;
+                    border-color: #CC0000 !important;
+                    color: #CC0000 !important;
                 }
                 .pricing-btn-accent:hover {
                     opacity: 0.88;
@@ -273,7 +273,7 @@ export default function Precios() {
                         gap: 1.2rem !important;
                     }
                     .pricing-card-accent {
-                        border: 2px solid #F04E23 !important;
+                        border: 2px solid #CC0000 !important;
                         box-shadow: none !important;
                     }
                     .recommend-badge {

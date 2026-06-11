@@ -27,7 +27,7 @@ export default function Equipo() {
                     <span style={{
                         fontFamily: "var(--font-mono)",
                         fontSize: "0.6rem",
-                        color: "#F04E23",
+                        color: "#CC0000",
                         textTransform: "uppercase",
                         letterSpacing: "0.15em",
                         display: "block",
@@ -67,7 +67,7 @@ export default function Equipo() {
                     viewport={vp}
                     transition={{ duration: 0.8, delay: 0.1, ease }}
                     style={{
-                        borderLeft: "3px solid #F04E23",
+                        borderLeft: "3px solid #CC0000",
                         paddingLeft: "2rem",
                         margin: "0 0 4rem 0",
                     }}
@@ -233,7 +233,7 @@ export default function Equipo() {
                                 transition: "background 0.3s ease, color 0.3s ease"
                             }}
                             onMouseEnter={(e) => {
-                                e.currentTarget.style.background = "#F04E23";
+                                e.currentTarget.style.background = "#CC0000";
                                 e.currentTarget.style.color = "#080808";
                             }}
                             onMouseLeave={(e) => {

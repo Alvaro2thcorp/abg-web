@@ -39,7 +39,7 @@ export default function ProblemaHome() {
                     </h2>
 
                     <div style={{
-                        fontFamily: "Epilogue, sans-serif",
+                        fontFamily: "var(--font-body)",
                         fontWeight: 300,
                         fontSize: "1rem",
                         color: "rgba(8,8,8,0.7)",

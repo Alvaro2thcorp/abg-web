@@ -70,7 +70,7 @@ export default function HomeProyectos() {
                             display: "block",
                             fontFamily: "var(--font-mono)",
                             fontSize: "0.6rem",
-                            color: "#F04E23",
+                            color: "#CC0000",
                             textTransform: "uppercase",
                             letterSpacing: "0.15em",
                             marginBottom: "1.5rem",
@@ -125,7 +125,7 @@ export default function HomeProyectos() {
                             href="/proyectos"
                             className="hp-btn-primary"
                             style={{
-                                background: "#F04E23",
+                                background: "#CC0000",
                                 color: "#080808",
                                 fontFamily: "var(--font-display)",
                                 fontWeight: 700,
@@ -218,8 +218,8 @@ export default function HomeProyectos() {
                 __html: `
                 .hp-btn-primary:hover { opacity: 0.85; }
                 .hp-btn-secondary:hover {
-                    border-color: #F04E23 !important;
-                    color: #F04E23 !important;
+                    border-color: #CC0000 !important;
+                    color: #CC0000 !important;
                 }
                 .hp-stat-cell:hover {
                     background: rgba(242,240,237,0.04) !important;

@@ -115,7 +115,7 @@ export default function Contacto() {
                             marginBottom: "4rem"
                         }}
                     >
-                        <a href="/" style={{ textDecoration: "none", color: "inherit", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "#F04E23"} onMouseLeave={(e) => e.currentTarget.style.color = "inherit"}>
+                        <a href="/" style={{ textDecoration: "none", color: "inherit", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "#CC0000"} onMouseLeave={(e) => e.currentTarget.style.color = "inherit"}>
                             ABG
                         </a>
                         {" / "}
@@ -205,7 +205,7 @@ export default function Contacto() {
                                 </span>
                             </div>
                             <span className="contacto-item-arrow" style={{
-                                fontFamily: "'Cabinet Grotesk', sans-serif",
+                                fontFamily: "var(--font-display)",
                                 fontWeight: 300,
                                 fontSize: "1.1rem",
                                 color: "rgba(242, 240, 237, 0.2)",
@@ -260,7 +260,7 @@ export default function Contacto() {
                     <div style={{
                         fontFamily: "var(--font-mono)",
                         fontSize: "0.6rem",
-                        color: "#F04E23",
+                        color: "#CC0000",
                         textTransform: "uppercase",
                         letterSpacing: "0.15em",
                         marginBottom: "0.8rem"
@@ -361,7 +361,7 @@ export default function Contacto() {
                         marginTop: "0.5rem",
                         fontFamily: "var(--font-mono)",
                         fontSize: "0.6rem",
-                        color: "#F04E23",
+                        color: "#CC0000",
                         textTransform: "uppercase"
                     }}>
                         {error}
@@ -441,10 +441,10 @@ export default function Contacto() {
                     padding: 4rem clamp(1.5rem, 4vw, 4rem);
                 }
                 .contacto-item:hover .contacto-item-valor {
-                    color: #F04E23 !important;
+                    color: #CC0000 !important;
                 }
                 .contacto-item:hover .contacto-item-arrow {
-                    color: #F04E23 !important;
+                    color: #CC0000 !important;
                     transform: translate(2px, -2px);
                 }
                 .contact-input {
@@ -465,7 +465,7 @@ export default function Contacto() {
                     color: rgba(8, 8, 8, 0.2);
                 }
                 .contact-input:focus {
-                    border-color: #F04E23;
+                    border-color: #CC0000;
                 }
                 .contact-select {
                     appearance: none;
@@ -474,7 +474,7 @@ export default function Contacto() {
                     cursor: pointer;
                 }
                 .contact-btn:hover:not(:disabled) {
-                    background: #F04E23 !important;
+                    background: #CC0000 !important;
                     color: #080808 !important;
                 }
                 @keyframes spin {
@@ -508,7 +508,7 @@ export default function Contacto() {
                         font-size: 1rem !important;
                     }
                     .contact-input:focus {
-                        border-color: #F04E23 !important;
+                        border-color: #CC0000 !important;
                         background: #FFFFFF !important;
                     }
                 }

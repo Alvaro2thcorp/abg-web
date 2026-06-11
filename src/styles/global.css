@@ -14,8 +14,8 @@
   right: -4px;
   top: 8%;
   bottom: 8%;
-  background-color: #F04E23;
-  opacity: 0.18;
+  background-color: #CC0000;
+  opacity: 0.12;
   z-index: -1;
   transform: skewX(-3deg);
 }

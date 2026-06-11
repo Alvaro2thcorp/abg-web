@@ -58,7 +58,7 @@ const Terminal = ({ active }: { active: boolean }) => {
                 <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#FF5F57" }} />
                 <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#FFBD2E" }} />
                 <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#28CA41" }} />
-                <div style={{ flex: 1, textAlign: "center", fontFamily: "'Syne Mono', monospace", fontSize: "0.65rem", color: "#555" }}>
+                <div style={{ flex: 1, textAlign: "center", fontFamily: "var(--font-mono)", fontSize: "0.65rem", color: "#555" }}>
                     abg_analysis.sh
                 </div>
             </div>
@@ -67,7 +67,7 @@ const Terminal = ({ active }: { active: boolean }) => {
                 className="terminal-content"
                 style={{
                     padding: "1.5rem",
-                    fontFamily: "'Syne Mono', monospace",
+                    fontFamily: "var(--font-mono)",
                     fontSize: "0.72rem",
                     lineHeight: 2,
                     flex: 1,
@@ -78,19 +78,19 @@ const Terminal = ({ active }: { active: boolean }) => {
                     <div
                         key={i}
                         style={{
-                            color: line.isCommand ? "#1a1a1a" : "#F04E23",
+                            color: line.isCommand ? "#1a1a1a" : "#CC0000",
                             animation: line.text.startsWith("✓") ? "terminalFlash 0.3s ease-out" : "none"
                         }}
                     >
                         {line.isCommand && (
-                            <span style={{ color: "rgba(240,78,35,0.4)", marginRight: "0.5rem" }}>~/abg $</span>
+                            <span style={{ color: "rgba(204,0,0,0.4)", marginRight: "0.5rem" }}>~/abg $</span>
                         )}
                         {line.text}
                     </div>
                 ))}
                 {active && (
                     <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                        <span style={{ color: "rgba(240,78,35,0.4)" }}>~/abg $</span>
+                        <span style={{ color: "rgba(204,0,0,0.4)" }}>~/abg $</span>
                         <motion.span
                             animate={{ opacity: [1, 0, 1] }}
                             transition={{ duration: 0.8, repeat: Infinity }}
@@ -98,7 +98,7 @@ const Terminal = ({ active }: { active: boolean }) => {
                                 display: "inline-block",
                                 width: "8px",
                                 height: "16px",
-                                background: "#F04E23",
+                                background: "#CC0000",
                                 borderRadius: "1px"
                             }}
                         />
@@ -112,7 +112,7 @@ const Terminal = ({ active }: { active: boolean }) => {
                     initial={{ width: "0%" }}
                     animate={active ? { width: "100%" } : { width: "0%" }}
                     transition={{ duration: 4, ease: "linear" }}
-                    style={{ height: "100%", background: "#F04E23" }}
+                    style={{ height: "100%", background: "#CC0000" }}
                 />
             </div>
         </div>
@@ -124,22 +124,22 @@ const StatusPill = ({ text, active }: { text: string, active: boolean }) => (
         display: "flex",
         alignItems: "center",
         gap: "6px",
-        background: "rgba(240,78,35,0.08)",
-        border: "1px solid rgba(240,78,35,0.2)",
+        background: "rgba(204,0,0,0.08)",
+        border: "1px solid rgba(204,0,0,0.2)",
         padding: "0.2rem 0.6rem",
         borderRadius: "100px"
     }}>
         <div style={{
             width: "5px",
             height: "5px",
-            background: "#F04E23",
+            background: "#CC0000",
             borderRadius: "50%",
             animation: active ? "blink 1s infinite" : "none"
         }} />
         <span style={{
-            fontFamily: "'Syne Mono', monospace",
+            fontFamily: "var(--font-mono)",
             fontSize: "0.6rem",
-            color: "#F04E23",
+            color: "#CC0000",
             fontWeight: 700,
             textTransform: "uppercase",
             letterSpacing: "0.1em"
@@ -162,7 +162,7 @@ const BadgesVisual = ({ active }: { active: boolean }) => {
             boxShadow: "0 8px 40px rgba(8,8,8,0.08), 0 2px 8px rgba(8,8,8,0.04)"
         }}>
             <div style={{
-                fontFamily: "'Syne Mono', monospace",
+                fontFamily: "var(--font-mono)",
                 fontSize: "0.65rem",
                 color: "rgba(8,8,8,0.35)",
                 paddingBottom: "1rem",
@@ -184,19 +184,19 @@ const BadgesVisual = ({ active }: { active: boolean }) => {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
-                            style={{ background: "rgba(240,78,35,0.04)", border: "1px solid rgba(242,240,237,0.04)", borderRadius: "8px", padding: "1rem 1.25rem" }}
+                            style={{ background: "rgba(204,0,0,0.04)", border: "1px solid rgba(242,240,237,0.04)", borderRadius: "8px", padding: "1rem 1.25rem" }}
                         >
                             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.4rem" }}>
                                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                                    <div style={{ width: "8px", height: "8px", background: "#F04E23", borderRadius: "50%" }} />
-                                    <span style={{ fontFamily: "'Syne Mono', monospace", fontSize: "0.65rem", color: "#080808" }}>WEB PREMIUM</span>
+                                    <div style={{ width: "8px", height: "8px", background: "#CC0000", borderRadius: "50%" }} />
+                                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", color: "#080808" }}>WEB PREMIUM</span>
                                 </div>
                                 <StatusPill text="ACTIVO" active={true} />
                             </div>
-                            <div style={{ fontFamily: "'Syne Mono', monospace", fontSize: "0.55rem", color: "rgba(8,8,8,0.55)" }}>Diseño · SEO técnico · Core Web Vitals 100</div>
+                            <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "rgba(8,8,8,0.55)" }}>Diseño · SEO técnico · Core Web Vitals 100</div>
                         </motion.div>
 
-                        <div style={{ height: "1.5rem", width: "1px", borderLeft: "1px dotted rgba(240,78,35,0.15)", marginLeft: "1.5rem" }} />
+                        <div style={{ height: "1.5rem", width: "1px", borderLeft: "1px dotted rgba(204,0,0,0.15)", marginLeft: "1.5rem" }} />
 
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
@@ -206,15 +206,15 @@ const BadgesVisual = ({ active }: { active: boolean }) => {
                         >
                             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.4rem" }}>
                                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                                    <div style={{ width: "8px", height: "8px", background: "#F04E23", borderRadius: "50%" }} />
-                                    <span style={{ fontFamily: "'Syne Mono', monospace", fontSize: "0.65rem", color: "#080808" }}>SEO INTERNACIONAL</span>
+                                    <div style={{ width: "8px", height: "8px", background: "#CC0000", borderRadius: "50%" }} />
+                                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", color: "#080808" }}>SEO INTERNACIONAL</span>
                                 </div>
                                 <StatusPill text="INDEXANDO" active={true} />
                             </div>
-                            <div style={{ fontFamily: "'Syne Mono', monospace", fontSize: "0.55rem", color: "rgba(8,8,8,0.55)" }}>ES · EN · FR · Google Business</div>
+                            <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "rgba(8,8,8,0.55)" }}>ES · EN · FR · Google Business</div>
                         </motion.div>
 
-                        <div style={{ height: "1.5rem", width: "1px", borderLeft: "1px dotted rgba(240,78,35,0.15)", marginLeft: "1.5rem" }} />
+                        <div style={{ height: "1.5rem", width: "1px", borderLeft: "1px dotted rgba(204,0,0,0.15)", marginLeft: "1.5rem" }} />
 
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
@@ -224,12 +224,12 @@ const BadgesVisual = ({ active }: { active: boolean }) => {
                         >
                             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.4rem" }}>
                                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                                    <div style={{ width: "8px", height: "8px", background: "#F04E23", borderRadius: "50%" }} />
-                                    <span style={{ fontFamily: "'Syne Mono', monospace", fontSize: "0.65rem", color: "#080808" }}>GOOGLE ADS</span>
+                                    <div style={{ width: "8px", height: "8px", background: "#CC0000", borderRadius: "50%" }} />
+                                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", color: "#080808" }}>GOOGLE ADS</span>
                                 </div>
                                 <StatusPill text="CAPTANDO" active={true} />
                             </div>
-                            <div style={{ fontFamily: "'Syne Mono', monospace", fontSize: "0.55rem", color: "rgba(8,8,8,0.55)" }}>Search · Display · Retargeting</div>
+                            <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "rgba(8,8,8,0.55)" }}>Search · Display · Retargeting</div>
                         </motion.div>
 
                         <motion.div
@@ -238,19 +238,19 @@ const BadgesVisual = ({ active }: { active: boolean }) => {
                             transition={{ delay: 1.5 }}
                             style={{
                                 marginTop: "1.5rem",
-                                background: "rgba(240,78,35,0.06)",
-                                border: "1px solid rgba(240,78,35,0.15)",
+                                background: "rgba(204,0,0,0.06)",
+                                border: "1px solid rgba(204,0,0,0.15)",
                                 borderRadius: "6px",
                                 padding: "0.75rem 1rem",
                                 display: "flex",
                                 justifyContent: "space-between",
-                                fontFamily: "'Syne Mono', monospace",
+                                fontFamily: "var(--font-mono)",
                                 fontSize: "0.6rem",
-                                boxShadow: "0 0 20px rgba(240,78,35,0.08)"
+                                boxShadow: "0 0 20px rgba(204,0,0,0.08)"
                             }}
                         >
                             <span style={{ color: "#080808" }}>SISTEMA COMPLETO</span>
-                            <span style={{ color: "#F04E23", fontWeight: 700 }}>→ ACTIVADO</span>
+                            <span style={{ color: "#CC0000", fontWeight: 700 }}>→ ACTIVADO</span>
                         </motion.div>
                     </div>
                 )}
@@ -303,10 +303,10 @@ const LeadsCounter = ({ active }: { active: boolean }) => {
                 borderTopLeftRadius: "16px",
                 borderTopRightRadius: "16px"
             }}>
-                <div style={{ fontFamily: "'Syne Mono', monospace", fontSize: "0.65rem", color: "rgba(8,8,8,0.35)" }}>
+                <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", color: "rgba(8,8,8,0.35)" }}>
                     leads_dashboard.live
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "6px", fontFamily: "'Syne Mono', monospace", fontSize: "0.5rem", color: "#28CA41" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "6px", fontFamily: "var(--font-mono)", fontSize: "0.5rem", color: "#28CA41" }}>
                     <div style={{ width: "6px", height: "6px", background: "#28CA41", borderRadius: "50%", animation: "blink 1s infinite" }} />
                     LIVE
                 </div>
@@ -317,13 +317,13 @@ const LeadsCounter = ({ active }: { active: boolean }) => {
                     fontFamily: "var(--font-display)",
                     fontWeight: 800,
                     fontSize: "4.5rem",
-                    color: "#F04E23",
+                    color: "#CC0000",
                     lineHeight: 1,
-                    textShadow: "0 0 40px rgba(240,78,35,0.4)"
+                    textShadow: "0 0 40px rgba(204,0,0,0.4)"
                 }}>
                     {count}
                 </div>
-                <div style={{ fontFamily: "'Syne Mono', monospace", fontSize: "0.62rem", color: "#555", textTransform: "uppercase", letterSpacing: "0.2em", marginTop: "0.5rem" }}>
+                <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", color: "#555", textTransform: "uppercase", letterSpacing: "0.2em", marginTop: "0.5rem" }}>
                     leads este mes
                 </div>
 
@@ -337,7 +337,7 @@ const LeadsCounter = ({ active }: { active: boolean }) => {
                                 cy="24"
                                 r="20"
                                 fill="none"
-                                stroke="#F04E23"
+                                stroke="#CC0000"
                                 strokeWidth="3"
                                 strokeDasharray="125.6"
                                 initial={{ strokeDashoffset: 125.6 }}
@@ -356,15 +356,15 @@ const LeadsCounter = ({ active }: { active: boolean }) => {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            fontFamily: "'Syne Mono', monospace",
+                            fontFamily: "var(--font-mono)",
                             fontSize: "0.55rem",
-                            color: "#F04E23"
+                            color: "#CC0000"
                         }}>
                             78%
                         </div>
                     </div>
                     <div style={{
-                        fontFamily: "'Syne Mono', monospace",
+                        fontFamily: "var(--font-mono)",
                         fontSize: "0.5rem",
                         color: "#333",
                         textTransform: "uppercase",
@@ -382,7 +382,7 @@ const LeadsCounter = ({ active }: { active: boolean }) => {
                 <MetricRow label="Conversión web" value="4.8%" active={active} delay={0.6} />
             </div>
 
-            <div style={{ marginTop: "auto", paddingTop: "1.5rem", textAlign: "right", fontFamily: "'Syne Mono', monospace", fontSize: "0.55rem", color: "rgba(240,78,35,0.5)" }}>
+            <div style={{ marginTop: "auto", paddingTop: "1.5rem", textAlign: "right", fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "rgba(204,0,0,0.5)" }}>
                 ↑ vs mes anterior
             </div>
         </div>
@@ -407,9 +407,9 @@ const MetricRow = ({ label, value, active, delay }: { label: string, value: stri
                 borderBottom: "1px solid rgba(8,8,8,0.06)"
             }}
         >
-            <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "'Syne Mono', monospace", fontSize: "0.62rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "var(--font-mono)", fontSize: "0.62rem" }}>
                 <span style={{ color: "rgba(8,8,8,0.35)" }}>{label}</span>
-                <span style={{ color: "#F04E23" }}>{value}</span>
+                <span style={{ color: "#CC0000" }}>{value}</span>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                 <div style={{ flex: 1, height: "1px", background: "#e5e3df", borderRadius: "2px", overflow: "hidden" }}>
@@ -417,7 +417,7 @@ const MetricRow = ({ label, value, active, delay }: { label: string, value: stri
                         initial={{ width: "0%" }}
                         animate={active ? { width: `${percentageValue}%` } : { width: "0%" }}
                         transition={{ duration: 1, delay: delay + 0.3 }}
-                        style={{ height: "100%", background: "#F04E23" }}
+                        style={{ height: "100%", background: "#CC0000" }}
                     />
                 </div>
                 <div style={{ width: "40px", height: "2px" }} /> {/* Spacer to align with text */}
@@ -442,13 +442,13 @@ interface PhaseProps {
 const PhaseIndicator = ({ num, active }: { num: string, active: boolean }) => (
     <div style={{ position: "relative", width: "24px", height: "24px", display: "flex", alignItems: "center", justifyContent: "center" }}>
         <svg width="24" height="24" viewBox="0 0 24 24" style={{ position: "absolute", transform: "rotate(-90deg)" }}>
-            <circle cx="12" cy="12" r="11" fill="none" stroke="rgba(240,78,35,0.5)" strokeWidth="1.5" />
+            <circle cx="12" cy="12" r="11" fill="none" stroke="rgba(204,0,0,0.5)" strokeWidth="1.5" />
             <motion.circle
                 cx="12"
                 cy="12"
                 r="11"
                 fill="none"
-                stroke="#F04E23"
+                stroke="#CC0000"
                 strokeWidth="1.5"
                 strokeDasharray="70"
                 initial={{ strokeDashoffset: 70 }}
@@ -456,7 +456,7 @@ const PhaseIndicator = ({ num, active }: { num: string, active: boolean }) => (
                 transition={{ duration: 1, ease: "easeInOut" }}
             />
         </svg>
-        <span style={{ fontFamily: "'Syne Mono', monospace", fontSize: "0.55rem", color: "#F04E23", position: "relative", zIndex: 1 }}>{num}</span>
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "#CC0000", position: "relative", zIndex: 1 }}>{num}</span>
     </div>
 );
 
@@ -528,7 +528,7 @@ const Phase = ({ num, tag, title, description, items, visual, isLast, onActive }
                 >
                     <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
                         <PhaseIndicator num={num} active={isActive} />
-                        <span style={{ fontFamily: "'Syne Mono', monospace", fontSize: "0.62rem", color: "rgba(8,8,8,0.35)", letterSpacing: "0.2em" }}>{tag}</span>
+                        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", color: "rgba(8,8,8,0.35)", letterSpacing: "0.2em" }}>{tag}</span>
                     </div>
 
                     <h3 style={{
@@ -544,7 +544,7 @@ const Phase = ({ num, tag, title, description, items, visual, isLast, onActive }
                     </h3>
 
                     <p style={{
-                        fontFamily: "Epilogue, sans-serif",
+                        fontFamily: "var(--font-body)",
                         fontWeight: 300,
                         fontSize: "0.95rem",
                         color: "rgba(8,8,8,0.55)",
@@ -565,9 +565,9 @@ const Phase = ({ num, tag, title, description, items, visual, isLast, onActive }
                                 className="deliverable-item"
                                 style={{ display: "flex", alignItems: "center", gap: "1rem", cursor: "default" }}
                             >
-                                <div className="deliverable-line" style={{ width: "12px", height: "1px", background: "#F04E23", transition: "width 0.3s ease" }} />
+                                <div className="deliverable-line" style={{ width: "12px", height: "1px", background: "#CC0000", transition: "width 0.3s ease" }} />
                                 <span className="deliverable-text" style={{
-                                    fontFamily: "'Syne Mono', monospace",
+                                    fontFamily: "var(--font-mono)",
                                     fontSize: "0.65rem",
                                     color: "rgba(8,8,8,0.35)",
                                     textTransform: "uppercase",
@@ -600,7 +600,7 @@ const Phase = ({ num, tag, title, description, items, visual, isLast, onActive }
                         left: 0,
                         height: "1px",
                         width: "100%",
-                        background: "linear-gradient(to right, #F04E23, rgba(240,78,35,0.1) 30%, transparent 60%)"
+                        background: "linear-gradient(to right, #CC0000, rgba(204,0,0,0.1) 30%, transparent 60%)"
                     }} />
             )}
         </div>
@@ -668,14 +668,14 @@ export default function HowItWorks() {
                 {/* Header */}
                 <header className="how-it-works-header" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "4rem", flexWrap: "wrap", gap: "2rem" }}>
                     <div style={{ flex: 1 }}>
-                        <div style={{ fontFamily: "'Syne Mono', monospace", fontSize: "0.62rem", color: "rgba(8,8,8,0.35)", letterSpacing: "0.2em", marginBottom: "1rem" }}>EL PROCESO</div>
-                        <h2 style={{ fontFamily: "Syne, sans-serif", fontWeight: 800, fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "#080808", lineHeight: 0.95, letterSpacing: "-0.03em" }}>
+                        <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", color: "rgba(8,8,8,0.35)", letterSpacing: "0.2em", marginBottom: "1rem" }}>EL PROCESO</div>
+                        <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "#080808", lineHeight: 0.95, letterSpacing: "-0.03em" }}>
                             Así captamos clientes <span className="highlight-word">en Alicante.</span>
                         </h2>
-                        <div style={{ width: "48px", height: "2px", background: "#F04E23", marginTop: "1.5rem" }} />
+                        <div style={{ width: "48px", height: "2px", background: "#CC0000", marginTop: "1.5rem" }} />
                     </div>
                     <div className="header-right-text" style={{ maxWidth: "280px", borderLeft: "1px solid rgba(8,8,8,0.08)", paddingLeft: "2rem" }}>
-                        <p style={{ fontFamily: "Epilogue, sans-serif", fontWeight: 300, fontSize: "0.9rem", color: "rgba(8,8,8,0.55)", lineHeight: 1.8 }}>
+                        <p style={{ fontFamily: "var(--font-body)", fontWeight: 300, fontSize: "0.9rem", color: "rgba(8,8,8,0.55)", lineHeight: 1.8 }}>
                             Tres fases. Sin saltarse ninguna. Porque cada paso construye sobre el anterior, y saltarse la base es la razón por la que la mayoría de las campañas no funcionan.
                         </p>
                     </div>
@@ -691,11 +691,11 @@ export default function HowItWorks() {
                                 left: 0,
                                 top: 0,
                                 width: "2px",
-                                background: "#F04E23",
+                                background: "#CC0000",
                                 height: "100%",
                                 scaleY: progressHeight,
                                 transformOrigin: "top",
-                                boxShadow: "0 0 8px rgba(240,78,35,0.4)"
+                                boxShadow: "0 0 8px rgba(204,0,0,0.4)"
                             }}
                         />
                     </div>
@@ -716,8 +716,8 @@ export default function HowItWorks() {
                 <div style={{
                     marginTop: "3.5rem",
                     padding: "3rem",
-                    background: "rgba(240,78,35,0.03)",
-                    border: "1px solid rgba(240,78,35,0.08)",
+                    background: "rgba(204,0,0,0.03)",
+                    border: "1px solid rgba(204,0,0,0.08)",
                     borderRadius: "16px",
                     display: "flex",
                     justifyContent: "space-between",
@@ -726,11 +726,11 @@ export default function HowItWorks() {
                     gap: "2rem"
                 }}>
                     <div>
-                        <div style={{ width: "32px", height: "2px", background: "#F04E23", marginBottom: "0.75rem" }} />
-                        <h3 style={{ fontFamily: "Syne, sans-serif", fontWeight: 800, fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)", color: "#080808", marginBottom: "0.5rem" }}>
+                        <div style={{ width: "32px", height: "2px", background: "#CC0000", marginBottom: "0.75rem" }} />
+                        <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)", color: "#080808", marginBottom: "0.5rem" }}>
                             ¿Listo para activar el sistema?
                         </h3>
-                        <p style={{ fontFamily: "Epilogue, sans-serif", fontWeight: 300, fontSize: "0.9rem", color: "#555" }}>
+                        <p style={{ fontFamily: "var(--font-body)", fontWeight: 300, fontSize: "0.9rem", color: "#555" }}>
                             Análisis gratuito de tu situación digital. Sin compromiso.
                         </p>
                     </div>
@@ -739,11 +739,11 @@ export default function HowItWorks() {
                             href="/contacto"
                             className="proceso-cta-btn"
                             style={{
-                                background: "#F04E23",
+                                background: "#CC0000",
                                 color: "#f9f8f6",
                                 borderRadius: "100px",
                                 padding: "1rem 2rem",
-                                fontFamily: "Syne, sans-serif",
+                                fontFamily: "var(--font-display)",
                                 fontWeight: 700,
                                 fontSize: "0.9rem",
                                 textDecoration: "none",
@@ -776,7 +776,7 @@ export default function HowItWorks() {
                                 color: "rgba(8,8,8,0.5)",
                                 borderRadius: "100px",
                                 padding: "1rem 2rem",
-                                fontFamily: "Syne, sans-serif",
+                                fontFamily: "var(--font-display)",
                                 fontWeight: 600,
                                 fontSize: "0.9rem",
                                 textDecoration: "none",
@@ -794,7 +794,7 @@ export default function HowItWorks() {
                 __html: `
                 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
                 @keyframes terminalFlash {
-                    0% { opacity: 0; background: rgba(240, 78, 35, 0.1); }
+                    0% { opacity: 0; background: rgba(204, 0, 0, 0.1); }
                     100% { opacity: 1; background: transparent; }
                 }
                 @keyframes shimmer {
@@ -803,7 +803,7 @@ export default function HowItWorks() {
                 }
                 .proceso-cta-btn:hover {
                     transform: translateY(-3px);
-                    box-shadow: 0 16px 40px rgba(240, 78, 35, 0.35);
+                    box-shadow: 0 16px 40px rgba(204, 0, 0, 0.35);
                 }
                 .proceso-cta-btn:hover .btn-shimmer {
                     animation: shimmer 0.6s ease;
@@ -816,7 +816,7 @@ export default function HowItWorks() {
                     transition: color 0.2s ease;
                 }
                 .deliverable-item .deliverable-text {
-                    font-family: 'Syne Mono', monospace;
+                    font-family: var(--font-mono);
                     font-size: 0.65rem;
                     color: rgba(8, 8, 8, 0.4);
                     text-transform: uppercase;

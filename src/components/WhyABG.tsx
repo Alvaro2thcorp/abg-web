@@ -52,7 +52,7 @@ const EditorialStatement = ({
                     top: 0,
                     width: "2px",
                     height: isHovered ? "100%" : "0%",
-                    background: "#F04E23",
+                    background: "#CC0000",
                     transition: "height 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
                     zIndex: 10
                 }}
@@ -95,10 +95,10 @@ const EditorialStatement = ({
                 <div>
                     {/* Indicator */}
                     <div className="indicator-wrapper" style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "2.5rem" }}>
-                        <span style={{ fontFamily: "'Syne Mono', monospace", fontSize: "0.62rem", color: "rgba(242,240,237,0.2)" }}>
+                        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", color: "rgba(242,240,237,0.2)" }}>
                             {num} ——
                         </span>
-                        <span style={{ fontFamily: "'Syne Mono', monospace", fontSize: "0.62rem", color: "#F04E23", textTransform: "uppercase", letterSpacing: "0.15em" }}>
+                        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", color: "rgba(204,0,0,0.7)", textTransform: "uppercase", letterSpacing: "0.15em" }}>
                             {tag}
                         </span>
                     </div>
@@ -145,14 +145,14 @@ const EditorialStatement = ({
                         marginTop: "3rem",
                         width: "120px",
                         height: "1px",
-                        background: "linear-gradient(to right, rgba(240,78,35,0.5), transparent)"
+                        background: "linear-gradient(to right, rgba(204,0,0,0.3), transparent)"
                     }} />
                 </div>
 
                 {/* Right Column: Description */}
                 <div style={{ paddingTop: "1.2rem", minWidth: 0, overflow: "visible" }} className="statement-desc-col">
                     <p style={{
-                        fontFamily: "Epilogue, sans-serif",
+                        fontFamily: "var(--font-body)",
                         fontWeight: 300,
                         fontSize: "1rem",
                         color: "rgba(242,240,237,0.4)",
@@ -172,8 +172,8 @@ const EditorialStatement = ({
                     }
                 }
                 .pill-editorial:hover {
-                    border-color: rgba(240,78,35,0.3);
-                    color: rgba(240,78,35,0.6);
+                    border-color: rgba(204,0,0,0.3);
+                    color: rgba(204,0,0,0.6);
                     transform: translateY(-2px);
                 }
                 @media (max-width: 767px) {
@@ -227,7 +227,7 @@ export default function WhyABG() {
                     borderBottom: "1px solid rgba(242,240,237,0.06)",
                     background: "#080808"
                 }}>
-                    <div style={{ fontFamily: "'Syne Mono', monospace", fontSize: "0.62rem", color: "#F04E23", letterSpacing: "0.25em", textTransform: "uppercase" }}>
+                    <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", color: "#CC0000", letterSpacing: "0.25em", textTransform: "uppercase" }}>
                         MANIFIESTO
                     </div>
 
@@ -248,7 +248,7 @@ export default function WhyABG() {
                         </h2>
                     </div>
 
-                    <div style={{ fontFamily: "'Syne Mono', monospace", fontSize: "0.62rem", color: "rgba(242,240,237,0.15)", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                    <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", color: "rgba(242,240,237,0.15)", letterSpacing: "0.2em", textTransform: "uppercase" }}>
                         03 RAZONES
                     </div>
                 </header>

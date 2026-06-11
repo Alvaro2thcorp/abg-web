@@ -132,22 +132,10 @@ const ogImageURL = ogImage
 		<!-- Preconnect a CDN de fuentes -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />
 
-		<!-- Cabinet Grotesk — carga asíncrona (no bloquea render) -->
+		<!-- Google Fonts: DM Serif Display + Inter -->
 		<link
-			rel="stylesheet"
-			href="https://fonts.cdnfonts.com/css/cabinet-grotesk"
-			media="print"
-			onload="this.media='all'"
-		/>
-		<noscript>
-			<link rel="stylesheet" href="https://fonts.cdnfonts.com/css/cabinet-grotesk" />
-		</noscript>
-
-		<!-- Google Fonts: Syne + Epilogue + Syne Mono -->
-		<link
-			href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Syne+Mono&display=swap"
+			href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap"
 			rel="stylesheet"
 		/>
 
@@ -171,30 +159,33 @@ const ogImageURL = ogImage
 
 	/* ── Design Tokens ── */
 	:root {
-		/* --- BRAND COLORS --- */
-		--accent: #f04e23;
-		--gold: #c9a96e;
-		--gold-dim: rgba(201, 169, 110, 0.08);
+		/* --- BRAND --- */
+		--accent: #CC0000;          /* rojo bisturí — máx. 5% presencia */
+		--isotipo: #FE6B38;         /* SOLO logo isotipo — no usar en UI */
+
+		/* --- PALETA --- */
+		--aluminum: #C8C8C8;
+		--titanium: #4A4A4A;
 
 		/* --- LIGHT SURFACE (Default) --- */
-		--bg-primary: #f9f8f6;
-		--surface: #ffffff;
-		--surface2: #f2f1ef;
-		--white: #080808; /* Used for text in light mode */
-		--muted: #666666;
-		--muted2: #888888;
-		--border: #e5e3df;
+		--bg-primary: #FFFFFF;
+		--surface: #FFFFFF;
+		--surface2: #F5F5F5;
+		--white: #080808;           /* texto en modo claro */
+		--muted: #4A4A4A;           /* titanio */
+		--muted2: #C8C8C8;          /* aluminio */
+		--border: #E0E0E0;
 
-		/* --- DARK SURFACE (Used in Hero/Projects) --- */
+		/* --- DARK SURFACE (Hero / Proyectos) --- */
 		--bg-dark: #080808;
 		--surface-dark: #101010;
-		--text-dark-main: #f2f0ed;
-		--text-dark-muted: #555555;
-		--border-dark: #1a1a1a;
+		--text-dark-main: #F2F0ED;
+		--text-dark-muted: #C8C8C8;  /* aluminio */
+		--border-dark: #1A1A1A;
 
-		--font-display: "Cabinet Grotesk", sans-serif;
-		--font-body: "Epilogue", sans-serif;
-		--font-mono: "Syne Mono", monospace;
+		--font-display: "DM Serif Display", serif;
+		--font-body: "Inter", sans-serif;
+		--font-mono: "Inter", sans-serif;
 	}
 
 	/* ── Reset ── */

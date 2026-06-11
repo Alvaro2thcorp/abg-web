@@ -47,7 +47,7 @@ function Stars() {
     return (
         <div style={{ display: "flex", gap: "0.3rem", marginBottom: "1.5rem" }}>
             {[...Array(5)].map((_, i) => (
-                <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill="#F04E23">
+                <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill="rgba(8,8,8,0.3)">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                 </svg>
             ))}
@@ -72,7 +72,7 @@ function ReviewCard({ review, index }: { review: typeof reviews[0]; index: numbe
             style={{
                 background: hovered ? "rgba(242,240,237,0.04)" : "rgba(242,240,237,0.02)",
                 border: hovered
-                    ? "1px solid rgba(240,78,35,0.18)"
+                    ? "1px solid rgba(8,8,8,0.12)"
                     : "1px solid rgba(242,240,237,0.06)",
                 borderRadius: "2px",
                 padding: "2rem",
@@ -91,7 +91,7 @@ function ReviewCard({ review, index }: { review: typeof reviews[0]; index: numbe
                     left: 0,
                     width: hovered ? "100%" : "0%",
                     height: "1px",
-                    background: "#F04E23",
+                    background: "rgba(204,0,0,0.4)",
                     transition: "width 0.45s cubic-bezier(0.16,1,0.3,1)",
                 }}
             />
@@ -99,9 +99,9 @@ function ReviewCard({ review, index }: { review: typeof reviews[0]; index: numbe
             {/* Number tag */}
             <span
                 style={{
-                    fontFamily: "'Syne Mono', monospace",
+                    fontFamily: "var(--font-mono)",
                     fontSize: "0.58rem",
-                    color: "#F04E23",
+                    color: "#CC0000",
                     letterSpacing: "0.2em",
                     textTransform: "uppercase",
                     marginBottom: "1.5rem",
@@ -116,7 +116,7 @@ function ReviewCard({ review, index }: { review: typeof reviews[0]; index: numbe
             {/* Quote */}
             <p
                 style={{
-                    fontFamily: "Epilogue, sans-serif",
+                    fontFamily: "var(--font-body)",
                     fontWeight: 300,
                     fontSize: "0.9rem",
                     color: "rgba(242,240,237,0.5)",
@@ -149,7 +149,7 @@ function ReviewCard({ review, index }: { review: typeof reviews[0]; index: numbe
                 </div>
                 <div
                     style={{
-                        fontFamily: "'Syne Mono', monospace",
+                        fontFamily: "var(--font-mono)",
                         fontSize: "0.56rem",
                         color: "rgba(242,240,237,0.22)",
                         textTransform: "uppercase",
@@ -205,9 +205,9 @@ export default function Resenas() {
                         animate={isHeaderInView ? { opacity: 1 } : { opacity: 0 }}
                         transition={{ duration: 0.6 }}
                         style={{
-                            fontFamily: "'Syne Mono', monospace",
+                            fontFamily: "var(--font-mono)",
                             fontSize: "0.62rem",
-                            color: "#F04E23",
+                            color: "#CC0000",
                             letterSpacing: "0.25em",
                             textTransform: "uppercase",
                         }}
@@ -234,7 +234,7 @@ export default function Resenas() {
                         }}
                     >
                         Lo que dicen{" "}
-                        <span style={{ color: "#F04E23" }}>de nosotros.</span>
+                        <span style={{ color: "#CC0000" }}>de nosotros.</span>
                     </motion.h2>
 
                     <motion.div
@@ -242,7 +242,7 @@ export default function Resenas() {
                         animate={isHeaderInView ? { opacity: 1 } : { opacity: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                         style={{
-                            fontFamily: "'Syne Mono', monospace",
+                            fontFamily: "var(--font-mono)",
                             fontSize: "0.62rem",
                             color: "rgba(242,240,237,0.15)",
                             letterSpacing: "0.2em",
@@ -278,14 +278,14 @@ export default function Resenas() {
                 >
                     <div style={{ display: "flex", gap: "0.3rem" }}>
                         {[...Array(5)].map((_, i) => (
-                            <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="#F04E23">
+                            <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="rgba(8,8,8,0.3)">
                                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                             </svg>
                         ))}
                     </div>
                     <span
                         style={{
-                            fontFamily: "'Syne Mono', monospace",
+                            fontFamily: "var(--font-mono)",
                             fontSize: "0.62rem",
                             color: "rgba(242,240,237,0.25)",
                             textTransform: "uppercase",

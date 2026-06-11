@@ -139,7 +139,7 @@ export default function Navbar() {
                 <span
                     className="nav-tagline"
                     style={{
-                        fontFamily: "'Syne Mono', monospace",
+                        fontFamily: "var(--font-mono)",
                         fontSize: "0.65rem",
                         textTransform: "uppercase",
                         letterSpacing: "0.12em",
@@ -163,12 +163,12 @@ export default function Navbar() {
                                 transition={{ duration: 0.2 }}
                                 className="nav-cta-btn"
                                 style={{
-                                    fontFamily: "Syne, sans-serif",
-                                    fontWeight: 700,
+                                    fontFamily: "var(--font-body)",
+                                    fontWeight: 500,
                                     fontSize: "0.8rem",
                                     color: "#ffffff",
-                                    background: "#F04E23",
-                                    borderRadius: "100px",
+                                    background: "#CC0000",
+                                    borderRadius: "4px",
                                     padding: "0.5rem 1.25rem",
                                     textDecoration: "none",
                                     whiteSpace: "nowrap",
@@ -199,7 +199,7 @@ export default function Navbar() {
                         <span
                             className="nav-menu-label"
                             style={{
-                                fontFamily: "'Syne Mono', monospace",
+                                fontFamily: "var(--font-mono)",
                                 fontSize: "0.65rem",
                                 textTransform: "uppercase",
                                 letterSpacing: "0.12em",
@@ -280,7 +280,7 @@ export default function Navbar() {
                                             <span
                                                 className="mobile-nav-num"
                                                 style={{
-                                                    fontFamily: "'Syne Mono', monospace",
+                                                    fontFamily: "var(--font-mono)",
                                                     fontSize: "0.7rem",
                                                     color: "#333",
                                                     flexShrink: 0,
@@ -293,7 +293,7 @@ export default function Navbar() {
                                             <span
                                                 className={`mobile-nav-label ${hoveredIndex === i ? 'mobile-nav-label-active' : ''}`}
                                                 style={{
-                                                    fontFamily: "Syne, sans-serif",
+                                                    fontFamily: "var(--font-display)",
                                                     fontWeight: 800,
                                                     fontSize: "clamp(1.5rem, 5vw, 3.5rem)",
                                                     color: hoveredIndex === i ? "#080808" : "rgba(8,8,8,0.2)",
@@ -323,7 +323,7 @@ export default function Navbar() {
                             <a
                                 href="mailto:hola@abgframe.com"
                                 style={{
-                                    fontFamily: "'Syne Mono', monospace",
+                                    fontFamily: "var(--font-mono)",
                                     fontSize: "0.75rem",
                                     color: "#555",
                                     textDecoration: "none",
@@ -339,7 +339,7 @@ export default function Navbar() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 style={{
-                                    fontFamily: "'Syne Mono', monospace",
+                                    fontFamily: "var(--font-mono)",
                                     fontSize: "0.75rem",
                                     color: "#555",
                                     textDecoration: "none",
@@ -367,7 +367,7 @@ export default function Navbar() {
                         >
                             <span
                                 style={{
-                                    fontFamily: "'Syne Mono', monospace",
+                                    fontFamily: "var(--font-mono)",
                                     fontSize: "0.6rem",
                                     color: "#333",
                                     textTransform: "uppercase",
@@ -378,7 +378,7 @@ export default function Navbar() {
                             </span>
                             <span
                                 style={{
-                                    fontFamily: "'Syne Mono', monospace",
+                                    fontFamily: "var(--font-mono)",
                                     fontSize: "0.6rem",
                                     color: "#333",
                                     textTransform: "uppercase",
@@ -462,7 +462,7 @@ export default function Navbar() {
         }
         .nav-cta-btn:hover {
           transform: translateY(-2px) !important;
-          box-shadow: 0 8px 24px rgba(240, 78, 35, 0.35) !important;
+          box-shadow: 0 8px 24px rgba(204, 0, 0, 0.35) !important;
         }
         @media (max-width: 767px) {
           .nav-logo-img {

@@ -28,7 +28,7 @@ export default function WhatsAppButton() {
                     transform: "translateY(-50%)",
                     background: "rgba(8, 8, 8, 0.85)",
                     color: "#F2F0ED",
-                    fontFamily: "'Cabinet Grotesk', sans-serif",
+                    fontFamily: "var(--font-display)",
                     fontSize: "0.8rem",
                     fontWeight: 600,
                     padding: "0.4rem 0.9rem",

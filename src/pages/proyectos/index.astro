@@ -13,10 +13,10 @@ import Navbar from '../../components/Navbar';
   <section style="background:#080808; padding:4rem clamp(1.5rem,5vw,5rem) 3rem;
     border-bottom:1px solid rgba(242,240,237,0.06)">
     <div style="max-width:1400px; margin:0 auto">
-      <p style="font-family:'Syne Mono',monospace; font-size:0.6rem;
+      <p style="font-family:var(--font-mono); font-size:0.6rem;
         color:rgba(242,240,237,0.25); text-transform:uppercase;
         letter-spacing:0.15em; margin-bottom:3rem">ABG / Proyectos</p>
-      <h1 style="font-family:'Cabinet Grotesk',sans-serif; font-weight:800;
+      <h1 style="font-family:var(--font-display); font-weight:800;
         font-size:clamp(2.2rem,4vw,4rem); color:#F2F0ED;
         line-height:0.95; letter-spacing:-0.04em">
         Trabajo real.
@@ -41,15 +41,15 @@ import Navbar from '../../components/Navbar';
 
         <!-- Info -->
         <div>
-          <span style="font-family:'Syne Mono',monospace; font-size:0.55rem;
-            color:#F04E23; text-transform:uppercase; letter-spacing:0.1em;
+          <span style="font-family:var(--font-mono); font-size:0.55rem;
+            color:#CC0000; text-transform:uppercase; letter-spacing:0.1em;
             display:block; margin-bottom:1rem">NÁUTICA · 2024</span>
-          <h2 style="font-family:'Cabinet Grotesk',sans-serif; font-weight:800;
+          <h2 style="font-family:var(--font-display); font-weight:800;
             font-size:clamp(2rem,3.5vw,3rem); color:#080808;
             line-height:1.0; letter-spacing:-0.03em; margin-bottom:1.5rem">
             Yates <span class="highlight-word">Alicante</span>
           </h2>
-          <p style="font-family:'Epilogue',sans-serif; font-weight:300;
+          <p style="font-family:var(--font-body); font-weight:300;
             font-size:0.95rem; color:rgba(8,8,8,0.5); line-height:1.8;
             margin-bottom:2.5rem; max-width:420px">
             Web premium + SEO local Alicante para empresa náutica
@@ -59,7 +59,7 @@ import Navbar from '../../components/Navbar';
             {["Web Premium","SEO ES/EN","Astro 5"].map(tag => (
               <span style="border:1px solid rgba(8,8,8,0.1);
                 border-radius:100px; padding:0.35rem 0.9rem;
-                font-family:'Syne Mono',monospace; font-size:0.52rem;
+                font-family:var(--font-mono); font-size:0.52rem;
                 color:rgba(8,8,8,0.4); text-transform:uppercase">
                 {tag}
               </span>
@@ -72,7 +72,7 @@ import Navbar from '../../components/Navbar';
           background:linear-gradient(135deg,#0f0f0f 0%,#0a1628 100%);
           display:flex; align-items:center; justify-content:center;
           width: 100%;">
-          <span style="font-family:'Cabinet Grotesk',sans-serif;
+          <span style="font-family:var(--font-display);
             font-weight:700; font-size:1.4rem;
             color:rgba(242,240,237,0.15)">yatesalicante.com</span>
         </div>
@@ -80,7 +80,7 @@ import Navbar from '../../components/Navbar';
 
       <!-- Próximos proyectos -->
       <div style="margin-top: 4rem; text-align: center;">
-         <p style="font-family:'Syne Mono',monospace; font-size:0.55rem;
+         <p style="font-family:var(--font-mono); font-size:0.55rem;
           color:rgba(8,8,8,0.25); text-transform:uppercase; letter-spacing:0.1em">
           Nuevos casos de estudio próximamente
         </p>

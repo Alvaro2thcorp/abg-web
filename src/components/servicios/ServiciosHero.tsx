@@ -85,7 +85,7 @@ export default function ServiciosHero() {
                             marginBottom: "2.5rem"
                         }}
                     >
-                        <div className="pulse-dot-orange" style={{ width: "6px", height: "6px", backgroundColor: "#F04E23", borderRadius: "50%" }} />
+                        <div className="pulse-dot-orange" style={{ width: "6px", height: "6px", backgroundColor: "#CC0000", borderRadius: "50%" }} />
                         <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "rgba(242, 240, 237, 0.4)", textTransform: "uppercase", letterSpacing: "0.15em" }}>
                             SERVICIOS · ABG FRAME
                         </span>
@@ -106,7 +106,7 @@ export default function ServiciosHero() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.3, ease }}
                         >
-                            <h1 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "clamp(3rem, 9vw, 4rem)", color: "#F04E23", lineHeight: 0.95, letterSpacing: "-0.03em", margin: 0 }} className="hero-title">
+                            <h1 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "clamp(3rem, 9vw, 4rem)", color: "#CC0000", lineHeight: 0.95, letterSpacing: "-0.03em", margin: 0 }} className="hero-title">
                                 en Alicante.
                             </h1>
                         </motion.div>
@@ -274,18 +274,18 @@ export default function ServiciosHero() {
                 }
                 .pulse-dot-orange { animation: pulse-orange 2s infinite; }
                 
-                .breadcrumb-link:hover { color: #F04E23 !important; }
+                .breadcrumb-link:hover { color: #CC0000 !important; }
                 
                 .hero-service-block:hover {
                     background: rgba(242, 240, 237, 0.03) !important;
                 }
                 .hero-service-block:hover .hero-service-arrow {
-                    color: #F04E23 !important;
+                    color: #CC0000 !important;
                 }
                 
                 .hero-bottom-cta:hover {
-                    border-color: #F04E23 !important;
-                    color: #F04E23 !important;
+                    border-color: #CC0000 !important;
+                    color: #CC0000 !important;
                 }
 
                 @media (min-width: 768px) {

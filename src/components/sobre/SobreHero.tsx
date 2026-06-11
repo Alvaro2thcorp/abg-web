@@ -64,7 +64,7 @@ export default function SobreHero() {
                         marginBottom: "3rem"
                     }}
                 >
-                    <a href="/" style={{ textDecoration: "none", color: "inherit", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "#F04E23"} onMouseLeave={(e) => e.currentTarget.style.color = "inherit"}>
+                    <a href="/" style={{ textDecoration: "none", color: "inherit", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "#CC0000"} onMouseLeave={(e) => e.currentTarget.style.color = "inherit"}>
                         ABG
                     </a>
                     {" / "}
@@ -126,7 +126,7 @@ export default function SobreHero() {
                                 style={{
                                     width: "60px",
                                     height: "2px",
-                                    background: "#F04E23",
+                                    background: "#CC0000",
                                     marginTop: "2.5rem",
                                     marginBottom: "2rem",
                                     transformOrigin: "left"
@@ -218,7 +218,7 @@ export default function SobreHero() {
                     <div style={{ display: "flex", alignItems: "center", gap: "0.8rem" }}>
                         {/* Dot animado */}
                         <div style={{
-                            width: "8px", height: "8px", borderRadius: "50%", background: "#F04E23", flexShrink: 0
+                            width: "8px", height: "8px", borderRadius: "50%", background: "#CC0000", flexShrink: 0
                         }} className="pulse-dot" />
                         <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "rgba(242, 240, 237, 0.5)", textTransform: "uppercase", letterSpacing: "0.08em" }}>
                             Álvaro Bergillos · Alicante
@@ -268,8 +268,8 @@ export default function SobreHero() {
                                 pointerEvents: "auto"
                             }}
                             onMouseEnter={(e) => {
-                                e.currentTarget.style.borderColor = "#F04E23";
-                                e.currentTarget.style.color = "#F04E23";
+                                e.currentTarget.style.borderColor = "#CC0000";
+                                e.currentTarget.style.color = "#CC0000";
                             }}
                             onMouseLeave={(e) => {
                                 e.currentTarget.style.borderColor = "rgba(242, 240, 237, 0.12)";
@@ -285,9 +285,9 @@ export default function SobreHero() {
             <style dangerouslySetInnerHTML={{
                 __html: `
                 @keyframes pulse-anim {
-                    0% { box-shadow: 0 0 0 0 rgba(240, 78, 35, 0.7); }
-                    70% { box-shadow: 0 0 0 6px rgba(240, 78, 35, 0); }
-                    100% { box-shadow: 0 0 0 0 rgba(240, 78, 35, 0); }
+                    0% { box-shadow: 0 0 0 0 rgba(204, 0, 0, 0.7); }
+                    70% { box-shadow: 0 0 0 6px rgba(204, 0, 0, 0); }
+                    100% { box-shadow: 0 0 0 0 rgba(204, 0, 0, 0); }
                 }
                 .pulse-dot {
                     animation: pulse-anim 2s infinite;

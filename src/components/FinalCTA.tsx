@@ -34,7 +34,7 @@ const FinalCTA = () => {
                         ABG
                     </div>
                     <div style={{
-                        fontFamily: "var(--font-mono, 'Syne Mono')",
+                        fontFamily: "var(--font-mono)",
                         fontSize: "0.65rem",
                         color: "rgba(8,8,8,0.3)",
                         textTransform: "uppercase",
@@ -52,7 +52,7 @@ const FinalCTA = () => {
                             href={link.href}
                             className="footer-nav-link"
                             style={{
-                                fontFamily: "Epilogue, sans-serif",
+                                fontFamily: "var(--font-body)",
                                 fontWeight: 300,
                                 fontSize: "0.9rem",
                                 color: "rgba(8,8,8,0.4)",
@@ -187,7 +187,7 @@ const FinalCTA = () => {
             <style dangerouslySetInnerHTML={{
                 __html: `
                 .footer-nav-link:hover { color: #080808 !important; }
-                .cta-final-button:hover { background: #F04E23 !important; color: #080808 !important; }
+                .cta-final-button:hover { background: #CC0000 !important; color: #080808 !important; }
                 .footer-social-link {
                     font-family: var(--font-mono);
                     font-size: 0.58rem;
@@ -197,7 +197,7 @@ const FinalCTA = () => {
                     transition: color 0.2s ease;
                     letter-spacing: 0.1em;
                 }
-                .footer-social-link:hover { color: #F04E23 !important; }
+                .footer-social-link:hover { color: #CC0000 !important; }
                 @media (max-width: 767px) {
                     .cta-top-row {
                         flex-direction: column !important;

@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import LightPillar from "./LightPillar";
 
 export default function Hero() {
     const ease = [0.16, 1, 0.3, 1] as any;
@@ -20,17 +19,14 @@ export default function Hero() {
                 marginBottom: 0,
             }}
         >
-            {/* ── BACKGROUND LAYERS (DO NOT TOUCH) ── */}
-            <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-                <LightPillar
-                    topColor="#F04E23"
-                    bottomColor="#080808"
-                    pillarWidth={2.5}
-                    rotationSpeed={0.8}
-                    intensity={0.8}
-                    glowAmount={0.01}
-                />
-            </div>
+            {/* Fondo gradient sutil */}
+            <div style={{
+                position: 'absolute',
+                inset: 0,
+                zIndex: 0,
+                pointerEvents: 'none',
+                background: 'radial-gradient(ellipse 60% 50% at 70% 40%, rgba(204,0,0,0.06) 0%, transparent 70%)',
+            }} />
 
             {/* ── ZONA SUPERIOR ── */}
             <div
@@ -55,13 +51,13 @@ export default function Hero() {
                             alignItems: "center",
                             gap: "0.6rem",
                             border: "1px solid rgba(242,240,237,0.1)",
-                            borderRadius: "100px",
+                            borderRadius: "2px",
                             padding: "0.4rem 1rem",
                             background: "rgba(242,240,237,0.03)",
                             marginBottom: "1.5rem"
                         }}
                     >
-                        <div className="pulse-dot" style={{ width: "6px", height: "6px", background: "#F04E23", borderRadius: "50%" }} />
+                        <div className="pulse-dot" style={{ width: "6px", height: "6px", background: "#CC0000", borderRadius: "50%" }} />
                         <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "rgba(242,240,237,0.5)", textTransform: "uppercase", letterSpacing: "0.15em" }}>
                             ABG FRAME · SAN JUAN DE ALICANTE
                         </span>
@@ -159,20 +155,19 @@ export default function Hero() {
                     style={{
                         display: "inline-flex",
                         alignItems: "center",
-                        gap: "0.75rem",
-                        background: "#F04E23",
-                        borderRadius: "100px",
+                        background: "#CC0000",
+                        borderRadius: "4px",
                         padding: "0.85rem 2rem",
-                        fontFamily: "var(--font-display)",
-                        fontWeight: 700,
-                        fontSize: "0.95rem",
-                        color: "#080808",
+                        fontFamily: "var(--font-body)",
+                        fontWeight: 500,
+                        fontSize: "0.9rem",
+                        color: "#ffffff",
                         textDecoration: "none",
+                        letterSpacing: "0.01em",
                         transition: "background 0.25s ease, transform 0.25s ease"
                     }}
                 >
-                    Contacta con nosotros
-                    <span style={{ fontSize: "1rem" }}>→</span>
+                    Solicitar presupuesto →
                 </motion.a>
             </div>
 
@@ -183,7 +178,7 @@ export default function Hero() {
                     50% { opacity: 0.5; transform: scale(0.8); }
                 }
                 .pulse-dot { animation: pulse 2s infinite; }
-                .hero-cta-btn:hover { background: #d93d1a !important; transform: translateY(-2px); }
+                .hero-cta-btn:hover { background: #aa0000 !important; transform: translateY(-2px); }
 
                 @media (max-width: 767px) {
                     .hero-upper-zone {
