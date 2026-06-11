@@ -47,7 +47,7 @@ function Stars() {
     return (
         <div style={{ display: "flex", gap: "0.3rem", marginBottom: "1.5rem" }}>
             {[...Array(5)].map((_, i) => (
-                <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill="rgba(8,8,8,0.3)">
+                <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill="rgba(242,240,237,0.4)">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                 </svg>
             ))}
@@ -72,7 +72,7 @@ function ReviewCard({ review, index }: { review: typeof reviews[0]; index: numbe
             style={{
                 background: hovered ? "rgba(242,240,237,0.04)" : "rgba(242,240,237,0.02)",
                 border: hovered
-                    ? "1px solid rgba(8,8,8,0.12)"
+                    ? "1px solid rgba(204,0,0,0.2)"
                     : "1px solid rgba(242,240,237,0.06)",
                 borderRadius: "2px",
                 padding: "2rem",
@@ -91,7 +91,7 @@ function ReviewCard({ review, index }: { review: typeof reviews[0]; index: numbe
                     left: 0,
                     width: hovered ? "100%" : "0%",
                     height: "1px",
-                    background: "rgba(204,0,0,0.4)",
+                    background: "#CC0000",
                     transition: "width 0.45s cubic-bezier(0.16,1,0.3,1)",
                 }}
             />
@@ -278,7 +278,7 @@ export default function Resenas() {
                 >
                     <div style={{ display: "flex", gap: "0.3rem" }}>
                         {[...Array(5)].map((_, i) => (
-                            <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="rgba(8,8,8,0.3)">
+                            <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="rgba(242,240,237,0.4)">
                                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                             </svg>
                         ))}

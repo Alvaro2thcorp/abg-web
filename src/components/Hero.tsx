@@ -6,192 +6,189 @@ export default function Hero() {
     const ease = [0.16, 1, 0.3, 1] as any;
 
     return (
-        <section
-            style={{
-                minHeight: "100vh",
-                position: "relative",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-start",
-                overflow: "hidden",
-                background: "#080808",
-                padding: "clamp(6rem, 18vh, 12rem) clamp(1.5rem, 5vw, 5rem) 3rem",
-                marginBottom: 0,
-            }}
-        >
-            {/* Fondo gradient sutil */}
+        <section style={{
+            minHeight: "100vh",
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-end",
+            overflow: "hidden",
+            background: "#F2F0ED",
+            padding: "clamp(6rem, 18vh, 12rem) clamp(1.5rem, 5vw, 5rem) clamp(3rem, 6vw, 5rem)",
+        }}>
+            {/* Isotipo 3D de fondo — decorativo */}
             <div style={{
-                position: 'absolute',
-                inset: 0,
+                position: "absolute",
+                right: "-5vw",
+                top: "50%",
+                transform: "translateY(-50%)",
+                width: "clamp(400px, 55vw, 900px)",
+                height: "clamp(400px, 55vw, 900px)",
                 zIndex: 0,
-                pointerEvents: 'none',
-                background: 'radial-gradient(ellipse 60% 50% at 70% 40%, rgba(204,0,0,0.06) 0%, transparent 70%)',
+                pointerEvents: "none",
+                opacity: 0.07,
+                backgroundImage: "url('/images/isotipo-3d.png')",
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
             }} />
 
-            {/* ── ZONA SUPERIOR ── */}
-            <div
-                className="hero-upper-zone"
+            {/* Línea superior — eyebrow */}
+            <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1, ease }}
                 style={{
+                    position: "absolute",
+                    top: "clamp(1.5rem, 3vw, 2.5rem)",
+                    left: "clamp(1.5rem, 5vw, 5rem)",
+                    right: "clamp(1.5rem, 5vw, 5rem)",
                     display: "flex",
-                    alignItems: "flex-start",
-                    padding: "0 0 2rem",
-                    position: "relative",
-                    zIndex: 2
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    zIndex: 2,
                 }}
             >
-                <div style={{ maxWidth: "820px", width: "100%" }}>
-                    {/* TAG PILL */}
-                    <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.1, ease }}
-                        className="hero-badge"
+                <span style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.65rem",
+                    fontWeight: 500,
+                    color: "rgba(8,8,8,0.35)",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.2em",
+                }}>
+                    ABG Frame · San Juan de Alicante
+                </span>
+                <span style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.65rem",
+                    fontWeight: 500,
+                    color: "rgba(8,8,8,0.35)",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.2em",
+                }}>
+                    Est. 2025
+                </span>
+            </motion.div>
+
+            {/* Contenido principal */}
+            <div style={{ position: "relative", zIndex: 2 }}>
+
+                {/* H1 — tipografía enorme */}
+                <h1 style={{ margin: 0, padding: 0 }}>
+                    <div style={{ overflow: "hidden" }}>
+                        <motion.span
+                            initial={{ y: 80, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 1, delay: 0.15, ease }}
+                            style={{
+                                display: "block",
+                                fontFamily: "'DM Serif Display', serif",
+                                fontWeight: 400,
+                                fontSize: "clamp(3.5rem, 8vw, 9rem)",
+                                color: "#080808",
+                                lineHeight: 0.9,
+                                letterSpacing: "-0.03em",
+                            }}
+                        >
+                            Tu negocio
+                        </motion.span>
+                    </div>
+                    <div style={{ overflow: "hidden" }}>
+                        <motion.span
+                            initial={{ y: 80, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 1, delay: 0.25, ease }}
+                            style={{
+                                display: "block",
+                                fontFamily: "'DM Serif Display', serif",
+                                fontWeight: 400,
+                                fontSize: "clamp(3.5rem, 8vw, 9rem)",
+                                color: "#080808",
+                                lineHeight: 0.9,
+                                letterSpacing: "-0.03em",
+                            }}
+                        >
+                            merece una web
+                        </motion.span>
+                    </div>
+                    <div style={{ overflow: "hidden" }}>
+                        <motion.span
+                            initial={{ y: 80, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 1, delay: 0.35, ease }}
+                            style={{
+                                display: "block",
+                                fontFamily: "'DM Serif Display', serif",
+                                fontStyle: "italic",
+                                fontWeight: 400,
+                                fontSize: "clamp(3.5rem, 8vw, 9rem)",
+                                color: "#CC0000",
+                                lineHeight: 0.9,
+                                letterSpacing: "-0.03em",
+                            }}
+                        >
+                            a su altura.
+                        </motion.span>
+                    </div>
+                </h1>
+
+                {/* Línea divisoria + CTA */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.7 }}
+                    style={{
+                        marginTop: "clamp(2rem, 4vw, 3.5rem)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        flexWrap: "wrap",
+                        gap: "1.5rem",
+                        borderTop: "1px solid rgba(8,8,8,0.12)",
+                        paddingTop: "clamp(1.5rem, 3vw, 2rem)",
+                    }}
+                >
+                    <p style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontWeight: 300,
+                        fontSize: "clamp(0.9rem, 1.5vw, 1.05rem)",
+                        color: "rgba(8,8,8,0.45)",
+                        margin: 0,
+                        maxWidth: "420px",
+                        lineHeight: 1.6,
+                    }}>
+                        Diseño web premium + SEO local para negocios de alto ticket en Alicante y Costa Blanca.
+                    </p>
+
+                    <a
+                        href="/contacto"
+                        className="hero-cta"
                         style={{
                             display: "inline-flex",
                             alignItems: "center",
-                            gap: "0.6rem",
-                            border: "1px solid rgba(242,240,237,0.1)",
-                            borderRadius: "2px",
-                            padding: "0.4rem 1rem",
-                            background: "rgba(242,240,237,0.03)",
-                            marginBottom: "1.5rem"
+                            gap: "0.75rem",
+                            background: "#080808",
+                            color: "#F2F0ED",
+                            fontFamily: "'Inter', sans-serif",
+                            fontWeight: 500,
+                            fontSize: "0.9rem",
+                            padding: "0.9rem 2rem",
+                            borderRadius: "4px",
+                            textDecoration: "none",
+                            letterSpacing: "0.02em",
+                            transition: "background 0.2s ease",
                         }}
                     >
-                        <div className="pulse-dot" style={{ width: "6px", height: "6px", background: "#CC0000", borderRadius: "50%" }} />
-                        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "rgba(242,240,237,0.5)", textTransform: "uppercase", letterSpacing: "0.15em" }}>
-                            ABG FRAME · SAN JUAN DE ALICANTE
-                        </span>
-                    </motion.div>
-
-                    {/* H1 */}
-                    <h1 style={{ display: "flex", flexDirection: "column", margin: 0 }}>
-                        <div style={{ overflow: "hidden" }}>
-                            <motion.span
-                                initial={{ opacity: 0, y: 50 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.9, delay: 0.1, ease }}
-                                style={{
-                                    fontFamily: "var(--font-display)",
-                                    fontWeight: 800,
-                                    fontSize: "clamp(3rem, 5.5vw, 7rem)",
-                                    color: "#F2F0ED",
-                                    lineHeight: 0.92,
-                                    letterSpacing: "-0.04em",
-                                    display: "block"
-                                }}
-                                className="hero-title-main"
-                            >
-                                Diseño web premium
-                            </motion.span>
-                        </div>
-
-                        <div style={{ overflow: "hidden" }}>
-                            <motion.span
-                                initial={{ opacity: 0, y: 50 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.9, delay: 0.2, ease }}
-                                style={{
-                                    fontFamily: "var(--font-display)",
-                                    fontWeight: 800,
-                                    fontSize: "clamp(3rem, 5.5vw, 7rem)",
-                                    color: "#F2F0ED",
-                                    lineHeight: 0.92,
-                                    letterSpacing: "-0.04em",
-                                    display: "block"
-                                }}
-                                className="hero-title-main"
-                            >
-                                que atrae clientes
-                            </motion.span>
-                        </div>
-
-                        <div style={{ overflow: "hidden" }}>
-                            <motion.span
-                                initial={{ opacity: 0, y: 50 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.9, delay: 0.3, ease }}
-                                style={{
-                                    fontFamily: "var(--font-display)",
-                                    fontWeight: 800,
-                                    fontStyle: "normal",
-                                    fontSize: "clamp(3rem, 5.5vw, 7rem)",
-                                    color: "transparent",
-                                    WebkitTextStroke: "2px rgba(242,240,237,0.4)",
-                                    lineHeight: 0.92,
-                                    letterSpacing: "-0.04em",
-                                    display: "block"
-                                }}
-                                className="hero-title-outline"
-                            >
-                                de alto ticket.
-                            </motion.span>
-                        </div>
-                    </h1>
-                </div>
+                        Solicitar presupuesto →
+                    </a>
+                </motion.div>
             </div>
 
-            {/* ── LÍNEA DIVISORIA ── */}
-            <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 1, delay: 0.7, ease }}
-                style={{ width: "100%", height: "1px", background: "rgba(242,240,237,0.08)", position: "relative", zIndex: 2, originX: 0 }}
-            />
-
-            {/* ── ZONA INFERIOR ── */}
-            <div
-                style={{
-                    padding: "2rem 0 0",
-                    position: "relative",
-                    zIndex: 2
-                }}
-            >
-                <motion.a
-                    href="/contacto"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.8, ease }}
-                    className="hero-cta-btn"
-                    style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        background: "#CC0000",
-                        borderRadius: "4px",
-                        padding: "0.85rem 2rem",
-                        fontFamily: "var(--font-body)",
-                        fontWeight: 500,
-                        fontSize: "0.9rem",
-                        color: "#ffffff",
-                        textDecoration: "none",
-                        letterSpacing: "0.01em",
-                        transition: "background 0.25s ease, transform 0.25s ease"
-                    }}
-                >
-                    Solicitar presupuesto →
-                </motion.a>
-            </div>
-
-            <style dangerouslySetInnerHTML={{
-                __html: `
-                @keyframes pulse {
-                    0%, 100% { opacity: 1; transform: scale(1); }
-                    50% { opacity: 0.5; transform: scale(0.8); }
-                }
-                .pulse-dot { animation: pulse 2s infinite; }
-                .hero-cta-btn:hover { background: #aa0000 !important; transform: translateY(-2px); }
-
+            <style dangerouslySetInnerHTML={{ __html: `
+                .hero-cta:hover { background: #CC0000 !important; }
                 @media (max-width: 767px) {
-                    .hero-upper-zone {
-                        padding-top: 90px !important;
-                        align-items: flex-start !important;
-                    }
-                    .hero-badge {
-                        margin-bottom: 1.5rem !important;
-                    }
-                    .hero-title-main,
-                    .hero-title-outline {
-                        font-size: clamp(2.8rem, 10vw, 4rem) !important;
-                    }
+                    .hero-cta { width: 100%; justify-content: center; }
                 }
             `}} />
         </section>

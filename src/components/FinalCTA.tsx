@@ -129,9 +129,9 @@ const FinalCTA = () => {
                                 marginTop: "2rem",
                                 background: "#080808",
                                 color: "#F2F0ED",
-                                borderRadius: "100px",
-                                fontFamily: "var(--font-display)",
-                                fontWeight: 700,
+                                borderRadius: "4px",
+                                fontFamily: "var(--font-body)",
+                                fontWeight: 500,
                                 fontSize: "1rem",
                                 padding: "1.2rem 3rem",
                                 textDecoration: "none",
@@ -159,11 +159,11 @@ const FinalCTA = () => {
                 }}
             >
                 <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.58rem", color: "rgba(8,8,8,0.25)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                    © 2025 ABG Frame · abgframe.com
+                    © 2026 ABG Frame · San Juan de Alicante
                 </div>
 
                 <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.58rem", color: "rgba(8,8,8,0.2)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                    Diseño web Alicante · SEO · Google Ads
+                    Diseño Web Premium · SEO · Alicante
                 </div>
 
                 <div style={{ display: "flex", gap: "1.5rem" }}>

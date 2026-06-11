@@ -28,8 +28,8 @@ export default function ProblemaHome() {
                 >
                     <h2 style={{
                         fontFamily: "var(--font-display)",
-                        fontWeight: 800,
-                        fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
+                        fontWeight: 400,
+                        fontSize: "clamp(1.6rem, 2.5vw, 2.2rem)",
                         color: "#080808",
                         lineHeight: 1.1,
                         letterSpacing: "-0.03em",
@@ -53,9 +53,6 @@ export default function ProblemaHome() {
                         </p>
                         <p>
                             ABG Frame construye esa web. Diseño orientado a la conversión, SEO integrado desde el primer commit y rendimiento técnico que Google premia desde el lanzamiento. Cada decisión apunta a un resultado concreto: más consultas de calidad para el negocio.
-                        </p>
-                        <p>
-                            El resultado es una herramienta de captación que trabaja de forma autónoma. Visibilidad orgánica que crece mes a mes, primeras impresiones que generan confianza y un sistema que no depende de publicidad constante para funcionar.
                         </p>
                     </div>
                 </motion.div>

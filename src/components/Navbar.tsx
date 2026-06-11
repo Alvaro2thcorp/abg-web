@@ -22,9 +22,10 @@ const links: NavLink[] = [
 
 
 // ── Hamburger icon ─────────────────────────────────────────────────────────────
-function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
+function HamburgerIcon({ isOpen, color = "#080808" }: { isOpen: boolean; color?: string }) {
     return (
         <div
+            className="nav-hamburger"
             style={{
                 width: "22px",
                 height: "14px",
@@ -41,7 +42,7 @@ function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
                     display: "block",
                     width: "100%",
                     height: "1.5px",
-                    background: "#F2F0ED",
+                    background: color,
                     borderRadius: "2px",
                     transformOrigin: "center",
                 }}
@@ -53,7 +54,7 @@ function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
                     display: "block",
                     width: "100%",
                     height: "1.5px",
-                    background: "#F2F0ED",
+                    background: color,
                     borderRadius: "2px",
                 }}
             />
@@ -64,7 +65,7 @@ function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
                     display: "block",
                     width: "100%",
                     height: "1.5px",
-                    background: "#F2F0ED",
+                    background: color,
                     borderRadius: "2px",
                     transformOrigin: "center",
                 }}
@@ -87,10 +88,18 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // Lock body scroll when menu open
+    // Lock body scroll + data attribute when menu open
     useEffect(() => {
         document.body.style.overflow = menuOpen ? "hidden" : "";
-        return () => { document.body.style.overflow = ""; };
+        if (menuOpen) {
+            document.body.setAttribute("data-menu-open", "true");
+        } else {
+            document.body.removeAttribute("data-menu-open");
+        }
+        return () => {
+            document.body.style.overflow = "";
+            document.body.removeAttribute("data-menu-open");
+        };
     }, [menuOpen]);
 
     // Close on Escape
@@ -118,10 +127,10 @@ export default function Navbar() {
                     justifyContent: "space-between",
                     padding: "1.5rem 3rem",
                     transition: "background 0.3s, border-color 0.3s",
-                    background: scrolled ? "rgba(8, 8, 8, 0.9)" : "transparent",
+                    background: scrolled ? "rgba(242, 240, 237, 0.95)" : "transparent",
                     backdropFilter: scrolled ? "blur(12px)" : "none",
                     WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
-                    borderBottom: scrolled ? "1px solid rgba(242, 240, 237, 0.06)" : "1px solid transparent",
+                    borderBottom: scrolled ? "1px solid rgba(8,8,8,0.08)" : "1px solid transparent",
                 }}
             >
                 {/* Left: Logo */}
@@ -166,8 +175,8 @@ export default function Navbar() {
                                     fontFamily: "var(--font-body)",
                                     fontWeight: 500,
                                     fontSize: "0.8rem",
-                                    color: "#ffffff",
-                                    background: "#CC0000",
+                                    color: "#F2F0ED",
+                                    background: "#080808",
                                     borderRadius: "4px",
                                     padding: "0.5rem 1.25rem",
                                     textDecoration: "none",
@@ -193,7 +202,7 @@ export default function Navbar() {
                             border: "none",
                             cursor: "pointer",
                             padding: "0",
-                            color: "#F2F0ED",
+                            color: "#080808",
                         }}
                     >
                         <span
@@ -203,12 +212,13 @@ export default function Navbar() {
                                 fontSize: "0.65rem",
                                 textTransform: "uppercase",
                                 letterSpacing: "0.12em",
-                                color: "#F2F0ED",
+                                color: "#080808",
                             }}
                         >
                             {menuOpen ? "CERRAR" : "MENÚ"}
                         </span>
-                        <HamburgerIcon isOpen={menuOpen} />
+                        <HamburgerIcon isOpen={menuOpen} color="#080808" />
+                        {/* Mobile overlay is dark — CSS overrides color to white */}
                     </button>
                 </div>
             </nav>
@@ -461,8 +471,8 @@ export default function Navbar() {
           transition: transform 0.2s ease, box-shadow 0.2s ease !important;
         }
         .nav-cta-btn:hover {
+          background: #CC0000 !important;
           transform: translateY(-2px) !important;
-          box-shadow: 0 8px 24px rgba(204, 0, 0, 0.35) !important;
         }
         @media (max-width: 767px) {
           .nav-logo-img {
@@ -476,6 +486,11 @@ export default function Navbar() {
           .nav-menu-label {
             font-size: 0.65rem !important;
           }
+        }
+        /* Mobile: when menu is open, nav floats over dark overlay — force white */
+        @media (max-width: 767px) {
+          body[data-menu-open] .nav-menu-label { color: #F2F0ED !important; }
+          body[data-menu-open] .nav-hamburger span { background: #F2F0ED !important; }
         }
       `}</style>
         </>

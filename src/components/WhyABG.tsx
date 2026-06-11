@@ -98,7 +98,7 @@ const EditorialStatement = ({
                         <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", color: "rgba(242,240,237,0.2)" }}>
                             {num} ——
                         </span>
-                        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", color: "rgba(204,0,0,0.7)", textTransform: "uppercase", letterSpacing: "0.15em" }}>
+                        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", color: "rgba(204,0,0,0.8)", textTransform: "uppercase", letterSpacing: "0.15em" }}>
                             {tag}
                         </span>
                     </div>
@@ -145,7 +145,7 @@ const EditorialStatement = ({
                         marginTop: "3rem",
                         width: "120px",
                         height: "1px",
-                        background: "linear-gradient(to right, rgba(204,0,0,0.3), transparent)"
+                        background: "linear-gradient(to right, rgba(204,0,0,0.25), transparent)"
                     }} />
                 </div>
 
