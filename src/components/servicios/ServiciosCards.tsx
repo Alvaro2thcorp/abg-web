@@ -32,8 +32,8 @@ const SERVICIOS = [
     ],
     accion: "Hablar del proyecto →",
     href: "/contacto",
-    fondo: "#F2F0ED",
-    color: "#080808",
+    fondo: "#1a1a1a",
+    color: "#F2F0ED",
   },
   {
     num: "03",
@@ -60,11 +60,12 @@ export default function ServiciosCards() {
     <section
       ref={sectionRef}
       style={{
-        background: "#080808",
+        background: "#F2F0ED",
         padding: "clamp(5rem, 10vw, 8rem) 0",
         position: "relative",
         overflow: "hidden",
         minHeight: "700px",
+        borderTop: "1px solid rgba(8,8,8,0.08)",
       }}
     >
       <div
@@ -108,7 +109,7 @@ export default function ServiciosCards() {
               fontFamily: "'DM Serif Display', serif",
               fontWeight: 400,
               fontSize: "clamp(2rem, 4vw, 3.5rem)",
-              color: "#F2F0ED",
+              color: "#080808",
               lineHeight: 1.05,
               letterSpacing: "-0.03em",
               margin: 0,
@@ -116,7 +117,7 @@ export default function ServiciosCards() {
             }}
           >
             Tres formas de ayudarte.{" "}
-            <span style={{ fontStyle: "italic", color: "rgba(242,240,237,0.3)" }}>
+            <span style={{ fontStyle: "italic", color: "rgba(8,8,8,0.25)" }}>
               Una sola dirección.
             </span>
           </motion.h2>
@@ -129,7 +130,7 @@ export default function ServiciosCards() {
               fontFamily: "'Inter', sans-serif",
               fontWeight: 300,
               fontSize: "1rem",
-              color: "rgba(242,240,237,0.45)",
+              color: "rgba(8,8,8,0.55)",
               lineHeight: 1.65,
               margin: 0,
               marginBottom: "3rem",
@@ -153,7 +154,7 @@ export default function ServiciosCards() {
                   alignItems: "center",
                   gap: "1.5rem",
                   padding: "1.25rem 0",
-                  borderBottom: "1px solid rgba(242,240,237,0.06)",
+                  borderBottom: "1px solid rgba(8,8,8,0.08)",
                   textDecoration: "none",
                   cursor: "pointer",
                   transition: "all 0.2s",
@@ -164,7 +165,7 @@ export default function ServiciosCards() {
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.6rem",
                   fontWeight: 500,
-                  color: "rgba(242,240,237,0.2)",
+                  color: "rgba(8,8,8,0.2)",
                   letterSpacing: "0.15em",
                   minWidth: "24px",
                 }}>
@@ -174,7 +175,7 @@ export default function ServiciosCards() {
                   fontFamily: "'DM Serif Display', serif",
                   fontWeight: 400,
                   fontSize: "clamp(1rem, 1.5vw, 1.3rem)",
-                  color: "#F2F0ED",
+                  color: "#080808",
                   letterSpacing: "-0.01em",
                 }}>
                   {s.titulo}
@@ -220,7 +221,7 @@ export default function ServiciosCards() {
                 key={s.num}
                 style={{
                   background: s.fondo,
-                  border: `1px solid ${s.fondo === "#F2F0ED" ? "rgba(8,8,8,0.1)" : "rgba(242,240,237,0.08)"}`,
+                  border: "1px solid rgba(242,240,237,0.08)",
                   padding: "2.5rem",
                   display: "flex",
                   flexDirection: "column",
@@ -234,7 +235,7 @@ export default function ServiciosCards() {
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "0.6rem",
                     fontWeight: 500,
-                    color: s.fondo === "#CC0000" ? "rgba(242,240,237,0.7)" : s.fondo === "#F2F0ED" ? "rgba(8,8,8,0.4)" : "#CC0000",
+                    color: s.fondo === "#CC0000" ? "rgba(242,240,237,0.7)" : "#CC0000",
                     textTransform: "uppercase",
                     letterSpacing: "0.2em",
                     marginBottom: "1rem",
@@ -258,7 +259,7 @@ export default function ServiciosCards() {
                         fontFamily: "'Inter', sans-serif",
                         fontWeight: 300,
                         fontSize: "0.85rem",
-                        color: s.fondo === "#F2F0ED" ? "rgba(8,8,8,0.55)" : "rgba(242,240,237,0.55)",
+                        color: "rgba(242,240,237,0.55)",
                         display: "flex",
                         alignItems: "center",
                         gap: "0.5rem",
@@ -273,10 +274,10 @@ export default function ServiciosCards() {
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.8rem",
                   fontWeight: 500,
-                  color: s.fondo === "#CC0000" ? "#F2F0ED" : s.fondo === "#F2F0ED" ? "#080808" : "#CC0000",
+                  color: s.fondo === "#CC0000" ? "#F2F0ED" : "#CC0000",
                   marginTop: "1.5rem",
                   paddingTop: "1.25rem",
-                  borderTop: `1px solid ${s.fondo === "#F2F0ED" ? "rgba(8,8,8,0.08)" : "rgba(242,240,237,0.08)"}`,
+                  borderTop: "1px solid rgba(242,240,237,0.08)",
                 }}>
                   {s.accion}
                 </div>
@@ -288,7 +289,7 @@ export default function ServiciosCards() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         .servicio-index-row:hover .servicio-arrow { opacity: 1 !important; }
-        .servicio-index-row:hover > span:nth-child(2) { color: rgba(242,240,237,0.7) !important; }
+        .servicio-index-row:hover > span:nth-child(2) { color: rgba(8,8,8,0.6) !important; }
         @media (max-width: 1023px) {
           .servicios-cards-grid { grid-template-columns: 1fr !important; }
         }
