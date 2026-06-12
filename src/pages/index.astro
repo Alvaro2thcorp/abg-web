@@ -5,16 +5,15 @@ import Hero from "../components/Hero";
 import ElTimeline from "../components/ElTimeline";
 import WhyABG from "../components/WhyABG";
 import Resenas from "../components/Resenas";
-// import HomeProyectos from "../components/HomeProyectos";
+import HomeProyectos from "../components/HomeProyectos";
 import FinalCTA from "../components/FinalCTA";
-import SectionTransition from "../components/SectionTransition";
 import ProblemaHome from "../components/ProblemaHome";
 import TechBanner from "../components/TechBanner";
 ---
 
 <Layout
-	title="Diseño Web Premium en Alicante | ABG Frame — Webs Que Atraen Clientes"
-	description="Agencia de diseño web premium en Alicante para negocios de alto ticket. Web + SEO local + Google Ads. Solicita tu análisis gratuito sin compromiso."
+	title="Diseño Web Premium en Alicante | ABG Frame — Webs a Medida para Negocios Premium"
+	description="Estudio de diseño web premium en San Juan de Alicante. Webs hechas a medida para negocios que no se conforman. Resultados en 4 semanas."
 >
 	<Navbar client:load />
 
@@ -23,22 +22,15 @@ import TechBanner from "../components/TechBanner";
 
 		<TechBanner client:visible />
 
-		<SectionTransition
-			client:visible
-			from="#080808"
-			to="#F2F0ED"
-			height="20vh"
-		/>
-
 		<ProblemaHome client:visible />
 
 		<ElTimeline client:visible />
 
 		<WhyABG client:visible />
 
-		<Resenas client:visible />
+		<HomeProyectos client:visible />
 
-		{/* <HomeProyectos client:load /> */}
+		<Resenas client:visible />
 
 		<FinalCTA client:visible />
 	</main>

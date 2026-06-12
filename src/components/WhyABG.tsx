@@ -257,29 +257,29 @@ export default function WhyABG() {
                 <div style={{ display: "flex", flexDirection: "column" }}>
                     <EditorialStatement
                         num="01"
-                        tag="Tecnología Adaptada"
-                        title="La herramienta correcta"
-                        italic="para cada proyecto."
-                        description="ABG Frame elige la tecnología que mejor se adapta a cada negocio. Astro y React cuando la velocidad y el rendimiento son críticos. WordPress cuando tiene sentido para el proyecto. Lo que nunca cambia: sin plantillas genéricas, sin atajos, sin código que nadie entiende en seis meses. El resultado siempre es el mismo — una web que Google trata diferente desde el día uno."
-                        pills={["Astro + React", "WordPress", "Core Web Vitals reales"]}
+                        tag="Hecho a medida"
+                        title="Nada de plantillas."
+                        italic="Cada web es única."
+                        description="No reciclamos diseños ni copiamos lo que hace otra agencia. Cada negocio tiene su personalidad, su cliente y su historia. La web debe contarla. Eso requiere tiempo, oficio y atención al detalle — pero es la diferencia entre una web que pasa desapercibida y una que se recuerda."
+                        pills={[]}
                         delay={0.1}
                     />
                     <EditorialStatement
                         num="02"
-                        tag="SEO Local Real"
-                        title="Posicionar en Alicante"
-                        italic="no es magia."
-                        description="ABG Frame conoce qué busca un cliente cuando quiere contratar servicios náuticos en el puerto, o una clínica en San Juan. No por haber leído un blog — por años trabajando con negocios de la zona. El SEO local tiene su lógica propia: Google My Business, menciones de zona, arquitectura semántica. No se improvisa."
-                        pills={["SEO Local Alicante", "Google My Business", "Arquitectura semántica"]}
+                        tag="Visibilidad real"
+                        title="Para que te encuentren"
+                        italic="cuando te buscan."
+                        description="Una web preciosa que nadie ve no sirve. Construimos pensando en cómo busca tu cliente potencial — qué palabras usa, qué necesita resolver, qué le hace confiar. Así, cuando alguien busca lo que tú ofreces en tu zona, te encuentra a ti antes que a tu competencia."
+                        pills={[]}
                         delay={0.25}
                     />
                     <EditorialStatement
                         num="03"
-                        tag="Captación"
-                        title="Web, SEO y Ads"
-                        italic="trabajando juntos."
-                        description="Diseño web que convierte, SEO local que atrae tráfico orgánico y Google Ads que acelera los resultados desde el día uno. Todo coordinado, todo medible."
-                        pills={["Google Ads", "SEO orgánico", "Sistema integrado"]}
+                        tag="Entrega rápida"
+                        title="Cuatro semanas."
+                        italic="Sin excusas."
+                        description="Tu negocio no puede esperar tres meses para tener presencia online. Brief, diseño, desarrollo, lanzamiento. Sin retrasos sin sentido, sin esperas eternas para ver avances, sin desaparecer entre revisiones."
+                        pills={[]}
                         delay={0.4}
                     />
                 </div>
