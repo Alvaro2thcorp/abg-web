@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar";
+import ServiciosCards from "../components/servicios/ServiciosCards";
 
 const title = "Servicios de Diseño Web y SEO en Alicante | ABG Frame";
 const description =
@@ -85,62 +86,7 @@ const breadcrumbSchema = {
         </section>
 
         <!-- ══════════════════════════════════════════════════ SERVICIOS -->
-        <section id="servicios-cards" aria-label="Servicios ABG Frame">
-            <div class="section-inner">
-
-                <!-- 01 DESARROLLO WEB -->
-                <article class="card" data-index="01">
-                    <div class="card-num" aria-hidden="true">01</div>
-                    <div class="card-body">
-                        <p class="card-tag">DESARROLLO WEB</p>
-                        <h2 class="card-title">La web que tu negocio merece.</h2>
-                        <ul class="card-bullets">
-                            <li>Diseño UX/UI a medida</li>
-                            <li>Astro · WordPress · Shopify · WooCommerce</li>
-                            <li>Core Web Vitals 100/100</li>
-                            <li>Entrega en 3–5 semanas</li>
-                        </ul>
-                        <a href="/contacto" class="card-cta">Hablar del proyecto →</a>
-                    </div>
-                </article>
-
-                <!-- 02 SEO LOCAL -->
-                <article class="card" data-index="02">
-                    <div class="card-num" aria-hidden="true">02</div>
-                    <div class="card-body">
-                        <p class="card-tag">SEO LOCAL</p>
-                        <h2 class="card-title">Que te encuentren en Alicante.</h2>
-                        <ul class="card-bullets">
-                            <li>Posicionamiento en Alicante</li>
-                            <li>Arquitectura semántica</li>
-                            <li>Google Business Profile</li>
-                            <li>SEO técnico y on-page</li>
-                            <li>Informes mensuales</li>
-                        </ul>
-                        <a href="/contacto" class="card-cta">Hablar del proyecto →</a>
-                    </div>
-                </article>
-
-                <!-- 03 EL SISTEMA -->
-                <article class="card card--featured" data-index="03">
-                    <div class="card-num card-num--featured" aria-hidden="true">03</div>
-                    <div class="card-body">
-                        <p class="card-tag card-tag--featured">EL SISTEMA</p>
-                        <h2 class="card-title">Web + SEO + Ads + Social.</h2>
-                        <p class="card-desc">
-                            Todo integrado. La forma en que trabajamos por defecto.
-                        </p>
-                        <ul class="card-bullets">
-                            <li>Sin permanencia</li>
-                            <li>Disponible en ES · EN · FR</li>
-                            <li>Dashboard en tiempo real</li>
-                        </ul>
-                        <a href="/el-sistema" class="card-cta card-cta--featured">Ver El Sistema →</a>
-                    </div>
-                </article>
-
-            </div>
-        </section>
+        <ServiciosCards client:visible />
 
         <!-- ══════════════════════════════════════════════ PLATAFORMAS -->
         <section id="plataformas" aria-label="Tecnología y plataformas ABG Frame">
