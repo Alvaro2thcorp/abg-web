@@ -7,55 +7,74 @@ export default function ProblemaHome() {
     return (
         <section style={{
             background: "#F2F0ED",
-            padding: "4rem 0 2rem",
-            position: "relative"
+            padding: "clamp(6rem, 12vw, 10rem) 0",
+            position: "relative",
+            overflow: "hidden",
         }}>
             <div style={{
                 maxWidth: "1400px",
                 width: "100%",
                 margin: "0 auto",
                 padding: "0 clamp(1.5rem, 5vw, 5rem)",
-                display: "grid",
-                gridTemplateColumns: "1fr",
-                gap: "2rem"
             }}>
                 <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.5 }}
+                    style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.7rem",
+                        fontWeight: 500,
+                        color: "#CC0000",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.25em",
+                        marginBottom: "3rem",
+                    }}
+                >
+                    01 — La diferencia
+                </motion.div>
+
+                <motion.h2
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8 }}
-                    style={{ maxWidth: "800px" }}
-                >
-                    <h2 style={{
-                        fontFamily: "var(--font-display)",
+                    transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                    style={{
+                        fontFamily: "'DM Serif Display', serif",
                         fontWeight: 400,
-                        fontSize: "clamp(1.6rem, 2.5vw, 2.2rem)",
+                        fontSize: "clamp(2.5rem, 6vw, 5.5rem)",
                         color: "#080808",
-                        lineHeight: 1.1,
+                        lineHeight: 1.05,
                         letterSpacing: "-0.03em",
-                        marginBottom: "1.5rem"
-                    }}>
-                        Una web bien construida <span className="highlight-word">convierte visitas en consultas.</span>
-                    </h2>
+                        margin: 0,
+                        maxWidth: "1100px",
+                    }}
+                >
+                    Tu web no es un escaparate.
+                    <br />
+                    <span style={{ fontStyle: "italic", color: "#CC0000" }}>
+                        Es tu mejor comercial.
+                    </span>
+                </motion.h2>
 
-                    <div style={{
-                        fontFamily: "var(--font-body)",
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    style={{
+                        fontFamily: "'Inter', sans-serif",
                         fontWeight: 300,
-                        fontSize: "1rem",
-                        color: "rgba(8,8,8,0.7)",
-                        lineHeight: 1.65,
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "1.2rem"
-                    }}>
-                        <p>
-                            Negocios con años de trayectoria en Alicante —náutica, clínicas estéticas, inmobiliarias de alto valor— tienen el potencial de captar clientes de forma constante desde internet. La web es el primer filtro: si transmite autoridad y carga rápido, el cliente potencial se queda. Si no, se va a la competencia.
-                        </p>
-                        <p>
-                            ABG Frame construye esa web. Diseño orientado a la conversión, SEO integrado desde el primer commit y rendimiento técnico que Google premia desde el lanzamiento. Cada decisión apunta a un resultado concreto: más consultas de calidad para el negocio.
-                        </p>
-                    </div>
-                </motion.div>
+                        fontSize: "clamp(1rem, 1.4vw, 1.15rem)",
+                        color: "rgba(8,8,8,0.55)",
+                        lineHeight: 1.6,
+                        marginTop: "3rem",
+                        maxWidth: "560px",
+                    }}
+                >
+                    Trabaja para ti las 24 horas. Atrae a la gente correcta, transmite lo que tu negocio vale y convierte visitas en clientes reales — sin que tengas que estar encima.
+                </motion.p>
             </div>
         </section>
     );
