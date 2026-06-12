@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import PlasmaWave from "./reactbits/PlasmaWave";
 
 export default function Hero() {
     const ease = [0.16, 1, 0.3, 1] as any;
@@ -16,6 +17,9 @@ export default function Hero() {
             background: "#F2F0ED",
             padding: "clamp(6rem, 18vh, 12rem) clamp(1.5rem, 5vw, 5rem) clamp(3rem, 6vw, 5rem)",
         }}>
+            {/* PlasmaWave background */}
+            <PlasmaWave speed={0.3} opacity={0.25} />
+
             {/* Isotipo 3D de fondo — decorativo */}
             <div style={{
                 position: "absolute",
@@ -24,7 +28,7 @@ export default function Hero() {
                 transform: "translateY(-50%)",
                 width: "clamp(400px, 55vw, 900px)",
                 height: "clamp(400px, 55vw, 900px)",
-                zIndex: 0,
+                zIndex: 1,
                 pointerEvents: "none",
                 opacity: 0.07,
                 backgroundImage: "url('/images/isotipo-3d.png')",
@@ -32,44 +36,6 @@ export default function Hero() {
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
             }} />
-
-            {/* Línea superior — eyebrow */}
-            <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1, ease }}
-                style={{
-                    position: "absolute",
-                    top: "clamp(1.5rem, 3vw, 2.5rem)",
-                    left: "clamp(1.5rem, 5vw, 5rem)",
-                    right: "clamp(1.5rem, 5vw, 5rem)",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    zIndex: 2,
-                }}
-            >
-                <span style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.65rem",
-                    fontWeight: 500,
-                    color: "rgba(8,8,8,0.35)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.2em",
-                }}>
-                    ABG Frame · San Juan de Alicante
-                </span>
-                <span style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.65rem",
-                    fontWeight: 500,
-                    color: "rgba(8,8,8,0.35)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.2em",
-                }}>
-                    Est. 2025
-                </span>
-            </motion.div>
 
             {/* Contenido principal */}
             <div style={{ position: "relative", zIndex: 2 }}>
@@ -158,7 +124,7 @@ export default function Hero() {
                         maxWidth: "420px",
                         lineHeight: 1.6,
                     }}>
-                        Diseño web premium + SEO local para negocios de alto ticket en Alicante y Costa Blanca.
+                        Diseño web premium para negocios de alto ticket en Alicante y Costa Blanca.
                     </p>
 
                     <a
@@ -185,7 +151,8 @@ export default function Hero() {
                 </motion.div>
             </div>
 
-            <style dangerouslySetInnerHTML={{ __html: `
+            <style dangerouslySetInnerHTML={{
+                __html: `
                 .hero-cta:hover { background: #CC0000 !important; }
                 @media (max-width: 767px) {
                     .hero-cta { width: 100%; justify-content: center; }

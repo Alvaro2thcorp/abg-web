@@ -2,72 +2,131 @@
 
 import React from "react";
 
-const phrases = [
-    "Más clientes",
-    "Webs que venden",
-    "Resultados en 4 semanas",
-    "Diseño a medida",
-    "Cero plantillas",
-    "Hecho en Alicante",
-    "Sin permanencia",
-    "Acompañamiento real",
+const techs = [
+    {
+        name: "Astro",
+        svg: (
+            <svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "28px", height: "28px" }}>
+                <path d="M81.504 12.5c.81 1.002 1.225 2.307 2.054 4.917l17.548 57.248a66.959 66.959 0 0 0-19.661-6.355L70.51 28.927a1.698 1.698 0 0 0-3.253.005L56.576 68.28a66.993 66.993 0 0 0-19.874 6.379l17.654-57.317c.832-2.604 1.247-3.906 2.056-4.906a6.385 6.385 0 0 1 2.523-1.907c1.16-.479 2.527-.479 5.262-.479h9.453c2.74 0 4.11 0 5.272.48a6.401 6.401 0 0 1 2.582 1.97Z" fill="rgba(8,8,8,0.5)"/>
+                <path d="M83.916 76.66c-2.888 2.47-8.651 4.156-15.25 4.156-8.125 0-14.937-2.528-16.748-5.928-.646 1.948-.791 4.17-.791 5.589 0 0-.425 6.988 4.436 11.851a4.716 4.716 0 0 1 4.716-4.716c4.465 0 4.46 3.894 4.456 7.057v.312c0 4.803 2.935 8.926 7.152 10.67a9.705 9.705 0 0 1-.965-4.243c0-4.589 2.69-6.298 5.814-8.25 2.457-1.543 5.185-3.254 7.063-6.634a14.268 14.268 0 0 0 1.716-6.773 14.33 14.33 0 0 0-1.599-3.09Z" fill="#CC0000"/>
+            </svg>
+        ),
+    },
+    {
+        name: "React",
+        svg: (
+            <svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "32px", height: "32px" }}>
+                <g fill="rgba(8,8,8,0.45)">
+                    <circle cx="64" cy="64" r="11.4"/>
+                    <path d="M107.3 45.2c-2.2-.8-4.5-1.6-6.9-2.3.6-2.4 1.1-4.8 1.5-7.1 2.1-13.2-.2-22.5-6.6-26.1-1.9-1.1-4-1.6-6.4-1.6-7 0-15.9 5.2-24.9 13.9-9-8.7-17.9-13.9-24.9-13.9-2.4 0-4.5.5-6.4 1.6-6.4 3.7-8.7 13-6.6 26.1.4 2.3.9 4.7 1.5 7.1-2.4.7-4.7 1.4-6.9 2.3C8.2 50 1.4 56.6 1.4 64s6.8 14 19.3 18.8c2.2.8 4.5 1.6 6.9 2.3-.6 2.4-1.1 4.8-1.5 7.1-2.1 13.2.2 22.5 6.6 26.1 1.9 1.1 4 1.6 6.4 1.6 7.1 0 16-5.2 24.9-13.9 9 8.7 17.9 13.9 24.9 13.9 2.4 0 4.5-.5 6.4-1.6 6.4-3.7 8.7-13 6.6-26.1-.4-2.3-.9-4.7-1.5-7.1 2.4-.7 4.7-1.4 6.9-2.3 12.5-4.8 19.3-11.4 19.3-18.8s-6.8-14-19.3-18.8z"/>
+                </g>
+            </svg>
+        ),
+    },
+    {
+        name: "WordPress",
+        svg: (
+            <svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "30px", height: "30px" }}>
+                <path fill="rgba(8,8,8,0.45)" d="M64 3.941C30.746 3.941 3.941 30.746 3.941 64S30.746 124.059 64 124.059 124.059 97.254 124.059 64 97.254 3.941 64 3.941zM8.458 64c0-7.865 1.756-15.329 4.877-22.04l26.866 73.599C22.274 106.944 8.458 86.94 8.458 64zM64 119.542c-5.296 0-10.407-.765-15.261-2.171L64.96 71.154l16.609 45.509a5.71 5.71 0 0 0 .415.785 55.406 55.406 0 0 1-17.984 3.094zM71.037 39.1c3.04-.16 5.782-.479 5.782-.479 2.722-.32 2.402-4.321-.32-4.162 0 0-8.178.64-13.462.64-4.963 0-13.3-.64-13.3-.64-2.722-.16-3.041 3.99-.32 4.162 0 0 2.581.32 5.302.479l7.867 21.56L50.918 90.12 33.39 39.1c3.042-.16 5.783-.479 5.783-.479 2.72-.32 2.4-4.321-.32-4.162 0 0-8.18.64-13.464.64-.946 0-2.061-.023-3.249-.059C29.3 20.044 45.663 8.458 64 8.458c13.673 0 26.113 5.221 35.449 13.769-.225-.015-.447-.036-.676-.036-4.963 0-8.484 4.321-8.484 8.962 0 4.162 2.402 7.682 4.963 11.843 1.921 3.362 4.162 7.683 4.162 13.943 0 4.322-1.66 9.337-3.841 16.305l-5.04 16.829L71.037 39.1z"/>
+            </svg>
+        ),
+    },
+    {
+        name: "WooCommerce",
+        svg: (
+            <svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "36px", height: "36px" }}>
+                <path fill="rgba(8,8,8,0.4)" d="M116.5 10H11.5C5.7 10 1 14.7 1 20.5v65c0 5.8 4.7 10.5 10.5 10.5H46l-5 22 28-22h47.5c5.8 0 10.5-4.7 10.5-10.5v-65C127 14.7 122.3 10 116.5 10z"/>
+                <path fill="#CC0000" d="M17.2 33.5c-.8 3.9.3 7.5 1.9 10C25 69.8 28.7 83 33.3 95.4c1.8 4.2 3.9 6.2 6.3 6 3.7-.3 8.2-5.4 13.4-15.4 2.7-5.7 7-14.3 12.8-25.8 5 19.6 11.7 34.2 20.2 44 2.4 2.8 5 4 7.8 3.8 2.5-.2 4.4-1.3 5.7-3.4 1.1-1.8 1.5-4 1.3-6.5-.6-8.9.2-21.2 2.4-36.9 2.3-16.2 5.3-27.9 9-34.8.7-1.3 1-2.7.9-4.3-.2-2.2-1.2-4-2.9-5.4a9.134 9.134 0 0 0-5.9-1.9c-2.8.2-4.9 1.4-6.2 3.9-5.7 10.4-9.8 27.3-12.2 50.7-3.5-8.4-6.4-18.5-8.7-30.4-1-5.3-3.4-7.8-7.3-7.5-2.6.2-4.8 1.9-6.6 5.3L43.9 74.7c-3.2-13-6.2-29-9-47.8-.7-4.7-3.4-6.8-8.1-6.4-2.5.2-4.5 1.2-5.8 3-1.6 2.5-2.7 6.1-1.9 10z"/>
+            </svg>
+        ),
+    },
+    {
+        name: "Shopify",
+        svg: (
+            <svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "28px", height: "28px" }}>
+                <path fill="rgba(8,8,8,0.45)" d="M109.38 25.1a1.35 1.35 0 0 0-1.23-1.14c-.5 0-10.36-.77-10.36-.77s-6.86-6.77-7.63-7.54a2.82 2.82 0 0 0-2.52-.4l-3.47 1.07A23.67 23.67 0 0 0 82.53 13C79.53 4.68 74.35.5 68.2.5a4.91 4.91 0 0 0-1.35.19c-.19-.25-.4-.5-.6-.73-2.88-3.08-6.59-4.55-11-3.42C44.67-1.1 35.47 7.43 30.73 21.18c-3.19.99-5.43 1.68-5.68 1.76-3.33 1.04-3.43 1.14-3.87 4.27C20.84 29.57 10 113.5 10 113.5l81.32 14.1L118 121.4S109.61 25.5 109.38 25.1z"/>
+            </svg>
+        ),
+    },
+    {
+        name: "Tailwind CSS",
+        svg: (
+            <svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "34px", height: "34px" }}>
+                <path fill="rgba(8,8,8,0.45)" d="M64.004 25.602c-17.067 0-27.73 8.53-32 25.597 6.398-8.531 13.867-11.73 22.398-9.597 4.871 1.214 8.352 4.746 12.207 8.66C72.883 56.629 80.145 64 96.004 64c17.066 0 27.73-8.531 32-25.602-6.399 8.536-13.867 11.735-22.399 9.602-4.87-1.215-8.347-4.746-12.207-8.66-6.27-6.367-13.53-13.738-29.394-13.738zM32.004 64c-17.066 0-27.73 8.531-32 25.602C6.402 81.066 13.87 77.867 22.402 80c4.871 1.215 8.352 4.746 12.207 8.66 6.274 6.367 13.536 13.738 29.395 13.738 17.066 0 27.73-8.53 32-25.597-6.399 8.531-13.867 11.73-22.399 9.597-4.87-1.214-8.347-4.746-12.207-8.66C55.124 71.371 47.868 64 32.004 64z"/>
+            </svg>
+        ),
+    },
 ];
 
 export default function TechBanner() {
-    const items = [...phrases, ...phrases, ...phrases];
+    const items = [...techs, ...techs, ...techs];
 
     return (
         <section
-            aria-label="Lo que entrega ABG Frame"
+            aria-label="Tecnologías"
             style={{
-                background: "#F2F0ED",
-                borderTop: "1px solid rgba(8,8,8,0.08)",
-                borderBottom: "1px solid rgba(8,8,8,0.08)",
-                padding: "1.5rem 0",
+                background: "transparent",
+                padding: "2rem 0",
                 overflow: "hidden",
                 position: "relative",
             }}
         >
-            <div className="phrases-marquee">
-                {items.map((text, i) => (
+            {/* Fade edges */}
+            <div style={{
+                position: "absolute",
+                left: 0,
+                top: 0,
+                bottom: 0,
+                width: "120px",
+                background: "linear-gradient(to right, #F2F0ED, transparent)",
+                zIndex: 2,
+                pointerEvents: "none",
+            }} />
+            <div style={{
+                position: "absolute",
+                right: 0,
+                top: 0,
+                bottom: 0,
+                width: "120px",
+                background: "linear-gradient(to left, #F2F0ED, transparent)",
+                zIndex: 2,
+                pointerEvents: "none",
+            }} />
+
+            <div className="tech-marquee">
+                {items.map((tech, i) => (
                     <div key={i} style={{
                         display: "flex",
                         alignItems: "center",
-                        gap: "2rem",
-                        padding: "0 2rem",
+                        gap: "0.75rem",
+                        padding: "0 3rem",
                         flexShrink: 0,
                     }}>
+                        {tech.svg}
                         <span style={{
-                            fontFamily: "'DM Serif Display', serif",
-                            fontStyle: "italic",
-                            fontWeight: 400,
-                            fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
-                            color: "#080808",
+                            fontFamily: "'Inter', sans-serif",
+                            fontWeight: 500,
+                            fontSize: "0.8rem",
+                            color: "rgba(8,8,8,0.35)",
+                            letterSpacing: "0.05em",
                             whiteSpace: "nowrap",
-                            letterSpacing: "-0.02em",
+                            textTransform: "uppercase",
                         }}>
-                            {text}
+                            {tech.name}
                         </span>
-                        <span style={{
-                            display: "inline-block",
-                            width: "8px",
-                            height: "8px",
-                            borderRadius: "50%",
-                            background: "#CC0000",
-                            flexShrink: 0,
-                        }} />
                     </div>
                 ))}
             </div>
+
             <style dangerouslySetInnerHTML={{ __html: `
-                @keyframes phrasesMarquee {
+                @keyframes techMarquee {
                     0%   { transform: translateX(0); }
                     100% { transform: translateX(-33.333%); }
                 }
-                .phrases-marquee {
+                .tech-marquee {
                     display: flex;
                     width: max-content;
-                    animation: phrasesMarquee 45s linear infinite;
+                    animation: techMarquee 30s linear infinite;
                     will-change: transform;
                 }
             `}} />
