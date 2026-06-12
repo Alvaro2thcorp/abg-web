@@ -94,7 +94,7 @@ const FinalCTA = () => {
                         color: "rgba(8,8,8,0.12)",
                         letterSpacing: "-0.02em"
                     }}>
-                        Diseño web · SEO · Ads
+                        Webs hechas a medida
                     </div>
 
                     <div ref={textRef} style={{ position: "relative" }}>
@@ -112,7 +112,7 @@ const FinalCTA = () => {
                                 margin: 0
                             }}
                         >
-                            <span className="highlight-word">que convierte.</span>
+                            <span style={{ fontStyle: "italic", color: "#CC0000" }}>para negocios que no se conforman.</span>
                         </motion.h2>
                     </div>
 
@@ -163,7 +163,7 @@ const FinalCTA = () => {
                 </div>
 
                 <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.58rem", color: "rgba(8,8,8,0.2)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                    Diseño Web Premium · SEO · Alicante
+                    DISEÑO WEB · ALICANTE · COSTA BLANCA
                 </div>
 
                 <div style={{ display: "flex", gap: "1.5rem" }}>
