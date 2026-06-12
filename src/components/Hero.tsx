@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import PlasmaWave from "./reactbits/PlasmaWave";
+import PlasmaWave from "./PlasmaWave";
 
 export default function Hero() {
     const ease = [0.16, 1, 0.3, 1] as any;
@@ -18,7 +18,24 @@ export default function Hero() {
             padding: "clamp(6rem, 18vh, 12rem) clamp(1.5rem, 5vw, 5rem) clamp(3rem, 6vw, 5rem)",
         }}>
             {/* PlasmaWave background */}
-            <PlasmaWave speed={0.3} opacity={0.25} />
+            <div style={{
+                position: "absolute",
+                inset: 0,
+                zIndex: 0,
+                pointerEvents: "none",
+                opacity: 0.18,
+            }}>
+                <PlasmaWave
+                    colors={["#CC0000", "#4A4A4A"]}
+                    speed1={0.04}
+                    speed2={0.03}
+                    focalLength={0.8}
+                    bend1={0.8}
+                    bend2={0.4}
+                    dir2={1}
+                    rotationDeg={0}
+                />
+            </div>
 
             {/* Isotipo 3D de fondo — decorativo */}
             <div style={{
