@@ -3,26 +3,52 @@
 import { motion } from "framer-motion";
 
 export default function SobreHero() {
+    const ease = [0.16, 1, 0.3, 1] as any;
+
     return (
         <section style={{
             background: "#F2F0ED",
-            minHeight: "70vh",
+            minHeight: "80vh",
             display: "flex",
-            alignItems: "center",
-            padding: "clamp(8rem, 15vw, 12rem) clamp(1.5rem, 5vw, 5rem) clamp(4rem, 8vw, 6rem)",
+            flexDirection: "column",
+            justifyContent: "flex-end",
+            padding: "clamp(8rem, 15vw, 12rem) clamp(1.5rem, 5vw, 5rem) clamp(4rem, 6vw, 5rem)",
+            position: "relative",
+            overflow: "hidden",
         }}>
+            {/* Texto decorativo de fondo */}
+            <div style={{
+                position: "absolute",
+                bottom: "-4rem",
+                left: "50%",
+                transform: "translateX(-50%)",
+                fontFamily: "'DM Serif Display', serif",
+                fontWeight: 400,
+                fontSize: "20vw",
+                lineHeight: 1,
+                color: "rgba(8,8,8,0.04)",
+                pointerEvents: "none",
+                userSelect: "none",
+                whiteSpace: "nowrap",
+                zIndex: 0,
+            }}>
+                NOSOTROS
+            </div>
+
             <div style={{
                 maxWidth: "1400px",
                 width: "100%",
                 margin: "0 auto",
+                position: "relative",
+                zIndex: 1,
             }}>
                 <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.5, ease }}
                     style={{
                         fontFamily: "'Inter', sans-serif",
-                        fontSize: "0.7rem",
+                        fontSize: "0.65rem",
                         fontWeight: 500,
                         color: "#CC0000",
                         textTransform: "uppercase",
@@ -33,40 +59,100 @@ export default function SobreHero() {
                     Sobre nosotros
                 </motion.div>
 
-                <motion.h1
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                <h1 style={{ margin: 0 }}>
+                    <div style={{ overflow: "hidden" }}>
+                        <motion.span
+                            initial={{ y: 80, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 1, delay: 0.1, ease }}
+                            style={{
+                                display: "block",
+                                fontFamily: "'DM Serif Display', serif",
+                                fontWeight: 400,
+                                fontSize: "clamp(2.5rem, 6vw, 5.5rem)",
+                                color: "#080808",
+                                lineHeight: 0.95,
+                                letterSpacing: "-0.03em",
+                            }}
+                        >
+                            No trabajamos para todos.
+                        </motion.span>
+                    </div>
+                    <div style={{ overflow: "hidden" }}>
+                        <motion.span
+                            initial={{ y: 80, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 1, delay: 0.2, ease }}
+                            style={{
+                                display: "block",
+                                fontFamily: "'DM Serif Display', serif",
+                                fontStyle: "italic",
+                                fontWeight: 400,
+                                fontSize: "clamp(2.5rem, 6vw, 5.5rem)",
+                                color: "#CC0000",
+                                lineHeight: 0.95,
+                                letterSpacing: "-0.03em",
+                            }}
+                        >
+                            Solo para los que lo merecen.
+                        </motion.span>
+                    </div>
+                </h1>
+
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
                     style={{
-                        fontFamily: "'DM Serif Display', serif",
-                        fontWeight: 400,
-                        fontSize: "clamp(2.5rem, 6vw, 5.5rem)",
-                        color: "#080808",
-                        lineHeight: 1.05,
-                        letterSpacing: "-0.03em",
-                        margin: 0,
-                        maxWidth: "1100px",
+                        marginTop: "clamp(2rem, 4vw, 3rem)",
+                        paddingTop: "clamp(1.5rem, 3vw, 2rem)",
+                        borderTop: "1px solid rgba(8,8,8,0.1)",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        flexWrap: "wrap",
+                        gap: "1.5rem",
                     }}
                 >
-                    Un estudio pequeño <span style={{ fontStyle: "italic", color: "#CC0000" }}>con foco grande.</span>
-                </motion.h1>
-
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    style={{
+                    <p style={{
                         fontFamily: "'Inter', sans-serif",
                         fontWeight: 300,
-                        fontSize: "clamp(1rem, 1.4vw, 1.2rem)",
-                        color: "rgba(8,8,8,0.55)",
+                        fontSize: "clamp(0.9rem, 1.4vw, 1.05rem)",
+                        color: "rgba(8,8,8,0.45)",
+                        margin: 0,
+                        maxWidth: "480px",
                         lineHeight: 1.6,
-                        marginTop: "3rem",
-                        maxWidth: "640px",
-                    }}
-                >
-                    No somos una agencia con cientos de clientes. Trabajamos con pocos negocios cada año, los suficientes para dedicarle a cada uno el tiempo que merece. Calidad por encima de cantidad.
-                </motion.p>
+                    }}>
+                        ABG Frame es el proyecto de Álvaro Bergillos. Sin comerciales, sin intermediarios. El que diseña es el que habla contigo.
+                    </p>
+                    <a
+                        href="/contacto"
+                        style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "0.5rem",
+                            fontFamily: "'Inter', sans-serif",
+                            fontWeight: 500,
+                            fontSize: "0.85rem",
+                            color: "#080808",
+                            textDecoration: "none",
+                            borderBottom: "1px solid rgba(8,8,8,0.3)",
+                            paddingBottom: "2px",
+                            letterSpacing: "0.02em",
+                            transition: "color 0.2s, border-color 0.2s",
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.color = "#CC0000";
+                            e.currentTarget.style.borderColor = "#CC0000";
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.color = "#080808";
+                            e.currentTarget.style.borderColor = "rgba(8,8,8,0.3)";
+                        }}
+                    >
+                        Hablemos →
+                    </a>
+                </motion.div>
             </div>
         </section>
     );

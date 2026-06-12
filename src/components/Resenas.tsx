@@ -1,9 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 
-// ── Data ──────────────────────────────────────────────────────────────────────
 const reviews = [
     {
         num: "01",
@@ -28,318 +27,322 @@ const reviews = [
     },
     {
         num: "04",
-        name: "Pablo Lizón",
-        company: "Marketing Digital",
-        sector: "Landing",
-        text: "Trabajar con Álvaro es fácil. Sabe lo que hace, ejecuta rápido y el resultado final es limpio y efectivo. Mi landing convierte bien desde el día uno.",
+        name: "Cristina",
+        company: "Despacho Jurídico",
+        sector: "Web Corporativa",
+        text: "Tenía claro que quería algo serio y profesional. ABG Frame me entregó exactamente eso. La web transmite confianza y desde que la lancé he recibido más consultas que nunca.",
     },
     {
         num: "05",
-        name: "Cristina",
-        company: "Abogada",
-        sector: "Landing",
-        text: "Tenía claro que quería algo serio y profesional. ABG Frame me entregó exactamente eso. La web transmite confianza y desde que la lancé he recibido más consultas que nunca.",
+        name: "Carlos",
+        company: "Yates Alicante",
+        sector: "Náutica Premium",
+        text: "Queríamos una web que estuviera a la altura de nuestros clientes. ABG Frame entendió desde el primer momento que el lujo no se grita, se transmite. El resultado habla por sí solo.",
     },
 ];
 
-// ── Stars ─────────────────────────────────────────────────────────────────────
-function Stars() {
-    return (
-        <div style={{ display: "flex", gap: "0.3rem", marginBottom: "1.5rem" }}>
-            {[...Array(5)].map((_, i) => (
-                <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill="rgba(242,240,237,0.4)">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
-            ))}
-        </div>
-    );
-}
-
-// ── Card ──────────────────────────────────────────────────────────────────────
-function ReviewCard({ review, index }: { review: typeof reviews[0]; index: number }) {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, amount: 0.15 });
-    const [hovered, setHovered] = useState(false);
-
-    return (
-        <motion.article
-            ref={ref}
-            initial={{ opacity: 0, y: 36 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 36 }}
-            transition={{ duration: 0.75, delay: index * 0.09, ease: [0.16, 1, 0.3, 1] }}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-            style={{
-                background: hovered ? "rgba(242,240,237,0.04)" : "rgba(242,240,237,0.02)",
-                border: hovered
-                    ? "1px solid rgba(204,0,0,0.2)"
-                    : "1px solid rgba(242,240,237,0.06)",
-                borderRadius: "2px",
-                padding: "2rem",
-                display: "flex",
-                flexDirection: "column",
-                position: "relative",
-                transition: "border-color 0.35s ease, background 0.35s ease",
-                cursor: "default",
-            }}
-        >
-            {/* Accent line on hover */}
-            <div
-                style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: hovered ? "100%" : "0%",
-                    height: "1px",
-                    background: "#CC0000",
-                    transition: "width 0.45s cubic-bezier(0.16,1,0.3,1)",
-                }}
-            />
-
-            {/* Number tag */}
-            <span
-                style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "0.58rem",
-                    color: "#CC0000",
-                    letterSpacing: "0.2em",
-                    textTransform: "uppercase",
-                    marginBottom: "1.5rem",
-                }}
-            >
-                {review.num} ——
-            </span>
-
-            {/* Stars */}
-            <Stars />
-
-            {/* Quote */}
-            <p
-                style={{
-                    fontFamily: "var(--font-body)",
-                    fontWeight: 300,
-                    fontSize: "0.9rem",
-                    color: "rgba(242,240,237,0.5)",
-                    lineHeight: 1.75,
-                    margin: 0,
-                    marginBottom: "1.75rem",
-                    flex: 1,
-                }}
-            >
-                "{review.text}"
-            </p>
-
-            {/* Author */}
-            <div
-                style={{
-                    borderTop: "1px solid rgba(242,240,237,0.06)",
-                    paddingTop: "1.25rem",
-                }}
-            >
-                <div
-                    style={{
-                        fontFamily: "var(--font-display)",
-                        fontWeight: 700,
-                        fontSize: "0.95rem",
-                        color: "#F2F0ED",
-                        letterSpacing: "-0.01em",
-                    }}
-                >
-                    {review.name}
-                </div>
-                <div
-                    style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "0.56rem",
-                        color: "rgba(242,240,237,0.22)",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.13em",
-                        marginTop: "0.35rem",
-                    }}
-                >
-                    {review.company} · {review.sector}
-                </div>
-            </div>
-        </motion.article>
-    );
-}
-
-// ── Main ──────────────────────────────────────────────────────────────────────
 export default function Resenas() {
+    const [current, setCurrent] = useState(0);
+    const [direction, setDirection] = useState(1);
     const headerRef = useRef(null);
-    const isHeaderInView = useInView(headerRef, { once: true, amount: 0.3 });
+    const isInView = useInView(headerRef, { once: true, amount: 0.3 });
+
+    const prev = () => {
+        setDirection(-1);
+        setCurrent((c) => (c - 1 + reviews.length) % reviews.length);
+    };
+
+    const next = () => {
+        setDirection(1);
+        setCurrent((c) => (c + 1) % reviews.length);
+    };
+
+    const review = reviews[current];
 
     return (
         <section
             id="resenas"
-            aria-label="Reseñas de clientes ABG Frame diseño web Alicante"
+            aria-label="Reseñas de clientes ABG Frame"
             style={{
                 background: "#080808",
-                padding: "5rem 0 6rem",
+                padding: "clamp(5rem, 10vw, 8rem) 0",
                 borderTop: "1px solid rgba(242,240,237,0.06)",
             }}
         >
-            <div
-                style={{
-                    width: "100%",
-                    maxWidth: "1400px",
-                    margin: "0 auto",
-                    padding: "0 clamp(1.5rem, 5vw, 5rem)",
-                }}
-            >
-                {/* ── Header ── */}
+            <div style={{
+                width: "100%",
+                maxWidth: "1400px",
+                margin: "0 auto",
+                padding: "0 clamp(1.5rem, 5vw, 5rem)",
+            }}>
+                {/* Header */}
                 <header
                     ref={headerRef}
                     style={{
                         display: "flex",
                         justifyContent: "space-between",
                         alignItems: "center",
-                        position: "relative",
-                        marginBottom: "3.5rem",
+                        marginBottom: "4rem",
                         paddingBottom: "2rem",
                         borderBottom: "1px solid rgba(242,240,237,0.06)",
                     }}
                 >
                     <motion.div
                         initial={{ opacity: 0 }}
-                        animate={isHeaderInView ? { opacity: 1 } : { opacity: 0 }}
+                        animate={isInView ? { opacity: 1 } : {}}
                         transition={{ duration: 0.6 }}
                         style={{
-                            fontFamily: "var(--font-mono)",
-                            fontSize: "0.62rem",
+                            fontFamily: "'Inter', sans-serif",
+                            fontSize: "0.65rem",
+                            fontWeight: 500,
                             color: "#CC0000",
                             letterSpacing: "0.25em",
                             textTransform: "uppercase",
                         }}
                     >
-                        CLIENTES
+                        Clientes
                     </motion.div>
 
                     <motion.h2
                         initial={{ opacity: 0, y: 14 }}
-                        animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.7, delay: 0.1 }}
-                        className="resenas-heading"
                         style={{
-                            position: "absolute",
-                            left: "50%",
-                            transform: "translateX(-50%)",
-                            fontFamily: "var(--font-display)",
-                            fontWeight: 800,
+                            fontFamily: "'DM Serif Display', serif",
+                            fontWeight: 400,
                             fontSize: "clamp(1.4rem, 2.8vw, 2.5rem)",
                             color: "#F2F0ED",
                             letterSpacing: "-0.02em",
                             margin: 0,
-                            whiteSpace: "nowrap",
                         }}
                     >
                         Lo que dicen{" "}
-                        <span style={{ color: "#CC0000" }}>de nosotros.</span>
+                        <span style={{ fontStyle: "italic", color: "#CC0000" }}>de nosotros.</span>
                     </motion.h2>
 
                     <motion.div
                         initial={{ opacity: 0 }}
-                        animate={isHeaderInView ? { opacity: 1 } : { opacity: 0 }}
+                        animate={isInView ? { opacity: 1 } : {}}
                         transition={{ duration: 0.6, delay: 0.2 }}
                         style={{
-                            fontFamily: "var(--font-mono)",
-                            fontSize: "0.62rem",
+                            fontFamily: "'Inter', sans-serif",
+                            fontSize: "0.65rem",
+                            fontWeight: 500,
                             color: "rgba(242,240,237,0.15)",
                             letterSpacing: "0.2em",
                             textTransform: "uppercase",
                         }}
                     >
-                        05 RESEÑAS
+                        0{reviews.length} Reseñas
                     </motion.div>
                 </header>
 
-                {/* ── Grid ── */}
-                <div className="resenas-grid">
-                    {reviews.map((review, i) => (
-                        <ReviewCard key={review.num} review={review} index={i} />
-                    ))}
-                </div>
-
-                {/* ── Rating summary ── */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                {/* Carrusel */}
+                <div
                     style={{
-                        marginTop: "3rem",
-                        paddingTop: "2rem",
-                        borderTop: "1px solid rgba(242,240,237,0.06)",
+                        display: "grid",
+                        gridTemplateColumns: "1fr auto",
+                        gap: "4rem",
+                        alignItems: "center",
+                        minHeight: "280px",
+                    }}
+                    className="resenas-carousel-grid"
+                >
+                    {/* Reseña activa */}
+                    <div style={{ overflow: "hidden", position: "relative" }}>
+                        <AnimatePresence mode="wait" custom={direction}>
+                            <motion.div
+                                key={current}
+                                custom={direction}
+                                initial={{ opacity: 0, x: direction * 40 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: direction * -40 }}
+                                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                            >
+                                {/* Número */}
+                                <div style={{
+                                    fontFamily: "'Inter', sans-serif",
+                                    fontSize: "0.65rem",
+                                    fontWeight: 500,
+                                    color: "#CC0000",
+                                    letterSpacing: "0.2em",
+                                    textTransform: "uppercase",
+                                    marginBottom: "2rem",
+                                }}>
+                                    {review.num} ——
+                                </div>
+
+                                {/* Texto */}
+                                <p style={{
+                                    fontFamily: "'DM Serif Display', serif",
+                                    fontWeight: 400,
+                                    fontStyle: "italic",
+                                    fontSize: "clamp(1.3rem, 2.5vw, 2rem)",
+                                    color: "rgba(242,240,237,0.85)",
+                                    lineHeight: 1.4,
+                                    letterSpacing: "-0.02em",
+                                    margin: 0,
+                                    marginBottom: "2.5rem",
+                                    maxWidth: "900px",
+                                }}>
+                                    "{review.text}"
+                                </p>
+
+                                {/* Autor */}
+                                <div style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "1rem",
+                                    paddingTop: "1.5rem",
+                                    borderTop: "1px solid rgba(242,240,237,0.06)",
+                                }}>
+                                    <div>
+                                        <div style={{
+                                            fontFamily: "'DM Serif Display', serif",
+                                            fontWeight: 400,
+                                            fontSize: "1.1rem",
+                                            color: "#F2F0ED",
+                                            letterSpacing: "-0.01em",
+                                        }}>
+                                            {review.name}
+                                        </div>
+                                        <div style={{
+                                            fontFamily: "'Inter', sans-serif",
+                                            fontSize: "0.65rem",
+                                            fontWeight: 400,
+                                            color: "rgba(242,240,237,0.3)",
+                                            textTransform: "uppercase",
+                                            letterSpacing: "0.15em",
+                                            marginTop: "0.25rem",
+                                        }}>
+                                            {review.company} · {review.sector}
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
+
+                    {/* Flechas + contador */}
+                    <div style={{
                         display: "flex",
+                        flexDirection: "column",
                         alignItems: "center",
                         gap: "1.5rem",
-                        flexWrap: "wrap",
-                    }}
-                >
-                    <div style={{ display: "flex", gap: "0.3rem" }}>
-                        {[...Array(5)].map((_, i) => (
-                            <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="rgba(242,240,237,0.4)">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                            </svg>
-                        ))}
-                    </div>
-                    <span
-                        style={{
-                            fontFamily: "var(--font-mono)",
-                            fontSize: "0.62rem",
+                    }}>
+                        {/* Contador */}
+                        <div style={{
+                            fontFamily: "'Inter', sans-serif",
+                            fontSize: "0.65rem",
+                            fontWeight: 500,
                             color: "rgba(242,240,237,0.25)",
-                            textTransform: "uppercase",
-                            letterSpacing: "0.15em",
-                        }}
-                    >
-                        5.0 · 5 clientes satisfechos · Alicante
-                    </span>
-                </motion.div>
+                            letterSpacing: "0.1em",
+                        }}>
+                            {String(current + 1).padStart(2, "0")} / {String(reviews.length).padStart(2, "0")}
+                        </div>
+
+                        {/* Flecha arriba */}
+                        <button
+                            onClick={prev}
+                            aria-label="Anterior reseña"
+                            style={{
+                                width: "48px",
+                                height: "48px",
+                                border: "1px solid rgba(242,240,237,0.12)",
+                                borderRadius: "4px",
+                                background: "transparent",
+                                color: "rgba(242,240,237,0.6)",
+                                cursor: "pointer",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                transition: "all 0.2s",
+                                fontSize: "1rem",
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.borderColor = "#CC0000";
+                                e.currentTarget.style.color = "#CC0000";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.borderColor = "rgba(242,240,237,0.12)";
+                                e.currentTarget.style.color = "rgba(242,240,237,0.6)";
+                            }}
+                        >
+                            ↑
+                        </button>
+
+                        {/* Flecha abajo */}
+                        <button
+                            onClick={next}
+                            aria-label="Siguiente reseña"
+                            style={{
+                                width: "48px",
+                                height: "48px",
+                                border: "1px solid rgba(242,240,237,0.12)",
+                                borderRadius: "4px",
+                                background: "transparent",
+                                color: "rgba(242,240,237,0.6)",
+                                cursor: "pointer",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                transition: "all 0.2s",
+                                fontSize: "1rem",
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.borderColor = "#CC0000";
+                                e.currentTarget.style.color = "#CC0000";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.borderColor = "rgba(242,240,237,0.12)";
+                                e.currentTarget.style.color = "rgba(242,240,237,0.6)";
+                            }}
+                        >
+                            ↓
+                        </button>
+                    </div>
+                </div>
+
+                {/* Indicadores */}
+                <div style={{
+                    display: "flex",
+                    gap: "0.5rem",
+                    marginTop: "3rem",
+                    paddingTop: "2rem",
+                    borderTop: "1px solid rgba(242,240,237,0.06)",
+                }}>
+                    {reviews.map((_, i) => (
+                        <button
+                            key={i}
+                            onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
+                            aria-label={`Ir a reseña ${i + 1}`}
+                            style={{
+                                width: i === current ? "24px" : "6px",
+                                height: "6px",
+                                borderRadius: "3px",
+                                background: i === current ? "#CC0000" : "rgba(242,240,237,0.15)",
+                                border: "none",
+                                cursor: "pointer",
+                                padding: 0,
+                                transition: "all 0.3s ease",
+                            }}
+                        />
+                    ))}
+                </div>
             </div>
 
-            <style dangerouslySetInnerHTML={{
-                __html: `
-                .resenas-grid {
-                    display: grid;
-                    grid-template-columns: repeat(3, 1fr);
-                    gap: 1.25rem;
-                }
-                /* Last 2 cards: center them in a 3-col grid */
-                .resenas-grid > article:nth-child(4) {
-                    grid-column: 1 / 2;
-                }
-                .resenas-grid > article:nth-child(5) {
-                    grid-column: 2 / 3;
-                }
-                @media (max-width: 1023px) {
-                    .resenas-grid {
-                        grid-template-columns: repeat(2, 1fr) !important;
-                    }
-                    .resenas-grid > article:nth-child(4),
-                    .resenas-grid > article:nth-child(5) {
-                        grid-column: auto !important;
-                    }
-                }
+            <style dangerouslySetInnerHTML={{ __html: `
                 @media (max-width: 767px) {
-                    .resenas-grid {
+                    .resenas-carousel-grid {
                         grid-template-columns: 1fr !important;
-                        gap: 1rem !important;
+                        gap: 2rem !important;
                     }
-                    .resenas-heading {
-                        position: relative !important;
-                        left: auto !important;
-                        transform: none !important;
-                        white-space: normal !important;
-                        font-size: 1.4rem !important;
-                    }
-                    #resenas header {
-                        flex-direction: column !important;
-                        align-items: flex-start !important;
-                        gap: 0.75rem !important;
+                    .resenas-carousel-grid > div:last-child {
+                        flex-direction: row !important;
+                        justify-content: center !important;
                     }
                 }
-                `,
-            }} />
+            `}} />
         </section>
     );
 }

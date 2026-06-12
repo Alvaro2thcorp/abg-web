@@ -2,18 +2,8 @@
 
 import { motion } from "framer-motion";
 
-const MIEMBROS = [
-    {
-        nombre: "Álvaro Bergillos",
-        rol: "Fundador · Diseño y desarrollo",
-        descripcion: "Diseño cada proyecto de principio a fin. Desde la primera conversación hasta el lanzamiento. Sin intermediarios, sin equipos de cuenta, sin perder la visión por el camino.",
-    },
-    {
-        nombre: "Pablo Lizón",
-        rol: "Contenido y comunicación",
-        descripcion: "Estrategia editorial y presencia digital. Para que la web no sea el final del trabajo, sino el comienzo de una conversación con tu cliente potencial.",
-    },
-];
+const ease = [0.16, 1, 0.3, 1] as any;
+const vp = { once: true, margin: "-60px" } as const;
 
 export default function Equipo() {
     return (
@@ -21,80 +11,180 @@ export default function Equipo() {
             background: "#080808",
             padding: "clamp(5rem, 10vw, 8rem) clamp(1.5rem, 5vw, 5rem)",
         }}>
-            <div style={{
-                maxWidth: "1400px",
-                width: "100%",
-                margin: "0 auto",
-            }}>
+            <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
+
                 <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
+                    viewport={vp}
+                    transition={{ duration: 0.5, ease }}
                     style={{
                         fontFamily: "'Inter', sans-serif",
-                        fontSize: "0.7rem",
+                        fontSize: "0.65rem",
                         fontWeight: 500,
                         color: "#CC0000",
                         textTransform: "uppercase",
                         letterSpacing: "0.25em",
-                        marginBottom: "3rem",
+                        marginBottom: "4rem",
                     }}
                 >
-                    Quiénes somos
+                    Quién hay detrás
                 </motion.div>
 
-                <div style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(380px, 1fr))",
-                    gap: "clamp(3rem, 5vw, 5rem)",
-                }}>
-                    {MIEMBROS.map((m, i) => (
-                        <motion.div
-                            key={m.nombre}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.7, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                        >
-                            <h3 style={{
-                                fontFamily: "'DM Serif Display', serif",
-                                fontWeight: 400,
-                                fontSize: "clamp(1.8rem, 3vw, 2.5rem)",
-                                color: "#F2F0ED",
-                                letterSpacing: "-0.02em",
-                                lineHeight: 1.1,
-                                margin: 0,
-                                marginBottom: "0.5rem",
-                            }}>
-                                {m.nombre}
-                            </h3>
-                            <div style={{
-                                fontFamily: "'Inter', sans-serif",
-                                fontSize: "0.7rem",
-                                fontWeight: 500,
-                                color: "rgba(242,240,237,0.5)",
-                                textTransform: "uppercase",
-                                letterSpacing: "0.2em",
-                                marginBottom: "1.5rem",
-                            }}>
-                                {m.rol}
-                            </div>
-                            <p style={{
-                                fontFamily: "'Inter', sans-serif",
-                                fontWeight: 300,
-                                fontSize: "1rem",
-                                color: "rgba(242,240,237,0.6)",
-                                lineHeight: 1.65,
-                                margin: 0,
-                                maxWidth: "440px",
-                            }}>
-                                {m.descripcion}
-                            </p>
-                        </motion.div>
-                    ))}
-                </div>
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={vp}
+                    transition={{ duration: 0.8, ease }}
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: "auto 1fr",
+                        gap: "clamp(3rem, 6vw, 6rem)",
+                        alignItems: "start",
+                    }}
+                    className="equipo-grid"
+                >
+                    {/* Foto placeholder */}
+                    <div style={{
+                        width: "clamp(160px, 20vw, 260px)",
+                        aspectRatio: "3/4",
+                        background: "rgba(242,240,237,0.04)",
+                        border: "1px solid rgba(242,240,237,0.08)",
+                        borderRadius: "4px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0,
+                        overflow: "hidden",
+                    }}>
+                        {/* Cuando tengas la foto: <img src="/images/alvaro.jpg" alt="Álvaro Bergillos" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> */}
+                        <span style={{
+                            fontFamily: "'Inter', sans-serif",
+                            fontSize: "0.6rem",
+                            fontWeight: 400,
+                            color: "rgba(242,240,237,0.2)",
+                            textTransform: "uppercase",
+                            letterSpacing: "0.15em",
+                            textAlign: "center",
+                            padding: "1rem",
+                        }}>
+                            Foto próximamente
+                        </span>
+                    </div>
+
+                    {/* Contenido */}
+                    <div>
+                        <h2 style={{
+                            fontFamily: "'DM Serif Display', serif",
+                            fontWeight: 400,
+                            fontSize: "clamp(2rem, 4vw, 3.5rem)",
+                            color: "#F2F0ED",
+                            letterSpacing: "-0.02em",
+                            lineHeight: 1.05,
+                            margin: 0,
+                            marginBottom: "0.5rem",
+                        }}>
+                            Álvaro Bergillos
+                        </h2>
+
+                        <div style={{
+                            fontFamily: "'Inter', sans-serif",
+                            fontSize: "0.7rem",
+                            fontWeight: 500,
+                            color: "rgba(242,240,237,0.4)",
+                            textTransform: "uppercase",
+                            letterSpacing: "0.2em",
+                            marginBottom: "2.5rem",
+                        }}>
+                            Fundador y Desarrollador
+                        </div>
+
+                        <p style={{
+                            fontFamily: "'Inter', sans-serif",
+                            fontWeight: 300,
+                            fontSize: "clamp(1rem, 1.3vw, 1.1rem)",
+                            color: "rgba(242,240,237,0.55)",
+                            lineHeight: 1.7,
+                            margin: 0,
+                            marginBottom: "1.5rem",
+                            maxWidth: "560px",
+                        }}>
+                            Diseño cada proyecto de principio a fin. Desde la primera conversación hasta el lanzamiento. Sin intermediarios, sin equipos de cuenta, sin perder la visión por el camino.
+                        </p>
+
+                        <p style={{
+                            fontFamily: "'Inter', sans-serif",
+                            fontWeight: 300,
+                            fontSize: "clamp(1rem, 1.3vw, 1.1rem)",
+                            color: "rgba(242,240,237,0.55)",
+                            lineHeight: 1.7,
+                            margin: 0,
+                            maxWidth: "560px",
+                        }}>
+                            ABG Frame nació de ver negocios increíbles de Alicante perder clientes por tener webs que no estaban a su altura. Eso tiene solución.
+                        </p>
+
+                        <div style={{
+                            marginTop: "3rem",
+                            paddingTop: "2rem",
+                            borderTop: "1px solid rgba(242,240,237,0.06)",
+                            display: "flex",
+                            gap: "1rem",
+                            flexWrap: "wrap",
+                        }}>
+                            <a
+                                href="/contacto"
+                                style={{
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    gap: "0.5rem",
+                                    background: "#F2F0ED",
+                                    color: "#080808",
+                                    fontFamily: "'Inter', sans-serif",
+                                    fontWeight: 500,
+                                    fontSize: "0.85rem",
+                                    padding: "0.8rem 1.8rem",
+                                    borderRadius: "4px",
+                                    textDecoration: "none",
+                                    transition: "background 0.2s",
+                                }}
+                                onMouseEnter={(e) => { e.currentTarget.style.background = "#CC0000"; e.currentTarget.style.color = "#F2F0ED"; }}
+                                onMouseLeave={(e) => { e.currentTarget.style.background = "#F2F0ED"; e.currentTarget.style.color = "#080808"; }}
+                            >
+                                Hablemos →
+                            </a>
+                            <a
+                                href="/el-sistema"
+                                style={{
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    fontFamily: "'Inter', sans-serif",
+                                    fontWeight: 500,
+                                    fontSize: "0.85rem",
+                                    color: "rgba(242,240,237,0.4)",
+                                    textDecoration: "none",
+                                    padding: "0.8rem 1.8rem",
+                                    border: "1px solid rgba(242,240,237,0.1)",
+                                    borderRadius: "4px",
+                                    transition: "all 0.2s",
+                                }}
+                                onMouseEnter={(e) => { e.currentTarget.style.color = "#F2F0ED"; e.currentTarget.style.borderColor = "rgba(242,240,237,0.3)"; }}
+                                onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(242,240,237,0.4)"; e.currentTarget.style.borderColor = "rgba(242,240,237,0.1)"; }}
+                            >
+                                Ver cómo trabajo →
+                            </a>
+                        </div>
+                    </div>
+                </motion.div>
             </div>
+
+            <style dangerouslySetInnerHTML={{ __html: `
+                @media (max-width: 767px) {
+                    .equipo-grid {
+                        grid-template-columns: 1fr !important;
+                    }
+                }
+            `}} />
         </section>
     );
 }
