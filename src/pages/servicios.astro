@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar";
 import ServiciosCards from "../components/servicios/ServiciosCards";
+import TechBannerServicios from "../components/TechBannerServicios";
 
 const title = "Servicios de Diseño Web y SEO en Alicante | ABG Frame";
 const description =
@@ -89,19 +90,7 @@ const breadcrumbSchema = {
         <ServiciosCards client:visible />
 
         <!-- ══════════════════════════════════════════════ PLATAFORMAS -->
-        <section id="plataformas" aria-label="Tecnología y plataformas ABG Frame">
-            <div class="section-inner">
-                <p class="tech-label">TECNOLOGÍA</p>
-                <div class="tech-row">
-                    <span>ASTRO</span>
-                    <span>WORDPRESS</span>
-                    <span>SHOPIFY</span>
-                    <span>WOOCOMMERCE</span>
-                    <span>REACT</span>
-                    <span>TAILWIND</span>
-                </div>
-            </div>
-        </section>
+        <TechBannerServicios client:visible />
 
         <!-- ════════════════════════════════════════════════ CTA FINAL -->
         <section id="servicios-cta" aria-label="Contactar con ABG Frame">
