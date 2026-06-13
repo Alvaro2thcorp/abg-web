@@ -36,15 +36,22 @@
 }
 
 .pill-logo {
-  width: var(--nav-h);
-  height: var(--nav-h);
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  background: transparent;
-  padding: 0;
+  background: #080808;
+  padding: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   overflow: visible;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.pill-logo:hover {
+  transform: scale(1.05);
 }
 
 .pill-logo img {
@@ -52,6 +59,7 @@
   height: 100%;
   object-fit: contain;
   display: block;
+  filter: brightness(1.1);
 }
 
 .pill-list {
