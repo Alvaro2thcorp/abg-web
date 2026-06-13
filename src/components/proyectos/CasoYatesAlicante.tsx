@@ -108,7 +108,7 @@ export default function CasoYatesAlicante() {
                 Yates <span className="highlight-word">Alicante</span>
               </h1>
               <p style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', color: 'rgba(242, 240, 237, 0.4)', marginTop: '1.5rem', lineHeight: 1.5, maxWidth: '520px' }}>
-                18 años en el sector náutico con una web de 2008. Reconstruimos su presencia digital desde cero: web nueva, SEO local y Google Ads. Los resultados llegaron en el tercer mes.
+                18 años en el sector náutico con una web de 2008. Reconstruimos su presencia digital desde cero: web nueva, SEO local y campañas en redes. Los resultados llegaron en el tercer mes.
               </p>
             </motion.div>
 
@@ -218,8 +218,8 @@ export default function CasoYatesAlicante() {
               },
               {
                 num: "03",
-                title: "Google Ads para Náutica",
-                desc: "Campañas de búsqueda para captar demanda activa de clientes que buscan alquiler de barcos en Alicante. Segmentación por zona geográfica y por idioma. Resultados visibles desde el mes uno."
+                title: "Meta Ads para Náutica",
+                desc: "Campañas en Instagram y Facebook para captar demanda activa de clientes que buscan alquiler de barcos. Segmentación por intereses y por idioma. Resultados visibles desde el mes uno."
               },
               {
                 num: "04",

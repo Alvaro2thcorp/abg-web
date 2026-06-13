@@ -637,8 +637,8 @@ export default function HowItWorks() {
             num: "02",
             tag: "FASE 02",
             title: "Construimos el sistema completo",
-            description: "Web en Astro y React desde cero, SEO técnico integrado desde el primer commit, y Google Ads configurado para captar demanda real. No son tres servicios independientes — cada uno alimenta al siguiente.",
-            items: ["Web premium a medida", "SEO local + técnico integrado", "Campañas Google Ads", "Google My Business optimizado"],
+            description: "Web en Astro y React desde cero, SEO técnico integrado desde el primer commit, y contenido editorial que construye autoridad. No son tres servicios independientes — cada uno alimenta al siguiente. Meta Ads opcional cuando el negocio quiere acelerar.",
+            items: ["Web premium a medida", "SEO local + técnico integrado", "Contenido editorial estratégico", "Meta Ads opcional"],
             visual: <BadgesVisual active={activePhase >= 2} />
         },
         {

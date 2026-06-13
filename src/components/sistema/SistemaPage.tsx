@@ -26,10 +26,10 @@ const piezas = [
     },
     {
         num: "03",
-        label: "GOOGLE ADS",
+        label: "META ADS",
         title: "Captación activa desde el día uno.",
-        desc: "Mientras el SEO madura, Google Ads captura la demanda que ya existe. Pablo gestiona las campañas con foco en un solo número: el coste por lead cualificado. Nada de métricas de vanidad.",
-        items: ["CAMPAÑAS DE BÚSQUEDA GOOGLE ADS", "SEGMENTACIÓN GEOGRÁFICA ALICANTE", "RETARGETING EN DISPLAY", "INFORME ROI MENSUAL"],
+        desc: "Mientras el SEO madura, Meta Ads captura la demanda que ya existe en redes sociales. Gestionamos las campañas con foco en un solo número: el coste por lead cualificado. Nada de métricas de vanidad.",
+        items: ["CAMPAÑAS META ADS (INSTAGRAM + FACEBOOK)", "SEGMENTACIÓN POR AUDIENCIAS", "RETARGETING EN REDES", "INFORME ROI MENSUAL"],
     },
 ];
 
@@ -72,8 +72,8 @@ const pasos = [
     {
         num: "06",
         semana: "CUANDO PROCEDE",
-        titulo: "Google Ads.",
-        desc: "Cuando el orgánico necesita aceleración, activamos campañas de búsqueda. Captamos demanda activa en Alicante en ES, EN y FR. Solo cuando tiene sentido para tu negocio.",
+        titulo: "Meta Ads.",
+        desc: "Cuando el orgánico necesita aceleración, activamos campañas en Meta (Instagram, Facebook). Captamos demanda activa en ES, EN y FR. Solo cuando tiene sentido para tu negocio.",
         badge: "BÚSQUEDA · RETARGETING · ES · EN · FR",
     },
 ];
@@ -89,7 +89,7 @@ const faqs = [
     },
     {
         q: "¿El precio incluye la inversión en publicidad?",
-        a: "No. Los honorarios de ABG Frame son por la gestión completa (Web + SEO + Google Ads). El presupuesto publicitario que decidas invertir en Google se paga directamente a Google. ABG Frame lo optimiza para que cada euro rinda al máximo.",
+        a: "No. Los honorarios de ABG Frame son por la gestión completa (Web + SEO + Contenido + Meta Ads opcional). El presupuesto publicitario que decidas invertir en Meta se paga directamente a Meta. ABG Frame lo optimiza para que cada euro rinda al máximo.",
     },
     {
         q: "¿Qué tecnología usáis para construir las webs?",
@@ -104,7 +104,7 @@ const faqs = [
         a: "La web vuela en 3-5 semanas. Los anuncios (Ads) traen tráfico desde el día 1. El SEO es una maratón: notarás el crecimiento real en Google a partir del tercer o cuarto mes.",
     },
     {
-        q: "¿Las campañas de Google Ads las gestiona el mismo equipo que la web?",
+        q: "¿Las campañas de Meta Ads las gestiona el mismo equipo que la web?",
         a: "Sí. Pablo se encarga de toda la parte de tráfico de pago. La ventaja de tenerlo todo en el mismo equipo es que la landing page, el anuncio y la conversión están alineados desde el diseño. No hay fricción entre agencias.",
     },
     {
@@ -284,7 +284,7 @@ function HeroSection() {
                             maxWidth: "420px",
                         }}
                     >
-                        Web programada desde cero, SEO local con intención de compra y Google Ads que captura demanda activa. Tres piezas que se retroalimentan — construidas para negocios de alto ticket en Alicante.
+                        Web programada desde cero, SEO local con intención de compra y contenido editorial que construye autoridad. Tres piezas que se retroalimentan — construidas para negocios de alto ticket.
                     </motion.p>
                 </div>
 
@@ -476,7 +476,7 @@ function QueEsSection() {
     const conItems = [
         "Web diseñada desde el día 1 para convertir y posicionar",
         "SEO integrado en la arquitectura, no añadido después",
-        "Google Ads coordinado con la web y el SEO",
+        "Meta Ads opcional, coordinado con la web y el SEO",
         "Un equipo, una estrategia, un responsable",
     ];
 
@@ -1143,10 +1143,10 @@ function EquipoSection() {
                                 marginBottom: "1.5rem",
                                 margin: "0 0 1.5rem 0"
                             }}>
-                                Se encarga de toda la parte de tráfico de pago. Google Ads, segmentación por zonas, optimización de pujas. Su obsesión es una sola: el coste por lead real. Trabajamos en el mismo equipo, lo que significa que el anuncio, la landing y la conversión están alineados desde el diseño.
+                                Se encarga de toda la parte de tráfico de pago en redes. Meta Ads, segmentación por audiencias, optimización de creatividades. Su obsesión es una sola: el coste por lead real. Trabajamos en el mismo equipo, lo que significa que el anuncio, la landing y la conversión están alineados desde el diseño.
                             </p>
                             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
-                                {["GOOGLE ADS", "PAID MEDIA", "CONVERSIÓN"].map((tag) => (
+                                {["META ADS", "PAID MEDIA", "CONVERSIÓN"].map((tag) => (
                                     <span key={tag} style={{
                                         border: "1px solid rgba(8, 8, 8, 0.08)",
                                         borderRadius: "100px",
