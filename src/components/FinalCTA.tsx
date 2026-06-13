@@ -41,7 +41,7 @@ const FinalCTA = () => {
                         letterSpacing: "0.15em",
                         marginTop: "0.2rem"
                     }}>
-                        Alicante, España
+                        Desde 2025
                     </div>
                 </div>
 
@@ -163,7 +163,7 @@ const FinalCTA = () => {
                 </div>
 
                 <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.58rem", color: "rgba(8,8,8,0.2)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                    DISEÑO WEB · ALICANTE · COSTA BLANCA
+                    Diseño Web Premium · España · Internacional
                 </div>
 
                 <div style={{ display: "flex", gap: "1.5rem" }}>

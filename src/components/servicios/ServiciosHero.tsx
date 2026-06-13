@@ -128,7 +128,7 @@ export default function ServiciosHero() {
                             marginBottom: 0
                         }}
                     >
-                        Hay agencias en Alicante que te ofrecen veinte servicios. ABG Frame hace tres, bien hechos y conectados entre sí: <strong>diseño web profesional en Alicante</strong>, SEO local con intención de compra real, y Google Ads para acelerar cuando el orgánico todavía está madurando.
+                        Hay agencias que te ofrecen veinte servicios. ABG Frame hace tres, bien hechos y conectados entre sí: <strong>diseño web premium</strong>, visibilidad orgánica con intención de compra real, y Meta Ads opcional para acelerar cuando el orgánico todavía está madurando.
                     </motion.p>
                 </div>
 

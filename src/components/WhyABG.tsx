@@ -202,7 +202,7 @@ export default function WhyABG() {
     return (
         <section
             id="por-que-abg"
-            aria-label="Por qué elegir ABG agencia diseño web SEO Alicante"
+            aria-label="Por qué elegir ABG Frame diseño web premium"
             style={{
                 background: "#080808",
                 padding: "3rem 0 4rem",

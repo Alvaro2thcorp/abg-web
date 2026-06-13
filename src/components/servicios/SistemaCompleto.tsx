@@ -141,7 +141,7 @@ export default function SistemaCompleto() {
                             02
                         </span>
                         <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.1rem", color: "#080808", marginTop: "1rem" }}>
-                            SEO Local Alicante
+                            Visibilidad orgánica
                         </h3>
                         <p style={{ fontFamily: "var(--font-body)", fontWeight: 300, fontSize: "0.85rem", color: "rgba(8, 8, 8, 0.45)", marginTop: "0.5rem", lineHeight: 1.6 }}>
                             Trae tráfico cualificado 24/7.
@@ -167,10 +167,10 @@ export default function SistemaCompleto() {
                             03
                         </span>
                         <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.1rem", color: "#080808", marginTop: "1rem" }}>
-                            Google Ads
+                            Meta Ads (opcional)
                         </h3>
                         <p style={{ fontFamily: "var(--font-body)", fontWeight: 300, fontSize: "0.85rem", color: "rgba(8, 8, 8, 0.45)", marginTop: "0.5rem", lineHeight: 1.6 }}>
-                            Captura demanda activa en Alicante.
+                            Captura demanda activa de tus clientes.
                         </p>
                         <div style={{ marginTop: "1.5rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "rgba(8, 8, 8, 0.35)", textTransform: "uppercase" }}>
@@ -207,7 +207,7 @@ export default function SistemaCompleto() {
                         fontSize: "1.1rem",
                         color: "#F2F0ED",
                     }}>
-                        Web + SEO + Google Ads. Todo integrado desde el día uno.
+                        Web + SEO + Redes sociales. Todo integrado desde el día uno. Meta Ads opcional.
                     </p>
 
                     <div className="sistema-cta-wrapper" style={{ marginLeft: "auto" }}>

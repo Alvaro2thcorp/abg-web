@@ -22,12 +22,12 @@ export default function Precios() {
         },
         {
             name: "El Sistema Completo",
-            desc: "Web + SEO + Google Ads. La forma en que trabajamos por defecto.",
+            desc: "Web + SEO + Redes sociales. La forma en que trabajamos por defecto.",
             features: [
                 "Web premium a medida incluida",
-                "SEO local + posicionamiento EN",
+                "Visibilidad orgánica + posicionamiento EN",
                 "Gestión de redes sociales",
-                "Campañas Google Ads ES/EN/FR",
+                "Meta Ads opcional ES/EN/FR",
                 "Dashboard en tiempo real",
                 "Soporte prioritario",
                 "Sin permanencia"
@@ -37,12 +37,12 @@ export default function Precios() {
             accent: true
         },
         {
-            name: "SEO + Google Ads",
+            name: "SEO + Visibilidad",
             desc: "Ya tienes web. Quieres escalar el tráfico y la captación.",
             features: [
-                "SEO local + EN continuo",
+                "Visibilidad orgánica + EN continuo",
                 "Gestión de redes sociales",
-                "Campañas Google Ads activas",
+                "Meta Ads opcional",
                 "Optimización mensual",
                 "Informes de ROI"
             ],

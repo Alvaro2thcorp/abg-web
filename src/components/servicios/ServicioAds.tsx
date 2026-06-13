@@ -8,8 +8,8 @@ export default function ServicioAds() {
 
     const items = [
         "Auditoría de demanda y palabras clave",
-        "Campañas de búsqueda Google Ads",
-        "Segmentación geográfica por zona (Alicante y comarca)",
+        "Campañas de búsqueda Meta Ads (Instagram, Facebook)",
+        "Segmentación geográfica por zona",
         "Landing pages optimizadas para conversión",
         "Seguimiento de conversiones configurado",
         "Retargeting en Display y YouTube",
@@ -89,7 +89,7 @@ export default function ServicioAds() {
                             maxWidth: "480px",
                         }}
                     >
-                        El SEO tarda en llegar. Google Ads no. Mientras el orgánico escala, los anuncios de búsqueda capturan demanda activa — personas que ya están buscando lo que tú ofreces en Alicante y alrededores. No usamos Google Ads para generar conciencia de marca ni para llenar métricas vacías. Lo usamos con un objetivo: conseguir leads que se conviertan en clientes de <strong>alto ticket en Alicante</strong>.
+                        El SEO tarda en llegar. Meta Ads no. Mientras el orgánico escala, los anuncios capturan demanda activa — personas que ya están buscando lo que tú ofreces. No usamos Meta Ads para generar conciencia de marca ni para llenar métricas vacías. Lo usamos con un objetivo: conseguir leads que se conviertan en clientes de <strong>alto ticket</strong>.
                     </motion.p>
 
                     <div style={{ marginTop: "3rem" }}>

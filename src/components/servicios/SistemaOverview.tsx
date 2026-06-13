@@ -17,16 +17,16 @@ export default function SistemaOverview() {
         {
             num: "02",
             tag: "SEO",
-            title: "SEO Local Alicante",
-            desc: "Aparece cuando tus clientes te buscan — en Alicante y en las búsquedas de mayor intención de tu sector.",
+            title: "Visibilidad orgánica",
+            desc: "Aparece cuando tus clientes te buscan — en las búsquedas de mayor intención de tu sector.",
             stats: ["LOCAL", "+TRÁFICO ORGÁNICO"],
             href: "#seo-local"
         },
         {
             num: "03",
-            tag: "GOOGLE ADS",
-            title: "Google Ads",
-            desc: "Campañas de búsqueda que capturan demanda activa en Alicante y provincia. Segmentación ES · EN · FR para negocios de alto ticket.",
+            tag: "META ADS",
+            title: "Meta Ads (opcional)",
+            desc: "Campañas en Meta (Instagram, Facebook) que capturan demanda activa. Segmentación ES · EN · FR para negocios de alto ticket.",
             stats: ["ES · EN · FR", "RETARGETING INCLUIDO"],
             href: "#social-ads"
         }
@@ -219,7 +219,7 @@ export default function SistemaOverview() {
                             marginTop: "0.5rem",
                         }}
                     >
-                        Web + SEO + Google Ads. Todo integrado en un solo sistema.
+                        Web + SEO + Redes sociales. Todo integrado en un solo sistema. Meta Ads opcional.
                     </p>
                 </div>
                 <a

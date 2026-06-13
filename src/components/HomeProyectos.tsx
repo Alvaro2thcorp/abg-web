@@ -8,7 +8,7 @@ const PROYECTOS = [
         num: "01",
         sector: "Náutica · Lujo",
         titulo: "Yates Alicante",
-        descripcion: "Plataforma de charter náutico premium para la Costa Blanca. Diseño orientado a conversión de cliente de alto ticket.",
+        descripcion: "Plataforma de charter náutico premium. Web diseñada para captar clientes de alto ticket desde el primer día.",
         url: "/proyectos/yates-alicante",
         disponible: true,
         imagen: null,
