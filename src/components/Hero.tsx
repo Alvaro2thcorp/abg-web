@@ -37,22 +37,6 @@ export default function Hero() {
                 />
             </div>
 
-            {/* Isotipo 3D de fondo — decorativo */}
-            <div style={{
-                position: "absolute",
-                right: "-5vw",
-                top: "50%",
-                transform: "translateY(-50%)",
-                width: "clamp(400px, 55vw, 900px)",
-                height: "clamp(400px, 55vw, 900px)",
-                zIndex: 1,
-                pointerEvents: "none",
-                opacity: 0.07,
-                backgroundImage: "url('/images/isotipo-3d.png')",
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-            }} />
 
             {/* Contenido principal */}
             <div style={{ position: "relative", zIndex: 2 }}>
