@@ -143,7 +143,9 @@ export default function ProblemaHome() {
                         Incalculable.
                     </div>
 
-                    <div style={{
+                    <div
+                        className="ticket-cta-actions"
+                        style={{
                         borderTop: "1px dashed rgba(242,240,237,0.15)",
                         paddingTop: "1.5rem",
                         display: "flex",
@@ -201,6 +203,12 @@ export default function ProblemaHome() {
                     </div>
                 </motion.div>
             </div>
+            <style dangerouslySetInnerHTML={{ __html: `
+                @media (max-width: 480px) {
+                    .ticket-cta-actions { flex-direction: column; align-items: flex-start !important; gap: 1.5rem !important; }
+                    .ticket-cta-actions > a { width: 100%; justify-content: center; }
+                }
+            `}} />
         </section>
     );
 }

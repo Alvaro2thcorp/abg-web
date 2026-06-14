@@ -340,6 +340,7 @@ export default function Resenas() {
                     .resenas-carousel-grid > div:last-child {
                         flex-direction: row !important;
                         justify-content: center !important;
+                        gap: 1rem !important;
                     }
                 }
             `}} />

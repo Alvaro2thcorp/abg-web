@@ -183,7 +183,8 @@ export default function HomeProyectos() {
                 @media (max-width: 767px) {
                     .proyecto-row {
                         grid-template-columns: 1fr !important;
-                        gap: 1rem !important;
+                        gap: 0.75rem !important;
+                        padding: 1.5rem 0 !important;
                     }
                 }
             `}} />
