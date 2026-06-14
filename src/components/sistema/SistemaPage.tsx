@@ -66,8 +66,8 @@ const pasos = [
         num: "05",
         semana: "RECURRENTE",
         titulo: "Contenido y redes sociales.",
-        desc: "Pablo Lizón analiza los datos, define la estrategia de contenido y desarrolla los guiones. Grabamos, editamos y distribuimos en Instagram, TikTok y LinkedIn.",
-        badge: "PABLO LIZÓN · INSTAGRAM · TIKTOK · LINKEDIN",
+        desc: "Pablo Lizón, partner colaborador especialista en marketing digital, define la estrategia de contenido y desarrolla los guiones. Grabamos, editamos y distribuimos en Instagram, TikTok y LinkedIn.",
+        badge: "PABLO LIZÓN (PARTNER) · INSTAGRAM · TIKTOK · LINKEDIN",
     },
     {
         num: "06",
@@ -105,7 +105,7 @@ const faqs = [
     },
     {
         q: "¿Las campañas de Meta Ads las gestiona el mismo equipo que la web?",
-        a: "Sí. Pablo se encarga de toda la parte de tráfico de pago. La ventaja de tenerlo todo en el mismo equipo es que la landing page, el anuncio y la conversión están alineados desde el diseño. No hay fricción entre agencias.",
+        a: "Sí. Pablo Lizón, como partner colaborador de ABG Frame, se encarga de toda la parte de tráfico de pago. La ventaja de coordinarlo todo en el mismo proyecto es que la landing page, el anuncio y la conversión están alineados desde el diseño. No hay fricción entre agencias.",
     },
     {
         q: "¿Este sistema sirve para cualquier sector?",
@@ -117,7 +117,7 @@ const faqs = [
     },
     {
         q: "¿Quién será mi contacto directo?",
-        a: "Álvaro para la parte técnica/web y Pablo para la parte estratégica/tráfico. Sin cuentas intermedias ni gestores que no saben de código. Hablas directamente con los que ejecutan.",
+        a: "Álvaro Bergillos es ABG Frame: diseño, desarrollo, SEO técnico y dirección del proyecto. Pablo Lizón es el partner colaborador externo que se incorpora al Sistema para la pieza de contenido y redes sociales. El cliente firma con ABG Frame. El interlocutor principal es Álvaro.",
     },
 ];
 
@@ -284,7 +284,7 @@ function HeroSection() {
                             maxWidth: "420px",
                         }}
                     >
-                        Web programada desde cero, SEO local con intención de compra y contenido editorial que construye autoridad. Tres piezas que se retroalimentan. Meta Ads disponible como complemento opcional.
+                        El Sistema es un servicio integrado donde ABG Frame colabora habitualmente con Pablo Lizón — especialista en marketing digital — para cubrir todas las piezas que necesita un negocio premium: web, visibilidad orgánica y contenido editorial. Dos especialistas, una sola dirección, un único responsable de cara al cliente. Meta Ads disponible como complemento opcional.
                     </motion.p>
                 </div>
 
@@ -434,7 +434,7 @@ function HeroSection() {
                                 color: "rgba(242,240,237,0.5)",
                             }}
                         >
-                            Álvaro Bergillos + Pablo Lizón
+                            ABG Frame · Pablo Lizón (partner)
                         </span>
                     </div>
                     <span style={{ color: "rgba(242,240,237,0.1)" }}>·</span>
@@ -951,7 +951,7 @@ function EquipoSection() {
                         letterSpacing: "-0.03em",
                         margin: 0
                     }}>
-                        Dos especialistas.<br />Un sistema.
+                        ABG Frame + un partner.<br />Una estrategia.
                     </h2>
                 </div>
 
@@ -1132,7 +1132,7 @@ function EquipoSection() {
                                 display: "block",
                                 marginBottom: "1rem"
                             }}>
-                                ESPECIALISTA EN PAID MEDIA
+                                PARTNER · MARKETING DIGITAL
                             </span>
                             <p style={{
                                 fontFamily: "var(--font-body)",
@@ -1143,10 +1143,10 @@ function EquipoSection() {
                                 marginBottom: "1.5rem",
                                 margin: "0 0 1.5rem 0"
                             }}>
-                                Se encarga de toda la parte de tráfico de pago en redes. Meta Ads, segmentación por audiencias, optimización de creatividades. Su obsesión es una sola: el coste por lead real. Trabajamos en el mismo equipo, lo que significa que el anuncio, la landing y la conversión están alineados desde el diseño.
+                                Pablo Lizón es especialista en marketing digital y contenido. Colabora habitualmente con ABG Frame en proyectos de Sistema completo, donde se encarga de la estrategia de contenido y la gestión de redes sociales. No es socio de la empresa — es el partner de confianza al que ABG Frame recurre cuando el proyecto necesita esa pieza.
                             </p>
                             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
-                                {["META ADS", "PAID MEDIA", "CONVERSIÓN"].map((tag) => (
+                                {["CONTENIDO", "REDES SOCIALES", "META ADS"].map((tag) => (
                                     <span key={tag} style={{
                                         border: "1px solid rgba(8, 8, 8, 0.08)",
                                         borderRadius: "100px",
