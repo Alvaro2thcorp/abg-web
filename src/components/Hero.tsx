@@ -15,7 +15,7 @@ export default function Hero() {
             justifyContent: "flex-end",
             overflow: "hidden",
             background: "#F2F0ED",
-            padding: "clamp(6rem, 18vh, 12rem) clamp(1.5rem, 5vw, 5rem) clamp(3rem, 6vw, 5rem)",
+            padding: "clamp(5rem, 12vh, 12rem) clamp(1.25rem, 5vw, 5rem) clamp(2.5rem, 6vw, 5rem)",
         }}>
             {/* PlasmaWave background */}
             <div style={{
@@ -68,7 +68,7 @@ export default function Hero() {
                                 display: "block",
                                 fontFamily: "'DM Serif Display', serif",
                                 fontWeight: 400,
-                                fontSize: "clamp(3.5rem, 8vw, 9rem)",
+                                fontSize: "clamp(2.6rem, 8vw, 9rem)",
                                 color: "#080808",
                                 lineHeight: 0.9,
                                 letterSpacing: "-0.03em",
@@ -86,7 +86,7 @@ export default function Hero() {
                                 display: "block",
                                 fontFamily: "'DM Serif Display', serif",
                                 fontWeight: 400,
-                                fontSize: "clamp(3.5rem, 8vw, 9rem)",
+                                fontSize: "clamp(2.6rem, 8vw, 9rem)",
                                 color: "#080808",
                                 lineHeight: 0.9,
                                 letterSpacing: "-0.03em",
@@ -105,7 +105,7 @@ export default function Hero() {
                                 fontFamily: "'DM Serif Display', serif",
                                 fontStyle: "italic",
                                 fontWeight: 400,
-                                fontSize: "clamp(3.5rem, 8vw, 9rem)",
+                                fontSize: "clamp(2.6rem, 8vw, 9rem)",
                                 color: "#CC0000",
                                 lineHeight: 0.9,
                                 letterSpacing: "-0.03em",
@@ -122,7 +122,7 @@ export default function Hero() {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.7 }}
                     style={{
-                        marginTop: "clamp(2rem, 4vw, 3.5rem)",
+                        marginTop: "clamp(1.75rem, 4vw, 3.5rem)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "space-between",
@@ -135,7 +135,7 @@ export default function Hero() {
                     <p style={{
                         fontFamily: "'Inter', sans-serif",
                         fontWeight: 300,
-                        fontSize: "clamp(0.9rem, 1.5vw, 1.05rem)",
+                        fontSize: "clamp(0.85rem, 1.5vw, 1.05rem)",
                         color: "rgba(8,8,8,0.45)",
                         margin: 0,
                         maxWidth: "420px",
@@ -161,6 +161,7 @@ export default function Hero() {
                             textDecoration: "none",
                             letterSpacing: "0.02em",
                             transition: "background 0.2s ease",
+                            minHeight: "48px",
                         }}
                     >
                         Solicitar presupuesto →
@@ -172,7 +173,7 @@ export default function Hero() {
                 __html: `
                 .hero-cta:hover { background: #CC0000 !important; }
                 @media (max-width: 767px) {
-                    .hero-cta { width: 100%; justify-content: center; }
+                    .hero-cta { width: 100%; justify-content: center; min-height: 52px; }
                 }
             `}} />
         </section>
