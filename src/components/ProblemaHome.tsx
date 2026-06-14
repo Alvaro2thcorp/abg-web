@@ -75,6 +75,131 @@ export default function ProblemaHome() {
                 >
                     Trabaja para ti las 24 horas. Atrae a la gente correcta, transmite lo que tu negocio vale y convierte visitas en clientes reales — sin que tengas que estar encima.
                 </motion.p>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    style={{
+                        marginTop: "clamp(4rem, 8vw, 6rem)",
+                        maxWidth: "640px",
+                        background: "#080808",
+                        borderRadius: "6px",
+                        padding: "clamp(2rem, 4vw, 3rem)",
+                        position: "relative",
+                        overflow: "hidden",
+                        boxShadow: "0 24px 60px rgba(8,8,8,0.15)",
+                    }}
+                >
+                    {/* Línea decorativa superior tipo recibo */}
+                    <div style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        height: "4px",
+                        background: "linear-gradient(90deg, transparent 0%, #CC0000 50%, transparent 100%)",
+                    }} />
+
+                    <div style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: "0.6rem",
+                        fontWeight: 500,
+                        color: "#CC0000",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.3em",
+                        marginBottom: "2rem",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                    }}>
+                        <span>Ticket nº 001</span>
+                        <span style={{ color: "rgba(242,240,237,0.3)" }}>ABG FRAME</span>
+                    </div>
+
+                    <div style={{
+                        fontFamily: "'DM Serif Display', serif",
+                        fontWeight: 400,
+                        fontSize: "clamp(1.4rem, 2.5vw, 1.9rem)",
+                        color: "#F2F0ED",
+                        lineHeight: 1.25,
+                        letterSpacing: "-0.02em",
+                        marginBottom: "2rem",
+                    }}>
+                        Coste de no tener una web a la altura:
+                    </div>
+
+                    <div style={{
+                        fontFamily: "'DM Serif Display', serif",
+                        fontStyle: "italic",
+                        fontWeight: 400,
+                        fontSize: "clamp(2rem, 4vw, 3rem)",
+                        color: "#CC0000",
+                        lineHeight: 1,
+                        letterSpacing: "-0.03em",
+                        marginBottom: "2.5rem",
+                    }}>
+                        Incalculable.
+                    </div>
+
+                    <div style={{
+                        borderTop: "1px dashed rgba(242,240,237,0.15)",
+                        paddingTop: "1.5rem",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        flexWrap: "wrap",
+                        gap: "1rem",
+                    }}>
+                        <div>
+                            <div style={{
+                                fontFamily: "'Inter', sans-serif",
+                                fontSize: "0.65rem",
+                                fontWeight: 500,
+                                color: "rgba(242,240,237,0.4)",
+                                textTransform: "uppercase",
+                                letterSpacing: "0.2em",
+                                marginBottom: "0.4rem",
+                            }}>
+                                Coste de tenerla
+                            </div>
+                            <div style={{
+                                fontFamily: "'DM Serif Display', serif",
+                                fontWeight: 400,
+                                fontSize: "1.4rem",
+                                color: "#F2F0ED",
+                                letterSpacing: "-0.01em",
+                            }}>
+                                Pregúntanos.
+                            </div>
+                        </div>
+
+                        <a
+                            href="/contacto"
+                            style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: "0.5rem",
+                                background: "#F2F0ED",
+                                color: "#080808",
+                                fontFamily: "'Inter', sans-serif",
+                                fontWeight: 500,
+                                fontSize: "0.8rem",
+                                padding: "0.8rem 1.6rem",
+                                borderRadius: "4px",
+                                textDecoration: "none",
+                                letterSpacing: "0.05em",
+                                textTransform: "uppercase",
+                                transition: "background 0.2s, color 0.2s",
+                            }}
+                            onMouseEnter={(e) => { e.currentTarget.style.background = "#CC0000"; e.currentTarget.style.color = "#F2F0ED"; }}
+                            onMouseLeave={(e) => { e.currentTarget.style.background = "#F2F0ED"; e.currentTarget.style.color = "#080808"; }}
+                        >
+                            Solicitar presupuesto →
+                        </a>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );
