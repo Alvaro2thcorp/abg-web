@@ -284,7 +284,7 @@ function HeroSection() {
                             maxWidth: "420px",
                         }}
                     >
-                        Web programada desde cero, SEO local con intención de compra y contenido editorial que construye autoridad. Tres piezas que se retroalimentan — construidas para negocios de alto ticket.
+                        Web programada desde cero, SEO local con intención de compra y contenido editorial que construye autoridad. Tres piezas que se retroalimentan. Meta Ads disponible como complemento opcional.
                     </motion.p>
                 </div>
 
@@ -347,7 +347,7 @@ function HeroSection() {
 
                     <div style={{ height: "1px", background: "rgba(242,240,237,0.06)", marginBottom: "1.5rem" }} />
 
-                    {["Web premium a medida", "SEO local + posicionamiento EN", "Social Media + Meta Ads ES/EN/FR"].map((item, i) => (
+                    {["Web premium a medida", "SEO local + posicionamiento ES/EN/FR", "Contenido editorial y redes sociales", "Meta Ads opcional (publicidad de pago)"].map((item, i) => (
                         <div
                             key={i}
                             style={{
