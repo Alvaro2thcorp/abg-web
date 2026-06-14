@@ -156,46 +156,83 @@
 .hamburger-line { width: 18px; height: 1.5px; background: #F2F0ED; border-radius: 1px; transition: all 0.01s ease; transform-origin: center; }
 
 .mobile-menu-popover {
-  position: absolute;
-  top: 4.5em;
-  left: 1rem;
-  right: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: #080808;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
   z-index: 998;
   opacity: 0;
-  transform-origin: top center;
   visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(5rem, 15vh, 7rem) clamp(2rem, 8vw, 3rem) 3rem;
+  overflow-y: auto;
 }
 
 .mobile-menu-list {
   list-style: none;
   margin: 0;
-  padding: 12px;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0;
+  flex: 1;
+  counter-reset: menuitem;
+}
+
+.mobile-menu-list > li {
+  counter-increment: menuitem;
+  border-bottom: 1px solid rgba(242, 240, 237, 0.06);
+  position: relative;
+}
+
+.mobile-menu-list > li::before {
+  content: "0" counter(menuitem);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: rgba(242, 240, 237, 0.25);
+  letter-spacing: 0.2em;
+  pointer-events: none;
 }
 
 .mobile-menu-popover .mobile-menu-link {
   display: block;
-  padding: 14px 18px;
+  padding: 1.5rem 0 1.5rem 2.5rem;
   color: #F2F0ED;
   background-color: transparent;
   text-decoration: none;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  border-radius: 8px;
-  transition: all 0.2s ease;
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.6rem, 6vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  transition: color 0.3s ease, transform 0.3s ease;
+  transform-origin: left center;
 }
 
-.mobile-menu-popover .mobile-menu-link:hover {
-  background-color: rgba(242,240,237,0.08);
+.mobile-menu-popover .mobile-menu-link:hover,
+.mobile-menu-popover .mobile-menu-link:active {
   color: #CC0000;
+  transform: translateX(8px);
 }
 
-.mobile-menu-popover .mobile-menu-link.is-active { color: #CC0000; }
+.mobile-menu-popover .mobile-menu-link.is-active {
+  color: #CC0000;
+  font-style: italic;
+}
+
+.mobile-menu-popover .mobile-menu-list li:last-of-type {
+  border-bottom: none;
+  margin-top: 1.5rem;
+}
+
+.mobile-menu-popover .mobile-menu-list li:last-of-type::before {
+  display: none;
+}
