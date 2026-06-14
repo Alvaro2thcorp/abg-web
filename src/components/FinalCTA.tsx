@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -112,7 +112,7 @@ const FinalCTA = () => {
                                 margin: 0
                             }}
                         >
-                            <span style={{ fontStyle: "italic", color: "#CC0000" }}>para negocios que no se conforman.</span>
+                            <span style={{ fontStyle: "italic", color: "#D14124" }}>para negocios que no se conforman.</span>
                         </motion.h2>
                     </div>
 
@@ -187,7 +187,7 @@ const FinalCTA = () => {
             <style dangerouslySetInnerHTML={{
                 __html: `
                 .footer-nav-link:hover { color: #080808 !important; }
-                .cta-final-button:hover { background: #CC0000 !important; color: #080808 !important; }
+                .cta-final-button:hover { background: #D14124 !important; color: #080808 !important; }
                 .footer-social-link {
                     font-family: var(--font-mono);
                     font-size: 0.58rem;
@@ -197,7 +197,7 @@ const FinalCTA = () => {
                     transition: color 0.2s ease;
                     letter-spacing: 0.1em;
                 }
-                .footer-social-link:hover { color: #CC0000 !important; }
+                .footer-social-link:hover { color: #D14124 !important; }
                 @media (max-width: 767px) {
                     .cta-top-row {
                         flex-direction: column !important;

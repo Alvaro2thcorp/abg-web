@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 .highlight-word {
   position: relative;
@@ -14,7 +14,7 @@
   right: -4px;
   top: 8%;
   bottom: 8%;
-  background-color: #CC0000;
+  background-color: #D14124;
   opacity: 0.12;
   z-index: -1;
   transform: skewX(-3deg);

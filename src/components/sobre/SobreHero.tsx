@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 
@@ -50,7 +50,7 @@ export default function SobreHero() {
                         fontFamily: "'Inter', sans-serif",
                         fontSize: "0.65rem",
                         fontWeight: 500,
-                        color: "#CC0000",
+                        color: "#D14124",
                         textTransform: "uppercase",
                         letterSpacing: "0.25em",
                         marginBottom: "2rem",
@@ -89,7 +89,7 @@ export default function SobreHero() {
                                 fontStyle: "italic",
                                 fontWeight: 400,
                                 fontSize: "clamp(2.2rem, 6vw, 5.5rem)",
-                                color: "#CC0000",
+                                color: "#D14124",
                                 lineHeight: 0.95,
                                 letterSpacing: "-0.03em",
                             }}
@@ -142,8 +142,8 @@ export default function SobreHero() {
                             transition: "color 0.2s, border-color 0.2s",
                         }}
                         onMouseEnter={(e) => {
-                            e.currentTarget.style.color = "#CC0000";
-                            e.currentTarget.style.borderColor = "#CC0000";
+                            e.currentTarget.style.color = "#D14124";
+                            e.currentTarget.style.borderColor = "#D14124";
                         }}
                         onMouseLeave={(e) => {
                             e.currentTarget.style.color = "#080808";

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 
@@ -38,7 +38,7 @@ const SectionTransition: React.FC<SectionTransitionProps> = ({
                     position: "absolute",
                     width: "100%",
                     height: "1px",
-                    background: "rgba(204, 0, 0, 0.2)",
+                    background: "rgba(209, 65, 36, 0.2)",
                     left: 0,
                     top: "50%",
                     transform: "translateY(-50%)"
@@ -51,7 +51,7 @@ const SectionTransition: React.FC<SectionTransitionProps> = ({
                     position: "absolute",
                     width: "150px",
                     height: "1px",
-                    background: "linear-gradient(to right, transparent, #CC0000, transparent)",
+                    background: "linear-gradient(to right, transparent, #D14124, transparent)",
                     bottom: "20%",
                     left: "50%",
                     transform: "translateX(-50%)",

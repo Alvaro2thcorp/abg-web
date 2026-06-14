@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { LogoLoop } from "./reactbits/LogoLoop";
 import { SiAstro, SiReact, SiWordpress, SiWoocommerce, SiShopify, SiTailwindcss } from "react-icons/si";
@@ -10,7 +10,7 @@ const techs = [
     { node: <SiAstro style={iconStyle} />, title: "Astro" },
     { node: <SiReact style={iconStyle} />, title: "React" },
     { node: <SiWordpress style={iconStyle} />, title: "WordPress" },
-    { node: <SiWoocommerce style={{ color: "#CC0000", opacity: 0.7 }} />, title: "WooCommerce" },
+    { node: <SiWoocommerce style={{ color: "#D14124", opacity: 0.7 }} />, title: "WooCommerce" },
     { node: <SiShopify style={iconStyle} />, title: "Shopify" },
     { node: <SiTailwindcss style={iconStyle} />, title: "Tailwind CSS" },
 ];

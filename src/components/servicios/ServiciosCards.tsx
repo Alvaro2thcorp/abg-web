@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -47,7 +47,7 @@ const SERVICIOS = [
     ],
     accion: "Ver El Sistema →",
     href: "/el-sistema",
-    fondo: "#CC0000",
+    fondo: "#D14124",
     color: "#F2F0ED",
   },
 ];
@@ -92,7 +92,7 @@ export default function ServiciosCards() {
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.65rem",
               fontWeight: 500,
-              color: "#CC0000",
+              color: "#D14124",
               textTransform: "uppercase",
               letterSpacing: "0.25em",
               marginBottom: "2rem",
@@ -185,7 +185,7 @@ export default function ServiciosCards() {
                     marginLeft: "auto",
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "0.7rem",
-                    color: "#CC0000",
+                    color: "#D14124",
                     opacity: 0,
                     transition: "opacity 0.2s",
                   }}
@@ -235,7 +235,7 @@ export default function ServiciosCards() {
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "0.6rem",
                     fontWeight: 500,
-                    color: s.fondo === "#CC0000" ? "rgba(242,240,237,0.7)" : "#CC0000",
+                    color: s.fondo === "#D14124" ? "rgba(242,240,237,0.7)" : "#D14124",
                     textTransform: "uppercase",
                     letterSpacing: "0.2em",
                     marginBottom: "1rem",
@@ -264,7 +264,7 @@ export default function ServiciosCards() {
                         alignItems: "center",
                         gap: "0.5rem",
                       }}>
-                        <span style={{ color: s.fondo === "#CC0000" ? "rgba(242,240,237,0.5)" : "#CC0000", fontSize: "0.5rem" }}>●</span>
+                        <span style={{ color: s.fondo === "#D14124" ? "rgba(242,240,237,0.5)" : "#D14124", fontSize: "0.5rem" }}>●</span>
                         {item}
                       </li>
                     ))}
@@ -274,7 +274,7 @@ export default function ServiciosCards() {
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.8rem",
                   fontWeight: 500,
-                  color: s.fondo === "#CC0000" ? "#F2F0ED" : "#CC0000",
+                  color: s.fondo === "#D14124" ? "#F2F0ED" : "#D14124",
                   marginTop: "1.5rem",
                   paddingTop: "1.25rem",
                   borderTop: "1px solid rgba(242,240,237,0.08)",

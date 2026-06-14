@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -45,7 +45,7 @@ export default function SistemaCompleto() {
                         style={{
                             fontFamily: "var(--font-mono)",
                             fontSize: "0.6rem",
-                            color: "#CC0000",
+                            color: "#D14124",
                             textTransform: "uppercase",
                             letterSpacing: "0.2em",
                             marginBottom: "1.2rem",
@@ -111,7 +111,7 @@ export default function SistemaCompleto() {
                 >
                     {/* BLOQUE 1 — WEB */}
                     <div style={{ flex: 1, padding: "1.5rem", borderRight: "1px solid rgba(8, 8, 8, 0.08)", background: "#FFFFFF" }}>
-                        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "#CC0000", border: "1px solid rgba(204, 0, 0, 0.25)", borderRadius: "4px", padding: "0.2rem 0.5rem", display: "inline-block" }}>
+                        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "#D14124", border: "1px solid rgba(209, 65, 36, 0.25)", borderRadius: "4px", padding: "0.2rem 0.5rem", display: "inline-block" }}>
                             01
                         </span>
                         <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.1rem", color: "#080808", marginTop: "1rem" }}>
@@ -122,10 +122,10 @@ export default function SistemaCompleto() {
                         </p>
                         <div style={{ marginTop: "1.5rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "rgba(8, 8, 8, 0.35)", textTransform: "uppercase" }}>
-                                <span style={{ color: "#CC0000" }}>·</span> Core Web Vitals 100
+                                <span style={{ color: "#D14124" }}>·</span> Core Web Vitals 100
                             </div>
                             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "rgba(8, 8, 8, 0.35)", textTransform: "uppercase" }}>
-                                <span style={{ color: "#CC0000" }}>·</span> SEO técnico integrado
+                                <span style={{ color: "#D14124" }}>·</span> SEO técnico integrado
                             </div>
                         </div>
                     </div>
@@ -137,7 +137,7 @@ export default function SistemaCompleto() {
 
                     {/* BLOQUE 2 — SEO */}
                     <div style={{ flex: 1, padding: "1.5rem", borderRight: "1px solid rgba(8, 8, 8, 0.08)", background: "#FFFFFF" }}>
-                        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "#CC0000", border: "1px solid rgba(204, 0, 0, 0.25)", borderRadius: "4px", padding: "0.2rem 0.5rem", display: "inline-block" }}>
+                        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "#D14124", border: "1px solid rgba(209, 65, 36, 0.25)", borderRadius: "4px", padding: "0.2rem 0.5rem", display: "inline-block" }}>
                             02
                         </span>
                         <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.1rem", color: "#080808", marginTop: "1rem" }}>
@@ -148,10 +148,10 @@ export default function SistemaCompleto() {
                         </p>
                         <div style={{ marginTop: "1.5rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "rgba(8, 8, 8, 0.35)", textTransform: "uppercase" }}>
-                                <span style={{ color: "#CC0000" }}>·</span> LOCAL · EN
+                                <span style={{ color: "#D14124" }}>·</span> LOCAL · EN
                             </div>
                             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "rgba(8, 8, 8, 0.35)", textTransform: "uppercase" }}>
-                                <span style={{ color: "#CC0000" }}>·</span> +TRÁFICO ORGÁNICO
+                                <span style={{ color: "#D14124" }}>·</span> +TRÁFICO ORGÁNICO
                             </div>
                         </div>
                     </div>
@@ -163,7 +163,7 @@ export default function SistemaCompleto() {
 
                     {/* BLOQUE 3 — ADS */}
                     <div style={{ flex: 1, padding: "1.5rem", background: "#FFFFFF" }}>
-                        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "#CC0000", border: "1px solid rgba(204, 0, 0, 0.25)", borderRadius: "4px", padding: "0.2rem 0.5rem", display: "inline-block" }}>
+                        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "#D14124", border: "1px solid rgba(209, 65, 36, 0.25)", borderRadius: "4px", padding: "0.2rem 0.5rem", display: "inline-block" }}>
                             03
                         </span>
                         <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.1rem", color: "#080808", marginTop: "1rem" }}>
@@ -174,10 +174,10 @@ export default function SistemaCompleto() {
                         </p>
                         <div style={{ marginTop: "1.5rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "rgba(8, 8, 8, 0.35)", textTransform: "uppercase" }}>
-                                <span style={{ color: "#CC0000" }}>·</span> BÚSQUEDA + DISPLAY
+                                <span style={{ color: "#D14124" }}>·</span> BÚSQUEDA + DISPLAY
                             </div>
                             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "rgba(8, 8, 8, 0.35)", textTransform: "uppercase" }}>
-                                <span style={{ color: "#CC0000" }}>·</span> RETARGETING INCLUIDO
+                                <span style={{ color: "#D14124" }}>·</span> RETARGETING INCLUIDO
                             </div>
                         </div>
                     </div>
@@ -215,7 +215,7 @@ export default function SistemaCompleto() {
                             href="/el-sistema"
                             style={{
                                 display: "inline-block",
-                                background: "#CC0000",
+                                background: "#D14124",
                                 color: "#080808",
                                 fontFamily: "var(--font-display)",
                                 fontWeight: 700,

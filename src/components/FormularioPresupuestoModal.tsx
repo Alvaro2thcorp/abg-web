@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -125,7 +125,7 @@ export default function FormularioPresupuestoModal({ isOpen, onClose }: Formular
                       fontFamily: "'Inter', sans-serif",
                       fontSize: "0.7rem",
                       fontWeight: 500,
-                      color: "#CC0000",
+                      color: "#D14124",
                       textTransform: "uppercase",
                       letterSpacing: "0.25em",
                       marginBottom: "1.5rem",
@@ -142,7 +142,7 @@ export default function FormularioPresupuestoModal({ isOpen, onClose }: Formular
                       margin: 0,
                       marginBottom: "1rem",
                     }}>
-                      Gracias por escribir. <span style={{ fontStyle: "italic", color: "#CC0000" }}>Respondemos en 24h.</span>
+                      Gracias por escribir. <span style={{ fontStyle: "italic", color: "#D14124" }}>Respondemos en 24h.</span>
                     </h3>
                     <p style={{
                       fontFamily: "'Inter', sans-serif",
@@ -162,7 +162,7 @@ export default function FormularioPresupuestoModal({ isOpen, onClose }: Formular
                         fontFamily: "'Inter', sans-serif",
                         fontSize: "0.65rem",
                         fontWeight: 500,
-                        color: "#CC0000",
+                        color: "#D14124",
                         textTransform: "uppercase",
                         letterSpacing: "0.25em",
                         marginBottom: "1.25rem",
@@ -178,7 +178,7 @@ export default function FormularioPresupuestoModal({ isOpen, onClose }: Formular
                         lineHeight: 1.05,
                         margin: 0,
                       }}>
-                        Cuéntanos tu proyecto. <span style={{ fontStyle: "italic", color: "#CC0000" }}>Respondemos en 24h.</span>
+                        Cuéntanos tu proyecto. <span style={{ fontStyle: "italic", color: "#D14124" }}>Respondemos en 24h.</span>
                       </h2>
                     </div>
 
@@ -208,9 +208,9 @@ export default function FormularioPresupuestoModal({ isOpen, onClose }: Formular
                         <div style={{
                           fontFamily: "'Inter', sans-serif",
                           fontSize: "0.85rem",
-                          color: "#CC0000",
+                          color: "#D14124",
                           padding: "0.75rem 1rem",
-                          background: "rgba(204,0,0,0.08)",
+                          background: "rgba(209,65,36,0.08)",
                           borderRadius: "4px",
                         }}>
                           {error}
@@ -236,7 +236,7 @@ export default function FormularioPresupuestoModal({ isOpen, onClose }: Formular
                           opacity: submitting ? 0.6 : 1,
                           marginTop: "0.5rem",
                         }}
-                        onMouseEnter={(e) => { if (!submitting) e.currentTarget.style.background = "#CC0000"; }}
+                        onMouseEnter={(e) => { if (!submitting) e.currentTarget.style.background = "#D14124"; }}
                         onMouseLeave={(e) => { if (!submitting) e.currentTarget.style.background = "#080808"; }}
                       >
                         {submitting ? "Enviando..." : "Enviar solicitud →"}
@@ -292,7 +292,7 @@ function FormField({ name, label, type, required }: { name: string; label: strin
         letterSpacing: "0.15em",
         marginBottom: "0.4rem",
       }}>
-        {label} {required && <span style={{ color: "#CC0000" }}>*</span>}
+        {label} {required && <span style={{ color: "#D14124" }}>*</span>}
       </label>
       {type === "textarea" ? (
         <textarea id={name} name={name} required={required} rows={3} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)} style={{ ...inputStyle, resize: "vertical", minHeight: "60px", fontFamily: "'Inter', sans-serif" }} />
@@ -317,7 +317,7 @@ function FormSelect({ name, label, options, required }: { name: string; label: s
         letterSpacing: "0.15em",
         marginBottom: "0.4rem",
       }}>
-        {label} {required && <span style={{ color: "#CC0000" }}>*</span>}
+        {label} {required && <span style={{ color: "#D14124" }}>*</span>}
       </label>
       <select
         id={name}

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 
@@ -22,7 +22,7 @@ export default function Equipo() {
                         fontFamily: "'Inter', sans-serif",
                         fontSize: "0.65rem",
                         fontWeight: 500,
-                        color: "#CC0000",
+                        color: "#D14124",
                         textTransform: "uppercase",
                         letterSpacing: "0.25em",
                         marginBottom: "4rem",
@@ -154,7 +154,7 @@ export default function Equipo() {
                                     paddingBottom: "2px",
                                     transition: "color 0.2s, border-color 0.2s",
                                 }}
-                                onMouseEnter={(e) => { e.currentTarget.style.color = "#CC0000"; e.currentTarget.style.borderColor = "#CC0000"; }}
+                                onMouseEnter={(e) => { e.currentTarget.style.color = "#D14124"; e.currentTarget.style.borderColor = "#D14124"; }}
                                 onMouseLeave={(e) => { e.currentTarget.style.color = "#F2F0ED"; e.currentTarget.style.borderColor = "rgba(242,240,237,0.2)"; }}
                             >
                                 @alvarobergillos
@@ -185,7 +185,7 @@ export default function Equipo() {
                                     textDecoration: "none",
                                     transition: "background 0.2s",
                                 }}
-                                onMouseEnter={(e) => { e.currentTarget.style.background = "#CC0000"; e.currentTarget.style.color = "#F2F0ED"; }}
+                                onMouseEnter={(e) => { e.currentTarget.style.background = "#D14124"; e.currentTarget.style.color = "#F2F0ED"; }}
                                 onMouseLeave={(e) => { e.currentTarget.style.background = "#F2F0ED"; e.currentTarget.style.color = "#080808"; }}
                             >
                                 Hablemos →

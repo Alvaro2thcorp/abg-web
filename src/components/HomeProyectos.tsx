@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -66,7 +66,7 @@ export default function HomeProyectos() {
                                 fontFamily: "'Inter', sans-serif",
                                 fontSize: "0.7rem",
                                 fontWeight: 500,
-                                color: "#CC0000",
+                                color: "#D14124",
                                 textTransform: "uppercase",
                                 letterSpacing: "0.25em",
                                 marginBottom: "1.5rem",
@@ -166,7 +166,7 @@ export default function HomeProyectos() {
                                 fontFamily: "'Inter', sans-serif",
                                 fontSize: "0.75rem",
                                 fontWeight: 500,
-                                color: p.disponible ? "#CC0000" : "rgba(8,8,8,0.35)",
+                                color: p.disponible ? "#D14124" : "rgba(8,8,8,0.35)",
                                 textTransform: "uppercase",
                                 letterSpacing: "0.15em",
                                 whiteSpace: "nowrap",

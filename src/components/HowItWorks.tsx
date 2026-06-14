@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
@@ -78,19 +78,19 @@ const Terminal = ({ active }: { active: boolean }) => {
                     <div
                         key={i}
                         style={{
-                            color: line.isCommand ? "#1a1a1a" : "#CC0000",
+                            color: line.isCommand ? "#1a1a1a" : "#D14124",
                             animation: line.text.startsWith("✓") ? "terminalFlash 0.3s ease-out" : "none"
                         }}
                     >
                         {line.isCommand && (
-                            <span style={{ color: "rgba(204,0,0,0.4)", marginRight: "0.5rem" }}>~/abg $</span>
+                            <span style={{ color: "rgba(209,65,36,0.4)", marginRight: "0.5rem" }}>~/abg $</span>
                         )}
                         {line.text}
                     </div>
                 ))}
                 {active && (
                     <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                        <span style={{ color: "rgba(204,0,0,0.4)" }}>~/abg $</span>
+                        <span style={{ color: "rgba(209,65,36,0.4)" }}>~/abg $</span>
                         <motion.span
                             animate={{ opacity: [1, 0, 1] }}
                             transition={{ duration: 0.8, repeat: Infinity }}
@@ -98,7 +98,7 @@ const Terminal = ({ active }: { active: boolean }) => {
                                 display: "inline-block",
                                 width: "8px",
                                 height: "16px",
-                                background: "#CC0000",
+                                background: "#D14124",
                                 borderRadius: "1px"
                             }}
                         />
@@ -112,7 +112,7 @@ const Terminal = ({ active }: { active: boolean }) => {
                     initial={{ width: "0%" }}
                     animate={active ? { width: "100%" } : { width: "0%" }}
                     transition={{ duration: 4, ease: "linear" }}
-                    style={{ height: "100%", background: "#CC0000" }}
+                    style={{ height: "100%", background: "#D14124" }}
                 />
             </div>
         </div>
@@ -124,22 +124,22 @@ const StatusPill = ({ text, active }: { text: string, active: boolean }) => (
         display: "flex",
         alignItems: "center",
         gap: "6px",
-        background: "rgba(204,0,0,0.08)",
-        border: "1px solid rgba(204,0,0,0.2)",
+        background: "rgba(209,65,36,0.08)",
+        border: "1px solid rgba(209,65,36,0.2)",
         padding: "0.2rem 0.6rem",
         borderRadius: "100px"
     }}>
         <div style={{
             width: "5px",
             height: "5px",
-            background: "#CC0000",
+            background: "#D14124",
             borderRadius: "50%",
             animation: active ? "blink 1s infinite" : "none"
         }} />
         <span style={{
             fontFamily: "var(--font-mono)",
             fontSize: "0.6rem",
-            color: "#CC0000",
+            color: "#D14124",
             fontWeight: 700,
             textTransform: "uppercase",
             letterSpacing: "0.1em"
@@ -184,11 +184,11 @@ const BadgesVisual = ({ active }: { active: boolean }) => {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
-                            style={{ background: "rgba(204,0,0,0.04)", border: "1px solid rgba(242,240,237,0.04)", borderRadius: "8px", padding: "1rem 1.25rem" }}
+                            style={{ background: "rgba(209,65,36,0.04)", border: "1px solid rgba(242,240,237,0.04)", borderRadius: "8px", padding: "1rem 1.25rem" }}
                         >
                             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.4rem" }}>
                                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                                    <div style={{ width: "8px", height: "8px", background: "#CC0000", borderRadius: "50%" }} />
+                                    <div style={{ width: "8px", height: "8px", background: "#D14124", borderRadius: "50%" }} />
                                     <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", color: "#080808" }}>WEB PREMIUM</span>
                                 </div>
                                 <StatusPill text="ACTIVO" active={true} />
@@ -196,7 +196,7 @@ const BadgesVisual = ({ active }: { active: boolean }) => {
                             <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "rgba(8,8,8,0.55)" }}>Diseño · SEO técnico · Core Web Vitals 100</div>
                         </motion.div>
 
-                        <div style={{ height: "1.5rem", width: "1px", borderLeft: "1px dotted rgba(204,0,0,0.15)", marginLeft: "1.5rem" }} />
+                        <div style={{ height: "1.5rem", width: "1px", borderLeft: "1px dotted rgba(209,65,36,0.15)", marginLeft: "1.5rem" }} />
 
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
@@ -206,7 +206,7 @@ const BadgesVisual = ({ active }: { active: boolean }) => {
                         >
                             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.4rem" }}>
                                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                                    <div style={{ width: "8px", height: "8px", background: "#CC0000", borderRadius: "50%" }} />
+                                    <div style={{ width: "8px", height: "8px", background: "#D14124", borderRadius: "50%" }} />
                                     <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", color: "#080808" }}>SEO INTERNACIONAL</span>
                                 </div>
                                 <StatusPill text="INDEXANDO" active={true} />
@@ -214,7 +214,7 @@ const BadgesVisual = ({ active }: { active: boolean }) => {
                             <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "rgba(8,8,8,0.55)" }}>ES · EN · FR · Google Business</div>
                         </motion.div>
 
-                        <div style={{ height: "1.5rem", width: "1px", borderLeft: "1px dotted rgba(204,0,0,0.15)", marginLeft: "1.5rem" }} />
+                        <div style={{ height: "1.5rem", width: "1px", borderLeft: "1px dotted rgba(209,65,36,0.15)", marginLeft: "1.5rem" }} />
 
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
@@ -224,7 +224,7 @@ const BadgesVisual = ({ active }: { active: boolean }) => {
                         >
                             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.4rem" }}>
                                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                                    <div style={{ width: "8px", height: "8px", background: "#CC0000", borderRadius: "50%" }} />
+                                    <div style={{ width: "8px", height: "8px", background: "#D14124", borderRadius: "50%" }} />
                                     <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", color: "#080808" }}>GOOGLE ADS</span>
                                 </div>
                                 <StatusPill text="CAPTANDO" active={true} />
@@ -238,19 +238,19 @@ const BadgesVisual = ({ active }: { active: boolean }) => {
                             transition={{ delay: 1.5 }}
                             style={{
                                 marginTop: "1.5rem",
-                                background: "rgba(204,0,0,0.06)",
-                                border: "1px solid rgba(204,0,0,0.15)",
+                                background: "rgba(209,65,36,0.06)",
+                                border: "1px solid rgba(209,65,36,0.15)",
                                 borderRadius: "6px",
                                 padding: "0.75rem 1rem",
                                 display: "flex",
                                 justifyContent: "space-between",
                                 fontFamily: "var(--font-mono)",
                                 fontSize: "0.6rem",
-                                boxShadow: "0 0 20px rgba(204,0,0,0.08)"
+                                boxShadow: "0 0 20px rgba(209,65,36,0.08)"
                             }}
                         >
                             <span style={{ color: "#080808" }}>SISTEMA COMPLETO</span>
-                            <span style={{ color: "#CC0000", fontWeight: 700 }}>→ ACTIVADO</span>
+                            <span style={{ color: "#D14124", fontWeight: 700 }}>→ ACTIVADO</span>
                         </motion.div>
                     </div>
                 )}
@@ -317,9 +317,9 @@ const LeadsCounter = ({ active }: { active: boolean }) => {
                     fontFamily: "var(--font-display)",
                     fontWeight: 800,
                     fontSize: "4.5rem",
-                    color: "#CC0000",
+                    color: "#D14124",
                     lineHeight: 1,
-                    textShadow: "0 0 40px rgba(204,0,0,0.4)"
+                    textShadow: "0 0 40px rgba(209,65,36,0.4)"
                 }}>
                     {count}
                 </div>
@@ -337,7 +337,7 @@ const LeadsCounter = ({ active }: { active: boolean }) => {
                                 cy="24"
                                 r="20"
                                 fill="none"
-                                stroke="#CC0000"
+                                stroke="#D14124"
                                 strokeWidth="3"
                                 strokeDasharray="125.6"
                                 initial={{ strokeDashoffset: 125.6 }}
@@ -358,7 +358,7 @@ const LeadsCounter = ({ active }: { active: boolean }) => {
                             justifyContent: "center",
                             fontFamily: "var(--font-mono)",
                             fontSize: "0.55rem",
-                            color: "#CC0000"
+                            color: "#D14124"
                         }}>
                             78%
                         </div>
@@ -382,7 +382,7 @@ const LeadsCounter = ({ active }: { active: boolean }) => {
                 <MetricRow label="Conversión web" value="4.8%" active={active} delay={0.6} />
             </div>
 
-            <div style={{ marginTop: "auto", paddingTop: "1.5rem", textAlign: "right", fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "rgba(204,0,0,0.5)" }}>
+            <div style={{ marginTop: "auto", paddingTop: "1.5rem", textAlign: "right", fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "rgba(209,65,36,0.5)" }}>
                 ↑ vs mes anterior
             </div>
         </div>
@@ -409,7 +409,7 @@ const MetricRow = ({ label, value, active, delay }: { label: string, value: stri
         >
             <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "var(--font-mono)", fontSize: "0.62rem" }}>
                 <span style={{ color: "rgba(8,8,8,0.35)" }}>{label}</span>
-                <span style={{ color: "#CC0000" }}>{value}</span>
+                <span style={{ color: "#D14124" }}>{value}</span>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                 <div style={{ flex: 1, height: "1px", background: "#e5e3df", borderRadius: "2px", overflow: "hidden" }}>
@@ -417,7 +417,7 @@ const MetricRow = ({ label, value, active, delay }: { label: string, value: stri
                         initial={{ width: "0%" }}
                         animate={active ? { width: `${percentageValue}%` } : { width: "0%" }}
                         transition={{ duration: 1, delay: delay + 0.3 }}
-                        style={{ height: "100%", background: "#CC0000" }}
+                        style={{ height: "100%", background: "#D14124" }}
                     />
                 </div>
                 <div style={{ width: "40px", height: "2px" }} /> {/* Spacer to align with text */}
@@ -442,13 +442,13 @@ interface PhaseProps {
 const PhaseIndicator = ({ num, active }: { num: string, active: boolean }) => (
     <div style={{ position: "relative", width: "24px", height: "24px", display: "flex", alignItems: "center", justifyContent: "center" }}>
         <svg width="24" height="24" viewBox="0 0 24 24" style={{ position: "absolute", transform: "rotate(-90deg)" }}>
-            <circle cx="12" cy="12" r="11" fill="none" stroke="rgba(204,0,0,0.5)" strokeWidth="1.5" />
+            <circle cx="12" cy="12" r="11" fill="none" stroke="rgba(209,65,36,0.5)" strokeWidth="1.5" />
             <motion.circle
                 cx="12"
                 cy="12"
                 r="11"
                 fill="none"
-                stroke="#CC0000"
+                stroke="#D14124"
                 strokeWidth="1.5"
                 strokeDasharray="70"
                 initial={{ strokeDashoffset: 70 }}
@@ -456,7 +456,7 @@ const PhaseIndicator = ({ num, active }: { num: string, active: boolean }) => (
                 transition={{ duration: 1, ease: "easeInOut" }}
             />
         </svg>
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "#CC0000", position: "relative", zIndex: 1 }}>{num}</span>
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "#D14124", position: "relative", zIndex: 1 }}>{num}</span>
     </div>
 );
 
@@ -565,7 +565,7 @@ const Phase = ({ num, tag, title, description, items, visual, isLast, onActive }
                                 className="deliverable-item"
                                 style={{ display: "flex", alignItems: "center", gap: "1rem", cursor: "default" }}
                             >
-                                <div className="deliverable-line" style={{ width: "12px", height: "1px", background: "#CC0000", transition: "width 0.3s ease" }} />
+                                <div className="deliverable-line" style={{ width: "12px", height: "1px", background: "#D14124", transition: "width 0.3s ease" }} />
                                 <span className="deliverable-text" style={{
                                     fontFamily: "var(--font-mono)",
                                     fontSize: "0.65rem",
@@ -600,7 +600,7 @@ const Phase = ({ num, tag, title, description, items, visual, isLast, onActive }
                         left: 0,
                         height: "1px",
                         width: "100%",
-                        background: "linear-gradient(to right, #CC0000, rgba(204,0,0,0.1) 30%, transparent 60%)"
+                        background: "linear-gradient(to right, #D14124, rgba(209,65,36,0.1) 30%, transparent 60%)"
                     }} />
             )}
         </div>
@@ -672,7 +672,7 @@ export default function HowItWorks() {
                         <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "#080808", lineHeight: 0.95, letterSpacing: "-0.03em" }}>
                             Así captamos clientes <span className="highlight-word">en Alicante.</span>
                         </h2>
-                        <div style={{ width: "48px", height: "2px", background: "#CC0000", marginTop: "1.5rem" }} />
+                        <div style={{ width: "48px", height: "2px", background: "#D14124", marginTop: "1.5rem" }} />
                     </div>
                     <div className="header-right-text" style={{ maxWidth: "280px", borderLeft: "1px solid rgba(8,8,8,0.08)", paddingLeft: "2rem" }}>
                         <p style={{ fontFamily: "var(--font-body)", fontWeight: 300, fontSize: "0.9rem", color: "rgba(8,8,8,0.55)", lineHeight: 1.8 }}>
@@ -691,11 +691,11 @@ export default function HowItWorks() {
                                 left: 0,
                                 top: 0,
                                 width: "2px",
-                                background: "#CC0000",
+                                background: "#D14124",
                                 height: "100%",
                                 scaleY: progressHeight,
                                 transformOrigin: "top",
-                                boxShadow: "0 0 8px rgba(204,0,0,0.4)"
+                                boxShadow: "0 0 8px rgba(209,65,36,0.4)"
                             }}
                         />
                     </div>
@@ -716,8 +716,8 @@ export default function HowItWorks() {
                 <div style={{
                     marginTop: "3.5rem",
                     padding: "3rem",
-                    background: "rgba(204,0,0,0.03)",
-                    border: "1px solid rgba(204,0,0,0.08)",
+                    background: "rgba(209,65,36,0.03)",
+                    border: "1px solid rgba(209,65,36,0.08)",
                     borderRadius: "16px",
                     display: "flex",
                     justifyContent: "space-between",
@@ -726,7 +726,7 @@ export default function HowItWorks() {
                     gap: "2rem"
                 }}>
                     <div>
-                        <div style={{ width: "32px", height: "2px", background: "#CC0000", marginBottom: "0.75rem" }} />
+                        <div style={{ width: "32px", height: "2px", background: "#D14124", marginBottom: "0.75rem" }} />
                         <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)", color: "#080808", marginBottom: "0.5rem" }}>
                             ¿Listo para activar el sistema?
                         </h3>
@@ -739,7 +739,7 @@ export default function HowItWorks() {
                             href="/contacto"
                             className="proceso-cta-btn"
                             style={{
-                                background: "#CC0000",
+                                background: "#D14124",
                                 color: "#f9f8f6",
                                 borderRadius: "100px",
                                 padding: "1rem 2rem",
@@ -794,7 +794,7 @@ export default function HowItWorks() {
                 __html: `
                 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
                 @keyframes terminalFlash {
-                    0% { opacity: 0; background: rgba(204, 0, 0, 0.1); }
+                    0% { opacity: 0; background: rgba(209, 65, 36, 0.1); }
                     100% { opacity: 1; background: transparent; }
                 }
                 @keyframes shimmer {
@@ -803,7 +803,7 @@ export default function HowItWorks() {
                 }
                 .proceso-cta-btn:hover {
                     transform: translateY(-3px);
-                    box-shadow: 0 16px 40px rgba(204, 0, 0, 0.35);
+                    box-shadow: 0 16px 40px rgba(209, 65, 36, 0.35);
                 }
                 .proceso-cta-btn:hover .btn-shimmer {
                     animation: shimmer 0.6s ease;

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -47,11 +47,11 @@ export default function ServicioSEO() {
                         borderRadius: "12px",
                         padding: "1.2rem 1.5rem",
                         boxShadow: "0 4px 20px rgba(8, 8, 8, 0.08)",
-                        borderLeft: "3px solid #CC0000"
+                        borderLeft: "3px solid #D14124"
                     }}>
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                             <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "#4CAF50" }}>abgframe.com/cliente-nautica</div>
-                            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "#CC0000", textTransform: "uppercase", fontWeight: "bold" }}>Posición #1</span>
+                            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: "#D14124", textTransform: "uppercase", fontWeight: "bold" }}>Posición #1</span>
                         </div>
                         <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1rem", color: "#080808", marginTop: "0.3rem" }}>
                             Alquiler Yates Lujo Alicante | Charter Premium Mediterráneo
@@ -111,7 +111,7 @@ export default function ServicioSEO() {
                         style={{
                             fontFamily: "var(--font-mono)",
                             fontSize: "0.6rem",
-                            color: "#CC0000",
+                            color: "#D14124",
                             textTransform: "uppercase",
                             letterSpacing: "0.15em",
                             display: "block",
@@ -175,7 +175,7 @@ export default function ServicioSEO() {
                                         borderBottom: i === items.length - 1 ? "none" : "1px solid rgba(8, 8, 8, 0.06)",
                                     }}
                                 >
-                                    <div style={{ width: "5px", height: "5px", background: "#CC0000", borderRadius: "50%" }} />
+                                    <div style={{ width: "5px", height: "5px", background: "#D14124", borderRadius: "50%" }} />
                                     <span style={{ fontFamily: "var(--font-body)", fontWeight: 300, fontSize: "0.9rem", color: "rgba(8, 8, 8, 0.55)" }}>
                                         {item}
                                     </span>
@@ -211,7 +211,7 @@ export default function ServicioSEO() {
 
             <style dangerouslySetInnerHTML={{
                 __html: `
-                .service-sistema-link-light:hover { color: #CC0000 !important; }
+                .service-sistema-link-light:hover { color: #D14124 !important; }
 
                 @media (min-width: 1025px) {
                     .seo-mockup-col { transform: scale(0.85); transform-origin: top left; }

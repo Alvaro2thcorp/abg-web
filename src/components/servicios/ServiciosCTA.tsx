@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -16,7 +16,7 @@ export default function ServiciosCTA() {
                 textAlign: "center"
             }}
         >
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "1px", background: "#CC0000", opacity: 0.4 }} />
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "1px", background: "#D14124", opacity: 0.4 }} />
 
             {/* Elemento decorativo de fondo */}
             <div style={{
@@ -26,7 +26,7 @@ export default function ServiciosCTA() {
                 transform: "translate(-50%, -50%)",
                 width: "60vw",
                 height: "60vw",
-                background: "radial-gradient(circle, rgba(204, 0, 0, 0.05) 0%, transparent 70%)",
+                background: "radial-gradient(circle, rgba(209, 65, 36, 0.05) 0%, transparent 70%)",
                 pointerEvents: "none"
             }} />
 
@@ -66,7 +66,7 @@ export default function ServiciosCTA() {
                     style={{
                         fontFamily: "var(--font-mono)",
                         fontSize: "0.6rem",
-                        color: "#CC0000",
+                        color: "#D14124",
                         textTransform: "uppercase",
                         letterSpacing: "0.2em",
                         display: "block"
@@ -124,7 +124,7 @@ export default function ServiciosCTA() {
                         href="/contacto"
                         style={{
                             display: "inline-block",
-                            background: "#CC0000",
+                            background: "#D14124",
                             color: "#080808",
                             fontFamily: "var(--font-display)",
                             fontWeight: 800,
@@ -177,7 +177,7 @@ export default function ServiciosCTA() {
                 __html: `
                 .final-cta-btn:hover { 
                     transform: translateY(-4px) scale(1.02); 
-                    box-shadow: 0 20px 40px rgba(204, 0, 0, 0.2);
+                    box-shadow: 0 20px 40px rgba(209, 65, 36, 0.2);
                     filter: brightness(1.1);
                 }
                 .wa-link-new:hover .wa-text { color: rgba(242, 240, 237, 0.6) !important; }

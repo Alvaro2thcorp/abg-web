@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -129,7 +129,7 @@ function SectionLabel({ children, dark = false }: { children: string; dark?: boo
             style={{
                 fontFamily: "var(--font-mono)",
                 fontSize: "0.6rem",
-                color: "#CC0000",
+                color: "#D14124",
                 textTransform: "uppercase" as const,
                 letterSpacing: "0.15em",
                 display: "block",
@@ -197,7 +197,7 @@ function HeroSection() {
                     <a
                         href="/"
                         style={{ color: "rgba(242,240,237,0.25)", textDecoration: "none", transition: "color 0.2s" }}
-                        onMouseEnter={(e) => (e.currentTarget.style.color = "#CC0000")}
+                        onMouseEnter={(e) => (e.currentTarget.style.color = "#D14124")}
                         onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(242,240,237,0.25)")}
                     >
                         ABG
@@ -216,13 +216,13 @@ function HeroSection() {
                         transition={{ duration: 0.6, delay: 0.1, ease }}
                         style={{
                             display: "inline-block",
-                            background: "rgba(204,0,0,0.1)",
-                            border: "1px solid rgba(204,0,0,0.2)",
+                            background: "rgba(209,65,36,0.1)",
+                            border: "1px solid rgba(209,65,36,0.2)",
                             borderRadius: "100px",
                             padding: "0.25rem 0.75rem",
                             fontFamily: "var(--font-mono)",
                             fontSize: "0.55rem",
-                            color: "#CC0000",
+                            color: "#D14124",
                             textTransform: "uppercase" as const,
                             letterSpacing: "0.1em",
                             marginBottom: "1.5rem",
@@ -265,7 +265,7 @@ function HeroSection() {
                         style={{
                             width: "60px",
                             height: "2px",
-                            background: "#CC0000",
+                            background: "#D14124",
                             margin: "2rem 0",
                             transformOrigin: "left",
                         }}
@@ -320,7 +320,7 @@ function HeroSection() {
                                 fontFamily: "var(--font-display)",
                                 fontWeight: 800,
                                 fontSize: "2rem",
-                                color: "#CC0000",
+                                color: "#D14124",
                                 textDecoration: "none",
                                 display: "inline-block",
                                 lineHeight: 1.2,
@@ -364,7 +364,7 @@ function HeroSection() {
                                     width: "6px",
                                     height: "6px",
                                     borderRadius: "50%",
-                                    background: "#CC0000",
+                                    background: "#D14124",
                                     flexShrink: 0,
                                 }}
                             />
@@ -386,7 +386,7 @@ function HeroSection() {
                         className="hero-cta-btn"
                         style={{
                             display: "block",
-                            background: "#CC0000",
+                            background: "#D14124",
                             color: "#080808",
                             fontFamily: "var(--font-display)",
                             fontWeight: 700,
@@ -425,7 +425,7 @@ function HeroSection() {
             >
                 <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" as const }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                        <span className="dot-pulse" style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#CC0000", display: "inline-block", flexShrink: 0 }} />
+                        <span className="dot-pulse" style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#D14124", display: "inline-block", flexShrink: 0 }} />
                         <span
                             style={{
                                 fontFamily: "var(--font-display)",
@@ -574,9 +574,9 @@ function QueEsSection() {
                         transition={{ duration: 0.7, delay: 0.2, ease }}
                         style={{
                             padding: "2rem",
-                            border: "1.5px solid #CC0000",
+                            border: "1.5px solid #D14124",
                             borderRadius: "16px",
-                            background: "rgba(204,0,0,0.02)",
+                            background: "rgba(209,65,36,0.02)",
                         }}
                     >
                         <p
@@ -584,7 +584,7 @@ function QueEsSection() {
                                 fontFamily: "var(--font-display)",
                                 fontWeight: 700,
                                 fontSize: "1rem",
-                                color: "#CC0000",
+                                color: "#D14124",
                                 marginBottom: "1.5rem",
                             }}
                         >
@@ -693,7 +693,7 @@ function TresPiezasSection() {
                                     fontFamily: "var(--font-display)",
                                     fontWeight: 800,
                                     fontSize: "3rem",
-                                    color: "#CC0000",
+                                    color: "#D14124",
                                     opacity: 0.3,
                                     lineHeight: 1,
                                     marginBottom: "1.5rem",
@@ -763,7 +763,7 @@ function TresPiezasSection() {
                                             width: "4px",
                                             height: "4px",
                                             borderRadius: "50%",
-                                            background: "#CC0000",
+                                            background: "#D14124",
                                             flexShrink: 0,
                                         }}
                                     />
@@ -840,7 +840,7 @@ function ComoFuncionaSection() {
                                 fontFamily: "var(--font-display)",
                                 fontWeight: 800,
                                 fontSize: "clamp(3rem,5vw,4.5rem)",
-                                color: "#CC0000",
+                                color: "#D14124",
                                 lineHeight: 1,
                                 flexShrink: 0,
                             }}
@@ -935,7 +935,7 @@ function EquipoSection() {
                     <div style={{
                         fontFamily: "var(--font-mono)",
                         fontSize: "0.6rem",
-                        color: "#CC0000",
+                        color: "#D14124",
                         textTransform: "uppercase",
                         letterSpacing: "0.15em",
                         marginBottom: "1rem"
@@ -1024,7 +1024,7 @@ function EquipoSection() {
                             <span style={{
                                 fontFamily: "var(--font-mono)",
                                 fontSize: "0.55rem",
-                                color: "#CC0000",
+                                color: "#D14124",
                                 textTransform: "uppercase",
                                 letterSpacing: "0.1em",
                                 display: "block",
@@ -1126,7 +1126,7 @@ function EquipoSection() {
                             <span style={{
                                 fontFamily: "var(--font-mono)",
                                 fontSize: "0.55rem",
-                                color: "#CC0000",
+                                color: "#D14124",
                                 textTransform: "uppercase",
                                 letterSpacing: "0.1em",
                                 display: "block",
@@ -1245,11 +1245,11 @@ function FaqSection() {
                                     fontFamily: "var(--font-display)",
                                     fontWeight: 600,
                                     fontSize: "1rem",
-                                    color: openIndex === i ? "#CC0000" : "#F2F0ED",
+                                    color: openIndex === i ? "#D14124" : "#F2F0ED",
                                     transition: "color 0.2s",
                                 }}
                                 onMouseEnter={(e) => {
-                                    if (openIndex !== i) (e.currentTarget as HTMLButtonElement).style.color = "#CC0000";
+                                    if (openIndex !== i) (e.currentTarget as HTMLButtonElement).style.color = "#D14124";
                                 }}
                                 onMouseLeave={(e) => {
                                     if (openIndex !== i) (e.currentTarget as HTMLButtonElement).style.color = "#F2F0ED";
@@ -1261,7 +1261,7 @@ function FaqSection() {
                                         fontFamily: "var(--font-display)",
                                         fontWeight: 300,
                                         fontSize: "1.5rem",
-                                        color: "#CC0000",
+                                        color: "#D14124",
                                         flexShrink: 0,
                                         marginLeft: "1rem",
                                     }}
@@ -1421,7 +1421,7 @@ export default function SistemaPage() {
                 __html: `
                 /* Hero CTA button */
                 .hero-cta-btn:hover {
-                    background: rgba(204,0,0,0.85) !important;
+                    background: rgba(209,65,36,0.85) !important;
                 }
 
                 /* Pieza cards hover */
@@ -1431,7 +1431,7 @@ export default function SistemaPage() {
 
                 /* CTA buttons hover */
                 .cta-primary:hover {
-                    background: #CC0000 !important;
+                    background: #D14124 !important;
                     color: #080808 !important;
                 }
                 .cta-secondary:hover {
@@ -1441,8 +1441,8 @@ export default function SistemaPage() {
 
                 /* Dot pulse animation */
                 @keyframes sistema-pulse {
-                    0%, 100% { box-shadow: 0 0 0 0 rgba(204,0,0,0.4); }
-                    50% { box-shadow: 0 0 0 6px rgba(204,0,0,0); }
+                    0%, 100% { box-shadow: 0 0 0 0 rgba(209,65,36,0.4); }
+                    50% { box-shadow: 0 0 0 6px rgba(209,65,36,0); }
                 }
                 .dot-pulse {
                     animation: sistema-pulse 2s ease-in-out infinite;

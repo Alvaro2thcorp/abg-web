@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import PillNav from "./reactbits/PillNav";
@@ -24,7 +24,7 @@ export default function Navbar() {
     <button
       onClick={() => setModalOpen(true)}
       style={{
-        background: "#CC0000",
+        background: "#D14124",
         color: "#F2F0ED",
         fontFamily: "'Inter', sans-serif",
         fontWeight: 500,
@@ -39,8 +39,8 @@ export default function Navbar() {
         transition: "background 0.2s, transform 0.2s",
         whiteSpace: "nowrap",
       }}
-      onMouseEnter={(e) => { e.currentTarget.style.background = "#aa0000"; }}
-      onMouseLeave={(e) => { e.currentTarget.style.background = "#CC0000"; }}
+      onMouseEnter={(e) => { e.currentTarget.style.background = "#A8331C"; }}
+      onMouseLeave={(e) => { e.currentTarget.style.background = "#D14124"; }}
     >
       Presupuesto →
     </button>

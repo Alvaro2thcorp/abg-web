@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -36,7 +36,7 @@ export default function ServicioWeb() {
                         style={{
                             fontFamily: "var(--font-mono)",
                             fontSize: "0.6rem",
-                            color: "#CC0000",
+                            color: "#D14124",
                             textTransform: "uppercase",
                             letterSpacing: "0.15em",
                             display: "block",
@@ -100,7 +100,7 @@ export default function ServicioWeb() {
                                         borderBottom: i === items.length - 1 ? "none" : "1px solid rgba(242, 240, 237, 0.06)",
                                     }}
                                 >
-                                    <div style={{ width: "5px", height: "5px", background: "#CC0000", borderRadius: "50%" }} />
+                                    <div style={{ width: "5px", height: "5px", background: "#D14124", borderRadius: "50%" }} />
                                     <span style={{ fontFamily: "var(--font-body)", fontWeight: 300, fontSize: "0.9rem", color: "rgba(242, 240, 237, 0.55)" }}>
                                         {item}
                                     </span>
@@ -169,8 +169,8 @@ export default function ServicioWeb() {
                         {/* Contenido Mockup */}
                         <div style={{ padding: "1.5rem" }}>
                             <div style={{
-                                background: "rgba(204, 0, 0, 0.08)",
-                                border: "1px solid rgba(204, 0, 0, 0.1)",
+                                background: "rgba(209, 65, 36, 0.08)",
+                                border: "1px solid rgba(209, 65, 36, 0.1)",
                                 borderRadius: "12px",
                                 padding: "1.5rem"
                             }}>
@@ -179,7 +179,7 @@ export default function ServicioWeb() {
                                 <div style={{
                                     display: "inline-block",
                                     padding: "0.4rem 1.2rem",
-                                    background: "#CC0000",
+                                    background: "#D14124",
                                     color: "#080808",
                                     fontFamily: "var(--font-display)",
                                     fontWeight: 700,
@@ -198,7 +198,7 @@ export default function ServicioWeb() {
                                     { val: "100", label: "ACCESIBILIDAD" }
                                 ].map((m, i) => (
                                     <div key={i} style={{ background: "rgba(242, 240, 237, 0.03)", border: "1px solid rgba(242, 240, 237, 0.06)", borderRadius: "8px", padding: "1rem 0.5rem", textAlign: "center" }}>
-                                        <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.4rem", color: "#CC0000" }}>{m.val}</div>
+                                        <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.4rem", color: "#D14124" }}>{m.val}</div>
                                         <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.45rem", color: "rgba(242, 240, 237, 0.3)", marginTop: "0.2rem" }}>{m.label}</div>
                                     </div>
                                 ))}
@@ -213,7 +213,7 @@ export default function ServicioWeb() {
 
             <style dangerouslySetInnerHTML={{
                 __html: `
-                .service-sistema-link-dark:hover { color: #CC0000 !important; }
+                .service-sistema-link-dark:hover { color: #D14124 !important; }
                 
                 @media (max-width: 1024px) {
                     .web-service-grid { grid-template-columns: 1fr !important; gap: 4rem !important; }

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 
@@ -119,13 +119,13 @@ export default function BlogCard({
                     zIndex: 3
                 }}>
                     <span style={{
-                        background: image ? "rgba(204, 0, 0, 0.9)" : "rgba(204, 0, 0, 0.15)",
-                        border: image ? "none" : "1px solid rgba(204, 0, 0, 0.3)",
+                        background: image ? "rgba(209, 65, 36, 0.9)" : "rgba(209, 65, 36, 0.15)",
+                        border: image ? "none" : "1px solid rgba(209, 65, 36, 0.3)",
                         borderRadius: "100px",
                         padding: "0.2rem 0.65rem",
                         fontFamily: "var(--font-mono)",
                         fontSize: "0.5rem",
-                        color: image ? "#F2F0ED" : "#CC0000",
+                        color: image ? "#F2F0ED" : "#D14124",
                         textTransform: "uppercase",
                         letterSpacing: "0.08em"
                     }}>

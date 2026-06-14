@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
@@ -86,7 +86,7 @@ export default function ServiciosBento() {
                             fontFamily: "'Inter', sans-serif",
                             fontSize: "0.65rem",
                             fontWeight: 500,
-                            color: "#CC0000",
+                            color: "#D14124",
                             textTransform: "uppercase",
                             letterSpacing: "0.25em",
                             marginBottom: "1.5rem",
@@ -152,7 +152,7 @@ export default function ServiciosBento() {
                         padding: "1.5rem 2rem",
                         background: "rgba(8,8,8,0.03)",
                         borderRadius: "4px",
-                        borderLeft: "2px solid #CC0000",
+                        borderLeft: "2px solid #D14124",
                     }}
                 >
                     <p style={{
@@ -205,7 +205,7 @@ function ServicioCard({ servicio, index, isInView }: { servicio: typeof SERVICIO
                     left: hovered ? "-30%" : "-60%",
                     width: "180%",
                     height: "180%",
-                    background: `radial-gradient(circle at top left, rgba(204,0,0,${hovered ? 0.18 : 0.06}) 0%, transparent 50%)`,
+                    background: `radial-gradient(circle at top left, rgba(209,65,36,${hovered ? 0.18 : 0.06}) 0%, transparent 50%)`,
                     transition: "all 0.6s ease",
                     pointerEvents: "none",
                     zIndex: 0,
@@ -223,7 +223,7 @@ function ServicioCard({ servicio, index, isInView }: { servicio: typeof SERVICIO
                         fontFamily: "'Inter', sans-serif",
                         fontSize: "0.62rem",
                         fontWeight: 500,
-                        color: "#CC0000",
+                        color: "#D14124",
                         textTransform: "uppercase",
                         letterSpacing: "0.25em",
                     }}>
@@ -288,7 +288,7 @@ function ServicioCard({ servicio, index, isInView }: { servicio: typeof SERVICIO
                             alignItems: "flex-start",
                         }}>
                             <span style={{
-                                color: "#CC0000",
+                                color: "#D14124",
                                 flexShrink: 0,
                                 fontSize: "0.7rem",
                                 marginTop: "0.4rem",

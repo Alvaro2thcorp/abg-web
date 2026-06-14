@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -26,7 +26,7 @@ export default function ProblemaHome() {
                         fontFamily: "'Inter', sans-serif",
                         fontSize: "0.7rem",
                         fontWeight: 500,
-                        color: "#CC0000",
+                        color: "#D14124",
                         textTransform: "uppercase",
                         letterSpacing: "0.25em",
                         marginBottom: "3rem",
@@ -53,7 +53,7 @@ export default function ProblemaHome() {
                 >
                     Tu web no es un escaparate.
                     <br />
-                    <span style={{ fontStyle: "italic", color: "#CC0000" }}>
+                    <span style={{ fontStyle: "italic", color: "#D14124" }}>
                         Es tu mejor comercial.
                     </span>
                 </motion.h2>
@@ -99,14 +99,14 @@ export default function ProblemaHome() {
                         left: 0,
                         right: 0,
                         height: "4px",
-                        background: "linear-gradient(90deg, transparent 0%, #CC0000 50%, transparent 100%)",
+                        background: "linear-gradient(90deg, transparent 0%, #D14124 50%, transparent 100%)",
                     }} />
 
                     <div style={{
                         fontFamily: "'Inter', sans-serif",
                         fontSize: "0.6rem",
                         fontWeight: 500,
-                        color: "#CC0000",
+                        color: "#D14124",
                         textTransform: "uppercase",
                         letterSpacing: "0.3em",
                         marginBottom: "2rem",
@@ -135,7 +135,7 @@ export default function ProblemaHome() {
                         fontStyle: "italic",
                         fontWeight: 400,
                         fontSize: "clamp(2rem, 4vw, 3rem)",
-                        color: "#CC0000",
+                        color: "#D14124",
                         lineHeight: 1,
                         letterSpacing: "-0.03em",
                         marginBottom: "2.5rem",
@@ -195,7 +195,7 @@ export default function ProblemaHome() {
                                 textTransform: "uppercase",
                                 transition: "background 0.2s, color 0.2s",
                             }}
-                            onMouseEnter={(e) => { e.currentTarget.style.background = "#CC0000"; e.currentTarget.style.color = "#F2F0ED"; }}
+                            onMouseEnter={(e) => { e.currentTarget.style.background = "#D14124"; e.currentTarget.style.color = "#F2F0ED"; }}
                             onMouseLeave={(e) => { e.currentTarget.style.background = "#F2F0ED"; e.currentTarget.style.color = "#080808"; }}
                         >
                             Solicitar presupuesto →

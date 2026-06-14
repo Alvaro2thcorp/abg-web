@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -48,7 +48,7 @@ export default function ServicioAds() {
                         style={{
                             fontFamily: "var(--font-mono)",
                             fontSize: "0.6rem",
-                            color: "#CC0000",
+                            color: "#D14124",
                             textTransform: "uppercase",
                             letterSpacing: "0.15em",
                             display: "block",
@@ -109,7 +109,7 @@ export default function ServicioAds() {
                                         borderBottom: i === items.length - 1 ? "none" : "1px solid rgba(242, 240, 237, 0.06)",
                                     }}
                                 >
-                                    <div style={{ width: "5px", height: "5px", background: "#CC0000", borderRadius: "50%" }} />
+                                    <div style={{ width: "5px", height: "5px", background: "#D14124", borderRadius: "50%" }} />
                                     <span style={{ fontFamily: "var(--font-body)", fontWeight: 300, fontSize: "0.9rem", color: "rgba(242, 240, 237, 0.55)" }}>
                                         {item}
                                     </span>
@@ -199,7 +199,7 @@ export default function ServicioAds() {
                                                 transition={{ duration: 1, delay: 0.6 + (i * 0.1), ease }}
                                                 style={{
                                                     width: "100%",
-                                                    background: bar.current ? "#CC0000" : "rgba(204, 0, 0, 0.3)",
+                                                    background: bar.current ? "#D14124" : "rgba(209, 65, 36, 0.3)",
                                                     borderRadius: "3px 3px 0 0"
                                                 }}
                                             />
@@ -223,7 +223,7 @@ export default function ServicioAds() {
                     50% { opacity: 0.5; transform: scale(0.8); }
                 }
                 .pulse-dot-green { animation: pulse-green 2s infinite; }
-                .service-sistema-link-dark:hover { color: #CC0000 !important; }
+                .service-sistema-link-dark:hover { color: #D14124 !important; }
                 
                 @media (max-width: 1024px) {
                     .ads-service-grid { grid-template-columns: 1fr !important; gap: 4rem !important; }

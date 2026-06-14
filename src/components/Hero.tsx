@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import PlasmaWave from "./PlasmaWave";
@@ -26,7 +26,7 @@ export default function Hero() {
                 opacity: 0.18,
             }}>
                 <PlasmaWave
-                    colors={["#CC0000", "#4A4A4A"]}
+                    colors={["#D14124", "#4A4A4A"]}
                     speed1={0.04}
                     speed2={0.03}
                     focalLength={0.8}
@@ -90,7 +90,7 @@ export default function Hero() {
                                 fontStyle: "italic",
                                 fontWeight: 400,
                                 fontSize: "clamp(2.6rem, 8vw, 9rem)",
-                                color: "#CC0000",
+                                color: "#D14124",
                                 lineHeight: 0.9,
                                 letterSpacing: "-0.03em",
                             }}

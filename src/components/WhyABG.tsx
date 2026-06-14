@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -52,7 +52,7 @@ const EditorialStatement = ({
                     top: 0,
                     width: "2px",
                     height: isHovered ? "100%" : "0%",
-                    background: "#CC0000",
+                    background: "#D14124",
                     transition: "height 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
                     zIndex: 10
                 }}
@@ -98,7 +98,7 @@ const EditorialStatement = ({
                         <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", color: "rgba(242,240,237,0.2)" }}>
                             {num} ——
                         </span>
-                        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", color: "rgba(204,0,0,0.8)", textTransform: "uppercase", letterSpacing: "0.15em" }}>
+                        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", color: "rgba(209,65,36,0.8)", textTransform: "uppercase", letterSpacing: "0.15em" }}>
                             {tag}
                         </span>
                     </div>
@@ -145,7 +145,7 @@ const EditorialStatement = ({
                         marginTop: "3rem",
                         width: "120px",
                         height: "1px",
-                        background: "linear-gradient(to right, rgba(204,0,0,0.25), transparent)"
+                        background: "linear-gradient(to right, rgba(209,65,36,0.25), transparent)"
                     }} />
                 </div>
 
@@ -172,8 +172,8 @@ const EditorialStatement = ({
                     }
                 }
                 .pill-editorial:hover {
-                    border-color: rgba(204,0,0,0.3);
-                    color: rgba(204,0,0,0.6);
+                    border-color: rgba(209,65,36,0.3);
+                    color: rgba(209,65,36,0.6);
                     transform: translateY(-2px);
                 }
                 @media (max-width: 767px) {
@@ -227,7 +227,7 @@ export default function WhyABG() {
                     borderBottom: "1px solid rgba(242,240,237,0.06)",
                     background: "#080808"
                 }}>
-                    <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", color: "#CC0000", letterSpacing: "0.25em", textTransform: "uppercase" }}>
+                    <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", color: "#D14124", letterSpacing: "0.25em", textTransform: "uppercase" }}>
                         MANIFIESTO
                     </div>
 

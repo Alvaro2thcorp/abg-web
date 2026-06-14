@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -115,7 +115,7 @@ export default function Contacto() {
                             marginBottom: "4rem"
                         }}
                     >
-                        <a href="/" style={{ textDecoration: "none", color: "inherit", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "#CC0000"} onMouseLeave={(e) => e.currentTarget.style.color = "inherit"}>
+                        <a href="/" style={{ textDecoration: "none", color: "inherit", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "#D14124"} onMouseLeave={(e) => e.currentTarget.style.color = "inherit"}>
                             ABG
                         </a>
                         {" / "}
@@ -260,7 +260,7 @@ export default function Contacto() {
                     <div style={{
                         fontFamily: "var(--font-mono)",
                         fontSize: "0.6rem",
-                        color: "#CC0000",
+                        color: "#D14124",
                         textTransform: "uppercase",
                         letterSpacing: "0.15em",
                         marginBottom: "0.8rem"
@@ -361,7 +361,7 @@ export default function Contacto() {
                         marginTop: "0.5rem",
                         fontFamily: "var(--font-mono)",
                         fontSize: "0.6rem",
-                        color: "#CC0000",
+                        color: "#D14124",
                         textTransform: "uppercase"
                     }}>
                         {error}
@@ -441,10 +441,10 @@ export default function Contacto() {
                     padding: 4rem clamp(1.5rem, 4vw, 4rem);
                 }
                 .contacto-item:hover .contacto-item-valor {
-                    color: #CC0000 !important;
+                    color: #D14124 !important;
                 }
                 .contacto-item:hover .contacto-item-arrow {
-                    color: #CC0000 !important;
+                    color: #D14124 !important;
                     transform: translate(2px, -2px);
                 }
                 .contact-input {
@@ -465,7 +465,7 @@ export default function Contacto() {
                     color: rgba(8, 8, 8, 0.2);
                 }
                 .contact-input:focus {
-                    border-color: #CC0000;
+                    border-color: #D14124;
                 }
                 .contact-select {
                     appearance: none;
@@ -474,7 +474,7 @@ export default function Contacto() {
                     cursor: pointer;
                 }
                 .contact-btn:hover:not(:disabled) {
-                    background: #CC0000 !important;
+                    background: #D14124 !important;
                     color: #080808 !important;
                 }
                 @keyframes spin {
@@ -508,7 +508,7 @@ export default function Contacto() {
                         font-size: 1rem !important;
                     }
                     .contact-input:focus {
-                        border-color: #CC0000 !important;
+                        border-color: #D14124 !important;
                         background: #FFFFFF !important;
                     }
                 }

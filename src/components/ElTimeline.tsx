@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
@@ -55,7 +55,7 @@ export default function ElTimeline() {
                     height: "60vw",
                     maxWidth: "900px",
                     maxHeight: "900px",
-                    background: "radial-gradient(circle, rgba(204,0,0,0.06) 0%, transparent 60%)",
+                    background: "radial-gradient(circle, rgba(209,65,36,0.06) 0%, transparent 60%)",
                     pointerEvents: "none",
                     opacity: glowOpacity,
                     zIndex: 0,
@@ -79,7 +79,7 @@ export default function ElTimeline() {
                             fontFamily: "'Inter', sans-serif",
                             fontSize: "0.7rem",
                             fontWeight: 500,
-                            color: "#CC0000",
+                            color: "#D14124",
                             textTransform: "uppercase",
                             letterSpacing: "0.25em",
                             marginBottom: "1.5rem",
@@ -125,7 +125,7 @@ export default function ElTimeline() {
                             bottom: 0,
                             left: "50%",
                             width: "1px",
-                            background: "linear-gradient(to bottom, transparent 0%, #CC0000 50%, transparent 100%)",
+                            background: "linear-gradient(to bottom, transparent 0%, #D14124 50%, transparent 100%)",
                             opacity: dividerOpacity,
                             y: dividerY,
                             pointerEvents: "none",
@@ -165,7 +165,7 @@ export default function ElTimeline() {
                                         lineHeight: 1.3,
                                         letterSpacing: "-0.02em",
                                         textDecoration: "line-through",
-                                        textDecorationColor: "rgba(204,0,0,0.5)",
+                                        textDecorationColor: "rgba(209,65,36,0.5)",
                                         textDecorationThickness: "1.5px",
                                     }}
                                 >
@@ -193,7 +193,7 @@ export default function ElTimeline() {
                                 left: 0,
                                 width: "60%",
                                 height: "100%",
-                                background: "linear-gradient(90deg, transparent 0%, rgba(204,0,0,0.06) 50%, transparent 100%)",
+                                background: "linear-gradient(90deg, transparent 0%, rgba(209,65,36,0.06) 50%, transparent 100%)",
                                 pointerEvents: "none",
                             }}
                         />
@@ -202,7 +202,7 @@ export default function ElTimeline() {
                             fontFamily: "'Inter', sans-serif",
                             fontSize: "0.7rem",
                             fontWeight: 500,
-                            color: "#CC0000",
+                            color: "#D14124",
                             textTransform: "uppercase",
                             letterSpacing: "0.2em",
                             marginBottom: "2rem",
@@ -239,7 +239,7 @@ export default function ElTimeline() {
                                             width: "6px",
                                             height: "6px",
                                             borderRadius: "50%",
-                                            background: "#CC0000",
+                                            background: "#D14124",
                                             flexShrink: 0,
                                         }}
                                     />

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
@@ -95,7 +95,7 @@ export default function Resenas() {
                             fontFamily: "'Inter', sans-serif",
                             fontSize: "0.65rem",
                             fontWeight: 500,
-                            color: "#CC0000",
+                            color: "#D14124",
                             letterSpacing: "0.25em",
                             textTransform: "uppercase",
                         }}
@@ -117,7 +117,7 @@ export default function Resenas() {
                         }}
                     >
                         Lo que dicen{" "}
-                        <span style={{ fontStyle: "italic", color: "#CC0000" }}>de nosotros.</span>
+                        <span style={{ fontStyle: "italic", color: "#D14124" }}>de nosotros.</span>
                     </motion.h2>
 
                     <motion.div
@@ -164,7 +164,7 @@ export default function Resenas() {
                                     fontFamily: "'Inter', sans-serif",
                                     fontSize: "0.65rem",
                                     fontWeight: 500,
-                                    color: "#CC0000",
+                                    color: "#D14124",
                                     letterSpacing: "0.2em",
                                     textTransform: "uppercase",
                                     marginBottom: "2rem",
@@ -260,8 +260,8 @@ export default function Resenas() {
                                 fontSize: "1rem",
                             }}
                             onMouseEnter={(e) => {
-                                e.currentTarget.style.borderColor = "#CC0000";
-                                e.currentTarget.style.color = "#CC0000";
+                                e.currentTarget.style.borderColor = "#D14124";
+                                e.currentTarget.style.color = "#D14124";
                             }}
                             onMouseLeave={(e) => {
                                 e.currentTarget.style.borderColor = "rgba(242,240,237,0.12)";
@@ -290,8 +290,8 @@ export default function Resenas() {
                                 fontSize: "1rem",
                             }}
                             onMouseEnter={(e) => {
-                                e.currentTarget.style.borderColor = "#CC0000";
-                                e.currentTarget.style.color = "#CC0000";
+                                e.currentTarget.style.borderColor = "#D14124";
+                                e.currentTarget.style.color = "#D14124";
                             }}
                             onMouseLeave={(e) => {
                                 e.currentTarget.style.borderColor = "rgba(242,240,237,0.12)";
@@ -320,7 +320,7 @@ export default function Resenas() {
                                 width: i === current ? "24px" : "6px",
                                 height: "6px",
                                 borderRadius: "3px",
-                                background: i === current ? "#CC0000" : "rgba(242,240,237,0.15)",
+                                background: i === current ? "#D14124" : "rgba(242,240,237,0.15)",
                                 border: "none",
                                 cursor: "pointer",
                                 padding: 0,

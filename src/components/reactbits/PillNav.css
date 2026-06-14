@@ -1,4 +1,4 @@
-.pill-nav-container {
+﻿.pill-nav-container {
   position: fixed;
   top: 1.25em;
   left: 50%;
@@ -120,7 +120,7 @@
   transform: translateX(-50%);
   width: 4px;
   height: 4px;
-  background: #CC0000;
+  background: #D14124;
   border-radius: 50px;
   z-index: 4;
 }
@@ -219,12 +219,12 @@
 
 .mobile-menu-popover .mobile-menu-link:hover,
 .mobile-menu-popover .mobile-menu-link:active {
-  color: #CC0000;
+  color: #D14124;
   transform: translateX(8px);
 }
 
 .mobile-menu-popover .mobile-menu-link.is-active {
-  color: #CC0000;
+  color: #D14124;
   font-style: italic;
 }
 

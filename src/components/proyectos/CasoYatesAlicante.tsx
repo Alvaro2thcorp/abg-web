@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
@@ -93,7 +93,7 @@ export default function CasoYatesAlicante() {
           {/* Breadcrumb */}
           <nav style={{ marginBottom: '3rem' }}>
             <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(242, 240, 237, 0.25)' }}>
-              <a href="/" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#CC0000'} onMouseLeave={(e) => e.currentTarget.style.color = 'inherit'}>ABG</a> /
+              <a href="/" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#D14124'} onMouseLeave={(e) => e.currentTarget.style.color = 'inherit'}>ABG</a> /
               <span style={{ marginLeft: '0.25rem' }}>YATES ALICANTE</span>
             </p>
           </nav>
@@ -101,7 +101,7 @@ export default function CasoYatesAlicante() {
           <div className="hero-flex" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '3rem' }}>
             {/* IZQUIERDA */}
             <motion.div variants={fadeInUp} style={{ maxWidth: '800px' }}>
-              <span style={{ display: 'inline-block', background: 'rgba(204, 0, 0, 0.1)', border: '1px solid rgba(204, 0, 0, 0.2)', borderRadius: '100px', padding: '0.25rem 0.75rem', marginBottom: '1.5rem', fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#CC0000', textTransform: 'uppercase' }}>
+              <span style={{ display: 'inline-block', background: 'rgba(209, 65, 36, 0.1)', border: '1px solid rgba(209, 65, 36, 0.2)', borderRadius: '100px', padding: '0.25rem 0.75rem', marginBottom: '1.5rem', fontFamily: 'var(--font-mono)', fontSize: '0.55rem', color: '#D14124', textTransform: 'uppercase' }}>
                 CASO DE ESTUDIO
               </span>
               <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(2.2rem, 4vw, 4.5rem)', lineHeight: 0.92, letterSpacing: '-0.04em', margin: 0 }}>
@@ -119,7 +119,7 @@ export default function CasoYatesAlicante() {
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: 'rgba(242, 240, 237, 0.25)', textTransform: 'uppercase', marginTop: '0.3rem', letterSpacing: '0.1em' }}>SERVICIOS</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <a href="https://yatesalicante.com" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '2rem', lineHeight: 1, color: '#CC0000', textDecoration: 'none', transition: 'opacity 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'} onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}>
+                <a href="https://yatesalicante.com" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '2rem', lineHeight: 1, color: '#D14124', textDecoration: 'none', transition: 'opacity 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'} onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}>
                   yatesalicante.com ↗
                 </a>
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: 'rgba(242, 240, 237, 0.25)', textTransform: 'uppercase', marginTop: '0.3rem', letterSpacing: '0.1em' }}>WEB EN VIVO</span>
@@ -146,7 +146,7 @@ export default function CasoYatesAlicante() {
         <div className="reto-grid" style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '5rem', alignItems: 'start' }}>
           {/* IZQUIERDA */}
           <motion.div variants={fadeInUp}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#CC0000', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1rem', display: 'block' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#D14124', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1rem', display: 'block' }}>
               EL RETO
             </span>
             <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', color: '#080808', lineHeight: 1.1, letterSpacing: '-0.02em', margin: 0 }}>
@@ -196,7 +196,7 @@ export default function CasoYatesAlicante() {
       >
         <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#CC0000', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1rem', display: 'block' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#D14124', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1rem', display: 'block' }}>
               LA SOLUCIÓN
             </span>
             <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: '#F2F0ED', lineHeight: 1.05, letterSpacing: '-0.03em', margin: 0 }}>
@@ -234,7 +234,7 @@ export default function CasoYatesAlicante() {
                 onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(242, 240, 237, 0.04)'}
                 onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(242, 240, 237, 0.02)'}
               >
-                <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '3rem', color: 'rgba(204, 0, 0, 0.2)', lineHeight: 1, display: 'block', marginBottom: '1.5rem' }}>
+                <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '3rem', color: 'rgba(209, 65, 36, 0.2)', lineHeight: 1, display: 'block', marginBottom: '1.5rem' }}>
                   {item.num}
                 </span>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.1rem', color: '#F2F0ED', marginBottom: '0.75rem', marginTop: 0 }}>
@@ -256,7 +256,7 @@ export default function CasoYatesAlicante() {
       >
         <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
           <div style={{ marginBottom: '3rem' }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#CC0000', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1rem', display: 'block' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#D14124', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1rem', display: 'block' }}>
               EL RESULTADO VISUAL
             </span>
             <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: '#080808', lineHeight: 1.05, letterSpacing: '-0.03em', margin: 0 }}>
@@ -290,7 +290,7 @@ export default function CasoYatesAlicante() {
                   alt="Yates Alicante — diseño responsive móvil" 
                   style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
                 />
-                <span style={{ position: 'absolute', top: '1rem', left: '1rem', fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#CC0000', background: 'rgba(8, 8, 8, 0.7)', borderRadius: '100px', padding: '0.25rem 0.65rem', textTransform: 'uppercase' }}>
+                <span style={{ position: 'absolute', top: '1rem', left: '1rem', fontFamily: 'var(--font-mono)', fontSize: '0.5rem', color: '#D14124', background: 'rgba(8, 8, 8, 0.7)', borderRadius: '100px', padding: '0.25rem 0.65rem', textTransform: 'uppercase' }}>
                   RESPONSIVE
                 </span>
               </motion.div>
@@ -298,7 +298,7 @@ export default function CasoYatesAlicante() {
           </div>
 
           <div style={{ marginTop: '1.5rem', textAlign: 'center' }}>
-            <a href="https://yatesalicante.com" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '0.95rem', color: '#CC0000', textDecoration: 'none', transition: 'opacity 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'} onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}>
+            <a href="https://yatesalicante.com" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '0.95rem', color: '#D14124', textDecoration: 'none', transition: 'opacity 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'} onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}>
               Ver web en vivo → yatesalicante.com
             </a>
           </div>
@@ -312,7 +312,7 @@ export default function CasoYatesAlicante() {
       >
         <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#CC0000', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1rem', display: 'block' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#D14124', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1rem', display: 'block' }}>
               RESULTADOS
             </span>
             <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: '#F2F0ED', lineHeight: 1.05, letterSpacing: '-0.03em', margin: 0 }}>
@@ -333,7 +333,7 @@ export default function CasoYatesAlicante() {
                     {metric.val}
                   </span>
                   {metric.suffix && (
-                    <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '1.4rem', color: '#CC0000' }}>
+                    <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '1.4rem', color: '#D14124' }}>
                       {metric.suffix}
                     </span>
                   )}
@@ -357,7 +357,7 @@ export default function CasoYatesAlicante() {
         style={{ padding: '4rem clamp(1.5rem, 5vw, 5rem)', background: '#F2F0ED', textAlign: 'center' }}
       >
         <div style={{ maxWidth: '680px', margin: '0 auto' }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#CC0000', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1.5rem', display: 'block' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: '#D14124', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1.5rem', display: 'block' }}>
             ¿TIENES UN NEGOCIO SIMILAR?
           </span>
           <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(2.2rem, 4vw, 3rem)', color: '#080808', lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: '1.5rem', marginTop: 0 }}>
@@ -372,7 +372,7 @@ export default function CasoYatesAlicante() {
               href="/contacto" 
               className="btn-primary"
               style={{ padding: '1.1rem 2.5rem', background: '#080808', color: '#F2F0ED', fontFamily: 'var(--font-display)', fontWeight: 700, borderRadius: '100px', textDecoration: 'none', transition: 'background 0.3s' }}
-              onMouseEnter={(e) => e.currentTarget.style.background = '#CC0000'}
+              onMouseEnter={(e) => e.currentTarget.style.background = '#D14124'}
               onMouseLeave={(e) => e.currentTarget.style.background = '#080808'}
             >
               Solicitar análisis gratuito →
