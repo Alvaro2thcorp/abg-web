@@ -8,14 +8,14 @@ export default function Hero() {
 
     return (
         <section style={{
-            minHeight: "100vh",
+            minHeight: "auto",
             position: "relative",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "flex-end",
+            justifyContent: "flex-start",
             overflow: "hidden",
             background: "#F2F0ED",
-            padding: "clamp(5rem, 12vh, 12rem) clamp(1.25rem, 5vw, 5rem) clamp(2.5rem, 6vw, 5rem)",
+            padding: "clamp(5.5rem, 11vh, 8rem) clamp(1.25rem, 5vw, 5rem) clamp(2rem, 5vw, 4rem)",
         }}>
             {/* PlasmaWave background */}
             <div style={{
@@ -155,9 +155,18 @@ export default function Hero() {
 
             <style dangerouslySetInnerHTML={{
                 __html: `
-                .hero-cta:hover { background: #CC0000 !important; }
+                .hero-cta:hover { background: #D14124 !important; }
                 @media (max-width: 767px) {
-                    .hero-cta { width: 100%; justify-content: center; min-height: 52px; }
+                    .hero-cta, .hero-cta-btn {
+                        width: 100%;
+                        justify-content: center;
+                        min-height: 52px;
+                    }
+                    .hero-title-main,
+                    .hero-title-outline {
+                        font-size: clamp(2.4rem, 9vw, 4rem) !important;
+                        line-height: 1 !important;
+                    }
                 }
             `}} />
         </section>
