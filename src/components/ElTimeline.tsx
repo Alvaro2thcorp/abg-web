@@ -118,6 +118,7 @@ export default function ElTimeline() {
                 }}>
                     {/* Divisor vertical animado */}
                     <motion.div
+                        className="ad-divider"
                         style={{
                             position: "absolute",
                             top: 0,
@@ -252,7 +253,12 @@ export default function ElTimeline() {
 
             <style dangerouslySetInnerHTML={{ __html: `
                 @media (max-width: 767px) {
-                    .ad-grid { grid-template-columns: 1fr !important; }
+                    .ad-grid {
+                        grid-template-columns: 1fr !important;
+                    }
+                    .ad-divider {
+                        display: none !important;
+                    }
                 }
             `}} />
         </section>
