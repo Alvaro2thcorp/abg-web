@@ -125,6 +125,43 @@ export default function Equipo() {
                         </p>
 
                         <div style={{
+                            marginTop: "2rem",
+                            display: "flex",
+                            gap: "1.5rem",
+                            alignItems: "center",
+                        }}>
+                            <span style={{
+                                fontFamily: "'Inter', sans-serif",
+                                fontSize: "0.65rem",
+                                fontWeight: 500,
+                                color: "rgba(242,240,237,0.35)",
+                                textTransform: "uppercase",
+                                letterSpacing: "0.2em",
+                            }}>
+                                Sígueme
+                            </span>
+                            <a
+                                href="https://instagram.com/alvarobergillos"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                    fontFamily: "'Inter', sans-serif",
+                                    fontSize: "0.85rem",
+                                    fontWeight: 500,
+                                    color: "#F2F0ED",
+                                    textDecoration: "none",
+                                    borderBottom: "1px solid rgba(242,240,237,0.2)",
+                                    paddingBottom: "2px",
+                                    transition: "color 0.2s, border-color 0.2s",
+                                }}
+                                onMouseEnter={(e) => { e.currentTarget.style.color = "#CC0000"; e.currentTarget.style.borderColor = "#CC0000"; }}
+                                onMouseLeave={(e) => { e.currentTarget.style.color = "#F2F0ED"; e.currentTarget.style.borderColor = "rgba(242,240,237,0.2)"; }}
+                            >
+                                @alvarobergillos
+                            </a>
+                        </div>
+
+                        <div style={{
                             marginTop: "3rem",
                             paddingTop: "2rem",
                             borderTop: "1px solid rgba(242,240,237,0.06)",

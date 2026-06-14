@@ -60,7 +60,7 @@ export default function Contacto() {
     };
 
     const contactItems = [
-        { label: "EMAIL", value: "hola@abgframe.com", href: "mailto:hola@abgframe.com" },
+        { label: "EMAIL", value: "contacto@abgframe.com", href: "mailto:contacto@abgframe.com" },
         { label: "WHATSAPP", value: "+34 601 05 89 97", href: "https://wa.me/34601058997" },
         { label: "UBICACIÓN", value: "San Juan de Alicante", href: "https://maps.app.goo.gl/vjX" }
     ];
