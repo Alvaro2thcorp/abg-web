@@ -65,7 +65,7 @@ export default function Resenas() {
             aria-label="Reseñas de clientes ABG Frame"
             style={{
                 background: "#080808",
-                padding: "clamp(5rem, 10vw, 8rem) 0",
+                padding: "clamp(3.5rem, 7vw, 6rem) 0",
                 borderTop: "1px solid rgba(242,240,237,0.06)",
             }}
         >
@@ -144,7 +144,7 @@ export default function Resenas() {
                         gridTemplateColumns: "1fr auto",
                         gap: "4rem",
                         alignItems: "center",
-                        minHeight: "280px",
+                        minHeight: "200px",
                     }}
                     className="resenas-carousel-grid"
                 >
@@ -177,13 +177,13 @@ export default function Resenas() {
                                     fontFamily: "'DM Serif Display', serif",
                                     fontWeight: 400,
                                     fontStyle: "italic",
-                                    fontSize: "clamp(1.3rem, 2.5vw, 2rem)",
+                                    fontSize: "clamp(1rem, 1.6vw, 1.35rem)",
                                     color: "rgba(242,240,237,0.85)",
-                                    lineHeight: 1.4,
+                                    lineHeight: 1.5,
                                     letterSpacing: "-0.02em",
                                     margin: 0,
-                                    marginBottom: "2.5rem",
-                                    maxWidth: "900px",
+                                    marginBottom: "1.75rem",
+                                    maxWidth: "720px",
                                 }}>
                                     "{review.text}"
                                 </p>
@@ -200,7 +200,7 @@ export default function Resenas() {
                                         <div style={{
                                             fontFamily: "'DM Serif Display', serif",
                                             fontWeight: 400,
-                                            fontSize: "1.1rem",
+                                            fontSize: "0.95rem",
                                             color: "#F2F0ED",
                                             letterSpacing: "-0.01em",
                                         }}>
@@ -307,8 +307,8 @@ export default function Resenas() {
                 <div style={{
                     display: "flex",
                     gap: "0.5rem",
-                    marginTop: "3rem",
-                    paddingTop: "2rem",
+                    marginTop: "2rem",
+                    paddingTop: "1.5rem",
                     borderTop: "1px solid rgba(242,240,237,0.06)",
                 }}>
                     {reviews.map((_, i) => (
