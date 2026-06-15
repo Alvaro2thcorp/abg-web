@@ -1,9 +1,12 @@
 ﻿"use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import FormularioPresupuestoModal from "./FormularioPresupuestoModal";
 
 export default function ProblemaHome() {
+    const [modalOpen, setModalOpen] = useState(false);
+
     return (
         <section style={{
             background: "#F2F0ED",
@@ -177,8 +180,8 @@ export default function ProblemaHome() {
                             </div>
                         </div>
 
-                        <a
-                            href="/contacto"
+                        <button
+                            onClick={() => setModalOpen(true)}
                             style={{
                                 display: "inline-flex",
                                 alignItems: "center",
@@ -190,6 +193,8 @@ export default function ProblemaHome() {
                                 fontSize: "0.8rem",
                                 padding: "0.8rem 1.6rem",
                                 borderRadius: "4px",
+                                border: "none",
+                                cursor: "pointer",
                                 textDecoration: "none",
                                 letterSpacing: "0.05em",
                                 textTransform: "uppercase",
@@ -199,14 +204,16 @@ export default function ProblemaHome() {
                             onMouseLeave={(e) => { e.currentTarget.style.background = "#F2F0ED"; e.currentTarget.style.color = "#080808"; }}
                         >
                             Solicitar presupuesto →
-                        </a>
+                        </button>
                     </div>
                 </motion.div>
             </div>
+            <FormularioPresupuestoModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+
             <style dangerouslySetInnerHTML={{ __html: `
                 @media (max-width: 480px) {
                     .ticket-cta-actions { flex-direction: column; align-items: flex-start !important; gap: 1.5rem !important; }
-                    .ticket-cta-actions > a { width: 100%; justify-content: center; }
+                    .ticket-cta-actions > button { width: 100%; justify-content: center; }
                 }
             `}} />
         </section>

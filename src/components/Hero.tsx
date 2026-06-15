@@ -1,10 +1,13 @@
 ﻿"use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import PlasmaWave from "./PlasmaWave";
+import FormularioPresupuestoModal from "./FormularioPresupuestoModal";
 
 export default function Hero() {
     const ease = [0.16, 1, 0.3, 1] as any;
+    const [modalOpen, setModalOpen] = useState(false);
 
     return (
         <section className="hero-section" style={{
@@ -128,8 +131,8 @@ export default function Hero() {
                         Diseño web premium para negocios de alto ticket en Alicante y Costa Blanca.
                     </p>
 
-                    <a
-                        href="/contacto"
+                    <button
+                        onClick={() => setModalOpen(true)}
                         className="hero-cta"
                         style={{
                             display: "inline-flex",
@@ -142,6 +145,8 @@ export default function Hero() {
                             fontSize: "0.9rem",
                             padding: "0.9rem 2rem",
                             borderRadius: "4px",
+                            border: "none",
+                            cursor: "pointer",
                             textDecoration: "none",
                             letterSpacing: "0.02em",
                             transition: "background 0.2s ease",
@@ -149,9 +154,11 @@ export default function Hero() {
                         }}
                     >
                         Solicitar presupuesto →
-                    </a>
+                    </button>
                 </motion.div>
             </div>
+
+            <FormularioPresupuestoModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
 
             <style dangerouslySetInnerHTML={{
                 __html: `
