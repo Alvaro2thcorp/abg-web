@@ -7,7 +7,7 @@ export default function Hero() {
     const ease = [0.16, 1, 0.3, 1] as any;
 
     return (
-        <section style={{
+        <section className="hero-section" style={{
             minHeight: "auto",
             position: "relative",
             display: "flex",
@@ -157,6 +157,12 @@ export default function Hero() {
                 __html: `
                 .hero-cta:hover { background: #D14124 !important; }
                 @media (max-width: 767px) {
+                    .hero-section {
+                        min-height: 88vh !important;
+                        display: flex !important;
+                        flex-direction: column !important;
+                        justify-content: center !important;
+                    }
                     .hero-cta, .hero-cta-btn {
                         width: 100%;
                         justify-content: center;
