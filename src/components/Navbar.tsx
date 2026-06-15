@@ -24,7 +24,7 @@ export default function Navbar() {
     <button
       onClick={() => setModalOpen(true)}
       style={{
-        background: "#D14124",
+        background: "rgba(209, 65, 36, 0.85)",
         color: "#F2F0ED",
         fontFamily: "'Inter', sans-serif",
         fontWeight: 500,
@@ -32,15 +32,17 @@ export default function Navbar() {
         padding: "0 1.4rem",
         height: "52px",
         borderRadius: "9999px",
-        border: "none",
+        border: "1px solid rgba(242, 240, 237, 0.15)",
+        backdropFilter: "blur(20px) saturate(140%)",
+        WebkitBackdropFilter: "blur(20px) saturate(140%)",
         cursor: "pointer",
         letterSpacing: "0.15em",
         textTransform: "uppercase",
         transition: "background 0.2s, transform 0.2s",
         whiteSpace: "nowrap",
       }}
-      onMouseEnter={(e) => { e.currentTarget.style.background = "#A8331C"; }}
-      onMouseLeave={(e) => { e.currentTarget.style.background = "#D14124"; }}
+      onMouseEnter={(e) => { e.currentTarget.style.background = "#D14124"; }}
+      onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(209, 65, 36, 0.85)"; }}
     >
       Presupuesto →
     </button>
