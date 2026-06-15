@@ -3,7 +3,7 @@
   top: 1.25em;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 99;
+  z-index: 1000;
 }
 
 @media (max-width: 768px) {
@@ -140,7 +140,7 @@
   height: var(--nav-h);
   border-radius: 50%;
   background: #080808;
-  border: none;
+  border: 1px solid rgba(242,240,237,0.15);
   display: none;
   flex-direction: column;
   align-items: center;
