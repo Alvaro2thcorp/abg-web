@@ -20,7 +20,7 @@ export default function Hero() {
             overflow: "hidden",
             background: "#F2F0ED",
             padding: isMobile
-                ? "80px clamp(1.25rem, 5vw, 5rem) 40px"
+                ? "72px 1.4rem 36px"
                 : "clamp(5.5rem, 11vh, 8rem) clamp(1.25rem, 5vw, 5rem) clamp(2rem, 5vw, 4rem)",
         }}>
             {/* PlasmaWave background */}
@@ -47,10 +47,43 @@ export default function Hero() {
             {/* Contenido principal */}
             <div style={{ position: "relative", zIndex: 2 }}>
 
+                {/* Badge */}
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.05, ease }}
+                    style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.4rem",
+                        background: "rgba(209,65,36,0.10)",
+                        border: "1px solid rgba(209,65,36,0.25)",
+                        borderRadius: "9999px",
+                        padding: "0.3rem 0.9rem",
+                        marginBottom: "1.2rem",
+                        fontFamily: "'Inter', sans-serif",
+                        fontWeight: 500,
+                        fontSize: "0.7rem",
+                        letterSpacing: "0.12em",
+                        textTransform: "uppercase",
+                        color: "#D14124",
+                    }}
+                >
+                    <span style={{
+                        width: "6px",
+                        height: "6px",
+                        borderRadius: "50%",
+                        background: "#D14124",
+                        display: "inline-block",
+                    }} />
+                    Agencia premium · Alicante
+                </motion.div>
+
                 {/* H1 — tipografía enorme */}
                 <h1 style={{ margin: 0, padding: 0 }}>
                     <div style={{ overflow: "hidden" }}>
                         <motion.span
+                            className="hero-title-line"
                             initial={{ y: 80, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ duration: 1, delay: 0.15, ease }}
@@ -69,6 +102,7 @@ export default function Hero() {
                     </div>
                     <div style={{ overflow: "hidden" }}>
                         <motion.span
+                            className="hero-title-line"
                             initial={{ y: 80, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ duration: 1, delay: 0.25, ease }}
@@ -87,6 +121,7 @@ export default function Hero() {
                     </div>
                     <div style={{ overflow: "hidden" }}>
                         <motion.span
+                            className="hero-title-line"
                             initial={{ y: 80, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ duration: 1, delay: 0.35, ease }}
@@ -108,11 +143,12 @@ export default function Hero() {
 
                 {/* Línea divisoria + CTA */}
                 <motion.div
+                    className="hero-bottom-row"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.7 }}
                     style={{
-                        marginTop: "clamp(1.75rem, 4vw, 3.5rem)",
+                        marginTop: "clamp(2.5rem, 6vw, 3.5rem)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "space-between",
@@ -167,15 +203,20 @@ export default function Hero() {
                 __html: `
                 .hero-cta:hover { background: #D14124 !important; }
                 @media (max-width: 767px) {
+                    .hero-title-line {
+                        font-size: clamp(3.2rem, 13vw, 5rem) !important;
+                        line-height: 0.92 !important;
+                        letter-spacing: -0.04em !important;
+                    }
+                    .hero-bottom-row {
+                        flex-direction: column !important;
+                        align-items: flex-start !important;
+                        gap: 1.2rem !important;
+                    }
                     .hero-cta, .hero-cta-btn {
                         width: 100%;
                         justify-content: center;
                         min-height: 52px;
-                    }
-                    .hero-title-main,
-                    .hero-title-outline {
-                        font-size: clamp(2.4rem, 9vw, 4rem) !important;
-                        line-height: 1 !important;
                     }
                 }
             `}} />
