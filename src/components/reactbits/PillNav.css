@@ -153,6 +153,7 @@
   cursor: pointer;
   padding: 0;
   position: relative;
+  z-index: 1001 !important;
 }
 
 @media (max-width: 768px) { .mobile-menu-button { display: flex; } }
