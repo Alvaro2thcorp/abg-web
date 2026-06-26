@@ -169,6 +169,7 @@ export default function Hero() {
                         display: flex !important;
                         flex-direction: column !important;
                         justify-content: center !important;
+                        padding-top: 80px !important;
                     }
                     .hero-cta, .hero-cta-btn {
                         width: 100%;
