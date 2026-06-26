@@ -20,7 +20,7 @@ export default function Hero() {
             overflow: "hidden",
             background: "#F2F0ED",
             padding: isMobile
-                ? "72px 1.4rem 36px"
+                ? "100px 1.4rem 36px"
                 : "clamp(5.5rem, 11vh, 8rem) clamp(1.25rem, 5vw, 5rem) clamp(2rem, 5vw, 4rem)",
         }}>
             {/* PlasmaWave background */}
