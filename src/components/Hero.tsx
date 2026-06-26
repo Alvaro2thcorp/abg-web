@@ -8,17 +8,20 @@ import FormularioPresupuestoModal from "./FormularioPresupuestoModal";
 export default function Hero() {
     const ease = [0.16, 1, 0.3, 1] as any;
     const [modalOpen, setModalOpen] = useState(false);
+    const isMobile = typeof window !== "undefined" && window.innerWidth <= 767;
 
     return (
         <section className="hero-section" style={{
-            minHeight: "auto",
+            minHeight: isMobile ? "90vh" : "auto",
             position: "relative",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "flex-start",
+            justifyContent: isMobile ? "center" : "flex-start",
             overflow: "hidden",
             background: "#F2F0ED",
-            padding: "clamp(5.5rem, 11vh, 8rem) clamp(1.25rem, 5vw, 5rem) clamp(2rem, 5vw, 4rem)",
+            padding: isMobile
+                ? "80px clamp(1.25rem, 5vw, 5rem) 40px"
+                : "clamp(5.5rem, 11vh, 8rem) clamp(1.25rem, 5vw, 5rem) clamp(2rem, 5vw, 4rem)",
         }}>
             {/* PlasmaWave background */}
             <div style={{
@@ -164,15 +167,6 @@ export default function Hero() {
                 __html: `
                 .hero-cta:hover { background: #D14124 !important; }
                 @media (max-width: 767px) {
-                    .hero-section {
-                        min-height: 90vh !important;
-                        display: flex !important;
-                        flex-direction: column !important;
-                        justify-content: center !important;
-                        padding-top: 70px !important;
-                        padding-bottom: 40px !important;
-                        box-sizing: border-box !important;
-                    }
                     .hero-cta, .hero-cta-btn {
                         width: 100%;
                         justify-content: center;
