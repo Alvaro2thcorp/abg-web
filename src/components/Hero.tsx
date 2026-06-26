@@ -165,11 +165,13 @@ export default function Hero() {
                 .hero-cta:hover { background: #D14124 !important; }
                 @media (max-width: 767px) {
                     .hero-section {
-                        min-height: 88vh !important;
+                        min-height: 90vh !important;
                         display: flex !important;
                         flex-direction: column !important;
                         justify-content: center !important;
-                        padding-top: 80px !important;
+                        padding-top: 70px !important;
+                        padding-bottom: 40px !important;
+                        box-sizing: border-box !important;
                     }
                     .hero-cta, .hero-cta-btn {
                         width: 100%;
