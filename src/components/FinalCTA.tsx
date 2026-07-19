@@ -168,19 +168,12 @@ const FinalCTA = () => {
 
                 <div style={{ display: "flex", gap: "1.5rem" }}>
                     <a
-                        href="https://instagram.com/abgframe"
+                        href="https://instagram.com/alvarobgonzalez"
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="ABG Frame en Instagram"
+                        aria-label="Instagram"
                         className="footer-social-link"
                     >Instagram</a>
-                    <a
-                        href="https://linkedin.com/company/abgframe"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="ABG Frame en LinkedIn"
-                        className="footer-social-link"
-                    >LinkedIn</a>
                 </div>
             </div>
 

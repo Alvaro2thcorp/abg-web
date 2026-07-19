@@ -57,19 +57,16 @@ export default function Equipo() {
                         flexShrink: 0,
                         overflow: "hidden",
                     }}>
-                        {/* Cuando tengas la foto: <img src="/images/alvaro.jpg" alt="Álvaro Bergillos" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> */}
-                        <span style={{
-                            fontFamily: "'Inter', sans-serif",
-                            fontSize: "0.6rem",
-                            fontWeight: 400,
-                            color: "rgba(242,240,237,0.2)",
-                            textTransform: "uppercase",
-                            letterSpacing: "0.15em",
-                            textAlign: "center",
-                            padding: "1rem",
-                        }}>
-                            Foto próximamente
-                        </span>
+                        <img
+                            src="/images/alvarobergillos.png"
+                            alt="Álvaro Bergillos"
+                            style={{
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "cover",
+                                objectPosition: "center top",
+                            }}
+                        />
                     </div>
 
                     {/* Contenido */}
@@ -141,7 +138,7 @@ export default function Equipo() {
                                 Sígueme
                             </span>
                             <a
-                                href="https://instagram.com/alvarobergillos"
+                                href="https://instagram.com/alvarobgonzalez"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 style={{
@@ -157,7 +154,7 @@ export default function Equipo() {
                                 onMouseEnter={(e) => { e.currentTarget.style.color = "#D14124"; e.currentTarget.style.borderColor = "#D14124"; }}
                                 onMouseLeave={(e) => { e.currentTarget.style.color = "#F2F0ED"; e.currentTarget.style.borderColor = "rgba(242,240,237,0.2)"; }}
                             >
-                                @alvarobergillos
+                                @alvarobgonzalez
                             </a>
                         </div>
 

@@ -977,37 +977,17 @@ function EquipoSection() {
                             position: "relative",
                             overflow: "hidden",
                         }}>
-                            {/* TODO: Reemplazar placeholder por foto real */}
-                            {/* Ruta: /public/images/alvaro.jpg */}
-                            {/* Formato recomendado: JPG, ratio 3:4, mín 600x800px */}
-                            {/* Tratamiento: object-fit cover, object-position top */}
-                            {/* <img
-                                src="/images/alvaro.jpg"
+                            <img
+                                src="/images/alvarobergillos.png"
                                 alt="Álvaro Bergillos"
                                 style={{
                                     width: "100%",
                                     height: "100%",
-                                    objectFit: "cover",
-                                    objectPosition: "center top"
+                                    objectFit: "contain",
+                                    objectPosition: "center center",
+                                    background: "linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%)"
                                 }}
-                            /> */}
-
-                            {/* PLACEHOLDER — eliminar cuando se añada la imagen */}
-                            <div style={{
-                                width: "100%",
-                                height: "100%",
-                                background: "linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%)",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                            }}>
-                                <span style={{
-                                    fontFamily: "var(--font-display)",
-                                    fontWeight: 800,
-                                    fontSize: "3rem",
-                                    color: "rgba(242, 240, 237, 0.1)"
-                                }}>ÁB</span>
-                            </div>
+                            />
                         </div>
 
                         {/* Zona contenido */}
@@ -1080,11 +1060,8 @@ function EquipoSection() {
                             position: "relative",
                             overflow: "hidden",
                         }}>
-                            {/* TODO: Reemplazar placeholder por foto real */}
-                            {/* Ruta: /public/images/pablo.jpg */}
-                            {/* Formato recomendado: JPG, ratio 3:4, mín 600x800px */}
-                            {/* <img
-                                src="/images/pablo.jpg"
+                            <img
+                                src="/images/pablolizon.jpeg"
                                 alt="Pablo Lizón"
                                 style={{
                                     width: "100%",
@@ -1092,24 +1069,7 @@ function EquipoSection() {
                                     objectFit: "cover",
                                     objectPosition: "center top"
                                 }}
-                            /> */}
-
-                            {/* PLACEHOLDER — eliminar cuando se añada la imagen */}
-                            <div style={{
-                                width: "100%",
-                                height: "100%",
-                                background: "linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%)",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                            }}>
-                                <span style={{
-                                    fontFamily: "var(--font-display)",
-                                    fontWeight: 800,
-                                    fontSize: "3rem",
-                                    color: "rgba(242, 240, 237, 0.1)"
-                                }}>PL</span>
-                            </div>
+                            />
                         </div>
 
                         {/* Zona contenido */}
