@@ -1,0 +1,123 @@
+---
+interface Props {
+  conCabecera?: boolean;
+}
+const { conCabecera = true } = Astro.props;
+
+const ejemplos = [
+  {
+    nombre: "Gestoría clásica",
+    sector: "Gestorías y asesorías",
+    estilo: "Sobria y de confianza",
+    url: "/demos/gestoria-clasica/",
+    img: "gestoria-clasica",
+    alt: "Web de demostración para una gestoría clásica",
+    texto:
+      "Para un despacho de toda la vida que quiere transmitir seriedad. Trato de usted, el equipo con nombre y apellidos y los plazos de Hacienda a la vista desde la primera pantalla.",
+    datos: ["Calendario fiscal", "Envío de facturas desde el móvil", "Petición de cita"],
+  },
+  {
+    nombre: "Despacho de abogados",
+    sector: "Abogados",
+    estilo: "Seria y transparente",
+    url: "/demos/despacho-abogados/",
+    img: "despacho-abogados",
+    alt: "Web de demostración para un despacho de abogados",
+    texto:
+      "Para un despacho generalista. La primera consulta tiene precio a la vista, los honorarios se explican antes de firmar y el visitante puede comprobar cuánto plazo tiene para reclamar.",
+    datos: ["Comprobador de plazos", "Honorarios a la vista", "Petición de consulta"],
+  },
+  {
+    nombre: "Administración de fincas",
+    sector: "Administradores de fincas",
+    estilo: "Práctica y clara",
+    url: "/demos/administrador-fincas/",
+    img: "administrador-fincas",
+    alt: "Web de demostración para una administración de fincas",
+    texto:
+      "Para una oficina que quiere menos llamadas. Los vecinos avisan de una avería y la siguen paso a paso; las juntas calculan al momento cuánto costaría cambiar de administrador.",
+    datos: ["Aviso de incidencias", "Área de vecinos", "Calculadora de presupuesto"],
+  },
+  {
+    nombre: "Asesoría moderna",
+    sector: "Gestorías y asesorías",
+    estilo: "Directa y cercana",
+    url: "/demos/asesoria-moderna/",
+    img: "asesoria-moderna",
+    alt: "Web de demostración para una asesoría de autónomos",
+    texto:
+      "Para una asesoría que busca autónomos jóvenes. Cuotas claras, tono de tú y dos herramientas que puedes probar: qué modelos te tocan este trimestre y reserva de llamada con día y hora.",
+    datos: ["Calculadora de plazos", "Reserva de llamada", "Cuotas a la vista"],
+  },
+];
+---
+
+<section id="ejemplos" class="abg-section abg-section--tint ejemplos" aria-label="Ejemplos de web">
+  <div class="abg-wrap">
+    {conCabecera && (
+      <header class="abg-head">
+        <p class="abg-eyebrow">Ejemplos</p>
+        <h2 class="abg-h2">Cuatro webs que <em>puedes abrir y probar.</em></h2>
+        <p class="abg-lead">
+          Los despachos son inventados; las webs funcionan de verdad. Ábrelas en tu móvil, prueba sus
+          herramientas y dinos cuál se parece más a lo que necesitas.
+        </p>
+      </header>
+    )}
+
+    <div class="ejemplos__lista">
+      {ejemplos.map((p) => (
+        <article class="ejemplo">
+          <a class="ejemplo__img abg-browser" href={p.url} aria-label={`Abrir la demo: ${p.nombre}`}>
+            <div class="abg-browser__bar"><i></i><i></i><i></i><span class="abg-browser__url">Proyecto de demostración</span></div>
+            <img src={`/images/demos/${p.img}-900.webp`} srcset={`/images/demos/${p.img}-900.webp 900w, /images/demos/${p.img}.webp 1600w`} sizes="(max-width: 900px) 92vw, 640px" width="1600" height="1000" alt={p.alt} loading="lazy" />
+          </a>
+          <div class="ejemplo__txt">
+            <p class="ejemplo__estilo">{p.sector} · {p.estilo}</p>
+            <h3 class="ejemplo__nombre">{p.nombre}</h3>
+            <p class="ejemplo__desc">{p.texto}</p>
+            <ul class="ejemplo__datos">
+              {p.datos.map((d) => <li>{d}</li>)}
+            </ul>
+            <a class="abg-btn abg-btn--ink" href={p.url}>Abrir la demo →</a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <p class="ejemplos__nota">
+      ¿Tu negocio es de otro sector? El método es el mismo: te preparamos la portada de tu web antes de que decidas nada.
+    </p>
+  </div>
+</section>
+
+<style>
+  .ejemplos__lista { display: grid; gap: clamp(3rem, 7vw, 6rem); }
+  .ejemplo {
+    display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(1.75rem, 5vw, 4.5rem); align-items: center;
+  }
+  .ejemplo:nth-child(even) .ejemplo__img { order: 2; }
+  .ejemplo__img { display: block; text-decoration: none; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+  .ejemplo__img:hover { transform: translateY(-4px); }
+  .ejemplo__img:focus-visible { outline: 2px solid var(--coral); outline-offset: 4px; }
+  .ejemplo__estilo {
+    font-family: var(--font-body); font-weight: 500; font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--coral-ink); margin: 0 0 0.9rem;
+  }
+  .ejemplo__nombre { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.9rem, 3.4vw, 2.8rem); letter-spacing: -0.02em; line-height: 1.05; margin: 0; }
+  .ejemplo__desc { font-family: var(--font-body); font-size: 1rem; line-height: 1.65; color: var(--ink-2); margin: 1.1rem 0 1.4rem; max-width: 48ch; }
+  .ejemplo__datos { list-style: none; margin: 0 0 1.9rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .ejemplo__datos li {
+    font-family: var(--font-body); font-size: 0.8rem; color: var(--ink-2);
+    border: 1px solid #C9C4BC; border-radius: 99px; padding: 0.3rem 0.8rem;
+  }
+  .ejemplos__nota {
+    margin: clamp(3rem, 6vw, 4.5rem) 0 0; padding-top: 1.75rem; border-top: 1px solid #C9C4BC;
+    font-family: var(--font-body); font-size: 1rem; line-height: 1.6; color: var(--ink-2); max-width: 70ch;
+  }
+  @media (max-width: 860px) {
+    .ejemplo { grid-template-columns: minmax(0, 1fr); }
+    .ejemplo:nth-child(even) .ejemplo__img { order: 0; }
+  }
+</style>

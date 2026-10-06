@@ -176,7 +176,7 @@ export default function ProblemaHome() {
                                 color: "#F2F0ED",
                                 letterSpacing: "-0.01em",
                             }}>
-                                Pregúntanos.
+                                Desde 990 €.
                             </div>
                         </div>
 

@@ -62,7 +62,7 @@ export default function Contacto() {
     const contactItems = [
         { label: "EMAIL", value: "contacto@abgframe.com", href: "mailto:contacto@abgframe.com" },
         { label: "WHATSAPP", value: "+34 601 05 89 97", href: "https://wa.me/34601058997" },
-        { label: "UBICACIÓN", value: "San Juan de Alicante", href: "https://maps.app.goo.gl/vjX" }
+        { label: "UBICACIÓN", value: "San Juan de Alicante", href: "https://www.google.com/maps/search/?api=1&query=San+Juan+de+Alicante" }
     ];
 
     return (
@@ -303,12 +303,13 @@ export default function Contacto() {
                         <label style={labelStyle}>TU SECTOR</label>
                         <select className="contact-input contact-select" name="sector" value={formData.sector} onChange={handleChange} required>
                             <option value="" disabled>Selecciona tu sector</option>
-                            <option value="Náutica / Charter">Náutica / Charter</option>
-                            <option value="Inmobiliaria de lujo">Inmobiliaria de lujo</option>
-                            <option value="Finca / Eventos">Finca / Eventos</option>
-                            <option value="Hotel / Restaurante">Hotel / Restaurante</option>
-                            <option value="Clínica estética">Clínica estética</option>
-                            <option value="Otro sector premium">Otro sector premium</option>
+                            <option value="Gestoría / Asesoría">Gestoría / Asesoría</option>
+                            <option value="Despacho de abogados">Despacho de abogados</option>
+                            <option value="Administración de fincas">Administración de fincas</option>
+                            <option value="Otro despacho profesional">Otro despacho profesional</option>
+                            <option value="Comercio o servicio local">Comercio o servicio local</option>
+                            <option value="Tienda online">Tienda online</option>
+                            <option value="Otro">Otro</option>
                         </select>
                         <div style={{
                             position: "absolute",
@@ -329,10 +330,11 @@ export default function Contacto() {
                         <label style={labelStyle}>QUÉ TE INTERESA</label>
                         <select className="contact-input contact-select" name="servicio" value={formData.servicio} onChange={handleChange}>
                             <option value="" disabled>Selecciona un servicio</option>
-                            <option value="Sistema Completo (Web + SEO + Ads)">Sistema Completo (Web + SEO + Ads)</option>
-                            <option value="Solo Web Premium">Solo Web Premium</option>
-                            <option value="Solo SEO Internacional">Solo SEO Internacional</option>
-                            <option value="Solo gestión de Meta Ads">Solo gestión de Meta Ads</option>
+                            <option value="Web nueva">Web nueva (planes desde 590 €)</option>
+                            <option value="Arreglar mi web actual (Rescate Web)">Arreglar mi web actual (Rescate Web)</option>
+                            <option value="Mantenimiento mensual">Mantenimiento mensual</option>
+                            <option value="Tienda online">Tienda online</option>
+                            <option value="Automatizar citas o documentación">Automatizar citas o documentación</option>
                             <option value="No lo tengo claro aún">No lo tengo claro aún</option>
                         </select>
                         <div style={{
@@ -393,7 +395,7 @@ export default function Contacto() {
                         }}
                     >
                         {isSuccess ? (
-                            "✓ Mensaje enviado — te respondemos en 48h"
+                            "✓ Mensaje enviado — te respondemos en 24 h"
                         ) : isSubmitting ? (
                             <>
                                 Enviando...

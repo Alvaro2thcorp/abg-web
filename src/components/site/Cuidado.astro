@@ -1,0 +1,111 @@
+---
+const filas = [
+  { que: "Hosting, dominio y certificado de seguridad", base: true, pro: true, crece: true },
+  { que: "Copias de seguridad y actualizaciones", base: true, pro: true, crece: true },
+  { que: "Aviso inmediato si la web se cae", base: true, pro: true, crece: true },
+  { que: "Cambios en la web cada mes", base: "—", pro: "1 hora", crece: "3 horas" },
+  { que: "Informe mensual: visitas y contactos", base: false, pro: true, crece: true },
+  { que: "Revisión de tu ficha de Google", base: false, pro: true, crece: true },
+  { que: "Mejoras para subir en Google en tu zona", base: false, pro: false, crece: true },
+  { que: "Una página nueva cada trimestre", base: false, pro: false, crece: true },
+];
+const extras = [
+  { nombre: "Entrega exprés", detalle: "Tu web en 72 horas", precio: "+200 €" },
+  { nombre: "Página adicional", detalle: "Por cada página extra", precio: "90 €" },
+  { nombre: "Idioma adicional", detalle: "Toda la web traducida", precio: "190 €" },
+  { nombre: "Citas online", detalle: "Tus clientes reservan desde la web", precio: "190 €" },
+];
+const celda = (v: boolean | string) => (v === true ? "Sí" : v === false ? "—" : v);
+---
+
+<section id="cuidado" class="abg-section abg-section--tint cuidado" aria-label="Plan Cuidado, mantenimiento mensual">
+  <div class="abg-wrap">
+    <header class="abg-head">
+      <p class="abg-eyebrow">Cada mes</p>
+      <h2 class="abg-h2">Plan Cuidado: <em>alguien al otro lado.</em></h2>
+      <p class="abg-lead">
+        Toda web necesita un sitio donde estar, copias de seguridad y alguien que la vigile.
+        Con el Plan Cuidado ese alguien somos nosotros. Mínimo de tres meses; después, sin permanencia.
+      </p>
+    </header>
+
+    <div class="cuidado__tabla" role="region" aria-label="Comparativa de planes de mantenimiento" tabindex="0">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Qué incluye</th>
+            <th scope="col"><span>Base</span><strong>49 €/mes</strong></th>
+            <th scope="col" class="es-pro"><span>Pro</span><strong>89 €/mes</strong></th>
+            <th scope="col"><span>Crece</span><strong>179 €/mes</strong></th>
+          </tr>
+        </thead>
+        <tbody>
+          {filas.map((f) => (
+            <tr>
+              <th scope="row">{f.que}</th>
+              <td class:list={{ no: f.base === false || f.base === "—" }}>{celda(f.base)}</td>
+              <td class:list={["es-pro", { no: f.pro === false }]}>{celda(f.pro)}</td>
+              <td class:list={{ no: f.crece === false }}>{celda(f.crece)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cuidado__bajo">
+      <div id="extras">
+        <h3 class="cuidado__h3">Extras</h3>
+        <ul class="extras">
+          {extras.map((e) => (
+            <li>
+              <div><strong>{e.nombre}</strong><span>{e.detalle}</span></div>
+              <b>{e.precio}</b>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div id="rescate" class="rescate">
+        <p class="abg-eyebrow">Ya tengo web</p>
+        <h3 class="cuidado__h3">Rescate Web · 290 €</h3>
+        <p>
+          Si tu web va lenta, sale como "No segura" o no se ve bien en el móvil, la ponemos al día en 72 horas:
+          seguridad, velocidad, copias de seguridad y formularios que llegan. Funciona con WordPress y Shopify,
+          y recibes un informe claro de lo que hemos hecho.
+        </p>
+        <a class="abg-btn abg-btn--ink" href={`https://wa.me/34601058997?text=${encodeURIComponent("Hola, quiero un Rescate Web para mi página.")}`} target="_blank" rel="noopener noreferrer">Pedir Rescate Web</a>
+      </div>
+    </div>
+
+    <p class="cuidado__iva">Todos los precios son sin IVA.</p>
+  </div>
+</section>
+
+<style>
+  .cuidado__tabla { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 6px; }
+  .cuidado__tabla:focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; }
+  table { width: 100%; min-width: 620px; border-collapse: collapse; font-family: var(--font-body); }
+  th, td { padding: 1rem 1.25rem; text-align: left; border-bottom: 1px solid var(--line); font-size: 0.95rem; line-height: 1.4; }
+  tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+  thead th { vertical-align: bottom; padding-block: 1.4rem 1.1rem; }
+  thead th span { display: block; font-weight: 500; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.3rem; }
+  thead th strong { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+  thead th:first-child { font-weight: 500; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); }
+  tbody th { font-weight: 400; color: var(--ink-2); }
+  td { text-align: center; font-weight: 500; width: 17%; }
+  thead th:not(:first-child) { text-align: center; }
+  td.no { color: #A8A29A; font-weight: 400; }
+  .es-pro { background: rgba(209, 65, 36, 0.06); }
+
+  .cuidado__bajo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); margin-top: clamp(3rem, 6vw, 5rem); align-items: start; }
+  .cuidado__h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.6rem, 2.6vw, 2.1rem); letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 1.25rem; }
+  .extras { list-style: none; margin: 0; padding: 0; border-top: 1px solid #C9C4BC; }
+  .extras li { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid #C9C4BC; font-family: var(--font-body); }
+  .extras strong { display: block; font-weight: 500; font-size: 1rem; }
+  .extras span { display: block; font-size: 0.88rem; color: var(--ink-3); margin-top: 0.15rem; }
+  .extras b { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .rescate { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: clamp(1.5rem, 3vw, 2.25rem); }
+  .rescate p:not(.abg-eyebrow) { font-family: var(--font-body); font-size: 1rem; line-height: 1.65; color: var(--ink-2); margin: 0 0 1.5rem; }
+  .cuidado__iva { font-family: var(--font-body); font-size: 0.85rem; color: var(--ink-3); margin: 2rem 0 0; }
+  @media (max-width: 860px) { .cuidado__bajo { grid-template-columns: minmax(0, 1fr); } }
+</style>

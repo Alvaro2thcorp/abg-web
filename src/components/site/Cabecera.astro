@@ -1,0 +1,21 @@
+---
+interface Props {
+  eyebrow: string;
+  lead?: string;
+}
+const { eyebrow, lead } = Astro.props;
+---
+
+<section class="cab">
+  <div class="abg-wrap">
+    <p class="abg-eyebrow abg-rise">{eyebrow}</p>
+    <h1 class="cab__h1 abg-rise abg-rise--2"><slot /></h1>
+    {lead && <p class="abg-lead abg-rise abg-rise--3">{lead}</p>}
+  </div>
+</section>
+
+<style>
+  .cab { background: var(--paper); color: var(--ink); padding-top: clamp(8rem, 13vw, 10.5rem); padding-bottom: clamp(2rem, 4vw, 3rem); }
+  .cab__h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.8rem, 7vw, 6rem); line-height: 0.96; letter-spacing: -0.035em; margin: 0; text-wrap: balance; }
+  .cab__h1 :global(em) { font-style: italic; color: var(--coral); }
+</style>

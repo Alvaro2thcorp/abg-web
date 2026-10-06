@@ -1,0 +1,44 @@
+---
+const razones = [
+  {
+    titulo: "Precio cerrado.",
+    texto: "El precio está en esta página y no cambia a mitad de camino. Si quieres algo fuera del plan, te lo presupuestamos antes de hacerlo, no después.",
+  },
+  {
+    titulo: "Un responsable con nombre y apellidos.",
+    texto: "Cada proyecto lo dirige Álvaro Bergillos, fundador del estudio: habla contigo el primer día y es quien te contesta por WhatsApp cuando algo falla. Sin comerciales ni centralita. Y si estás en el área de Alicante, vamos a verte.",
+  },
+  {
+    titulo: "La web es tuya.",
+    texto: "El dominio va a tu nombre y la web te pertenece. Si un día quieres irte con otro estudio, te la llevas. El mantenimiento solo tiene tres meses de mínimo.",
+  },
+];
+---
+
+<section class="abg-section abg-section--tint porque" aria-label="Por qué ABG Frame">
+  <div class="abg-wrap porque__grid">
+    <header>
+      <p class="abg-eyebrow">Por qué ABG Frame</p>
+      <h2 class="abg-h2">Tres cosas que <em>dejamos por escrito.</em></h2>
+    </header>
+
+    <div class="porque__lista">
+      {razones.map((r) => (
+        <article class="razon">
+          <h3>{r.titulo}</h3>
+          <p>{r.texto}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .porque__grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
+  .porque__lista { display: grid; }
+  .razon { padding: 1.9rem 0; border-top: 1px solid #C9C4BC; }
+  .razon:last-child { border-bottom: 1px solid #C9C4BC; }
+  .razon h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.5rem, 2.6vw, 2.1rem); letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 0.8rem; color: var(--ink); }
+  .razon p { font-family: var(--font-body); font-size: 1rem; line-height: 1.65; color: var(--ink-2); margin: 0; max-width: 56ch; }
+  @media (max-width: 900px) { .porque__grid { grid-template-columns: minmax(0, 1fr); } }
+</style>

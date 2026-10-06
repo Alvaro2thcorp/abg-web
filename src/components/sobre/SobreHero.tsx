@@ -32,7 +32,7 @@ export default function SobreHero() {
                 whiteSpace: "nowrap",
                 zIndex: 0,
             }}>
-                NOSOTROS
+                ESTUDIO
             </div>
 
             <div style={{
@@ -56,7 +56,7 @@ export default function SobreHero() {
                         marginBottom: "2rem",
                     }}
                 >
-                    Sobre nosotros
+                    El estudio
                 </motion.div>
 
                 <h1 style={{ margin: 0 }}>
@@ -75,7 +75,7 @@ export default function SobreHero() {
                                 letterSpacing: "-0.03em",
                             }}
                         >
-                            No trabajamos para todos.
+                            Un estudio pequeño,
                         </motion.span>
                     </div>
                     <div style={{ overflow: "hidden" }}>
@@ -94,7 +94,7 @@ export default function SobreHero() {
                                 letterSpacing: "-0.03em",
                             }}
                         >
-                            Solo para los que lo merecen.
+                            a propósito.
                         </motion.span>
                     </div>
                 </h1>
@@ -123,7 +123,7 @@ export default function SobreHero() {
                         maxWidth: "480px",
                         lineHeight: 1.6,
                     }}>
-                        ABG Frame es el proyecto de Álvaro Bergillos. Sin comerciales, sin intermediarios. El que diseña es el que habla contigo.
+                        ABG Frame es un estudio web de San Juan de Alicante, fundado y dirigido por Álvaro Bergillos. Aceptamos pocos proyectos a la vez para que cada uno tenga un responsable de principio a fin.
                     </p>
                     <a
                         href="/contacto"

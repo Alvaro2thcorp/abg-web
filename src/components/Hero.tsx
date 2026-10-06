@@ -76,7 +76,7 @@ export default function Hero() {
                         background: "#D14124",
                         display: "inline-block",
                     }} />
-                    Agencia premium · Alicante
+                    Estudio web · San Juan de Alicante
                 </motion.div>
 
                 {/* H1 — tipografía enorme */}
@@ -97,7 +97,7 @@ export default function Hero() {
                                 letterSpacing: "-0.03em",
                             }}
                         >
-                            Tu negocio
+                            Tu web,
                         </motion.span>
                     </div>
                     <div style={{ overflow: "hidden" }}>
@@ -116,7 +116,7 @@ export default function Hero() {
                                 letterSpacing: "-0.03em",
                             }}
                         >
-                            merece una web
+                            lista en
                         </motion.span>
                     </div>
                     <div style={{ overflow: "hidden" }}>
@@ -136,7 +136,7 @@ export default function Hero() {
                                 letterSpacing: "-0.03em",
                             }}
                         >
-                            a su altura.
+                            diez días.
                         </motion.span>
                     </div>
                 </h1>
@@ -167,7 +167,7 @@ export default function Hero() {
                         maxWidth: "420px",
                         lineHeight: 1.6,
                     }}>
-                        Diseño web premium para negocios de alto ticket en Alicante y Costa Blanca.
+                        Webs para negocios y despachos de Alicante. Precio cerrado desde 990 € y mantenidas cada mes por quien las programó.
                     </p>
 
                     <button
@@ -192,7 +192,7 @@ export default function Hero() {
                             minHeight: "48px",
                         }}
                     >
-                        Solicitar presupuesto →
+                        Pide tu diagnóstico gratis →
                     </button>
                 </motion.div>
             </div>

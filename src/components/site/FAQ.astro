@@ -1,0 +1,53 @@
+---
+const preguntas = [
+  { q: "¿Qué necesitáis para empezar?", a: "Tu logo si lo tienes, algunas fotos de tu negocio y 30 minutos para contarnos qué haces. Los textos los escribimos nosotros a partir de esa conversación." },
+  { q: "¿De quién es la web?", a: "Tuya. El dominio se registra a tu nombre y, si algún día quieres llevártela a otro sitio, te entregamos todos los archivos." },
+  { q: "¿Por qué hay una cuota mensual?", a: "Una web necesita un sitio donde estar alojada, renovar el dominio, copias de seguridad y alguien que la revise. El Plan Cuidado cubre todo eso desde 49 € al mes. Tiene un mínimo de tres meses; después puedes darte de baja cuando quieras." },
+  { q: "¿Cómo se paga?", a: "La mitad al empezar y la otra mitad cuando la web está terminada y tú le has dado el visto bueno, antes de publicarla. Recibes factura de todo." },
+  { q: "¿Y si no me gusta el resultado?", a: "Cada plan incluye rondas de cambios para dejarla a tu gusto. La ves en un enlace privado antes de pagar la segunda mitad." },
+  { q: "¿Quién hace mi web?", a: "Cada proyecto tiene un responsable con nombre y apellidos: Álvaro Bergillos, fundador del estudio. Es quien habla contigo el primer día, dirige el diseño y la programación, y quien te contesta cuando necesitas algo después." },
+  { q: "¿Trabajáis solo en Alicante?", a: "Hacemos webs para negocios de toda España. Pero si el tuyo está en el área de Alicante, Elche o San Juan, preferimos ir a verte en persona." },
+];
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: preguntas.map((p) => ({ "@type": "Question", name: p.q, acceptedAnswer: { "@type": "Answer", text: p.a } })),
+};
+---
+
+<section class="abg-section faq" aria-label="Preguntas frecuentes">
+  <div class="abg-wrap faq__grid">
+    <header>
+      <p class="abg-eyebrow">Preguntas frecuentes</p>
+      <h2 class="abg-h2">Lo que nos preguntan <em>antes de empezar.</em></h2>
+    </header>
+    <div class="faq__lista">
+      {preguntas.map((p) => (
+        <details class="faq__item">
+          <summary>{p.q}</summary>
+          <p>{p.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</section>
+
+<style>
+  .faq__grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
+  .faq__item { border-top: 1px solid var(--line); }
+  .faq__item:last-child { border-bottom: 1px solid var(--line); }
+  .faq__item summary {
+    list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
+    padding: 1.35rem 0; font-family: var(--font-body); font-weight: 500; font-size: 1.08rem; line-height: 1.35; color: var(--ink);
+  }
+  .faq__item summary::-webkit-details-marker { display: none; }
+  .faq__item summary::after {
+    content: "+"; flex-shrink: 0; font-family: var(--font-display); font-size: 1.6rem; line-height: 1; color: var(--coral);
+    transition: transform 0.25s ease;
+  }
+  .faq__item[open] summary::after { transform: rotate(45deg); }
+  .faq__item summary:focus-visible { outline: 2px solid var(--coral); outline-offset: 4px; }
+  .faq__item p { font-family: var(--font-body); font-size: 1rem; line-height: 1.65; color: var(--ink-2); margin: 0 0 1.5rem; max-width: 60ch; }
+  @media (max-width: 900px) { .faq__grid { grid-template-columns: minmax(0, 1fr); } }
+</style>

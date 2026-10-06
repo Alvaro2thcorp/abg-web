@@ -6,8 +6,8 @@ import FormularioPresupuestoModal from "./FormularioPresupuestoModal";
 
 const items = [
   { label: "Servicios", href: "/servicios" },
-  { label: "El Sistema", href: "/el-sistema" },
-  { label: "Sobre Nosotros", href: "/sobre-nosotros" },
+  { label: "Ejemplos", href: "/proyectos" },
+  { label: "El estudio", href: "/sobre-nosotros" },
   { label: "Blog", href: "/blog" },
   { label: "Contacto", href: "/contacto" },
 ];
@@ -51,7 +51,7 @@ export default function Navbar() {
   return (
     <>
       <PillNav
-        logo="/images/isotipo-3d.png"
+        logo="/images/isotipo.webp"
         logoAlt="ABG Frame"
         items={items}
         activeHref={activeHref}

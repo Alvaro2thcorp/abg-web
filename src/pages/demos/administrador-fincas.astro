@@ -1,0 +1,488 @@
+---
+import DemoBar from "../../components/demos/DemoBar.astro";
+
+const tipos = [
+  { id: "ascensor", t: "Ascensor", r: "Aviso al mantenedor en 15 minutos", u: true },
+  { id: "agua", t: "Fuga de agua", r: "Fontanero de guardia en menos de 2 horas", u: true },
+  { id: "luz", t: "Luz del portal o escalera", r: "Electricista en 24 horas", u: false },
+  { id: "garaje", t: "Puerta del garaje", r: "Técnico en el mismo día", u: false },
+  { id: "limpieza", t: "Limpieza", r: "Se traslada a la empresa en el día", u: false },
+  { id: "otro", t: "Otra cosa", r: "Le contestamos en 24 horas", u: false },
+];
+
+const servicios = [
+  { t: "Cuentas claras", d: "Presupuesto anual, liquidación trimestral y el saldo de la comunidad a la vista de todos los vecinos." },
+  { t: "Juntas que duran lo justo", d: "Convocatoria, orden del día y acta enviada en 7 días. Voto delegado y asistencia por videollamada." },
+  { t: "Morosidad", d: "Reclamación amistosa, certificado de deuda y proceso monitorio. Sin esperar a que la deuda crezca." },
+  { t: "Mantenimiento y obras", d: "Tres presupuestos comparados para cada obra y seguimiento hasta que se cierra." },
+  { t: "Seguros y siniestros", d: "Damos el parte, perseguimos al perito y le avisamos cuando la aseguradora paga." },
+  { t: "ITE, ascensores y normativa", d: "Inspecciones al día y un calendario para que nada caduque sin avisar." },
+];
+
+const actas = [
+  { f: "12 jun 2026", t: "Junta general ordinaria", p: "6 páginas" },
+  { f: "3 feb 2026", t: "Junta extraordinaria · Fachada", p: "4 páginas" },
+  { f: "14 jun 2025", t: "Junta general ordinaria", p: "7 páginas" },
+];
+const cuentas = [
+  { c: "Saldo en cuenta", v: "18.420 €" },
+  { c: "Fondo de reserva", v: "9.150 €" },
+  { c: "Recibos pendientes", v: "2 de 48" },
+  { c: "Gasto del trimestre", v: "7.863 €" },
+];
+const avisos = [
+  { e: "Resuelta", t: "Puerta del garaje no cierra", f: "28 sep", ok: true },
+  { e: "En curso", t: "Gotera en el rellano del 4.º", f: "2 oct", ok: false },
+  { e: "Resuelta", t: "Bombilla fundida en el portal", f: "19 sep", ok: true },
+];
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Postiguet Fincas · Demostración de ABG Frame</title>
+    <meta name="description" content="Web de demostración de una administración de fincas, hecha por ABG Frame." />
+    <link rel="icon" type="image/webp" href="/favicon.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <DemoBar />
+
+    <header class="cab">
+      <div class="w cab__in">
+        <a class="marca" href="#inicio" aria-label="Postiguet Fincas, inicio">
+          <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect x="3" y="12" width="11" height="17" fill="none" stroke="currentColor" stroke-width="2" /><rect x="14" y="3" width="15" height="26" fill="none" stroke="currentColor" stroke-width="2" /><path d="M19 9h5M19 15h5M19 21h5M7 18h3M7 23h3" stroke="currentColor" stroke-width="2" /></svg>
+          <span>Postiguet <b>Fincas</b></span>
+        </a>
+        <nav class="nav" aria-label="Secciones">
+          <a href="#incidencia">Avisar de una incidencia</a>
+          <a href="#vecinos">Área de vecinos</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#presupuesto">Presupuesto</a>
+        </nav>
+        <a class="urg" href="#contacto"><span>Urgencias 24 h</span>600 00 00 00</a>
+      </div>
+    </header>
+
+    <main id="inicio">
+      <section class="hero">
+        <div class="w hero__grid">
+          <div>
+            <p class="chip">Administradores de fincas colegiados · Alicante</p>
+            <h1>Su comunidad al día. Y usted, <span>sin llamar tres veces.</span></h1>
+            <p class="hero__sub">
+              Los vecinos avisan de una avería desde el móvil y ven cómo va. El presidente tiene las cuentas
+              y las actas a un clic. Nosotros nos ocupamos de lo demás.
+            </p>
+            <div class="hero__cta">
+              <a class="btn btn--pet" href="#incidencia">Avisar de una incidencia</a>
+              <a class="btn btn--linea" href="#presupuesto">Presupuesto para mi comunidad</a>
+            </div>
+          </div>
+
+          <div class="panel" aria-label="Ejemplo de seguimiento de una incidencia">
+            <div class="panel__top"><span>Incidencia 2026-0147</span><b>En curso</b></div>
+            <p class="panel__t">Gotera en el rellano del 4.º</p>
+            <ol class="pasos">
+              <li class="hecho"><b>Recibida</b><span>Jueves, 9:12</span></li>
+              <li class="hecho"><b>Fontanero avisado</b><span>Jueves, 9:40</span></li>
+              <li class="ahora"><b>Visita programada</b><span>Hoy, 16:00–18:00</span></li>
+              <li><b>Resuelta</b><span>Pendiente</span></li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="w">
+          <dl class="cifras">
+            <div><dt>86</dt><dd>comunidades administradas</dd></div>
+            <div><dt>2.940</dt><dd>viviendas</dd></div>
+            <div><dt>4 h</dt><dd>tiempo medio de primera respuesta</dd></div>
+            <div><dt>1998</dt><dd>año de apertura del despacho</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section id="incidencia" class="sec sec--pet">
+        <div class="w inc">
+          <header class="cabsec cabsec--pet">
+            <p class="eyebrow">Para vecinos</p>
+            <h2>¿Algo no funciona? Avísenos aquí.</h2>
+            <p>Elija qué pasa y le decimos cuánto tardamos. Queda registrado con número y puede seguirlo sin llamar.</p>
+          </header>
+
+          <form class="inc__caja" id="form-inc" novalidate>
+            <fieldset>
+              <legend>1. ¿Qué ocurre?</legend>
+              <div class="tipos">
+                {tipos.map((t, i) => (
+                  <label class="tipo">
+                    <input type="radio" name="tipo" value={t.id} data-r={t.r} data-u={t.u ? "1" : "0"} checked={i === 1} />
+                    <span>{t.t}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+            <p class="inc__resp" id="inc-resp" aria-live="polite"></p>
+            <fieldset class="inc__campos">
+              <legend>2. ¿Dónde?</legend>
+              <label>Comunidad<input type="text" name="comunidad" autocomplete="off" placeholder="Calle y número" /></label>
+              <label>Portal, piso o zona<input type="text" name="zona" autocomplete="off" placeholder="Ej.: rellano del 4.º" /></label>
+              <label class="inc__tel">Su teléfono<input type="tel" name="telefono" autocomplete="off" placeholder="Para avisarle" /></label>
+            </fieldset>
+            <button class="btn btn--amb btn--ancho" type="submit">Registrar incidencia</button>
+            <p class="inc__ok" id="inc-ok" hidden></p>
+          </form>
+        </div>
+      </section>
+
+      <section id="vecinos" class="sec">
+        <div class="w">
+          <header class="cabsec">
+            <p class="eyebrow">Área de vecinos</p>
+            <h2>Así ve un vecino su comunidad.</h2>
+            <p>Cada propietario entra con su clave y encuentra lo que antes pedía por teléfono. Pruebe las pestañas.</p>
+          </header>
+
+          <div class="area">
+            <div class="area__cab">
+              <span>Comunidad de ejemplo · Calle de Ejemplo, 8</span>
+              <span>Próxima junta: 11 de diciembre, 19:30</span>
+            </div>
+            <div class="area__tabs" role="tablist" aria-label="Área de vecinos">
+              <button role="tab" id="t-avisos" aria-controls="p-avisos" aria-selected="true">Incidencias</button>
+              <button role="tab" id="t-actas" aria-controls="p-actas" aria-selected="false" tabindex="-1">Actas</button>
+              <button role="tab" id="t-cuentas" aria-controls="p-cuentas" aria-selected="false" tabindex="-1">Cuentas</button>
+            </div>
+
+            <div role="tabpanel" id="p-avisos" aria-labelledby="t-avisos" class="area__panel">
+              <ul class="lista">
+                {avisos.map((a) => (
+                  <li><span class:list={["est", { "est--ok": a.ok }]}>{a.e}</span><b>{a.t}</b><time>{a.f}</time></li>
+                ))}
+              </ul>
+            </div>
+            <div role="tabpanel" id="p-actas" aria-labelledby="t-actas" class="area__panel" hidden>
+              <ul class="lista">
+                {actas.map((a) => (
+                  <li><span class="est est--pdf">PDF</span><b>{a.t}</b><time>{a.f} · {a.p}</time></li>
+                ))}
+              </ul>
+            </div>
+            <div role="tabpanel" id="p-cuentas" aria-labelledby="t-cuentas" class="area__panel" hidden>
+              <dl class="cuentas">
+                {cuentas.map((c) => (<div><dt>{c.c}</dt><dd>{c.v}</dd></div>))}
+              </dl>
+              <p class="area__nota">Datos inventados para la demostración.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="servicios" class="sec sec--arena">
+        <div class="w">
+          <header class="cabsec">
+            <p class="eyebrow">Servicios</p>
+            <h2>Lo que hacemos por su comunidad.</h2>
+          </header>
+          <div class="servs">
+            {servicios.map((s, i) => (
+              <article class="serv">
+                <span>{String(i + 1).padStart(2, "0")}</span>
+                <h3>{s.t}</h3>
+                <p>{s.d}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="presupuesto" class="sec">
+        <div class="w calc">
+          <header class="cabsec">
+            <p class="eyebrow">Para presidentes y juntas</p>
+            <h2>¿Cuánto costaría administrar su comunidad?</h2>
+            <p>Mueva los datos y verá una cifra orientativa al momento. El presupuesto definitivo se lo llevamos a la junta, por escrito.</p>
+          </header>
+
+          <div class="calc__caja">
+            <div class="calc__campos">
+              <label for="c-viv">Viviendas <output id="o-viv">24</output></label>
+              <input id="c-viv" type="range" min="6" max="120" step="1" value="24" />
+              <label for="c-gar">Plazas de garaje <output id="o-gar">12</output></label>
+              <input id="c-gar" type="range" min="0" max="120" step="1" value="12" />
+              <div class="calc__checks">
+                <label><input id="c-asc" type="checkbox" checked /> Ascensor</label>
+                <label><input id="c-pis" type="checkbox" /> Piscina o zonas comunes</label>
+                <label><input id="c-con" type="checkbox" /> Conserje o empleados</label>
+              </div>
+            </div>
+            <div class="calc__res" aria-live="polite">
+              <p class="calc__et">Honorarios orientativos</p>
+              <p class="calc__num"><span id="r-mes">0</span> €<small>/mes</small></p>
+              <p class="calc__viv">Unos <b id="r-viv">0</b> € por vivienda al mes, sin IVA</p>
+              <a class="btn btn--pet btn--ancho" href="#contacto">Pedir presupuesto en firme</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacto" class="sec sec--pet">
+        <div class="w contacto">
+          <div>
+            <p class="eyebrow eyebrow--amb">Contacto</p>
+            <h2>Hablamos con su junta cuando quieran.</h2>
+            <p>Vamos a la reunión, explicamos cómo trabajamos y dejamos el presupuesto por escrito. Sin compromiso.</p>
+          </div>
+          <dl class="datos">
+            <div><dt>Oficina</dt><dd>965 00 00 00<br />Lunes a viernes, 9:00 a 14:00 y 16:30 a 19:00</dd></div>
+            <div><dt>Urgencias</dt><dd>600 00 00 00<br />Todos los días, 24 horas</dd></div>
+            <div><dt>Dirección</dt><dd>Calle de Ejemplo, 15, bajo<br />Alicante</dd></div>
+          </dl>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pie">
+      <div class="w pie__in">
+        <p><b>Postiguet Fincas</b> · Calle de Ejemplo, 15 · Alicante</p>
+        <p>Negocio ficticio. Web de demostración creada por <a href="/">ABG Frame</a>.</p>
+      </div>
+    </footer>
+
+    <script is:inline>
+      (function () {
+        // Incidencias
+        var resp = document.getElementById("inc-resp");
+        var radios = Array.prototype.slice.call(document.querySelectorAll('input[name="tipo"]'));
+        function pinta() {
+          var r = radios.filter(function (x) { return x.checked; })[0];
+          if (!r) return;
+          resp.textContent = (r.dataset.u === "1" ? "Urgente. " : "") + r.dataset.r + ".";
+          resp.className = "inc__resp" + (r.dataset.u === "1" ? " inc__resp--u" : "");
+        }
+        radios.forEach(function (r) { r.addEventListener("change", pinta); });
+        pinta();
+        document.getElementById("form-inc").addEventListener("submit", function (e) {
+          e.preventDefault();
+          var ok = document.getElementById("inc-ok");
+          ok.textContent = "Demostración: no se ha enviado nada. En una web real, el vecino recibiría aquí su número de incidencia (por ejemplo, 2026-0148) y un aviso en cada paso.";
+          ok.hidden = false;
+        });
+
+        // Pestañas del área de vecinos
+        var tabs = Array.prototype.slice.call(document.querySelectorAll(".area__tabs [role=tab]"));
+        function activar(t, foco) {
+          tabs.forEach(function (x) {
+            var on = x === t;
+            x.setAttribute("aria-selected", on ? "true" : "false");
+            x.tabIndex = on ? 0 : -1;
+            document.getElementById(x.getAttribute("aria-controls")).hidden = !on;
+          });
+          if (foco) t.focus();
+        }
+        tabs.forEach(function (t, i) {
+          t.addEventListener("click", function () { activar(t, false); });
+          t.addEventListener("keydown", function (e) {
+            if (e.key === "ArrowRight") { e.preventDefault(); activar(tabs[(i + 1) % tabs.length], true); }
+            if (e.key === "ArrowLeft") { e.preventDefault(); activar(tabs[(i - 1 + tabs.length) % tabs.length], true); }
+          });
+        });
+
+        // Calculadora orientativa
+        var viv = document.getElementById("c-viv"), gar = document.getElementById("c-gar");
+        var asc = document.getElementById("c-asc"), pis = document.getElementById("c-pis"), con = document.getElementById("c-con");
+        function calc() {
+          var v = +viv.value, g = +gar.value;
+          document.getElementById("o-viv").textContent = v;
+          document.getElementById("o-gar").textContent = g;
+          var porViv = v <= 20 ? 7.5 : v <= 50 ? 6 : 5;
+          var total = Math.max(120, v * porViv) + g * 1.2 + (asc.checked ? 15 : 0) + (pis.checked ? 35 : 0) + (con.checked ? 45 : 0);
+          total = Math.round(total / 5) * 5;
+          document.getElementById("r-mes").textContent = total.toLocaleString("es-ES");
+          document.getElementById("r-viv").textContent = (total / v).toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+        [viv, gar, asc, pis, con].forEach(function (el) { el.addEventListener("input", calc); });
+        calc();
+      })();
+    </script>
+
+    <style>
+      :root {
+        --fondo: #F5F4EF; --arena: #ECE8DD; --tinta: #10272B; --tinta-2: #44595C; --tinta-3: #6F8083;
+        --pet: #0F4A52; --pet-2: #0B3A40; --amb: #F0A63A; --amb-2: #D98E1F; --linea: #D5D6CD; --blanco: #FFFFFF; --ok: #1F7A54;
+        --tit: "Sora", system-ui, sans-serif; --txt: "Figtree", system-ui, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; background: var(--fondo); color: var(--tinta); font-family: var(--txt); font-size: 16.5px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+      .w { width: 100%; max-width: 1200px; margin: 0 auto; padding-inline: clamp(1.25rem, 4vw, 3rem); }
+      h1, h2, h3 { font-family: var(--tit); font-weight: 600; margin: 0; letter-spacing: -0.03em; }
+      a { color: inherit; }
+      :focus-visible { outline: 2px solid var(--amb-2); outline-offset: 3px; }
+      .eyebrow { font-family: var(--tit); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pet); margin: 0 0 1rem; }
+      .eyebrow--amb, .cabsec--pet .eyebrow { color: var(--amb); }
+
+      .cab { background: var(--fondo); border-bottom: 1px solid var(--linea); position: sticky; top: 0; z-index: 10; }
+      .cab__in { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 70px; }
+      .marca { display: inline-flex; align-items: center; gap: 0.7rem; text-decoration: none; color: var(--pet); font-family: var(--tit); font-size: 1.15rem; letter-spacing: -0.02em; }
+      .marca b { font-weight: 600; }
+      .nav { display: flex; gap: 1.6rem; }
+      .nav a { font-size: 0.93rem; font-weight: 500; text-decoration: none; color: var(--tinta-2); }
+      .nav a:hover { color: var(--pet); }
+      .urg { text-decoration: none; font-family: var(--tit); font-weight: 600; font-size: 1.05rem; color: var(--pet); white-space: nowrap; text-align: right; }
+      .urg span { display: block; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amb-2); }
+
+      .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0.8rem 1.5rem; font-family: var(--tit); font-weight: 500; font-size: 0.93rem; letter-spacing: -0.01em; text-decoration: none; border-radius: 10px; border: 1.5px solid transparent; cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s; }
+      .btn--pet { background: var(--pet); color: #fff; }
+      .btn--pet:hover { background: var(--pet-2); }
+      .btn--linea { border-color: var(--pet); color: var(--pet); }
+      .btn--linea:hover { background: var(--pet); color: #fff; }
+      .btn--amb { background: var(--amb); color: var(--tinta); }
+      .btn--amb:hover { background: var(--amb-2); }
+      .btn--ancho { width: 100%; }
+
+      .hero { padding: clamp(3rem, 7vw, 5.5rem) 0 0; }
+      .hero__grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+      .chip { display: inline-block; font-size: 0.8rem; font-weight: 500; color: var(--pet); background: #DCE9E6; border-radius: 99px; padding: 0.35rem 0.9rem; margin: 0 0 1.5rem; }
+      .hero h1 { font-size: clamp(2.2rem, 4.6vw, 3.8rem); line-height: 1.05; text-wrap: balance; }
+      .hero h1 span { color: var(--pet); }
+      .hero__sub { font-size: clamp(1.02rem, 1.3vw, 1.15rem); color: var(--tinta-2); max-width: 50ch; margin: 1.5rem 0 0; }
+      .hero__cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2rem; }
+
+      .panel { background: var(--blanco); border: 1px solid var(--linea); border-radius: 18px; padding: 1.6rem 1.6rem 1.25rem; box-shadow: 0 24px 50px -28px rgba(16, 39, 43, 0.45); }
+      .panel__top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-size: 0.8rem; color: var(--tinta-3); }
+      .panel__top b { font-family: var(--tit); font-weight: 500; font-size: 0.72rem; color: #7A4B00; background: #FCE9C8; border-radius: 99px; padding: 0.2rem 0.7rem; }
+      .panel__t { font-family: var(--tit); font-weight: 600; font-size: 1.2rem; letter-spacing: -0.02em; margin: 0.7rem 0 1.25rem; }
+      .pasos { list-style: none; margin: 0; padding: 0; }
+      .pasos li { position: relative; display: flex; justify-content: space-between; gap: 1rem; padding: 0.75rem 0 0.75rem 1.9rem; font-size: 0.92rem; color: var(--tinta-3); }
+      .pasos li::before { content: ""; position: absolute; left: 0.25rem; top: 1.12rem; width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--linea); background: var(--blanco); z-index: 1; }
+      .pasos li:not(:last-child)::after { content: ""; position: absolute; left: calc(0.25rem + 5px); top: 1.5rem; bottom: -1.1rem; width: 1.5px; background: var(--linea); }
+      .pasos b { font-weight: 500; color: var(--tinta-3); }
+      .pasos .hecho b, .pasos .ahora b { color: var(--tinta); }
+      .pasos .hecho::before { background: var(--ok); border-color: var(--ok); }
+      .pasos .hecho::after { background: var(--ok) !important; }
+      .pasos .ahora::before { border-color: var(--amb-2); background: var(--amb); box-shadow: 0 0 0 4px #FCE9C8; }
+      .pasos .ahora span { color: #7A4B00; font-weight: 500; }
+
+      .cifras { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; margin: clamp(3rem, 6vw, 4.5rem) 0 0; padding: 1.75rem 0 clamp(3rem, 6vw, 4.5rem); border-top: 1px solid var(--linea); }
+      .cifras dt { font-family: var(--tit); font-weight: 600; font-size: clamp(1.7rem, 3vw, 2.4rem); letter-spacing: -0.04em; color: var(--pet); line-height: 1; }
+      .cifras dd { margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--tinta-2); }
+
+      .sec { padding: clamp(4rem, 8vw, 6.5rem) 0; }
+      .sec--arena { background: var(--arena); }
+      .sec--pet { background: var(--pet); color: #EAF2F0; }
+      .cabsec { max-width: 58ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+      .cabsec h2, .contacto h2 { font-size: clamp(1.8rem, 3.4vw, 2.7rem); line-height: 1.1; text-wrap: balance; }
+      .cabsec p:last-child { color: var(--tinta-2); margin: 1rem 0 0; }
+      .cabsec--pet p:last-child { color: #BFD5D1; }
+
+      .inc { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+      .inc .cabsec { margin-bottom: 0; position: sticky; top: 110px; }
+      .inc__caja { background: var(--blanco); color: var(--tinta); border-radius: 18px; padding: clamp(1.4rem, 3vw, 2.1rem); display: grid; gap: 1.25rem; }
+      fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+      legend { font-family: var(--tit); font-weight: 600; font-size: 1rem; letter-spacing: -0.02em; padding: 0; margin-bottom: 0.8rem; }
+      .tipos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.55rem; }
+      .tipo { position: relative; display: block; }
+      .tipo input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+      .tipo span { display: flex; align-items: center; min-height: 56px; padding: 0.6rem 0.9rem; border: 1.5px solid var(--linea); border-radius: 10px; font-weight: 500; font-size: 0.92rem; line-height: 1.25; transition: border-color 0.15s, background 0.15s; }
+      .tipo:hover span { border-color: var(--pet); }
+      .tipo input:checked + span { border-color: var(--pet); background: #E3EFEC; color: var(--pet-2); }
+      .tipo input:focus-visible + span { outline: 2px solid var(--amb-2); outline-offset: 2px; }
+      .inc__resp { margin: 0; padding: 0.75rem 1rem; border-radius: 10px; background: #EEF1EC; font-weight: 500; font-size: 0.95rem; color: var(--tinta); }
+      .inc__resp--u { background: #FCE9C8; color: #6B4100; }
+      .inc__campos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; }
+      .inc__campos legend { grid-column: 1 / -1; }
+      .inc__campos label { display: grid; gap: 0.35rem; font-size: 0.85rem; font-weight: 500; color: var(--tinta-2); }
+      .inc__tel { grid-column: 1 / -1; }
+      .inc__campos input { font: inherit; font-size: 1rem; color: var(--tinta); background: var(--blanco); border: 1.5px solid var(--linea); border-radius: 10px; padding: 0.75rem 0.9rem; width: 100%; }
+      .inc__campos input:focus { outline: 2px solid var(--pet); outline-offset: 1px; border-color: var(--pet); }
+      .inc__ok { margin: 0; padding: 0.85rem 1rem; border-radius: 10px; background: #E3EFEC; font-size: 0.9rem; color: var(--pet-2); }
+
+      .area { background: var(--blanco); border: 1px solid var(--linea); border-radius: 18px; overflow: hidden; }
+      .area__cab { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem 1.5rem; padding: 1rem 1.5rem; background: var(--tinta); color: #DCE6E4; font-size: 0.86rem; }
+      .area__cab span:last-child { color: var(--amb); font-weight: 500; }
+      .area__tabs { display: flex; gap: 0.25rem; padding: 0.75rem 1rem 0; border-bottom: 1px solid var(--linea); }
+      .area__tabs button { font-family: var(--tit); font-weight: 500; font-size: 0.93rem; color: var(--tinta-3); background: none; border: 0; border-bottom: 2.5px solid transparent; padding: 0.75rem 1rem; margin-bottom: -1px; cursor: pointer; }
+      .area__tabs button:hover { color: var(--tinta); }
+      .area__tabs button[aria-selected="true"] { color: var(--pet); border-color: var(--pet); }
+      .area__panel { padding: 0.5rem 1.5rem 1.5rem; }
+      .lista { list-style: none; margin: 0; padding: 0; }
+      .lista li { display: grid; grid-template-columns: 6.2rem minmax(0, 1fr) auto; gap: 1rem; align-items: center; padding: 1rem 0; border-bottom: 1px solid #E8E8E1; }
+      .lista li:last-child { border-bottom: 0; }
+      .lista b { font-weight: 500; }
+      .lista time { font-size: 0.86rem; color: var(--tinta-3); white-space: nowrap; }
+      .est { justify-self: start; font-family: var(--tit); font-weight: 500; font-size: 0.72rem; border-radius: 99px; padding: 0.22rem 0.7rem; background: #FCE9C8; color: #7A4B00; }
+      .est--ok { background: #DDF0E6; color: #14553A; }
+      .est--pdf { background: #E3EFEC; color: var(--pet-2); }
+      .cuentas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin: 1rem 0 0; }
+      .cuentas div { background: var(--fondo); border-radius: 12px; padding: 1.1rem 1.2rem; }
+      .cuentas dt { font-size: 0.82rem; color: var(--tinta-3); }
+      .cuentas dd { margin: 0.35rem 0 0; font-family: var(--tit); font-weight: 600; font-size: 1.45rem; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+      .area__nota { margin: 1rem 0 0; font-size: 0.8rem; color: var(--tinta-3); }
+
+      .servs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+      .serv { background: var(--fondo); border-radius: 16px; padding: 1.6rem 1.5rem 1.75rem; }
+      .serv span { font-family: var(--tit); font-weight: 500; font-size: 0.8rem; color: var(--amb-2); }
+      .serv h3 { font-size: 1.2rem; margin: 0.5rem 0 0.55rem; }
+      .serv p { margin: 0; font-size: 0.95rem; color: var(--tinta-2); }
+
+      .calc__caja { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); border: 1px solid var(--linea); border-radius: 18px; overflow: hidden; background: var(--blanco); }
+      .calc__campos { padding: clamp(1.5rem, 3vw, 2.25rem); display: grid; gap: 0.6rem; align-content: start; }
+      .calc__campos > label { display: flex; justify-content: space-between; align-items: baseline; font-weight: 500; margin-top: 0.6rem; }
+      .calc__campos output { font-family: var(--tit); font-weight: 600; font-size: 1.35rem; color: var(--pet); font-variant-numeric: tabular-nums; }
+      input[type="range"] { width: 100%; accent-color: var(--pet); height: 28px; }
+      .calc__checks { display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; margin-top: 1rem; }
+      .calc__checks label { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; min-height: 32px; }
+      .calc__checks input { width: 19px; height: 19px; accent-color: var(--pet); }
+      .calc__res { background: var(--tinta); color: #EAF2F0; padding: clamp(1.5rem, 3vw, 2.25rem); display: grid; align-content: center; gap: 0.4rem; }
+      .calc__et { font-family: var(--tit); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amb); margin: 0; }
+      .calc__num { font-family: var(--tit); font-weight: 600; font-size: clamp(2.8rem, 5vw, 3.8rem); letter-spacing: -0.05em; line-height: 1; margin: 0.4rem 0 0; font-variant-numeric: tabular-nums; }
+      .calc__num small { font-size: 1.1rem; font-weight: 400; letter-spacing: 0; color: #A9BDBA; margin-left: 0.2rem; }
+      .calc__viv { margin: 0 0 1.4rem; font-size: 0.93rem; color: #BFD5D1; }
+      .calc__viv b { color: #fff; font-weight: 600; }
+      .calc__res .btn--pet { background: var(--amb); color: var(--tinta); }
+      .calc__res .btn--pet:hover { background: var(--amb-2); }
+
+      .contacto { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+      .contacto p { color: #BFD5D1; max-width: 46ch; margin: 1rem 0 0; }
+      .datos { margin: 0; border-top: 1px solid rgba(255, 255, 255, 0.2); }
+      .datos div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1rem; padding: 1.1rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+      .datos dt { font-family: var(--tit); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amb); padding-top: 0.25rem; }
+      .datos dd { margin: 0; }
+
+      .pie { background: var(--tinta); color: #9FB2AF; padding: 1.75rem 0; font-size: 0.86rem; }
+      .pie__in { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 2rem; }
+      .pie p { margin: 0; }
+      .pie b { color: #fff; font-weight: 500; }
+      .pie a { color: #fff; }
+
+      @media (max-width: 1000px) {
+        .nav { display: none; }
+        .hero__grid, .inc, .contacto { grid-template-columns: minmax(0, 1fr); }
+        .inc .cabsec { position: static; }
+        .servs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .cuentas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .calc__caja { grid-template-columns: minmax(0, 1fr); }
+      }
+      @media (max-width: 640px) {
+        .cifras { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .tipos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .inc__campos { grid-template-columns: minmax(0, 1fr); }
+        .servs { grid-template-columns: minmax(0, 1fr); }
+        .lista li { grid-template-columns: minmax(0, 1fr) auto; }
+        .lista .est { grid-column: 1 / -1; }
+        .area__tabs { padding-inline: 0.5rem; }
+        .area__tabs button { padding-inline: 0.7rem; }
+        .area__panel { padding-inline: 1.1rem; }
+        .hero__cta .btn { width: 100%; }
+        .datos div { grid-template-columns: minmax(0, 1fr); gap: 0.2rem; }
+        .marca span { font-size: 1rem; }
+      }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+    </style>
+  </body>
+</html>

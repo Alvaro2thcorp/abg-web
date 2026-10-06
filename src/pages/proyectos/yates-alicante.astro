@@ -1,13 +1,16 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Navbar from '../../components/Navbar';
-import CasoYatesAlicante from '../../components/proyectos/CasoYatesAlicante';
+// Caso retirado. Redirige a /proyectos/ (Netlify aplica además un 301 desde public/_redirects).
 ---
-
-<Layout
-  title="Caso de Estudio: Diseño Web para Yates Alicante | ABG Frame"
-  description="Cómo construimos el sistema digital de Yates Alicante: web premium y SEO náutico en Alicante. Captación de clientes de alto ticket en el sector náutico."
->
-  <Navbar client:load />
-  <CasoYatesAlicante client:load />
-</Layout>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="https://abgframe.com/proyectos/" />
+    <meta http-equiv="refresh" content="0; url=/proyectos/" />
+    <title>Ejemplos | ABG Frame</title>
+  </head>
+  <body>
+    <p><a href="/proyectos/">Ver ejemplos de ABG Frame</a></p>
+  </body>
+</html>

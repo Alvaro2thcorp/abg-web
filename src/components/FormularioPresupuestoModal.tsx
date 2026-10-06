@@ -167,7 +167,7 @@ export default function FormularioPresupuestoModal({ isOpen, onClose }: Formular
                         letterSpacing: "0.25em",
                         marginBottom: "1.25rem",
                       }}>
-                        Solicitar presupuesto
+                        Diagnóstico y presupuesto
                       </div>
                       <h2 style={{
                         fontFamily: "'DM Serif Display', serif",
@@ -178,27 +178,31 @@ export default function FormularioPresupuestoModal({ isOpen, onClose }: Formular
                         lineHeight: 1.05,
                         margin: 0,
                       }}>
-                        Cuéntanos tu proyecto. <span style={{ fontStyle: "italic", color: "#D14124" }}>Respondemos en 24h.</span>
+                        Cuéntanos tu caso. <span style={{ fontStyle: "italic", color: "#D14124" }}>Te respondemos en 24 h.</span>
                       </h2>
                     </div>
 
                     <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
                       <FormField name="nombre" label="Nombre" type="text" required />
                       <FormField name="email" label="Email" type="email" required />
+                      <FormField name="telefono" label="Teléfono (opcional)" type="tel" />
                       <FormField name="negocio" label="Tu negocio o empresa" type="text" required />
+                      <FormField name="web_actual" label="Tu web actual, si tienes (opcional)" type="text" />
 
                       <FormSelect name="tipo_proyecto" label="Tipo de proyecto" options={[
                         "Web nueva",
                         "Rediseño de mi web actual",
-                        "Web + Sistema completo (Web + Visibilidad + Contenido)",
+                        "Arreglar mi web actual",
+                        "Tienda online",
                         "No lo tengo claro todavía",
                       ]} required />
 
-                      <FormSelect name="presupuesto" label="Presupuesto orientativo" options={[
-                        "2.000€ — 3.000€",
-                        "3.000€ — 5.000€",
-                        "5.000€ — 10.000€",
-                        "Más de 10.000€",
+                      <FormSelect name="presupuesto" label="Qué plan te encaja" options={[
+                        "Esencial (590 €)",
+                        "Profesional (1.190 €)",
+                        "Completa (1.990 €)",
+                        "Rescate Web (290 €)",
+                        "Tienda online o algo a medida",
                         "Prefiero hablarlo",
                       ]} required />
 

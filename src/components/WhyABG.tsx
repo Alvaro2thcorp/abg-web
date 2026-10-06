@@ -276,9 +276,9 @@ export default function WhyABG() {
                     <EditorialStatement
                         num="03"
                         tag="Entrega rápida"
-                        title="Cuatro semanas."
-                        italic="Sin excusas."
-                        description="Tu negocio no puede esperar tres meses para tener presencia online. Brief, diseño, desarrollo, lanzamiento. Sin retrasos sin sentido, sin esperas eternas para ver avances, sin desaparecer entre revisiones."
+                        title="Diez días hábiles."
+                        italic="Por escrito."
+                        description="Desde que tengo tus textos y fotos, tu web está publicada en diez días hábiles. Si me retraso, te descuento 100 € de la factura. Precio cerrado antes de empezar, dos rondas de cambios incluidas y la web y el dominio a tu nombre."
                         pills={[]}
                         delay={0.4}
                     />

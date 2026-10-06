@@ -1,0 +1,125 @@
+---
+import BotonModal from "./BotonModal";
+---
+
+<section class="hero" aria-label="ABG Frame, estudio web en San Juan de Alicante">
+  <div class="abg-wrap hero__grid">
+    <div class="hero__copy">
+      <p class="hero__badge abg-rise"><span></span>Estudio web · San Juan de Alicante</p>
+
+      <h1 class="hero__title abg-rise abg-rise--2">
+        Tu web, lista<br /><span class="hero__nw">en <em>una semana.</em></span>
+      </h1>
+
+      <p class="hero__sub abg-rise abg-rise--3">
+        Hacemos webs para despachos profesionales y negocios de Alicante. Precio cerrado antes de empezar,
+        plazo por escrito y un responsable que contesta cuando algo falla.
+      </p>
+
+      <div class="hero__cta abg-rise abg-rise--3">
+        <BotonModal client:load label="Pide tu diagnóstico gratis →" className="abg-btn abg-btn--ink" />
+        <a class="abg-link" href="#planes">Ver planes y precios</a>
+      </div>
+
+      <dl class="hero__facts">
+        <div>
+          <dt>Desde 590 €</dt>
+          <dd>Precio cerrado, sin sorpresas</dd>
+        </div>
+        <div>
+          <dt>5 a 10 días</dt>
+          <dd>Plazo por escrito</dd>
+        </div>
+        <div>
+          <dt>Tuya</dt>
+          <dd>Web y dominio a tu nombre</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="hero__work">
+      <a class="hero__stack" href="#ejemplos" aria-label="Ver los ejemplos de web">
+        <figure class="hero__shot hero__shot--main abg-browser abg-rise abg-rise--2">
+          <div class="abg-browser__bar"><i></i><i></i><i></i><span class="abg-browser__url">Despacho de abogados</span></div>
+          <img src="/images/demos/despacho-abogados-900.webp" srcset="/images/demos/despacho-abogados-900.webp 900w, /images/demos/despacho-abogados.webp 1600w" sizes="(max-width: 900px) 90vw, 520px" width="1600" height="1000" alt="Ejemplo de web para un despacho de abogados" fetchpriority="high" />
+        </figure>
+        <figure class="hero__shot hero__shot--side abg-browser abg-rise abg-rise--3">
+          <div class="abg-browser__bar"><i></i><i></i><i></i><span class="abg-browser__url">Administración de fincas</span></div>
+          <img src="/images/demos/administrador-fincas-900.webp" width="900" height="563" alt="Ejemplo de web para una administración de fincas" loading="lazy" />
+        </figure>
+        <figure class="hero__shot hero__shot--phone abg-phone abg-rise abg-rise--3">
+          <img src="/images/demos/asesoria-moderna-movil.webp" width="520" height="1040" alt="Ejemplo de web para una asesoría, vista en el móvil" loading="lazy" />
+        </figure>
+      </a>
+      <p class="hero__caption">Cuatro webs de demostración que puedes abrir y probar ↓</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: var(--paper);
+    color: var(--ink);
+    padding-top: clamp(7rem, 12vw, 9.5rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+    overflow: hidden;
+  }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+  .hero__badge {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    font-family: var(--font-body); font-weight: 500; font-size: 0.74rem;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--coral-ink);
+    border: 1px solid rgba(209, 65, 36, 0.3); border-radius: 99px;
+    padding: 0.4rem 0.95rem; margin: 0 0 1.6rem;
+  }
+  .hero__badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--coral); }
+  .hero__title {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(2.9rem, 5.7vw, 5.1rem); line-height: 0.98; letter-spacing: -0.035em;
+    margin: 0; text-wrap: balance;
+  }
+  .hero__title em { font-style: italic; color: var(--coral); }
+  .hero__nw { white-space: nowrap; }
+  .hero__sub {
+    font-family: var(--font-body); font-size: clamp(1.02rem, 1.35vw, 1.18rem); line-height: 1.6;
+    color: var(--ink-2); max-width: 46ch; margin: 1.75rem 0 0;
+  }
+  .hero__cta { display: flex; align-items: center; flex-wrap: wrap; gap: 1.1rem 1.75rem; margin-top: 2.25rem; }
+  .hero__facts {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem;
+    margin: clamp(2.5rem, 5vw, 3.5rem) 0 0; padding-top: 1.5rem; border-top: 1px solid var(--line);
+  }
+  .hero__facts dt { font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.6rem); letter-spacing: -0.01em; line-height: 1.1; }
+  .hero__facts dd { font-family: var(--font-body); font-size: 0.86rem; line-height: 1.45; color: var(--ink-3); margin: 0.35rem 0 0; }
+
+  /* Composición de capturas reales */
+  .hero__stack { position: relative; display: block; padding-bottom: 13%; text-decoration: none; color: inherit; }
+  .hero__stack:focus-visible { outline: 2px solid var(--coral); outline-offset: 6px; }
+  .hero__shot { margin: 0; }
+  .hero__shot--main { width: 92%; margin-left: auto; }
+  .hero__shot--side { position: absolute; left: 0; bottom: 0; width: 50%; }
+  .hero__shot--phone { position: absolute; right: 6%; bottom: 2%; width: 20%; }
+  .hero__caption {
+    font-family: var(--font-body); font-size: 0.8rem; color: var(--ink-3); text-align: right; margin: 1.1rem 0 0;
+  }
+
+  @media (max-width: 960px) {
+    .hero__grid { grid-template-columns: minmax(0, 1fr); }
+    .hero__work { margin-top: 1rem; }
+    .hero__caption { text-align: left; }
+  }
+  @media (max-width: 560px) {
+    .hero__facts { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+    .hero__facts div { display: flex; align-items: baseline; gap: 0.75rem; }
+    .hero__facts dt { min-width: 7.2rem; font-size: 1.2rem; }
+    .hero__facts dd { margin: 0; }
+    .hero__cta { flex-direction: column; align-items: stretch; }
+    .hero__cta :global(.abg-btn) { width: 100%; }
+    .hero__cta .abg-link { align-self: flex-start; }
+  }
+</style>

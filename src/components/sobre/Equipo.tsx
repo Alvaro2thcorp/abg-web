@@ -28,7 +28,7 @@ export default function Equipo() {
                         marginBottom: "4rem",
                     }}
                 >
-                    Quién hay detrás
+                    Quién dirige tu proyecto
                 </motion.div>
 
                 <motion.div
@@ -58,7 +58,7 @@ export default function Equipo() {
                         overflow: "hidden",
                     }}>
                         <img
-                            src="/images/alvarobergillos.png"
+                            src="/images/alvarobergillos.webp"
                             alt="Álvaro Bergillos"
                             style={{
                                 width: "100%",
@@ -93,7 +93,7 @@ export default function Equipo() {
                             letterSpacing: "0.2em",
                             marginBottom: "2.5rem",
                         }}>
-                            Fundador y Desarrollador
+                            Fundador y director
                         </div>
 
                         <p style={{
@@ -106,7 +106,7 @@ export default function Equipo() {
                             marginBottom: "1.5rem",
                             maxWidth: "560px",
                         }}>
-                            Diseño cada proyecto de principio a fin. Desde la primera conversación hasta el lanzamiento. Sin intermediarios, sin equipos de cuenta, sin perder la visión por el camino.
+                            Dirige cada proyecto de principio a fin: la primera conversación, el diseño, la programación y el lanzamiento. Sin comerciales ni intermediarios: hablas siempre con la misma persona.
                         </p>
 
                         <p style={{
@@ -118,7 +118,7 @@ export default function Equipo() {
                             margin: 0,
                             maxWidth: "560px",
                         }}>
-                            ABG Frame nació de ver negocios increíbles de Alicante perder clientes por tener webs que no estaban a su altura. Eso tiene solución.
+                            ABG Frame nació de ver buenos negocios de Alicante perder clientes por tener webs que no estaban a su altura. Eso tiene solución.
                         </p>
 
                         <div style={{
@@ -138,7 +138,7 @@ export default function Equipo() {
                                 Sígueme
                             </span>
                             <a
-                                href="https://instagram.com/alvarobgonzalez"
+                                href="https://instagram.com/alvarobergillos"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 style={{
@@ -154,7 +154,7 @@ export default function Equipo() {
                                 onMouseEnter={(e) => { e.currentTarget.style.color = "#D14124"; e.currentTarget.style.borderColor = "#D14124"; }}
                                 onMouseLeave={(e) => { e.currentTarget.style.color = "#F2F0ED"; e.currentTarget.style.borderColor = "rgba(242,240,237,0.2)"; }}
                             >
-                                @alvarobgonzalez
+                                @alvarobergillos
                             </a>
                         </div>
 
@@ -188,7 +188,7 @@ export default function Equipo() {
                                 Hablemos →
                             </a>
                             <a
-                                href="/el-sistema"
+                                href="/servicios"
                                 style={{
                                     display: "inline-flex",
                                     alignItems: "center",
@@ -205,7 +205,7 @@ export default function Equipo() {
                                 onMouseEnter={(e) => { e.currentTarget.style.color = "#F2F0ED"; e.currentTarget.style.borderColor = "rgba(242,240,237,0.3)"; }}
                                 onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(242,240,237,0.4)"; e.currentTarget.style.borderColor = "rgba(242,240,237,0.1)"; }}
                             >
-                                Ver cómo trabajo →
+                                Ver cómo trabajamos →
                             </a>
                         </div>
                     </div>

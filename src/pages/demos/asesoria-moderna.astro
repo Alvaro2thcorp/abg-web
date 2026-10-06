@@ -1,0 +1,334 @@
+---
+import DemoBar from "../../components/demos/DemoBar.astro";
+
+const cuotas = [
+  { n: "Autónomo", p: "49", d: "Para quien factura por su cuenta.", i: ["IVA e IRPF cada trimestre", "Renta anual incluida", "Dudas por WhatsApp", "Avisos antes de cada plazo"] },
+  { n: "Autónomo con equipo", p: "89", d: "Si ya tienes a alguien contratado.", i: ["Todo lo del plan Autónomo", "Nóminas y seguros sociales", "Altas, bajas y contratos", "Hasta 3 empleados"], top: true },
+  { n: "Sociedad", p: "149", d: "Para tu S.L., desde el primer día.", i: ["Contabilidad completa", "Impuesto de sociedades", "Cuentas anuales", "Reunión trimestral de números"] },
+];
+const pasos = [
+  { t: "Haz una foto a la factura", d: "Desde el móvil, según te la dan. Se guarda ordenada por trimestre." },
+  { t: "Nosotros presentamos", d: "Preparamos tus modelos y te enseñamos el resultado antes de enviarlo." },
+  { t: "Te avisamos antes de cada plazo", d: "Una semana antes sabes cuánto te toca pagar y qué nos falta." },
+];
+const faq = [
+  { q: "¿Tengo que cambiar de banco o de programa?", a: "No. Trabajamos con lo que ya uses. Si no usas nada, te damos una herramienta sencilla para facturar." },
+  { q: "¿Y si vengo de otra asesoría?", a: "Pedimos nosotros tu documentación a la anterior. Tú no tienes que hacer nada." },
+  { q: "¿Hay permanencia?", a: "No. Pagas mes a mes y te vas cuando quieras." },
+  { q: "¿Podemos vernos en persona?", a: "Claro. Estamos en Alicante y puedes pasarte con cita." },
+];
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Cuadra · Asesoría para autónomos · Demostración de ABG Frame</title>
+    <meta name="description" content="Web de demostración de una asesoría para autónomos, hecha por ABG Frame." />
+    <link rel="icon" type="image/webp" href="/favicon.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <DemoBar />
+
+    <header class="cab">
+      <div class="w cab__in">
+        <a class="logo" href="#inicio">cuadra<span>.</span></a>
+        <nav class="nav" aria-label="Secciones">
+          <a href="#trimestre">Qué te toca</a>
+          <a href="#cuotas">Cuotas</a>
+          <a href="#como">Cómo funciona</a>
+          <a href="#dudas">Dudas</a>
+        </nav>
+        <a class="btn btn--azul" href="#cita">Reserva una llamada</a>
+      </div>
+    </header>
+
+    <main id="inicio">
+      <section class="hero">
+        <div class="w hero__grid">
+          <div>
+            <p class="chip">Asesoría para autónomos · Alicante</p>
+            <h1>Tú factura.<br />Nosotros <mark>cuadramos.</mark></h1>
+            <p class="lead">
+              Llevamos tus impuestos desde 49 € al mes. Nos mandas las facturas por el móvil,
+              presentamos todo en plazo y te contestamos por WhatsApp el mismo día.
+            </p>
+            <div class="hero__cta">
+              <a class="btn btn--azul" href="#cita">Reserva una llamada gratis</a>
+              <a class="enlace" href="#cuotas">Ver cuotas</a>
+            </div>
+            <p class="nota">Sin permanencia. Si vienes de otra asesoría, hacemos nosotros el cambio.</p>
+          </div>
+
+          <div class="chat" aria-label="Ejemplo de conversación con tu asesora">
+            <div class="chat__cab"><span class="chat__av">MC</span><div><b>Marta · tu asesora</b><small>Responde en el día</small></div></div>
+            <div class="chat__msgs">
+              <p class="m m--yo">Te mando las facturas de septiembre.<small>10:12</small></p>
+              <p class="m m--yo m--file">facturas-septiembre.pdf · 14 documentos<small>10:12</small></p>
+              <p class="m">Recibidas. Me faltan dos tickets de gasolina del día 18.<small>10:31</small></p>
+              <p class="m m--yo">Aquí van.<small>10:40</small></p>
+              <p class="m">Perfecto. Este trimestre te salen 412 € de IVA. Lo presento el día 15 y te aviso.<small>10:44</small></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="trimestre" class="sec sec--suave">
+        <div class="w">
+          <p class="sobre">Calculadora de plazos</p>
+          <h2>¿Qué te toca presentar este trimestre?</h2>
+          <div class="tri" data-tri>
+            <div class="tri__tabs" role="tablist" aria-label="Tipo de actividad">
+              <button role="tab" aria-selected="true" data-k="auto">Soy autónomo</button>
+              <button role="tab" aria-selected="false" data-k="equipo">Autónomo con empleados</button>
+              <button role="tab" aria-selected="false" data-k="sl">Tengo una S.L.</button>
+            </div>
+            <ul class="tri__lista" aria-live="polite"></ul>
+            <p class="tri__pie">Plazo del tercer trimestre: <b>del 1 al 20 de octubre.</b> Con Cuadra no tienes que acordarte.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cuotas" class="sec">
+        <div class="w">
+          <p class="sobre">Cuotas</p>
+          <h2>Un precio fijo al mes. Sin letra pequeña.</h2>
+          <div class="cuotas">
+            {cuotas.map((c) => (
+              <article class:list={{ top: c.top }}>
+                {c.top && <span class="etq">La más habitual</span>}
+                <h3>{c.n}</h3>
+                <p class="cuotas__d">{c.d}</p>
+                <p class="cuotas__p"><b>{c.p} €</b><span>/mes + IVA</span></p>
+                <ul>{c.i.map((x) => <li>{x}</li>)}</ul>
+                <a class:list={["btn", c.top ? "btn--azul" : "btn--linea"]} href="#cita">Empezar</a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="como" class="sec sec--tinta">
+        <div class="w">
+          <p class="sobre sobre--am">Cómo funciona</p>
+          <h2>Tres pasos y te olvidas.</h2>
+          <ol class="pasos">
+            {pasos.map((p) => (<li><h3>{p.t}</h3><p>{p.d}</p></li>))}
+          </ol>
+        </div>
+      </section>
+
+      <section id="cita" class="sec">
+        <div class="w cita__grid">
+          <div>
+            <p class="sobre">Primera llamada</p>
+            <h2>15 minutos para ver si encajamos.</h2>
+            <p class="lead">Elige día y hora. Te llamamos nosotros y, si no te convence, no pasa nada.</p>
+          </div>
+          <form class="reserva" data-reserva onsubmit="event.preventDefault();">
+            <p class="reserva__t">Elige un día</p>
+            <div class="chips" data-dias></div>
+            <p class="reserva__t">Elige una hora</p>
+            <div class="chips" data-horas>
+              <button type="button">9:30</button><button type="button">11:00</button><button type="button">12:30</button><button type="button">16:30</button><button type="button">18:00</button>
+            </div>
+            <label for="cu-tel">Tu teléfono</label>
+            <input id="cu-tel" type="tel" placeholder="600 000 000" />
+            <button class="btn btn--azul" type="submit">Confirmar llamada</button>
+            <output hidden></output>
+          </form>
+        </div>
+      </section>
+
+      <section id="dudas" class="sec sec--suave">
+        <div class="w dudas__grid">
+          <h2>Dudas antes de empezar.</h2>
+          <div>
+            {faq.map((f) => (<details><summary>{f.q}</summary><p>{f.a}</p></details>))}
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pie">
+      <div class="w pie__in">
+        <span><b class="logo logo--pie">cuadra<span>.</span></b> Negocio ficticio de demostración</span>
+        <a href="/">Web hecha por ABG Frame</a>
+      </div>
+    </footer>
+
+    <script is:inline>
+      (function () {
+        var datos = {
+          auto: [["Modelo 303", "IVA del trimestre"], ["Modelo 130", "Pago a cuenta del IRPF"], ["Modelo 115", "Solo si alquilas local u oficina"]],
+          equipo: [["Modelo 303", "IVA del trimestre"], ["Modelo 130", "Pago a cuenta del IRPF"], ["Modelo 111", "Retenciones de las nóminas"], ["Seguros sociales", "Cada mes, no solo el trimestre"]],
+          sl: [["Modelo 303", "IVA del trimestre"], ["Modelo 111", "Retenciones de nóminas y profesionales"], ["Modelo 202", "Pago a cuenta del impuesto de sociedades"], ["Modelo 115", "Solo si la sociedad alquila local"]]
+        };
+        var tri = document.querySelector("[data-tri]");
+        if (tri) {
+          var lista = tri.querySelector(".tri__lista");
+          var pinta = function (k) {
+            lista.innerHTML = datos[k].map(function (d) { return "<li><b>" + d[0] + "</b><span>" + d[1] + "</span></li>"; }).join("");
+          };
+          tri.querySelectorAll("[role=tab]").forEach(function (b) {
+            b.addEventListener("click", function () {
+              tri.querySelectorAll("[role=tab]").forEach(function (x) { x.setAttribute("aria-selected", "false"); });
+              b.setAttribute("aria-selected", "true");
+              pinta(b.dataset.k);
+            });
+          });
+          pinta("auto");
+        }
+        var res = document.querySelector("[data-reserva]");
+        if (res) {
+          var dias = res.querySelector("[data-dias]"), out = res.querySelector("output");
+          var d = new Date(), n = 0, fmt = new Intl.DateTimeFormat("es-ES", { weekday: "short", day: "numeric", month: "short" });
+          while (n < 5) {
+            d.setDate(d.getDate() + 1);
+            if (d.getDay() === 0 || d.getDay() === 6) continue;
+            var b = document.createElement("button"); b.type = "button"; b.textContent = fmt.format(d).replace(".", "");
+            dias.appendChild(b); n++;
+          }
+          var sel = { dia: "", hora: "" };
+          var grupo = function (cont, clave) {
+            cont.querySelectorAll("button").forEach(function (b) {
+              b.addEventListener("click", function () {
+                cont.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
+                b.setAttribute("aria-pressed", "true"); sel[clave] = b.textContent; out.hidden = true;
+              });
+            });
+          };
+          grupo(dias, "dia"); grupo(res.querySelector("[data-horas]"), "hora");
+          res.addEventListener("submit", function () {
+            out.hidden = false;
+            out.textContent = sel.dia && sel.hora
+              ? "Demostración: aquí quedaría reservada tu llamada del " + sel.dia + " a las " + sel.hora + " y te llegaría un recordatorio."
+              : "Elige un día y una hora para reservar.";
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --fondo: #FAFAF6; --tinta: #14151A; --azul: #2340C8; --azul-2: #1A31A0; --am: #FFE266; --suave: #EEF0FA;
+    --gris: #565A66; --linea: #DFE0DA; --blanco: #FFFFFF;
+    --disp: "Bricolage Grotesque", system-ui, sans-serif; --txt: "Instrument Sans", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--fondo); color: var(--tinta); font-family: var(--txt); font-size: 17px; line-height: 1.55; }
+  .w { max-width: 1140px; margin: 0 auto; padding-inline: clamp(1.25rem, 4.5vw, 3rem); }
+  h1, h2, h3 { font-family: var(--disp); margin: 0; text-wrap: balance; }
+  h1 { font-weight: 700; font-size: clamp(2.8rem, 6.6vw, 5.2rem); line-height: 0.98; letter-spacing: -0.035em; }
+  h2 { font-weight: 700; font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.05; letter-spacing: -0.025em; max-width: 20ch; }
+  mark { background: linear-gradient(transparent 58%, var(--am) 58%); color: inherit; padding: 0 0.08em; }
+  .sobre { font-weight: 600; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--azul); margin: 0 0 0.9rem; }
+  .sobre--am { color: var(--am); }
+  .lead { font-size: 1.12rem; color: var(--gris); max-width: 50ch; margin: 1.4rem 0 0; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0.7rem 1.4rem; border-radius: 999px; border: 1.5px solid transparent; font-family: var(--txt); font-weight: 600; font-size: 0.96rem; text-decoration: none; cursor: pointer; transition: background 0.2s, color 0.2s; }
+  .btn--azul { background: var(--azul); color: #fff; }
+  .btn--azul:hover { background: var(--azul-2); }
+  .btn--linea { border-color: var(--tinta); color: var(--tinta); background: transparent; }
+  .btn--linea:hover { background: var(--tinta); color: #fff; }
+  .enlace { color: var(--tinta); font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--am); padding-bottom: 1px; }
+  a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--azul); outline-offset: 3px; }
+
+  .cab { position: sticky; top: 0; z-index: 10; background: rgba(250, 250, 246, 0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--linea); }
+  .cab__in { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: 0.8rem; }
+  .logo { font-family: var(--disp); font-weight: 700; font-size: 1.6rem; letter-spacing: -0.04em; color: var(--tinta); text-decoration: none; }
+  .logo span { color: var(--azul); }
+  .nav { display: flex; gap: 1.6rem; }
+  .nav a { color: var(--tinta); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+  .nav a:hover { color: var(--azul); }
+
+  .hero { padding-block: clamp(3rem, 7vw, 5.5rem) clamp(3.5rem, 7vw, 6rem); }
+  .hero__grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+  .chip { display: inline-block; font-weight: 600; font-size: 0.8rem; background: var(--suave); color: var(--azul); border-radius: 999px; padding: 0.35rem 0.9rem; margin: 0 0 1.4rem; }
+  .hero__cta { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 1.6rem; margin-top: 2rem; }
+  .nota { font-size: 0.9rem; color: var(--gris); margin: 1.4rem 0 0; }
+
+  .chat { background: var(--blanco); border: 1px solid var(--linea); border-radius: 22px; overflow: hidden; box-shadow: 0 24px 50px -22px rgba(20, 21, 26, 0.3); max-width: 400px; margin-left: auto; width: 100%; }
+  .chat__cab { display: flex; align-items: center; gap: 0.8rem; padding: 0.9rem 1.1rem; border-bottom: 1px solid var(--linea); }
+  .chat__av { width: 40px; height: 40px; border-radius: 50%; background: var(--azul); color: #fff; display: grid; place-items: center; font-weight: 600; font-size: 0.85rem; }
+  .chat__cab b { display: block; font-size: 0.95rem; }
+  .chat__cab small { color: var(--gris); font-size: 0.8rem; }
+  .chat__msgs { padding: 1.1rem; display: grid; gap: 0.6rem; background: var(--fondo); }
+  .m { margin: 0; max-width: 84%; padding: 0.6rem 0.85rem; border-radius: 14px 14px 14px 4px; background: var(--blanco); border: 1px solid var(--linea); font-size: 0.93rem; line-height: 1.4; }
+  .m small { display: block; text-align: right; font-size: 0.7rem; color: var(--gris); margin-top: 0.2rem; }
+  .m--yo { justify-self: end; background: var(--suave); border-color: transparent; border-radius: 14px 14px 4px 14px; }
+  .m--file { font-weight: 600; font-size: 0.86rem; }
+
+  .sec { padding-block: clamp(4rem, 8vw, 6.5rem); }
+  .sec--suave { background: var(--suave); }
+  .sec--tinta { background: var(--tinta); color: #fff; }
+
+  .tri { margin-top: 2.5rem; background: var(--blanco); border-radius: 20px; padding: clamp(1.25rem, 3vw, 2.25rem); }
+  .tri__tabs { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .tri__tabs button, .chips button { font: inherit; font-weight: 600; font-size: 0.93rem; padding: 0.6rem 1.1rem; border-radius: 999px; border: 1.5px solid var(--linea); background: var(--blanco); color: var(--tinta); cursor: pointer; }
+  .tri__tabs button[aria-selected="true"], .chips button[aria-pressed="true"] { background: var(--tinta); border-color: var(--tinta); color: #fff; }
+  .tri__lista { list-style: none; margin: 1.75rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2.5rem; }
+  .tri__lista li { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1rem 0; border-top: 1px solid var(--linea); }
+  .tri__lista b { font-family: var(--disp); font-size: 1.15rem; white-space: nowrap; }
+  .tri__lista span { color: var(--gris); font-size: 0.93rem; text-align: right; }
+  .tri__pie { margin: 1.5rem 0 0; padding-top: 1.25rem; border-top: 1px solid var(--linea); color: var(--gris); }
+  .tri__pie b { color: var(--tinta); background: linear-gradient(transparent 58%, var(--am) 58%); }
+
+  .cuotas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; margin-top: 2.75rem; align-items: stretch; }
+  .cuotas article { position: relative; display: flex; flex-direction: column; background: var(--blanco); border: 1px solid var(--linea); border-radius: 20px; padding: 1.75rem; }
+  .cuotas article.top { border: 2px solid var(--azul); }
+  .etq { position: absolute; top: -0.8rem; left: 1.5rem; background: var(--am); color: var(--tinta); font-weight: 600; font-size: 0.76rem; padding: 0.25rem 0.7rem; border-radius: 999px; }
+  .cuotas h3 { font-size: 1.45rem; letter-spacing: -0.02em; }
+  .cuotas__d { color: var(--gris); margin: 0.35rem 0 1.25rem; font-size: 0.95rem; }
+  .cuotas__p { margin: 0 0 1.25rem; display: flex; align-items: baseline; gap: 0.4rem; }
+  .cuotas__p b { font-family: var(--disp); font-size: 3rem; line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+  .cuotas__p span { color: var(--gris); font-size: 0.9rem; }
+  .cuotas ul { list-style: none; margin: 0 0 1.75rem; padding: 0; display: grid; gap: 0.6rem; flex-grow: 1; align-content: start; }
+  .cuotas li { position: relative; padding-left: 1.5rem; font-size: 0.95rem; }
+  .cuotas li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--am); border: 1.5px solid var(--tinta); }
+
+  .pasos { list-style: none; margin: 2.75rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; counter-reset: p; }
+  .pasos li { counter-increment: p; border-top: 2px solid var(--am); padding-top: 1.25rem; }
+  .pasos li::before { content: "0" counter(p); font-family: var(--disp); font-weight: 700; font-size: 0.95rem; color: var(--am); }
+  .pasos h3 { font-size: 1.35rem; letter-spacing: -0.02em; margin: 0.6rem 0 0.5rem; }
+  .pasos p { margin: 0; color: #B7BAC6; font-size: 0.97rem; }
+
+  .cita__grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+  .reserva { background: var(--blanco); border: 1px solid var(--linea); border-radius: 20px; padding: clamp(1.25rem, 3vw, 2rem); display: grid; gap: 0.6rem; }
+  .reserva__t, .reserva label { font-weight: 600; font-size: 0.86rem; margin: 0.6rem 0 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .chips button { text-transform: capitalize; }
+  .reserva input { font: inherit; padding: 0.75rem 0.9rem; border-radius: 12px; border: 1.5px solid var(--linea); background: var(--fondo); width: 100%; }
+  .reserva .btn { margin-top: 0.75rem; }
+  output { display: block; padding: 0.8rem 1rem; border-radius: 12px; background: var(--suave); font-size: 0.92rem; }
+  output[hidden] { display: none; }
+
+  .dudas__grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+  details { border-top: 1px solid #CFD3E6; }
+  details:last-child { border-bottom: 1px solid #CFD3E6; }
+  summary { list-style: none; cursor: pointer; padding: 1.15rem 0; font-weight: 600; font-size: 1.05rem; display: flex; justify-content: space-between; gap: 1rem; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-family: var(--disp); font-size: 1.5rem; line-height: 1; color: var(--azul); }
+  details[open] summary::after { content: "–"; }
+  details p { margin: 0 0 1.25rem; color: var(--gris); max-width: 56ch; }
+
+  .pie { border-top: 1px solid var(--linea); font-size: 0.88rem; color: var(--gris); }
+  .pie__in { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem 1.5rem; padding-block: 1.5rem; }
+  .logo--pie { font-size: 1.15rem; margin-right: 0.6rem; }
+  .pie a { color: var(--tinta); }
+
+  @media (max-width: 900px) {
+    .nav { display: none; }
+    .hero__grid, .cita__grid, .dudas__grid { grid-template-columns: minmax(0, 1fr); }
+    .chat { margin-inline: 0; }
+    .cuotas, .pasos { grid-template-columns: minmax(0, 1fr); }
+    .tri__lista { grid-template-columns: minmax(0, 1fr); }
+    .cab .btn { padding-inline: 1rem; font-size: 0.88rem; }
+  }
+</style>

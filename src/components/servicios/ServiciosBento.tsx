@@ -6,52 +6,54 @@ import { motion, useInView } from "framer-motion";
 const SERVICIOS = [
     {
         num: "01",
-        tag: "Diseño y Desarrollo",
-        titulo: "Web a medida",
-        subtitulo: "Hecha pieza por pieza para tu negocio.",
+        tag: "Web nueva",
+        titulo: "Web Lista en 10 días",
+        subtitulo: "Tu web profesional, publicada en diez días hábiles.",
         items: [
-            "Diseño visual a medida (cero plantillas)",
-            "Desarrollo en Astro + React + Tailwind",
-            "Adaptada a móvil desde el primer día",
-            "Velocidad técnica con Core Web Vitals altos",
-            "Estructura preparada para Google",
-            "Formularios conectados y operativos",
+            "Hasta 5 páginas con diseño propio para tu negocio",
+            "Textos escritos contigo, a partir de una entrevista de 30 minutos",
+            "Adaptada al móvil y rápida de verdad",
+            "SEO local y ficha de Google optimizada",
+            "Formulario, WhatsApp y textos legales (RGPD)",
+            "Dos rondas de cambios incluidas",
         ],
-        precio: "Desde 2.000€",
-        mantenimiento: "Mantenimiento mensual recomendado",
+        precio: "Desde 990 €",
+        mantenimiento: "Precio de lanzamiento para las 3 primeras webs · después 1.490 €",
+        destacado: true,
     },
     {
         num: "02",
-        tag: "Visibilidad",
-        titulo: "SEO + Contenido",
-        subtitulo: "Para que te encuentren en tu zona.",
+        tag: "Ya tengo web",
+        titulo: "Rescate Web",
+        subtitulo: "Tu web actual, arreglada en 72 horas.",
         items: [
-            "Investigación de palabras clave reales",
-            "Arquitectura SEO desde el primer commit",
-            "Contenido editorial mensual",
-            "Optimización Google Business Profile",
-            "Schema markup y datos estructurados",
-            "Informes mensuales claros",
+            "WordPress o Shopify",
+            "Actualizaciones y seguridad",
+            "Velocidad y adaptación al móvil",
+            "Copias de seguridad",
+            "Formularios que llegan de verdad",
+            "Informe claro de lo que he hecho",
         ],
-        precio: "Desde 350€/mes",
-        mantenimiento: "Servicio recurrente, sin permanencia",
+        precio: "290 €",
+        mantenimiento: "Precio cerrado · sin sorpresas",
+        destacado: false,
     },
     {
         num: "03",
-        tag: "Sistema completo",
-        titulo: "Web + SEO + Redes",
-        subtitulo: "Todo coordinado desde un solo equipo.",
+        tag: "Cada mes",
+        titulo: "Plan Cuidado",
+        subtitulo: "Alguien que responde cuando algo falla.",
         items: [
-            "Web premium a medida",
-            "SEO técnico y de contenido",
-            "Redes sociales con estrategia editorial",
-            "Meta Ads opcional cuando aplica",
-            "Acompañamiento mensual continuo",
-            "Un único responsable de todo",
+            "Hosting, dominio y certificado SSL",
+            "Actualizaciones y copias de seguridad",
+            "Aviso inmediato si la web se cae",
+            "Cambios pequeños incluidos (plan Pro)",
+            "Informe mensual de contactos (plan Pro)",
+            "Sin permanencia a partir del tercer mes",
         ],
-        precio: "Desde 4.500€ + 450€/mes",
-        mantenimiento: "Sin permanencia",
-        destacado: true,
+        precio: "Desde 49 €/mes",
+        mantenimiento: "Base 49 € · Pro 89 € · Crece 179 €",
+        destacado: false,
     },
 ];
 
@@ -110,7 +112,7 @@ export default function ServiciosBento() {
                             marginBottom: "1.5rem",
                         }}
                     >
-                        Tres servicios. <span style={{ fontStyle: "italic", color: "rgba(8,8,8,0.3)" }}>Una sola dirección.</span>
+                        Tres servicios. <span style={{ fontStyle: "italic", color: "rgba(8,8,8,0.3)" }}>Precio cerrado.</span>
                     </motion.h2>
 
                     <motion.p
@@ -127,7 +129,7 @@ export default function ServiciosBento() {
                             maxWidth: "640px",
                         }}
                     >
-                        Cada proyecto se valora en función del alcance, el sector y el nivel de detalle. Como referencia general, los proyectos arrancan desde 2.000€ y siempre incluyen una mensualidad de mantenimiento técnico.
+                        Sabes lo que vas a pagar antes de empezar. Cada web sale con su plan de mantenimiento, para que siempre haya alguien que la cuide. Y si necesitas algo a medida, como una tienda online o citas automáticas, lo presupuesto por escrito en 48 horas.
                     </motion.p>
                 </div>
 
@@ -163,7 +165,7 @@ export default function ServiciosBento() {
                         lineHeight: 1.6,
                         margin: 0,
                     }}>
-                        <strong style={{ fontWeight: 500, color: "#080808" }}>Cómo funciona el precio:</strong> cada proyecto se cierra después de una conversación inicial. El precio final depende del número de páginas, integraciones, idiomas y nivel de personalización. La mensualidad de mantenimiento cubre actualizaciones, copias de seguridad, mejoras de rendimiento y pequeños cambios. Sin sorpresas, sin letra pequeña.
+                        <strong style={{ fontWeight: 500, color: "#080808" }}>Cómo funciona:</strong> 50 % al empezar y 50 % antes de publicar. La web y el dominio quedan a tu nombre. Si me retraso de los diez días hábiles, te descuento 100 €. Precios sin IVA. ¿Tienda online o algo a medida? Lo hablamos y te paso presupuesto cerrado.
                     </p>
                 </motion.div>
             </div>

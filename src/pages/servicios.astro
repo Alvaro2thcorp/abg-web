@@ -1,18 +1,19 @@
 ﻿---
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar";
-import ServiciosCards from "../components/servicios/ServiciosCards";
-import ServiciosBento from "../components/servicios/ServiciosBento";
-import TechBannerServicios from "../components/TechBannerServicios";
+import Cabecera from "../components/site/Cabecera.astro";
+import Planes from "../components/site/Planes.astro";
+import Cuidado from "../components/site/Cuidado.astro";
+import FAQ from "../components/site/FAQ.astro";
 
-const title = "Servicios de Diseño Web Premium | ABG Frame";
+const title = "Servicios y precios de diseño web en Alicante | ABG Frame";
 const description =
-    "Diseño web premium y visibilidad online para negocios de alto ticket. Sin plantillas, sin permanencia. Resultados reales.";
+    "Tres planes de web con precio cerrado: Esencial 590 €, Profesional 1.190 € y Completa 1.990 €. Mantenimiento desde 49 €/mes y Rescate Web por 290 €.";
 
 const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    serviceType: "Diseño Web Premium y SEO Local Alicante",
+    serviceType: "Diseño y desarrollo web en Alicante",
     provider: {
         "@type": "LocalBusiness",
         name: "ABG Frame",
@@ -31,24 +32,24 @@ const serviceSchema = {
                 "@type": "Offer",
                 itemOffered: {
                     "@type": "Service",
-                    name: "Desarrollo Web",
-                    description: "Web a medida con UX/UI premium, Astro, WordPress, Shopify y Core Web Vitals perfectos.",
+                    name: "Web Profesional",
+                    description: "Web de hasta 6 páginas publicada en 7 días hábiles, con textos, SEO local, formulario, WhatsApp y textos legales.",
                 },
             },
             {
                 "@type": "Offer",
                 itemOffered: {
                     "@type": "Service",
-                    name: "SEO Local Alicante",
-                    description: "Posicionamiento orgánico en Alicante. Arquitectura semántica, Google Business Profile y SEO técnico.",
+                    name: "Rescate Web",
+                    description: "Puesta a punto de webs WordPress o Shopify: seguridad, velocidad, copias y formularios, en 72 horas.",
                 },
             },
             {
                 "@type": "Offer",
                 itemOffered: {
                     "@type": "Service",
-                    name: "El Sistema",
-                    description: "Web + SEO + Ads + Social. Todo integrado. Disponible en ES, EN y FR.",
+                    name: "Plan Cuidado",
+                    description: "Mantenimiento mensual: hosting, dominio, actualizaciones, copias de seguridad y cambios pequeños.",
                 },
             },
         ],
@@ -72,395 +73,15 @@ const breadcrumbSchema = {
     <Navbar client:load />
 
     <main>
-
-        <!-- ══════════════════════════════════════════════════════ HERO -->
-        <section
-            id="servicios-hero"
-            aria-label="ABG Frame — Servicios de diseño web premium"
+        <Cabecera
+            eyebrow="Servicios y precios"
+            lead="Tres planes de web, un mantenimiento mensual y un arreglo rápido para quien ya tiene página. Todo con el precio a la vista."
         >
-            <div class="hero-inner">
-                <p class="hero-eyebrow">ABG FRAME · ALICANTE</p>
-                <h1 class="hero-title">
-                    Desarrollo web<br />y SEO.
-                </h1>
-                <div class="hero-line"></div>
-            </div>
-        </section>
+            Precio cerrado, <em>por escrito.</em>
+        </Cabecera>
 
-        <!-- ══════════════════════════════════════════════════ SERVICIOS -->
-        <ServiciosBento client:visible />
-
-        <!-- ══════════════════════════════════════════════ PLATAFORMAS -->
-        <TechBannerServicios client:visible />
-
-        <!-- ════════════════════════════════════════════════ CTA FINAL -->
-        <section id="servicios-cta" aria-label="Contactar con ABG Frame">
-            <div class="cta-inner">
-                <p class="cta-eyebrow">CONTACTO</p>
-                <h2 class="cta-title">¿Hablamos?</h2>
-                <p class="cta-sub">Cuéntanos tu proyecto. Respuesta en 48h.</p>
-                <a href="/contacto" class="cta-btn">Contactar →</a>
-            </div>
-        </section>
-
+        <Planes conCabecera={false} />
+        <Cuidado />
+        <FAQ />
     </main>
 </Layout>
-
-<style is:global>
-    html { scroll-behavior: smooth; }
-    body { background: #F2F0ED; }
-</style>
-
-<style>
-/* ── Tokens ──────────────────────────────────────────────────────────────── */
-:root {
-    --cream:  #F2F0ED;
-    --dark:   #080808;
-    --orange: #D14124;
-    --mono:   var(--font-mono);
-    --display: var(--font-display);
-    --body:   var(--font-body);
-}
-
-/* ── Hero ────────────────────────────────────────────────────────────────── */
-#servicios-hero {
-    background: var(--cream);
-    padding: 10rem clamp(1.5rem, 5vw, 5rem) 5rem;
-}
-.hero-inner {
-    max-width: 1400px;
-    margin: 0 auto;
-}
-.hero-eyebrow {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    color: var(--orange);
-    text-transform: uppercase;
-    margin: 0 0 1.5rem;
-}
-.hero-title {
-    font-family: var(--display);
-    font-weight: 800;
-    font-size: clamp(3.5rem, 9vw, 8rem);
-    color: var(--dark);
-    letter-spacing: -0.04em;
-    line-height: 0.92;
-    margin: 0 0 2.5rem;
-}
-.hero-line {
-    width: 80px;
-    height: 2px;
-    background: var(--orange);
-}
-
-/* ── Shared section layout ───────────────────────────────────────────────── */
-.section-inner {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 clamp(1.5rem, 5vw, 5rem);
-}
-
-/* ── Servicios cards ─────────────────────────────────────────────────────── */
-#servicios-cards {
-    background: var(--dark);
-    padding: 5rem 0 6rem;
-    border-top: 1px solid rgba(242,240,237,0.06);
-}
-#servicios-cards .section-inner {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    align-items: stretch;
-}
-
-/* Card base */
-.card {
-    background: transparent;
-    border: none;
-    border-radius: 2px;
-    padding: 2.5rem 2rem;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-/* Rotating gradient border */
-.card::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    aspect-ratio: 1;
-    background: conic-gradient(
-        from 0deg,
-        transparent 0deg,
-        transparent 120deg,
-        #D14124 180deg,
-        transparent 240deg,
-        transparent 360deg
-    );
-    transform: translate(-50%, -50%) rotate(0deg);
-    animation: card-rotate 8s linear infinite;
-    z-index: 0;
-}
-/* Inner fill — creates the border thickness */
-.card::after {
-    content: '';
-    position: absolute;
-    inset: 2px;
-    background: #0d0d0d;
-    border-radius: 1px;
-    z-index: 1;
-}
-
-@keyframes card-rotate {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to   { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* Decorative number */
-.card-num {
-    position: absolute;
-    top: -0.5rem; right: 1.5rem;
-    font-family: var(--display);
-    font-weight: 800;
-    font-size: clamp(5rem, 8vw, 9rem);
-    color: rgba(242,240,237,0.04);
-    line-height: 1;
-    pointer-events: none;
-    user-select: none;
-    transition: color 0.4s ease;
-    z-index: 2;
-}
-.card:hover .card-num { color: rgba(209,65,36,0.07); }
-
-.card-body {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.card-tag {
-    font-family: var(--mono);
-    font-size: 0.58rem;
-    letter-spacing: 0.2em;
-    color: var(--orange);
-    text-transform: uppercase;
-    margin: 0 0 1.25rem;
-}
-.card-title {
-    font-family: var(--display);
-    font-weight: 800;
-    font-size: clamp(1.3rem, 2.2vw, 1.6rem);
-    color: #F2F0ED;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
-    margin: 0 0 1.5rem;
-}
-.card-desc {
-    font-family: var(--body);
-    font-weight: 300;
-    font-size: 0.9rem;
-    color: rgba(242,240,237,0.45);
-    line-height: 1.7;
-    margin: 0 0 1.25rem;
-}
-.card-bullets {
-    list-style: none;
-    margin: 0 0 2rem;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    flex: 1;
-}
-.card-bullets li {
-    font-family: var(--body);
-    font-weight: 300;
-    font-size: 0.88rem;
-    color: rgba(242,240,237,0.45);
-    padding-left: 1.2rem;
-    position: relative;
-    line-height: 1.5;
-}
-.card-bullets li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--orange);
-    font-size: 0.75rem;
-}
-.card-cta {
-    display: inline-block;
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: 0.82rem;
-    color: #F2F0ED;
-    text-decoration: none;
-    border: 1px solid rgba(242,240,237,0.15);
-    border-radius: 100px;
-    padding: 0.65rem 1.4rem;
-    align-self: flex-start;
-    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
-}
-.card-cta:hover {
-    background: var(--orange);
-    border-color: var(--orange);
-    color: #fff;
-}
-
-/* Featured card (03 — El Sistema) */
-.card--featured::before {
-    background: conic-gradient(
-        from 0deg,
-        transparent 0deg,
-        transparent 120deg,
-        #F2F0ED 180deg,
-        transparent 240deg,
-        transparent 360deg
-    );
-}
-.card--featured::after {
-    background: var(--orange);
-}
-.card--featured .card-num--featured,
-.card--featured .card-num {
-    color: rgba(255,255,255,0.08);
-}
-.card--featured:hover .card-num--featured {
-    color: rgba(255,255,255,0.12);
-}
-.card-tag--featured {
-    color: rgba(255,255,255,0.7) !important;
-}
-.card--featured .card-title {
-    color: #fff;
-}
-.card--featured .card-desc {
-    color: rgba(255,255,255,0.7);
-}
-.card--featured .card-bullets li {
-    color: rgba(255,255,255,0.7);
-}
-.card--featured .card-bullets li::before {
-    color: rgba(255,255,255,0.5);
-}
-.card-cta--featured {
-    background: #fff;
-    border-color: #fff;
-    color: var(--orange) !important;
-}
-.card-cta--featured:hover {
-    background: var(--dark) !important;
-    border-color: var(--dark) !important;
-    color: #fff !important;
-}
-
-/* ── Plataformas ─────────────────────────────────────────────────────────── */
-#plataformas {
-    background: var(--dark);
-    padding: 3rem 0 3.5rem;
-    border-top: 1px solid rgba(242,240,237,0.06);
-}
-.tech-label {
-    font-family: var(--mono);
-    font-size: 0.58rem;
-    letter-spacing: 0.25em;
-    color: rgba(242,240,237,0.2);
-    text-transform: uppercase;
-    margin: 0 0 1.5rem;
-}
-.tech-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem 2rem;
-    align-items: center;
-}
-.tech-row span {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.12em;
-    color: rgba(242,240,237,0.18);
-    text-transform: uppercase;
-    transition: color 0.2s ease;
-    cursor: default;
-}
-.tech-row span:hover { color: rgba(242,240,237,0.55); }
-
-/* ── CTA final ───────────────────────────────────────────────────────────── */
-#servicios-cta {
-    background: var(--cream);
-    padding: 7rem clamp(1.5rem, 5vw, 5rem);
-    border-top: 1px solid rgba(8,8,8,0.06);
-}
-.cta-inner {
-    max-width: 1400px;
-    margin: 0 auto;
-}
-.cta-eyebrow {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.25em;
-    color: var(--orange);
-    text-transform: uppercase;
-    margin: 0 0 1.25rem;
-}
-.cta-title {
-    font-family: var(--display);
-    font-weight: 800;
-    font-size: clamp(3rem, 7vw, 6rem);
-    color: var(--dark);
-    letter-spacing: -0.04em;
-    line-height: 0.95;
-    margin: 0 0 1rem;
-}
-.cta-sub {
-    font-family: var(--body);
-    font-weight: 300;
-    font-size: 1rem;
-    color: rgba(8,8,8,0.45);
-    margin: 0 0 2.5rem;
-}
-.cta-btn {
-    display: inline-block;
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: #fff;
-    background: var(--dark);
-    text-decoration: none;
-    border-radius: 100px;
-    padding: 1rem 2.5rem;
-    transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
-}
-.cta-btn:hover {
-    background: var(--orange);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(209,65,36,0.35);
-}
-
-/* ── Responsive ──────────────────────────────────────────────────────────── */
-@media (max-width: 1023px) {
-    #servicios-cards .section-inner {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .card--featured {
-        grid-column: 1 / -1;
-    }
-}
-@media (max-width: 767px) {
-    #servicios-hero { padding-top: 7rem; padding-bottom: 3.5rem; }
-    #servicios-cards .section-inner {
-        grid-template-columns: 1fr;
-    }
-    .card--featured { grid-column: auto; }
-    .card { padding: 2rem 1.5rem; }
-    .card-num { font-size: 5rem; }
-    .tech-row { gap: 0.6rem 1.25rem; }
-    #servicios-cta { padding-top: 5rem; padding-bottom: 5rem; }
-}
-</style>

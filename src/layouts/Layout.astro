@@ -1,5 +1,7 @@
 ﻿---
 import WhatsAppButton from '../components/WhatsAppButton';
+import Footer from '../components/site/Footer.astro';
+import '../styles/site.css';
 
 interface Props {
 	title: string;
@@ -12,7 +14,7 @@ const { title, description, ogImage, ogType = "website" } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, "https://abgframe.com").href;
 const ogImageURL = ogImage
 	? `https://abgframe.com${ogImage}`
-	: "https://abgframe.com/images/abglogo.png";
+	: "https://abgframe.com/images/og-abg.jpg";
 ---
 
 <!doctype html>
@@ -68,7 +70,7 @@ const ogImageURL = ogImage
 				"url": "https://abgframe.com",
 				"logo": "https://abgframe.com/images/abglogo.png",
 				"image": "https://abgframe.com/images/abglogo.png",
-				"description": "Agencia de diseño web premium y SEO local para negocios de alto ticket en San Juan de Alicante. Especialistas en náutica, inmobiliaria de lujo, clínicas y hoteles boutique.",
+				"description": "Estudio de desarrollo web en San Juan de Alicante. Webs para despachos profesionales y negocios, publicadas en una semana con precio cerrado y mantenimiento mensual.",
 				"address": {
 					"@type": "PostalAddress",
 					"streetAddress": "San Juan de Alicante",
@@ -85,7 +87,7 @@ const ogImageURL = ogImage
 				"telephone": "+34601058997",
 				"email": "contacto@abgframe.com",
 				"sameAs": [
-					"https://instagram.com/alvarobgonzalez"
+					"https://instagram.com/abgframe"
 				],
 				"areaServed": {
 					"@type": "GeoCircle",
@@ -97,11 +99,11 @@ const ogImageURL = ogImage
 					"geoRadius": "50000"
 				},
 				"serviceType": [
-					"Diseño Web Premium",
-					"SEO Local Alicante",
-					"Meta Ads"
+					"Diseño y desarrollo web",
+					"Mantenimiento web",
+					"SEO local Alicante"
 				],
-				"priceRange": "€€€",
+				"priceRange": "€€",
 				"openingHoursSpecification": {
 					"@type": "OpeningHoursSpecification",
 					"dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
@@ -148,6 +150,7 @@ const ogImageURL = ogImage
 		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<!-- End Google Tag Manager (noscript) -->
 		<slot />
+		<Footer />
 		<WhatsAppButton client:idle />
 	</body>
 </html>

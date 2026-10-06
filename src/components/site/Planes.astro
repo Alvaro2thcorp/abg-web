@@ -1,0 +1,193 @@
+---
+interface Props {
+  conCabecera?: boolean;
+}
+const { conCabecera = true } = Astro.props;
+
+const wa = (plan: string) =>
+  `https://wa.me/34601058997?text=${encodeURIComponent(`Hola, me interesa el plan ${plan} de ABG Frame.`)}`;
+
+const planes = [
+  {
+    num: "01",
+    nombre: "Esencial",
+    para: "Para el autónomo o negocio pequeño que hoy no tiene web.",
+    items: [
+      "Una página completa: servicios, contacto y mapa",
+      "Formulario y botón de WhatsApp",
+      "Adaptada al móvil",
+      "Textos legales (RGPD)",
+      "Ficha de Google revisada",
+    ],
+    plazo: "5 días hábiles",
+    cambios: "1 ronda",
+    precio: "590 €",
+    destacado: false,
+  },
+  {
+    num: "02",
+    nombre: "Profesional",
+    para: "Para despachos, gestorías y negocios asentados.",
+    items: [
+      "Hasta 6 páginas con diseño propio",
+      "Textos escritos contigo, tras una entrevista de 30 minutos",
+      "SEO local para que te encuentren en tu zona",
+      "Ficha de Google optimizada",
+      "Formulario, WhatsApp y textos legales",
+      "Analítica: sabrás cuánta gente te contacta",
+    ],
+    plazo: "7 días hábiles",
+    cambios: "2 rondas",
+    precio: "1.190 €",
+    destacado: true,
+  },
+  {
+    num: "03",
+    nombre: "Completa",
+    para: "Para quien quiere que la web le quite trabajo.",
+    items: [
+      "Hasta 10 páginas",
+      "Citas online desde la web",
+      "Blog listo para publicar",
+      "Segundo idioma",
+      "Todo lo del plan Profesional",
+    ],
+    plazo: "10 días hábiles",
+    cambios: "3 rondas",
+    precio: "1.990 €",
+    destacado: false,
+  },
+];
+---
+
+<section id="planes" class="abg-section planes" aria-label="Planes y precios">
+  <div class="abg-wrap">
+    {conCabecera && (
+      <header class="abg-head">
+        <p class="abg-eyebrow">Planes y precios</p>
+        <h2 class="abg-h2">Sabes lo que pagas <em>antes de empezar.</em></h2>
+        <p class="abg-lead">
+          Tres planes con precio cerrado. Eliges uno, firmamos el plazo y pagas la mitad al empezar
+          y la otra mitad cuando la web está lista para publicar.
+        </p>
+      </header>
+    )}
+
+    <div class="planes__grid">
+      {planes.map((p) => (
+        <article class:list={["ticket", { "ticket--destacado": p.destacado }]}>
+          <div class="ticket__top">
+            <span>Plan nº {p.num}</span>
+            {p.destacado ? <span class="ticket__sello">Recomendado</span> : <span>ABG Frame</span>}
+          </div>
+
+          <h3 class="ticket__nombre">{p.nombre}</h3>
+          <p class="ticket__para">{p.para}</p>
+
+          <ul class="ticket__items">
+            {p.items.map((it) => <li>{it}</li>)}
+          </ul>
+
+          <div class="ticket__corte" aria-hidden="true"></div>
+
+          <dl class="ticket__datos">
+            <div><dt>Plazo</dt><dd>{p.plazo}</dd></div>
+            <div><dt>Cambios incluidos</dt><dd>{p.cambios}</dd></div>
+          </dl>
+
+          <div class="ticket__total">
+            <span>Total</span>
+            <strong>{p.precio}</strong>
+          </div>
+          <p class="ticket__nota">Sin IVA · Mantenimiento desde 49 €/mes</p>
+
+          <a class:list={["abg-btn", "abg-btn--block", p.destacado ? "abg-btn--coral" : "abg-btn--ink"]} href={wa(p.nombre)} target="_blank" rel="noopener noreferrer">
+            Pedir por WhatsApp
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <div class="planes__pie">
+      <p>
+        <strong>Oferta de lanzamiento:</strong> las 3 primeras webs del plan Profesional salen a 990 €
+        a cambio de una reseña en Google y de poder enseñarlas como ejemplo.
+      </p>
+      <p>
+        ¿Ya tienes web y solo falla? <a class="abg-link" href="/servicios/#rescate">Rescate Web, 290 €</a>
+        &nbsp;·&nbsp; ¿Tienda online? <a class="abg-link" href="/contacto/">Presupuesto cerrado en 48 horas</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .planes { --cut: var(--paper); }
+  .planes__grid {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; align-items: stretch;
+  }
+  .ticket {
+    position: relative; display: flex; flex-direction: column;
+    background: var(--card); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 6px;
+    padding: 1.75rem 1.75rem 2rem;
+  }
+  .ticket--destacado { background: var(--night); color: var(--on-night); border-color: var(--night); }
+  .ticket__top {
+    display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    font-family: var(--font-body); font-weight: 500; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-3); padding-bottom: 1rem; border-bottom: 1px dashed var(--line); margin-bottom: 1.5rem;
+  }
+  .ticket--destacado .ticket__top { color: var(--on-night-2); border-color: var(--line-night); }
+  .ticket__sello { color: #EE6A4D; border: 1px solid #EE6A4D; border-radius: 3px; padding: 0.2rem 0.5rem; letter-spacing: 0.12em; }
+  .ticket__nombre { font-family: var(--font-display); font-weight: 400; font-size: 2.2rem; letter-spacing: -0.02em; line-height: 1; margin: 0; }
+  .ticket__para { font-family: var(--font-body); font-size: 0.95rem; line-height: 1.5; color: var(--ink-2); margin: 0.75rem 0 1.5rem; min-height: 2.9em; }
+  .ticket--destacado .ticket__para { color: var(--on-night-2); }
+  .ticket__items { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; flex-grow: 1; align-content: start; }
+  .ticket__items li {
+    position: relative; padding-left: 1.5rem;
+    font-family: var(--font-body); font-size: 0.93rem; line-height: 1.45; color: var(--ink-2);
+  }
+  .ticket--destacado .ticket__items li { color: #DAD6CF; }
+  .ticket__items li::before {
+    content: ""; position: absolute; left: 0; top: 0.42em; width: 0.7rem; height: 0.38rem;
+    border-left: 1.5px solid var(--coral); border-bottom: 1.5px solid var(--coral); transform: rotate(-45deg);
+  }
+  .ticket--destacado .ticket__items li::before { border-color: #EE6A4D; }
+
+  /* Línea de corte del ticket, con sus dos muescas */
+  .ticket__corte { position: relative; margin: 1.75rem -1.75rem 1.25rem; border-top: 1px dashed var(--line); }
+  .ticket--destacado .ticket__corte { border-color: var(--line-night); }
+  .ticket__corte::before, .ticket__corte::after {
+    content: ""; position: absolute; top: -9px; width: 18px; height: 18px; border-radius: 50%;
+    background: var(--cut); border: 1px solid var(--line);
+  }
+  .ticket__corte::before { left: -10px; clip-path: inset(0 0 0 50%); }
+  .ticket__corte::after { right: -10px; clip-path: inset(0 50% 0 0); }
+  .ticket--destacado .ticket__corte::before, .ticket--destacado .ticket__corte::after { border-color: var(--night); }
+
+  .ticket__datos { margin: 0; display: grid; gap: 0.45rem; }
+  .ticket__datos div { display: flex; justify-content: space-between; gap: 1rem; font-family: var(--font-body); font-size: 0.88rem; }
+  .ticket__datos dt { color: var(--ink-3); }
+  .ticket__datos dd { margin: 0; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .ticket--destacado .ticket__datos dt { color: var(--on-night-2); }
+
+  .ticket__total { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-top: 1.25rem; }
+  .ticket__total span { font-family: var(--font-body); font-weight: 500; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); }
+  .ticket--destacado .ticket__total span { color: var(--on-night-2); }
+  .ticket__total strong { font-family: var(--font-display); font-weight: 400; font-size: 2.6rem; letter-spacing: -0.02em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .ticket__nota { font-family: var(--font-body); font-size: 0.78rem; color: var(--ink-3); margin: 0.5rem 0 1.5rem; text-align: right; }
+  .ticket--destacado .ticket__nota { color: var(--on-night-2); }
+
+  .planes__pie {
+    margin-top: 2.25rem; padding-top: 1.75rem; border-top: 1px solid var(--line);
+    display: grid; gap: 0.75rem; font-family: var(--font-body); font-size: 0.95rem; line-height: 1.6; color: var(--ink-2);
+  }
+  .planes__pie p { margin: 0; }
+  .planes__pie strong { font-weight: 600; color: var(--ink); }
+
+  @media (max-width: 1020px) {
+    .planes__grid { grid-template-columns: minmax(0, 1fr); max-width: 520px; }
+    .ticket__para { min-height: 0; }
+  }
+</style>

@@ -1,34 +1,28 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
-import ElTimeline from "../components/ElTimeline";
-import WhyABG from "../components/WhyABG";
-import Resenas from "../components/Resenas";
-import FinalCTA from "../components/FinalCTA";
-import ProblemaHome from "../components/ProblemaHome";
-import TechBanner from "../components/TechBanner";
+import Hero from "../components/site/Hero.astro";
+import Sectores from "../components/site/Sectores.astro";
+import Planes from "../components/site/Planes.astro";
+import Proyectos from "../components/site/Proyectos.astro";
+import Proceso from "../components/site/Proceso.astro";
+import PorQue from "../components/site/PorQue.astro";
+import FAQ from "../components/site/FAQ.astro";
 ---
 
 <Layout
-	title="Diseño Web Premium | ABG Frame — Webs que Trabajan"
-	description="Estudio de diseño web premium para negocios que no se conforman. Webs a medida + visibilidad real. Resultados en 4 semanas."
+	title="Diseño web en Alicante en una semana | ABG Frame"
+	description="Webs para despachos profesionales y negocios de Alicante, publicadas en una semana. Precio cerrado desde 590 €, plazo por escrito y mantenimiento mensual. San Juan de Alicante."
 >
 	<Navbar client:load />
 
 	<main>
-		<Hero client:load />
-
-		<TechBanner client:visible />
-
-		<ProblemaHome client:visible />
-
-		<ElTimeline client:visible />
-
-		<WhyABG client:visible />
-
-<Resenas client:visible />
-
-		<FinalCTA client:visible />
+		<Hero />
+		<Sectores />
+		<Planes />
+		<Proyectos />
+		<Proceso />
+		<PorQue />
+		<FAQ />
 	</main>
 </Layout>

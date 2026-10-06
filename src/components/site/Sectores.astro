@@ -1,0 +1,67 @@
+---
+const sectores = [
+  {
+    n: "01",
+    nombre: "Gestorías y asesorías",
+    para: "Que el cliente mande sus facturas desde el móvil y sepa qué plazo le toca, sin llamar al despacho.",
+    demos: [
+      { t: "Demo clásica", url: "/demos/gestoria-clasica/" },
+      { t: "Demo moderna", url: "/demos/asesoria-moderna/" },
+    ],
+  },
+  {
+    n: "02",
+    nombre: "Despachos de abogados",
+    para: "Que quien te busca entienda en diez segundos qué llevas, cuánto cuesta la primera consulta y cómo pedirla.",
+    demos: [{ t: "Ver la demo", url: "/demos/despacho-abogados/" }],
+  },
+  {
+    n: "03",
+    nombre: "Administradores de fincas",
+    para: "Que los vecinos avisen de una avería y consulten actas y cuentas sin colapsar el teléfono de la oficina.",
+    demos: [{ t: "Ver la demo", url: "/demos/administrador-fincas/" }],
+  },
+];
+---
+
+<section id="sectores" class="abg-section sectores" aria-label="Para quién trabajamos">
+  <div class="abg-wrap">
+    <header class="abg-head">
+      <p class="abg-eyebrow">Para quién</p>
+      <h2 class="abg-h2">Webs para <em>despachos profesionales.</em></h2>
+      <p class="abg-lead">
+        Nos centramos en tres tipos de despacho y hemos preparado una web de demostración para cada uno.
+        Si tu negocio es otro, el método y los precios son los mismos.
+      </p>
+    </header>
+
+    <div class="sectores__grid">
+      {sectores.map((s) => (
+        <article class="sector">
+          <p class="sector__n">{s.n}</p>
+          <h3 class="sector__nombre">{s.nombre}</h3>
+          <p class="sector__para">{s.para}</p>
+          <p class="sector__demos">
+            {s.demos.map((d) => <a class="abg-link" href={d.url}>{d.t} →</a>)}
+          </p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .sectores { padding-top: clamp(3.5rem, 7vw, 6rem); padding-bottom: clamp(1.5rem, 3vw, 2.5rem); border-top: 1px solid var(--line); }
+  .sectores__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+  .sector { display: flex; flex-direction: column; padding: 1.75rem 2rem 0.25rem 0; }
+  .sector + .sector { padding-left: 2rem; border-left: 1px solid var(--line); }
+  .sector__n { font-family: var(--font-display); font-style: italic; font-size: 1.15rem; color: var(--coral); margin: 0 0 0.9rem; }
+  .sector__nombre { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.5rem, 2.3vw, 1.95rem); letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 0.9rem; }
+  .sector__para { font-family: var(--font-body); font-size: 0.98rem; line-height: 1.6; color: var(--ink-2); margin: 0 0 1.5rem; flex-grow: 1; }
+  .sector__demos { display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; margin: 0; }
+  @media (max-width: 900px) {
+    .sectores__grid { grid-template-columns: minmax(0, 1fr); }
+    .sector, .sector + .sector { padding: 1.6rem 0 1.75rem; border-left: 0; }
+    .sector + .sector { border-top: 1px solid var(--line); }
+  }
+</style>

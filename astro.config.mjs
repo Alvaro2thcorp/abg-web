@@ -6,7 +6,7 @@ import path from 'path';
 
 export default defineConfig({
   site: 'https://abgframe.com',
-  integrations: [react(), sitemap()],
+  integrations: [react(), sitemap({ filter: (page) => !page.includes('/el-sistema') && !page.includes('/demos/') && !page.includes('/yates-alicante') })],
   vite: {
     plugins: [tailwindcss()],
     resolve: {

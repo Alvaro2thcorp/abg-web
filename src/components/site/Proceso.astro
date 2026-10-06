@@ -1,0 +1,53 @@
+---
+const pasos = [
+  { dia: "Día 1", titulo: "Hablamos 30 minutos", texto: "Nos cuentas qué haces, a quién atiendes y qué te preguntan siempre. De ahí salen los textos, con tus palabras." },
+  { dia: "Días 2 y 3", titulo: "Diseño y textos", texto: "Preparamos tu web completa. Nos pasas el logo y las fotos que tengas; si faltan, te decimos cuáles hacer con el móvil." },
+  { dia: "Días 4 y 5", titulo: "La ves y pides cambios", texto: "Te mandamos un enlace privado para verla en tu móvil. Nos dices qué cambiarías y la dejamos como quieres." },
+  { dia: "Día 7", titulo: "Publicada", texto: "La web sale con tu dominio, aparece en Google y te explicamos cómo ver quién te contacta." },
+];
+---
+
+<section class="abg-section proceso" aria-label="Cómo trabajamos">
+  <div class="abg-wrap">
+    <header class="abg-head">
+      <p class="abg-eyebrow">Cómo trabajamos</p>
+      <h2 class="abg-h2">Una semana, <em>cuatro pasos.</em></h2>
+      <p class="abg-lead">
+        Así va el plan Profesional. El plazo empieza a contar cuando tenemos tus fotos y tus datos,
+        y queda por escrito: si nos retrasamos, te descontamos 100 € de la factura.
+      </p>
+    </header>
+
+    <ol class="proceso__pasos">
+      {pasos.map((p) => (
+        <li class="paso">
+          <p class="paso__dia">{p.dia}</p>
+          <h3 class="paso__titulo">{p.titulo}</h3>
+          <p class="paso__texto">{p.texto}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .proceso__pasos {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0;
+    border-top: 1px solid var(--ink);
+  }
+  .paso { position: relative; padding: 1.75rem 1.75rem 0 0; }
+  .paso::before {
+    content: ""; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; border-radius: 50%; background: var(--coral);
+  }
+  .paso__dia { font-family: var(--font-display); font-style: italic; font-size: 1.5rem; letter-spacing: -0.01em; color: var(--coral); margin: 0 0 1rem; }
+  .paso__titulo { font-family: var(--font-body); font-weight: 600; font-size: 1.05rem; line-height: 1.3; margin: 0 0 0.6rem; }
+  .paso__texto { font-family: var(--font-body); font-size: 0.95rem; line-height: 1.6; color: var(--ink-2); margin: 0; max-width: 32ch; }
+  @media (max-width: 900px) {
+    .proceso__pasos { grid-template-columns: minmax(0, 1fr); border-top: 0; border-left: 1px solid var(--ink); }
+    .paso { padding: 0 0 2.25rem 1.75rem; }
+    .paso:last-child { padding-bottom: 0; }
+    .paso::before { top: 0.55rem; left: -5px; }
+    .paso__dia { margin-bottom: 0.5rem; }
+  }
+</style>
