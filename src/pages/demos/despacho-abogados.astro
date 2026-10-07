@@ -1,45 +1,42 @@
 ---
 import DemoBar from "../../components/demos/DemoBar.astro";
+import DemoHead from "../../components/demos/DemoHead.astro";
+import Foto from "../../components/demos/Foto.astro";
 
 const areas = [
-  { n: "01", t: "Familia", d: "Divorcios, custodias, pensiones y modificación de medidas.", c: ["Divorcio de mutuo acuerdo", "Custodia compartida", "Impago de pensión"] },
-  { n: "02", t: "Herencias", d: "Testamentos, reparto entre herederos e impuesto de sucesiones.", c: ["Declaración de herederos", "Herencia sin testamento", "Conflicto entre hermanos"] },
-  { n: "03", t: "Laboral", d: "Despidos, reclamaciones de salario e incapacidades.", c: ["Despido improcedente", "Finiquito mal calculado", "Incapacidad permanente"] },
-  { n: "04", t: "Vivienda", d: "Alquileres, desahucios, comunidades y compraventas.", c: ["Inquilino que no paga", "Fianza no devuelta", "Vicios ocultos"] },
-  { n: "05", t: "Tráfico", d: "Indemnizaciones por accidente y recursos de sanciones.", c: ["Lesiones por accidente", "Oferta baja del seguro", "Retirada de carné"] },
-  { n: "06", t: "Penal", d: "Asistencia al detenido, juicios rápidos y defensa en sala.", c: ["Alcoholemia", "Denuncia recibida", "Asistencia en comisaría"] },
+  { n: "01", t: "Familia", d: "Divorcios, custodias, pensiones y modificación de medidas.", c: ["Divorcio de mutuo acuerdo", "Custodia compartida", "Impago de pensión"], img: "abogados/luz", w: 1100, h: 1467 },
+  { n: "02", t: "Herencias", d: "Testamentos, reparto entre herederos e impuesto de sucesiones.", c: ["Declaración de herederos", "Herencia sin testamento", "Conflicto entre hermanos"], img: "abogados/lomos", w: 1500, h: 844 },
+  { n: "03", t: "Laboral", d: "Despidos, reclamaciones de salario e incapacidades.", c: ["Despido improcedente", "Finiquito mal calculado", "Incapacidad permanente"], img: "abogados/sala", w: 1500, h: 1000 },
+  { n: "04", t: "Vivienda", d: "Alquileres, desahucios, comunidades y compraventas.", c: ["Inquilino que no paga", "Fianza no devuelta", "Vicios ocultos"], img: "abogados/balcones", w: 1500, h: 1000 },
+  { n: "05", t: "Tráfico", d: "Indemnizaciones por accidente y recursos de sanciones.", c: ["Lesiones por accidente", "Oferta baja del seguro", "Retirada de carné"], img: "abogados/linea", w: 1500, h: 1000 },
+  { n: "06", t: "Penal", d: "Asistencia al detenido, juicios rápidos y defensa en sala.", c: ["Alcoholemia", "Denuncia recibida", "Asistencia en comisaría"], img: "abogados/fronton", w: 1200, h: 1601 },
 ];
 
 const plazos = [
   {
-    id: "despido", etq: "Me han despedido",
-    plazo: "20 días hábiles", desde: "desde la fecha del despido",
+    id: "despido", etq: "Me han despedido", num: 20, uni: "días hábiles", desde: "desde la fecha del despido",
     nota: "Es un plazo de caducidad: si pasa, se pierde la acción. No espere a tener el finiquito para consultarnos.",
-    traer: ["Carta de despido", "Contrato y últimas nóminas", "Vida laboral"]
+    traer: ["Carta de despido", "Contrato y últimas nóminas", "Vida laboral"],
   },
   {
-    id: "accidente", etq: "He tenido un accidente de tráfico",
-    plazo: "1 año", desde: "desde el alta médica o la estabilización de las lesiones",
+    id: "accidente", etq: "He tenido un accidente de tráfico", num: 1, uni: "año", desde: "desde el alta médica o la estabilización de las lesiones",
     nota: "Antes de firmar la oferta de la aseguradora, pídanos que la revisemos. Firmarla suele cerrar la reclamación.",
-    traer: ["Parte amistoso o atestado", "Informes médicos y partes de baja", "Oferta del seguro, si la hay"]
+    traer: ["Parte amistoso o atestado", "Informes médicos y partes de baja", "Oferta del seguro, si la hay"],
   },
   {
-    id: "herencia", etq: "Ha fallecido un familiar",
-    plazo: "6 meses", desde: "desde el fallecimiento, para el impuesto de sucesiones",
+    id: "herencia", etq: "Ha fallecido un familiar", num: 6, uni: "meses", desde: "desde el fallecimiento, para el impuesto de sucesiones",
     nota: "Puede pedirse una prórroga dentro de los cinco primeros meses. Pasado el plazo hay recargos.",
-    traer: ["Certificado de defunción", "Testamento o últimas voluntades", "Relación de bienes y cuentas"]
+    traer: ["Certificado de defunción", "Testamento o últimas voluntades", "Relación de bienes y cuentas"],
   },
   {
-    id: "multa", etq: "Me ha llegado una multa de tráfico",
-    plazo: "20 días naturales", desde: "desde la notificación",
+    id: "multa", etq: "Me ha llegado una multa de tráfico", num: 20, uni: "días naturales", desde: "desde la notificación",
     nota: "En ese plazo puede pagar con el 50 % de reducción o presentar alegaciones. Las dos cosas a la vez, no.",
-    traer: ["Notificación completa", "Fotografías o pruebas", "Permiso de conducir"]
+    traer: ["Notificación completa", "Fotografías o pruebas", "Permiso de conducir"],
   },
   {
-    id: "deuda", etq: "Me deben dinero",
-    plazo: "5 años", desde: "desde que pudo exigirse el pago, con carácter general",
+    id: "deuda", etq: "Me deben dinero", num: 5, uni: "años", desde: "desde que pudo exigirse el pago, con carácter general",
     nota: "Hay deudas con plazos más cortos. Un requerimiento fehaciente interrumpe la prescripción: conviene enviarlo cuanto antes.",
-    traer: ["Contrato, factura o presupuesto aceptado", "Mensajes y correos con el deudor", "Justificantes de pagos parciales"]
+    traer: ["Contrato, factura o presupuesto aceptado", "Mensajes y correos con el deudor", "Justificantes de pagos parciales"],
   },
 ];
 
@@ -60,20 +57,20 @@ const equipo = [
 <!doctype html>
 <html lang="es">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex" />
-    <title>Albufereta Abogados · Demostración de ABG Frame</title>
-    <meta name="description" content="Web de demostración de un despacho de abogados, hecha por ABG Frame." />
-    <link rel="icon" type="image/webp" href="/favicon.webp" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <DemoHead
+      titulo="Albufereta Abogados · Demostración de ABG Frame"
+      descripcion="Web de demostración de un despacho de abogados, hecha por ABG Frame."
+      fuentes="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..600;1,300..600&family=Hanken+Grotesk:wght@300..600&display=swap"
+      precarga="/images/demos/abogados/hero.webp"
+    />
   </head>
   <body>
+    <div class="telon" aria-hidden="true"><span>Albufereta</span></div>
+    <div class="grano" aria-hidden="true"></div>
+    <div data-cursor aria-hidden="true"><span></span></div>
     <DemoBar />
 
-    <header class="cab">
+    <header class="cab" data-cab>
       <div class="w cab__in">
         <a class="marca" href="#inicio" aria-label="Albufereta Abogados, inicio">
           <span class="marca__a">Albufereta</span>
@@ -85,105 +82,132 @@ const equipo = [
           <a href="#honorarios">Honorarios</a>
           <a href="#despacho">El despacho</a>
         </nav>
-        <a class="tel" href="#contacto"><span>Llámenos</span> 965 00 00 00</a>
+        <a class="tel" href="#contacto" data-magnetic="0.25"><span>Llámenos</span>965 00 00 00</a>
       </div>
     </header>
 
-    <main id="inicio">
-      <section class="hero">
-        <div class="w hero__grid">
-          <div>
-            <p class="eyebrow">Despacho de abogados en Alicante · desde 2004</p>
-            <h1>Primero le escuchamos. Después le decimos, <em>por escrito,</em> qué haríamos y cuánto cuesta.</h1>
-            <p class="hero__sub">
-              Familia, herencias, laboral, vivienda, tráfico y penal. Tres abogados, un solo interlocutor
-              para su asunto y los honorarios claros antes de empezar.
+    <main>
+      <!-- 1 · Portada -->
+      <section class="hero" id="inicio">
+        <div class="hero__img" aria-hidden="true">
+          <Foto src="abogados/hero" ancho={2000} alto={1325} prioridad sizes="100vw" />
+        </div>
+        <div class="w hero__in">
+          <p class="eyebrow" data-reveal data-delay="0.9">Despacho de abogados · Alicante · desde 2004</p>
+          <h1 data-split="lines" data-delay="0.5">Le escuchamos.<br />Y se lo damos <em>por escrito.</em></h1>
+          <div class="hero__pie">
+            <p class="hero__sub" data-reveal data-delay="1.2">
+              Qué haríamos, cuánto puede tardar y cuánto cuesta. Antes de que firme nada.
+              Tres abogados y un solo interlocutor para su asunto.
             </p>
-            <div class="hero__cta">
-              <a class="btn btn--vino" href="#contacto">Pedir primera consulta</a>
-              <a class="lnk" href="#plazos">Comprobar mi plazo</a>
-            </div>
+            <a class="redondo" href="#contacto" data-magnetic="0.35" data-reveal data-delay="1.35"><span>Pedir primera <br />consulta</span></a>
+            <dl class="hero__ficha" data-reveal data-delay="1.5">
+              <div><dt>Primera consulta</dt><dd>60 € · 45 minutos</dd></div>
+              <div><dt>Detenciones</dt><dd>24 horas</dd></div>
+            </dl>
           </div>
-
-          <aside class="ficha" aria-label="Primera consulta">
-            <p class="ficha__t">Primera consulta</p>
-            <p class="ficha__p">60 €</p>
-            <p class="ficha__d">45 minutos con el abogado que llevaría su caso. Si nos lo encarga, se descuenta de los honorarios.</p>
-            <ul>
-              <li><span>En el despacho</span><b>L–V · 9:30 a 19:00</b></li>
-              <li><span>Por videollamada</span><b>Mismo horario</b></li>
-              <li><span>Detenciones</span><b>24 horas</b></li>
-            </ul>
-          </aside>
         </div>
       </section>
 
-      <section id="areas" class="sec">
+      <!-- 2 · Cinta de materias -->
+      <div class="cinta" aria-hidden="true" data-marquee data-vel="55">
+        <div>{areas.map((a) => <span>{a.t}<i>—</i></span>)}</div>
+      </div>
+
+      <!-- 3 · Manifiesto -->
+      <section class="mani">
+        <div class="w mani__grid">
+          <p class="eyebrow" data-reveal>Por qué existimos</p>
+          <p class="mani__p" data-words>
+            Muchos asuntos no se pierden por falta de razón. Se pierden por llegar tarde, por firmar sin leer
+            o por no saber lo que iba a costar. Para eso estamos: para que decida sabiendo dónde pisa.
+          </p>
+          <div class="marco mani__foto" data-reveal="clip" aria-hidden="true">
+            <Foto src="abogados/columnas" ancho={1200} alto={1600} sizes="(max-width: 900px) 70vw, 26vw" data-parallax="9" />
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 · Áreas -->
+      <section id="areas" class="areas">
         <div class="w">
           <header class="cabsec">
-            <p class="eyebrow">Áreas de práctica</p>
-            <h2>Lo que llevamos, <em>y lo que no.</em></h2>
-            <p>Seis materias. Si su asunto es de otra, se lo decimos en la primera llamada y le indicamos a quién acudir.</p>
+            <p class="eyebrow" data-reveal>Áreas de práctica</p>
+            <h2 data-split="lines">Lo que llevamos, <em>y lo que no.</em></h2>
+            <p class="cabsec__p" data-reveal>Seis materias. Si su asunto es de otra, se lo decimos en la primera llamada y le indicamos a quién acudir.</p>
           </header>
-          <div class="areas">
+
+          <div class="areas__lista">
+            <div class="areas__flota" aria-hidden="true">
+              {areas.map((a) => <Foto src={a.img} ancho={a.w} alto={a.h} sizes="24rem" />)}
+            </div>
             {areas.map((a) => (
-              <article class="area">
+              <article class="area" data-cur="Consultar">
                 <span class="area__n">{a.n}</span>
                 <h3>{a.t}</h3>
-                <p>{a.d}</p>
-                <ul>{a.c.map((c) => <li>{c}</li>)}</ul>
+                <div class="area__txt">
+                  <p>{a.d}</p>
+                  <ul>{a.c.map((c) => <li>{c}</li>)}</ul>
+                </div>
+                <span class="area__fl" aria-hidden="true">↗</span>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="plazos" class="sec sec--noche">
-        <div class="w plazos">
-          <header class="cabsec cabsec--noche">
-            <p class="eyebrow">El plazo corre</p>
-            <h2>¿Qué le ha pasado? <em>Mire cuánto tiempo tiene.</em></h2>
-            <p>Muchos asuntos se pierden por dejar pasar el plazo, no por falta de razón. Elija su situación.</p>
+      <!-- 5 · Plazos -->
+      <section id="plazos" class="plz">
+        <div class="w">
+          <header class="cabsec cabsec--plz">
+            <p class="eyebrow" data-reveal>El plazo corre</p>
+            <h2 data-split="lines">¿Qué le ha pasado? <em>Mire cuánto tiempo tiene.</em></h2>
           </header>
 
-          <div class="plz">
-            <div class="plz__tabs" role="tablist" aria-label="Situaciones">
+          <div class="plz__grid">
+            <div class="plz__tabs" role="tablist" aria-label="Situaciones" aria-orientation="vertical">
               {plazos.map((p, i) => (
-                <button class="plz__tab" role="tab" id={`tab-${p.id}`} aria-controls={`panel-${p.id}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1}>{p.etq}</button>
+                <button class="plz__tab" role="tab" id={`tab-${p.id}`} aria-controls={`panel-${p.id}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1}>
+                  <span>{String(i + 1).padStart(2, "0")}</span>{p.etq}
+                </button>
               ))}
             </div>
-            {plazos.map((p, i) => (
-              <div class="plz__panel" role="tabpanel" id={`panel-${p.id}`} aria-labelledby={`tab-${p.id}`} hidden={i !== 0}>
-                <div class="plz__cifra">
-                  <p class="plz__num">{p.plazo}</p>
+            <div class="plz__paneles">
+              {plazos.map((p, i) => (
+                <div class="plz__panel" role="tabpanel" id={`panel-${p.id}`} aria-labelledby={`tab-${p.id}`} hidden={i !== 0}>
+                  <p class="plz__cifra"><b data-plz={p.num}>{p.num}</b><span>{p.uni}</span></p>
                   <p class="plz__desde">{p.desde}</p>
+                  <i class="plz__regla" aria-hidden="true"></i>
+                  <div class="plz__txt">
+                    <p>{p.nota}</p>
+                    <div>
+                      <p class="plz__traer">Traiga a la consulta</p>
+                      <ul>{p.traer.map((t) => <li>{t}</li>)}</ul>
+                    </div>
+                  </div>
+                  <a class="lnk" href="#contacto">Consultar este caso <i aria-hidden="true">→</i></a>
                 </div>
-                <div class="plz__txt">
-                  <p>{p.nota}</p>
-                  <p class="plz__traer">Traiga a la consulta</p>
-                  <ul>{p.traer.map((t) => <li>{t}</li>)}</ul>
-                  <a class="btn btn--hueso" href="#contacto">Consultar este caso</a>
-                </div>
-              </div>
-            ))}
-            <p class="plz__aviso">Información general y orientativa. Cada caso tiene particularidades que pueden cambiar el plazo.</p>
+              ))}
+              <p class="plz__aviso">Información general y orientativa. Cada caso tiene particularidades que pueden cambiar el plazo.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="honorarios" class="sec">
+      <!-- 6 · Honorarios -->
+      <section id="honorarios" class="hon">
         <div class="w">
           <header class="cabsec">
-            <p class="eyebrow">Honorarios</p>
-            <h2>Sabrá lo que cuesta <em>antes de firmar.</em></h2>
-            <p>Estos son los asuntos más habituales. Para todo lo demás, presupuesto cerrado y por escrito tras la primera consulta.</p>
+            <p class="eyebrow" data-reveal>Honorarios</p>
+            <h2 data-split="lines">Sabrá lo que cuesta <em>antes de firmar.</em></h2>
+            <p class="cabsec__p" data-reveal>Estos son los asuntos más habituales. Para todo lo demás, presupuesto cerrado y por escrito tras la primera consulta.</p>
           </header>
-          <div class="hon" role="table" aria-label="Honorarios orientativos">
+          <div class="hon__tabla" role="table" aria-label="Honorarios orientativos">
             {honorarios.map((h) => (
-              <div class="hon__fila" role="row">
-                <div role="cell"><b>{h.q}</b><span>{h.d}</span></div>
-                <div role="cell" class="hon__precio">{h.p}</div>
+              <div class="hon__fila" role="row" data-reveal>
+                <div role="cell" class="hon__q"><b>{h.q}</b><span>{h.d}</span></div>
                 <div role="cell" class="hon__nota">{h.n}</div>
+                <div role="cell" class="hon__precio">{h.p}</div>
               </div>
             ))}
           </div>
@@ -191,41 +215,48 @@ const equipo = [
         </div>
       </section>
 
-      <section id="despacho" class="sec sec--tinte">
-        <div class="w despacho">
-          <header class="cabsec">
-            <p class="eyebrow">El despacho</p>
-            <h2>Tres abogados. <em>Usted habla siempre con el suyo.</em></h2>
-            <p>
+      <!-- 7 · El despacho -->
+      <section id="despacho" class="desp">
+        <div class="w desp__grid">
+          <div class="desp__txt">
+            <p class="eyebrow" data-reveal>El despacho</p>
+            <h2 data-split="lines">Tres abogados. <em>Usted habla siempre con el suyo.</em></h2>
+            <p class="cabsec__p" data-reveal>
               No pasamos los asuntos de mano en mano. Quien le atiende en la primera consulta es quien firma
               los escritos y quien va a sala.
             </p>
-          </header>
-          <ul class="equipo">
+          </div>
+          <div class="desp__fotos" aria-hidden="true">
+            <div class="marco desp__f1" data-reveal="clip"><Foto src="abogados/escalera" ancho={1500} alto={1081} sizes="(max-width: 900px) 90vw, 40vw" data-parallax="8" /></div>
+            <div class="marco desp__f2" data-reveal="clip" data-delay="0.1"><Foto src="abogados/pluma" ancho={1500} alto={1126} sizes="(max-width: 900px) 60vw, 24vw" data-parallax="-8" /></div>
+            <div class="marco desp__f3" data-reveal="clip" data-delay="0.2"><Foto src="abogados/libros" ancho={1100} alto={1650} sizes="(max-width: 900px) 40vw, 16vw" data-parallax="12" /></div>
+          </div>
+        </div>
+        <div class="w">
+          <ul class="equipo" data-stagger="0.12">
             {equipo.map((e) => (
               <li>
                 <span class="equipo__i" aria-hidden="true">{e.i}</span>
-                <div>
-                  <h3>{e.n}</h3>
-                  <p class="equipo__r">{e.r} · Colegiado en Alicante</p>
-                  <p>{e.d}</p>
-                </div>
+                <h3>{e.n}</h3>
+                <p class="equipo__r">{e.r} · Colegiado en Alicante</p>
+                <p>{e.d}</p>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      <section id="contacto" class="sec">
-        <div class="w contacto">
+      <!-- 8 · Contacto -->
+      <section id="contacto" class="cont">
+        <div class="w cont__grid">
           <div>
-            <p class="eyebrow">Primera consulta</p>
-            <h2>Cuéntenos <em>qué ha pasado.</em></h2>
-            <p class="contacto__p">
+            <p class="eyebrow" data-reveal>Primera consulta</p>
+            <h2 class="cont__h" data-split="lines">Cuéntenos <em>qué ha pasado.</em></h2>
+            <p class="cabsec__p" data-reveal>
               Le llamamos en el día para darle cita. Lo que nos cuente queda amparado por el secreto profesional
               desde el primer mensaje.
             </p>
-            <dl class="datos">
+            <dl class="datos" data-stagger="0.07">
               <div><dt>Teléfono</dt><dd>965 00 00 00</dd></div>
               <div><dt>Urgencias penales</dt><dd>600 00 00 00 · 24 h</dd></div>
               <div><dt>Dirección</dt><dd>Avenida de Ejemplo, 24, 2.º · Alicante</dd></div>
@@ -233,7 +264,7 @@ const equipo = [
             </dl>
           </div>
 
-          <form class="form" id="form-cita" novalidate>
+          <form class="form" id="form-cita" novalidate data-reveal data-delay="0.15">
             <label>Nombre<input type="text" name="nombre" autocomplete="off" placeholder="Su nombre" /></label>
             <label>Teléfono<input type="tel" name="telefono" autocomplete="off" placeholder="Para llamarle hoy" /></label>
             <label>Materia
@@ -242,8 +273,8 @@ const equipo = [
                 <option>No lo sé</option>
               </select>
             </label>
-            <label>¿Qué ha pasado?<textarea name="caso" rows="4" placeholder="Con sus palabras. No hace falta que sea largo."></textarea></label>
-            <button class="btn btn--vino btn--ancho" type="submit">Pedir cita</button>
+            <label>¿Qué ha pasado?<textarea name="caso" rows="3" placeholder="Con sus palabras. No hace falta que sea largo."></textarea></label>
+            <button class="btn" type="submit"><span>Pedir cita</span></button>
             <p class="form__ok" id="form-ok" hidden>Esto es una demostración: no se ha enviado nada. En una web real, el despacho recibiría su mensaje al momento.</p>
             <p class="form__legal">Sus datos solo se usan para darle cita.</p>
           </form>
@@ -252,6 +283,8 @@ const equipo = [
     </main>
 
     <footer class="pie">
+      <div class="pie__img" aria-hidden="true"><Foto src="abogados/alicante" ancho={2000} alto={1334} sizes="100vw" data-parallax="12" /></div>
+      <p class="pie__marca" aria-hidden="true" data-split="chars">Albufereta</p>
       <div class="w pie__in">
         <p><b>Albufereta Abogados</b> · Avenida de Ejemplo, 24, 2.º · Alicante</p>
         <p>Negocio ficticio. Web de demostración creada por <a href="/">ABG Frame</a>.</p>
@@ -269,6 +302,7 @@ const equipo = [
             document.getElementById(x.getAttribute("aria-controls")).hidden = !on;
           });
           if (foco) t.focus();
+          document.dispatchEvent(new CustomEvent("plazo", { detail: t.getAttribute("aria-controls") }));
         }
         tabs.forEach(function (t, i) {
           t.addEventListener("click", function () { activar(t, false); });
@@ -282,154 +316,294 @@ const equipo = [
       })();
     </script>
 
-    <style>
+    <script>
+      import { iniciar, gsap, ScrollTrigger } from "../../scripts/demo-motion";
+
+      iniciar(({ fino }) => {
+        // Portada: la foto entra con zoom y se queda atrás al bajar
+        gsap.from(".hero__img", { scale: 1.25, duration: 2.6, ease: "expo.out" });
+        gsap.to(".hero__img img", {
+          yPercent: 16, ease: "none",
+          scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true },
+        });
+        gsap.to(".hero__in", {
+          yPercent: -12, autoAlpha: 0.2, ease: "none",
+          scrollTrigger: { trigger: ".hero", start: "60% top", end: "bottom top", scrub: true },
+        });
+
+        // Áreas: la foto de cada materia sigue al cursor
+        const lista = document.querySelector<HTMLElement>(".areas__lista")!;
+        const flota = lista.querySelector<HTMLElement>(".areas__flota")!;
+        const fotos = Array.from(flota.querySelectorAll("img"));
+        const filas = Array.from(lista.querySelectorAll<HTMLElement>(".area"));
+        if (fino) {
+          gsap.set(flota, { xPercent: -50, yPercent: -50 });
+          const xTo = gsap.quickTo(flota, "x", { duration: 0.7, ease: "power3.out" });
+          const yTo = gsap.quickTo(flota, "y", { duration: 0.7, ease: "power3.out" });
+          const rTo = gsap.quickTo(flota, "rotation", { duration: 0.8, ease: "power3.out" });
+          lista.addEventListener("pointermove", (e) => {
+            const r = lista.getBoundingClientRect();
+            xTo(e.clientX - r.left + 180); yTo(e.clientY - r.top);
+            rTo(gsap.utils.clamp(-8, 8, e.movementX * 0.5));
+          });
+          filas.forEach((f, i) => f.addEventListener("pointerenter", () => {
+            fotos.forEach((im, j) => im.classList.toggle("on", i === j));
+            flota.classList.add("on");
+          }));
+          lista.addEventListener("pointerleave", () => { flota.classList.remove("on"); rTo(0); });
+        }
+        gsap.from(filas, {
+          yPercent: 40, autoAlpha: 0, duration: 1, ease: "power3.out", stagger: 0.08,
+          scrollTrigger: { trigger: lista, start: "top 82%", once: true },
+        });
+
+        // Plazos: la cifra cuenta y la regla se dibuja cada vez que se cambia de situación
+        const animaPlazo = (id: string) => {
+          const panel = document.getElementById(id);
+          if (!panel) return;
+          const b = panel.querySelector<HTMLElement>("[data-plz]")!;
+          const o = { v: 0 };
+          gsap.to(o, { v: Number(b.dataset.plz), duration: 1.1, ease: "power3.out", onUpdate: () => { b.textContent = String(Math.round(o.v)); } });
+          gsap.fromTo(panel.querySelector(".plz__regla"), { scaleX: 0 }, { scaleX: 1, duration: 1.2, ease: "expo.inOut" });
+          gsap.from(panel.querySelectorAll(".plz__cifra span, .plz__desde, .plz__txt > *, .lnk"), { y: 24, autoAlpha: 0, duration: 0.8, ease: "power3.out", stagger: 0.06, delay: 0.1 });
+        };
+        document.addEventListener("plazo", (e) => animaPlazo((e as CustomEvent).detail));
+        ScrollTrigger.create({ trigger: ".plz__paneles", start: "top 75%", once: true, onEnter: () => animaPlazo("panel-despido") });
+
+        // El fondo pasa de la noche al papel al llegar a los honorarios
+        gsap.fromTo(".hon", { backgroundColor: "#0D0B09", color: "#EDE6DA" }, {
+          backgroundColor: "#F1EBDF", color: "#17130F", ease: "none",
+          scrollTrigger: { trigger: ".hon", start: "top 75%", end: "top 25%", scrub: true },
+        });
+      });
+    </script>
+
+    <style is:global>
       :root {
-        --papel: #F4F0E9; --papel-2: #EBE5DA; --tinta: #17130F; --tinta-2: #4A433B; --tinta-3: #776E63;
-        --vino: #6E1E2A; --vino-2: #561620; --linea: #D6CEC1; --noche: #1A1512; --hueso: #EFE8DC; --oro: #B89A6A;
-        --serif: "Newsreader", Georgia, serif; --sans: "IBM Plex Sans", system-ui, sans-serif;
+        --noche: #0D0B09; --carbon: #16130F; --hueso: #EDE6DA; --hueso-2: #BDB3A4; --gris: #8B8275; --oro: #B89A6A; --vino: #57131C; --vino-2: #8A2331;
+        --papel: #F1EBDF; --tinta: #17130F; --linea: rgba(237, 230, 218, 0.16);
+        --serif: "Cormorant Garamond", Georgia, serif; --sans: "Hanken Grotesk", system-ui, sans-serif;
+        --telon: var(--noche); --telon-txt: var(--hueso); --cursor: var(--hueso); --cursor-txt-bg: var(--hueso); --cursor-txt: var(--noche); --grano: 0.085;
       }
       * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
-      body { margin: 0; background: var(--papel); color: var(--tinta); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-      .w { width: 100%; max-width: 1180px; margin: 0 auto; padding-inline: clamp(1.25rem, 4vw, 3rem); }
-      h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; letter-spacing: -0.015em; }
-      em { font-style: italic; color: var(--vino); }
+      html { scroll-behavior: smooth; background: var(--noche); }
+      body { margin: 0; background: var(--noche); color: var(--hueso); font-family: var(--sans); font-weight: 400; font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+      .w { width: 100%; max-width: 1360px; margin: 0 auto; padding-inline: clamp(1.25rem, 4.5vw, 4rem); }
+      h1, h2, h3 { font-family: var(--serif); font-weight: 300; margin: 0; letter-spacing: -0.02em; text-wrap: balance; }
+      h2 { font-size: clamp(2.4rem, 5.6vw, 5.4rem); line-height: 0.98; }
+      em { font-style: italic; color: var(--oro); font-weight: 300; }
       a { color: inherit; }
-      :focus-visible { outline: 2px solid var(--vino); outline-offset: 3px; }
-      .eyebrow { font-size: 0.74rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--vino); margin: 0 0 1.1rem; }
+      :focus-visible { outline: 1.5px solid var(--oro); outline-offset: 4px; }
+      .eyebrow { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: var(--oro); margin: 0 0 1.6rem; }
+      .telon span { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(2rem, 5vw, 3.6rem); letter-spacing: -0.02em; }
+      .cabsec { max-width: 60rem; margin-bottom: clamp(3rem, 6vw, 5.5rem); }
+      .cabsec__p { color: var(--hueso-2); max-width: 50ch; margin: 1.8rem 0 0; font-weight: 300; font-size: 1.08rem; }
 
-      .cab { border-bottom: 1px solid var(--linea); background: var(--papel); position: sticky; top: 0; z-index: 10; }
-      .cab__in { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 72px; }
-      .marca { text-decoration: none; display: grid; line-height: 1.05; }
-      .marca__a { font-family: var(--serif); font-size: 1.55rem; letter-spacing: -0.02em; }
-      .marca__b { font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tinta-3); margin-top: 0.2rem; }
-      .nav { display: flex; gap: 1.9rem; }
-      .nav a { font-size: 0.92rem; text-decoration: none; color: var(--tinta-2); padding: 0.4rem 0; border-bottom: 1px solid transparent; }
-      .nav a:hover { color: var(--vino); border-color: var(--vino); }
-      .tel { text-decoration: none; font-family: var(--serif); font-size: 1.2rem; white-space: nowrap; }
-      .tel span { display: block; font-family: var(--sans); font-size: 0.64rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--tinta-3); text-align: right; }
+      /* Cabecera */
+      .cab { position: sticky; top: 0; z-index: 50; height: 84px; margin-bottom: -84px; color: var(--hueso); }
+      .cab.cab--solida { background: rgba(13, 11, 9, 0.78); backdrop-filter: blur(16px); border-bottom: 1px solid var(--linea); }
+      .cab__in { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; height: 100%; }
+      .marca { text-decoration: none; display: grid; line-height: 1; }
+      .marca__a { font-family: var(--serif); font-size: 1.7rem; font-weight: 400; letter-spacing: -0.02em; }
+      .marca__b { font-size: 0.58rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--hueso-2); margin-top: 0.3rem; }
+      .nav { display: flex; gap: 2.2rem; }
+      .nav a { position: relative; font-size: 0.86rem; letter-spacing: 0.02em; text-decoration: none; padding: 0.4rem 0; }
+      .nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--oro); transform: scaleX(0); transform-origin: right; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+      .nav a:hover::after { transform: scaleX(1); transform-origin: left; }
+      .tel { text-decoration: none; font-family: var(--serif); font-size: 1.3rem; white-space: nowrap; text-align: right; line-height: 1.1; }
+      .tel span { display: block; font-family: var(--sans); font-size: 0.58rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--oro); margin-bottom: 0.2rem; }
 
-      .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0.8rem 1.6rem; font-family: var(--sans); font-weight: 500; font-size: 0.95rem; text-decoration: none; border: 1px solid transparent; border-radius: 2px; cursor: pointer; transition: background 0.2s, color 0.2s; }
-      .btn--vino { background: var(--vino); color: #fff; }
-      .btn--vino:hover { background: var(--vino-2); }
-      .btn--hueso { background: var(--hueso); color: var(--tinta); }
-      .btn--hueso:hover { background: #fff; }
-      .btn--ancho { width: 100%; }
-      .lnk { font-weight: 500; font-size: 0.95rem; text-decoration: none; border-bottom: 1px solid var(--tinta); padding-bottom: 2px; }
-      .lnk:hover { color: var(--vino); border-color: var(--vino); }
+      /* 1 · Portada */
+      .hero { position: relative; height: calc(100svh - var(--demobar, 40px)); min-height: 620px; display: flex; align-items: flex-end; overflow: hidden; }
+      .hero__img { position: absolute; inset: 0 -24% 0 0; overflow: hidden; }
+      .hero__img img { width: 100%; height: 112%; object-fit: cover; object-position: 40% 60%; display: block; filter: contrast(1.08) brightness(0.9); }
+      .hero__img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13, 11, 9, 0.55) 0%, rgba(13, 11, 9, 0) 30%, rgba(13, 11, 9, 0.2) 55%, rgba(13, 11, 9, 0.94) 100%); }
+      .hero__in { position: relative; padding-bottom: clamp(2rem, 5svh, 3.5rem); }
+      .hero h1 { font-size: clamp(3.1rem, 9.6vw, 10.5rem); line-height: 0.88; letter-spacing: -0.035em; }
+      .hero__pie { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 2rem 3rem; align-items: end; margin-top: clamp(1.5rem, 4svh, 3rem); padding-top: 1.5rem; border-top: 1px solid var(--linea); }
+      .hero__sub { margin: 0; max-width: 40ch; color: var(--hueso-2); font-weight: 300; }
+      .redondo { display: grid; place-items: center; width: 9.2rem; height: 9.2rem; border-radius: 50%; border: 1px solid var(--oro); text-decoration: none; text-align: center; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; line-height: 1.5; position: relative; overflow: hidden; isolation: isolate; transition: color 0.4s; }
+      .redondo::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 50%; background: var(--oro); transform: scale(0); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+      .redondo:hover { color: var(--noche); }
+      .redondo:hover::before { transform: scale(1.02); }
+      .hero__ficha { margin: 0; display: flex; gap: 2.5rem; justify-content: flex-end; }
+      .hero__ficha dt { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--oro); }
+      .hero__ficha dd { margin: 0.3rem 0 0; font-family: var(--serif); font-size: 1.45rem; line-height: 1.1; }
 
-      .hero { padding: clamp(3.5rem, 8vw, 6.5rem) 0 clamp(3.5rem, 7vw, 5.5rem); border-bottom: 1px solid var(--linea); }
-      .hero__grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr); gap: clamp(2rem, 6vw, 5rem); align-items: end; }
-      .hero h1 { font-size: clamp(2.2rem, 4.5vw, 3.9rem); line-height: 1.06; text-wrap: balance; }
-      .hero__sub { font-size: clamp(1rem, 1.3vw, 1.12rem); color: var(--tinta-2); max-width: 52ch; margin: 1.6rem 0 0; }
-      .hero__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; margin-top: 2.1rem; }
-      .ficha { background: var(--noche); color: var(--hueso); padding: 2rem 1.9rem; border-radius: 2px; }
-      .ficha__t { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--oro); margin: 0; }
-      .ficha__p { font-family: var(--serif); font-size: 4rem; line-height: 1; letter-spacing: -0.03em; margin: 0.6rem 0 0.9rem; }
-      .ficha__d { font-size: 0.93rem; color: #C9BFB0; margin: 0 0 1.4rem; }
-      .ficha ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid #3A322B; }
-      .ficha li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid #3A322B; font-size: 0.86rem; }
-      .ficha li span { color: #A99F91; }
-      .ficha li b { font-weight: 500; }
+      /* 2 · Cinta */
+      .cinta { padding: clamp(1.2rem, 2.5vw, 2rem) 0; border-block: 1px solid var(--linea); }
+      .cinta span { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(2rem, 4.4vw, 4rem); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(237, 230, 218, 0.55); display: inline-flex; align-items: center; }
+      .cinta i { font-style: normal; margin: 0 2rem; -webkit-text-stroke: 0; color: var(--oro); font-size: 0.6em; }
 
-      .sec { padding: clamp(4rem, 8vw, 6.5rem) 0; }
-      .sec--tinte { background: var(--papel-2); }
-      .sec--noche { background: var(--noche); color: var(--hueso); }
-      .cabsec { max-width: 60ch; margin-bottom: clamp(2.25rem, 4vw, 3.25rem); }
-      .cabsec h2, .contacto h2 { font-size: clamp(1.9rem, 3.6vw, 3rem); line-height: 1.08; text-wrap: balance; }
-      .cabsec p:last-child { color: var(--tinta-2); margin: 1rem 0 0; }
-      .cabsec--noche .eyebrow { color: var(--oro); }
-      .cabsec--noche em { color: #D9A7A0; }
-      .cabsec--noche p:last-child { color: #BDB3A5; }
+      /* 3 · Manifiesto */
+      .mani { padding: clamp(6rem, 14vw, 13rem) 0; }
+      .mani__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 20rem); gap: 0 clamp(2rem, 6vw, 6rem); align-items: end; }
+      .mani__grid .eyebrow { grid-column: 1 / -1; }
+      .mani__p { font-family: var(--serif); font-weight: 300; font-size: clamp(1.9rem, 4.2vw, 4.1rem); line-height: 1.08; letter-spacing: -0.02em; margin: 0; }
+      .mani__foto { aspect-ratio: 3 / 4; }
+      .mani__foto img { height: 122%; margin-top: -11%; filter: grayscale(1) contrast(1.1); }
 
-      .areas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--tinta); border-left: 1px solid var(--linea); }
-      .area { padding: 1.9rem 1.75rem 2.1rem; border-right: 1px solid var(--linea); border-bottom: 1px solid var(--linea); }
-      .area__n { font-family: var(--serif); font-style: italic; color: var(--vino); font-size: 1rem; }
-      .area h3 { font-size: 1.75rem; margin: 0.35rem 0 0.6rem; }
-      .area p { margin: 0 0 1.1rem; color: var(--tinta-2); font-size: 0.95rem; }
-      .area ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; }
-      .area li { font-size: 0.86rem; color: var(--tinta-3); padding-left: 1rem; position: relative; }
-      .area li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 6px; height: 1px; background: var(--vino); }
+      /* 4 · Áreas */
+      .areas { padding-bottom: clamp(6rem, 12vw, 11rem); }
+      .areas__lista { position: relative; border-top: 1px solid var(--linea); }
+      .area { position: relative; display: grid; grid-template-columns: 4rem minmax(0, 1fr) minmax(0, 24rem) 2rem; gap: 1.5rem; align-items: center; padding: clamp(1.4rem, 2.6vw, 2.4rem) 0; border-bottom: 1px solid var(--linea); transition: padding 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s; }
+      .area::before { content: ""; position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%; background: var(--oro); transform: scaleX(0); transform-origin: left; transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+      .area__n { font-size: 0.74rem; letter-spacing: 0.2em; color: var(--oro); }
+      .area h3 { font-size: clamp(2.6rem, 7vw, 6.6rem); line-height: 0.95; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), font-style 0.2s; }
+      .area__txt p { margin: 0 0 0.5rem; color: var(--hueso-2); font-weight: 300; font-size: 0.98rem; }
+      .area__txt ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.3rem 0.5rem; }
+      .area__txt li { font-size: 0.76rem; color: var(--gris); border: 1px solid var(--linea); border-radius: 99px; padding: 0.12rem 0.7rem; }
+      .area__fl { font-size: 1.5rem; color: var(--oro); opacity: 0; transform: translate(-10px, 10px); transition: opacity 0.4s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+      @media (hover: hover) {
+        .areas__lista:hover .area { color: rgba(237, 230, 218, 0.35); }
+        .areas__lista .area:hover { color: var(--hueso); }
+        .area:hover::before { transform: scaleX(1); }
+        .area:hover h3 { transform: translateX(1.2rem); font-style: italic; }
+        .area:hover .area__fl { opacity: 1; transform: none; }
+      }
+      .areas__flota { position: absolute; left: 0; top: 0; z-index: 3; width: 21rem; aspect-ratio: 4 / 5; overflow: hidden; pointer-events: none; opacity: 0; scale: 0.7; transition: opacity 0.4s, scale 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+      .areas__flota.on { opacity: 1; scale: 1; }
+      .areas__flota img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.1); opacity: 0; transform: scale(1.2); transition: opacity 0.45s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+      .areas__flota img.on { opacity: 1; transform: scale(1); }
+      @media (hover: none) { .areas__flota { display: none; } }
 
-      .plz { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.5fr); gap: 0 clamp(1.5rem, 4vw, 3.5rem); }
-      .plz__tabs { display: grid; align-content: start; border-top: 1px solid #3A322B; }
-      .plz__tab { text-align: left; background: none; border: 0; border-bottom: 1px solid #3A322B; color: #BDB3A5; font-family: var(--serif); font-size: 1.25rem; padding: 1rem 0.25rem 1rem 1.1rem; cursor: pointer; position: relative; transition: color 0.2s; }
-      .plz__tab::before { content: ""; position: absolute; left: 0; top: 50%; width: 0; height: 1px; background: var(--oro); transition: width 0.2s; }
+      /* 5 · Plazos */
+      .plz { background: radial-gradient(120% 90% at 85% 10%, #7A1E2B 0%, var(--vino) 45%, #3A0C12 100%); padding: clamp(5rem, 11vw, 10rem) 0; position: relative; }
+      .plz em { color: #E3C89B; }
+      .plz .eyebrow { color: #E3C89B; }
+      .plz__grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+      .plz__tabs { display: grid; border-top: 1px solid rgba(237, 230, 218, 0.22); }
+      .plz__tab { display: flex; align-items: baseline; gap: 1.2rem; text-align: left; font-family: var(--serif); font-weight: 400; font-size: clamp(1.3rem, 2vw, 1.75rem); line-height: 1.15; color: rgba(237, 230, 218, 0.5); background: none; border: 0; border-bottom: 1px solid rgba(237, 230, 218, 0.22); padding: 1.25rem 0; cursor: pointer; transition: color 0.3s, padding-left 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+      .plz__tab span { font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.2em; color: #E3C89B; }
       .plz__tab:hover { color: var(--hueso); }
-      .plz__tab[aria-selected="true"] { color: var(--hueso); }
-      .plz__tab[aria-selected="true"]::before { width: 0.7rem; }
-      .plz__tab:focus-visible { outline-color: var(--oro); }
-      .plz__panel { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(1.25rem, 3vw, 2.5rem); align-items: start; border-top: 1px solid #3A322B; padding-top: 1.75rem; }
-      .plz__panel[hidden] { display: none; }
-      .plz__num { font-family: var(--serif); font-size: clamp(2.6rem, 5vw, 4.2rem); line-height: 0.95; letter-spacing: -0.03em; margin: 0; color: #fff; }
-      .plz__desde { font-size: 0.9rem; color: var(--oro); margin: 0.8rem 0 0; }
-      .plz__txt p { margin: 0 0 1.25rem; color: #D3CABC; }
-      .plz__traer { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--oro) !important; margin-bottom: 0.6rem !important; }
-      .plz__txt ul { list-style: none; margin: 0 0 1.6rem; padding: 0; display: grid; gap: 0.4rem; }
-      .plz__txt li { font-size: 0.93rem; padding-left: 1.1rem; position: relative; color: var(--hueso); }
-      .plz__txt li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 7px; height: 1px; background: var(--oro); }
-      .plz__aviso { grid-column: 2; font-size: 0.78rem; color: #8F867A; margin: 1.75rem 0 0; }
+      .plz__tab[aria-selected="true"] { color: var(--hueso); font-style: italic; padding-left: 1rem; }
+      .plz__cifra { margin: 0; display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 1.5rem; line-height: 0.8; }
+      .plz__cifra b { font-family: var(--serif); font-weight: 300; font-size: clamp(8rem, 24vw, 22rem); letter-spacing: -0.05em; font-variant-numeric: lining-nums; }
+      .plz__cifra span { font-family: var(--serif); font-style: italic; font-size: clamp(1.8rem, 4vw, 3.6rem); color: #E3C89B; }
+      .plz__desde { margin: 1.4rem 0 0; font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(237, 230, 218, 0.75); }
+      .plz__regla { display: block; height: 1px; background: #E3C89B; margin: 1.8rem 0; transform-origin: left; }
+      .plz__txt { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 2rem 3rem; }
+      .plz__txt p { margin: 0; font-weight: 300; }
+      .plz__traer { font-size: 0.66rem !important; font-weight: 500 !important; letter-spacing: 0.22em; text-transform: uppercase; color: #E3C89B; margin-bottom: 0.7rem !important; }
+      .plz__txt ul { list-style: none; margin: 0; padding: 0; }
+      .plz__txt li { padding: 0.4rem 0; border-bottom: 1px solid rgba(237, 230, 218, 0.18); font-size: 0.95rem; }
+      .lnk { display: inline-flex; align-items: center; gap: 0.8rem; margin-top: 2.2rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; padding-bottom: 0.4rem; border-bottom: 1px solid currentColor; }
+      .lnk i { font-style: normal; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+      .lnk:hover i { transform: translateX(8px); }
+      .plz__aviso { margin: 2.5rem 0 0; font-size: 0.8rem; color: rgba(237, 230, 218, 0.6); }
 
-      .hon { border-top: 1px solid var(--tinta); }
-      .hon__fila { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.5fr) minmax(0, 1fr); gap: 1.5rem; align-items: baseline; padding: 1.35rem 0; border-bottom: 1px solid var(--linea); }
-      .hon__fila b { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.35rem; letter-spacing: -0.01em; }
-      .hon__fila span { font-size: 0.9rem; color: var(--tinta-3); }
-      .hon__precio { font-family: var(--serif); font-size: 1.7rem; color: var(--vino); white-space: nowrap; font-variant-numeric: lining-nums tabular-nums; }
-      .hon__nota { font-size: 0.9rem; color: var(--tinta-2); }
-      .hon__pie { font-size: 0.82rem; color: var(--tinta-3); margin: 1.25rem 0 0; }
+      /* 6 · Honorarios (papel) */
+      .hon { background: var(--papel); color: var(--tinta); padding: clamp(5rem, 11vw, 10rem) 0; }
+      .hon em { color: var(--vino-2); }
+      .hon .eyebrow { color: var(--vino-2); }
+      .hon .cabsec__p { color: inherit; opacity: 0.72; }
+      .hon__tabla { border-top: 1px solid currentColor; }
+      .hon__fila { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr) minmax(8rem, auto); gap: 1.5rem 3rem; align-items: center; padding: clamp(1.4rem, 2.4vw, 2.1rem) 0; border-bottom: 1px solid rgba(23, 19, 15, 0.2); transition: padding 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+      .hon__fila::before { content: ""; position: absolute; inset: 0 -1.5rem; background: var(--vino); transform: scaleY(0); transform-origin: bottom; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); z-index: 0; }
+      .hon__fila > * { position: relative; z-index: 1; transition: color 0.3s; }
+      .hon__q b { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 2.6vw, 2.3rem); line-height: 1.05; letter-spacing: -0.015em; }
+      .hon__q span { font-size: 0.92rem; opacity: 0.7; }
+      .hon__nota { font-size: 0.92rem; opacity: 0.75; }
+      .hon__precio { font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 4.2vw, 3.8rem); line-height: 1; text-align: right; white-space: nowrap; letter-spacing: -0.03em; }
+      @media (hover: hover) {
+        .hon__fila:hover::before { transform: scaleY(1); }
+        .hon__fila:hover > * { color: var(--hueso); }
+        .hon__fila:hover .hon__precio { color: #E3C89B; }
+      }
+      .hon__pie { font-size: 0.84rem; opacity: 0.65; margin: 1.6rem 0 0; }
 
-      .despacho { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(2rem, 6vw, 5rem); align-items: start; }
-      .despacho .cabsec { margin-bottom: 0; }
-      .equipo { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--tinta); }
-      .equipo li { display: flex; gap: 1.4rem; align-items: flex-start; padding: 1.5rem 0; border-bottom: 1px solid #CFC6B7; }
-      .equipo__i { flex: none; width: 58px; height: 58px; border-radius: 50%; border: 1px solid var(--vino); color: var(--vino); display: grid; place-items: center; font-family: var(--serif); font-size: 1.2rem; }
-      .equipo h3 { font-size: 1.45rem; }
-      .equipo__r { font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tinta-3); margin: 0.25rem 0 0.4rem; }
-      .equipo p { margin: 0; font-size: 0.95rem; color: var(--tinta-2); }
+      /* 7 · Despacho */
+      .desp { padding: clamp(6rem, 12vw, 11rem) 0; }
+      .desp__grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+      .desp__fotos { position: relative; aspect-ratio: 1 / 1.05; }
+      .desp__fotos img { height: 124%; margin-top: -12%; filter: grayscale(1) contrast(1.08); }
+      .desp__f1 { position: absolute; right: 0; top: 0; width: 78%; aspect-ratio: 4 / 3; }
+      .desp__f2 { position: absolute; left: 0; bottom: 6%; width: 52%; aspect-ratio: 4 / 3; z-index: 2; box-shadow: 0 40px 80px -30px #000; }
+      .desp__f3 { position: absolute; right: 6%; bottom: 0; width: 30%; aspect-ratio: 3 / 4; }
+      .equipo { list-style: none; margin: clamp(4rem, 9vw, 8rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--linea); }
+      .equipo li { padding: 2.2rem 2rem 0 0; }
+      .equipo li + li { padding-left: 2rem; border-left: 1px solid var(--linea); }
+      .equipo__i { display: block; font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(3.4rem, 6vw, 5.6rem); line-height: 1; color: var(--oro); }
+      .equipo h3 { font-size: clamp(1.6rem, 2.4vw, 2.1rem); font-weight: 400; margin-top: 1.2rem; }
+      .equipo__r { font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--oro); margin: 0.6rem 0 0.7rem; }
+      .equipo p { margin: 0; color: var(--hueso-2); font-weight: 300; }
 
-      .contacto { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: clamp(2rem, 6vw, 5rem); align-items: start; }
-      .contacto__p { color: var(--tinta-2); max-width: 48ch; margin: 1.1rem 0 2rem; }
-      .datos { margin: 0; border-top: 1px solid var(--linea); }
-      .datos div { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 1rem; padding: 0.85rem 0; border-bottom: 1px solid var(--linea); }
-      .datos dt { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tinta-3); padding-top: 0.2rem; }
-      .datos dd { margin: 0; }
-      .form { background: #FBF9F5; border: 1px solid var(--linea); padding: clamp(1.5rem, 3vw, 2.25rem); display: grid; gap: 1.1rem; border-radius: 2px; }
-      .form label { display: grid; gap: 0.4rem; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tinta-3); }
-      .form input, .form select, .form textarea { font: inherit; font-size: 1rem; letter-spacing: 0; text-transform: none; color: var(--tinta); background: #fff; border: 1px solid #C9C0B2; border-radius: 2px; padding: 0.8rem 0.9rem; width: 100%; }
+      /* 8 · Contacto */
+      .cont { background: var(--carbon); padding: clamp(6rem, 12vw, 11rem) 0; }
+      .cont__grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(2.5rem, 7vw, 7rem); align-items: start; }
+      .cont__h { font-size: clamp(3rem, 8vw, 8rem); line-height: 0.9; }
+      .datos { margin: 2.8rem 0 0; border-top: 1px solid var(--linea); }
+      .datos div { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 1rem; padding: 0.95rem 0; border-bottom: 1px solid var(--linea); }
+      .datos dt { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--oro); padding-top: 0.45rem; }
+      .datos dd { margin: 0; font-family: var(--serif); font-size: 1.35rem; line-height: 1.3; }
+      .form { display: grid; gap: 1.7rem; }
+      .form label { display: grid; gap: 0.3rem; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--oro); }
+      .form input, .form select, .form textarea { font-family: var(--serif); font-size: 1.5rem; font-weight: 300; letter-spacing: 0; text-transform: none; color: var(--hueso); background: transparent; border: 0; border-bottom: 1px solid rgba(237, 230, 218, 0.3); border-radius: 0; padding: 0.5rem 0 0.7rem; width: 100%; transition: border-color 0.4s; }
+      .form select option { color: #17130F; }
+      .form ::placeholder { color: rgba(237, 230, 218, 0.32); font-style: italic; }
+      .form input:focus, .form select:focus, .form textarea:focus { outline: 0; border-color: var(--oro); }
       .form textarea { resize: vertical; }
-      .form input:focus, .form select:focus, .form textarea:focus { outline: 2px solid var(--vino); outline-offset: 1px; border-color: var(--vino); }
-      .form__ok { margin: 0; padding: 0.9rem 1rem; background: #F1E4E2; border-left: 3px solid var(--vino); font-size: 0.9rem; color: var(--tinta); }
-      .form__legal { margin: 0; font-size: 0.78rem; color: var(--tinta-3); text-align: center; }
+      .btn { position: relative; justify-self: start; overflow: hidden; isolation: isolate; min-height: 60px; padding: 1rem 2.6rem; font-family: var(--sans); font-size: 0.76rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--noche); background: var(--hueso); border: 0; border-radius: 99px; cursor: pointer; transition: color 0.4s; }
+      .btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--oro); transform: translateY(101%); transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1); }
+      .btn:hover::before { transform: none; }
+      .form__ok { margin: 0; padding: 1rem 1.2rem; border: 1px solid var(--oro); font-size: 0.92rem; }
+      .form__legal { margin: 0; font-size: 0.8rem; color: var(--gris); }
 
-      .pie { background: var(--noche); color: #A99F91; padding: 1.75rem 0; font-size: 0.85rem; }
-      .pie__in { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 2rem; }
-      .pie p { margin: 0; }
+      .pie { position: relative; overflow: hidden; min-height: 78svh; display: flex; flex-direction: column; justify-content: flex-end; }
+      .pie__img { position: absolute; inset: -14% 0; }
+      .pie__img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.85) sepia(0.25) contrast(1.05) brightness(0.75); display: block; }
+      .pie__img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, var(--carbon) 0%, rgba(22, 19, 15, 0.1) 35%, rgba(13, 11, 9, 0.85) 100%); }
+      .pie__marca { position: relative; margin: 0; padding-inline: clamp(1rem, 3vw, 3rem); font-family: var(--serif); font-weight: 300; font-style: italic; font-size: clamp(4.5rem, 21vw, 23rem); line-height: 0.82; letter-spacing: -0.05em; text-align: center; white-space: nowrap; }
+      .pie__in { position: relative; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 2rem; padding-block: 3rem 1.6rem; font-size: 0.84rem; color: var(--hueso-2); }
+      .pie__in p { margin: 0; }
       .pie b { color: var(--hueso); font-weight: 500; }
-      .pie a { color: var(--hueso); }
 
-      @media (max-width: 980px) {
+      @media (max-width: 1000px) {
         .nav { display: none; }
-        .hero__grid, .despacho, .contacto { grid-template-columns: minmax(0, 1fr); }
-        .hero__grid { align-items: start; }
-        .areas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        .plz { grid-template-columns: minmax(0, 1fr); }
-        .plz__tabs { margin-bottom: 0.5rem; }
-        .plz__panel { border-top: 0; }
-        .plz__aviso { grid-column: 1; }
+        .hero__pie { grid-template-columns: minmax(0, 1fr) auto; }
+        .hero__ficha { grid-column: 1 / -1; justify-content: flex-start; }
+        .area { grid-template-columns: 2.4rem minmax(0, 1fr) 1.5rem; }
+        .area__txt { grid-column: 2 / -1; grid-row: 2; }
+        .area__fl { grid-row: 1; grid-column: 3; opacity: 1; transform: none; }
+        .plz__grid, .desp__grid, .cont__grid { grid-template-columns: minmax(0, 1fr); }
+        .hon__fila { grid-template-columns: minmax(0, 1fr) auto; }
+        .hon__nota { grid-column: 1 / -1; grid-row: 2; }
+      }
+      @media (max-width: 899px) {
+        .mani__grid { grid-template-columns: minmax(0, 1fr); }
+        .mani__foto { width: 62%; margin: 3rem 0 0 auto; }
+        .plz__tabs { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; gap: 0.5rem; border: 0; padding-bottom: 0.5rem; margin-inline: calc(clamp(1.25rem, 4.5vw, 4rem) * -1); padding-inline: clamp(1.25rem, 4.5vw, 4rem); scrollbar-width: none; }
+        .plz__tabs::-webkit-scrollbar { display: none; }
+        .plz__tab { font-size: 1.05rem; border: 1px solid rgba(237, 230, 218, 0.3); border-radius: 99px; padding: 0.6rem 1.1rem; gap: 0.6rem; }
+        .plz__tab[aria-selected="true"] { background: var(--hueso); color: var(--vino); padding-left: 1.1rem; font-style: normal; }
+        .plz__tab[aria-selected="true"] span { color: var(--vino-2); }
+        .plz__txt { grid-template-columns: minmax(0, 1fr); }
+        .equipo { grid-template-columns: minmax(0, 1fr); }
+        .equipo li, .equipo li + li { padding: 1.8rem 0; border-left: 0; border-bottom: 1px solid var(--linea); }
       }
       @media (max-width: 640px) {
-        .cab__in { min-height: 62px; }
-        .marca__a { font-size: 1.3rem; }
-        .tel { font-size: 1.05rem; }
-        .areas { grid-template-columns: minmax(0, 1fr); }
-        .plz__tab { font-size: 1.1rem; padding-block: 0.85rem; }
-        .plz__panel { grid-template-columns: minmax(0, 1fr); }
-        .hon__fila { grid-template-columns: minmax(0, 1fr) auto; gap: 0.4rem 1rem; }
-        .hon__nota { grid-column: 1 / -1; }
-        .datos div { grid-template-columns: minmax(0, 1fr); gap: 0.15rem; }
-        .hero__cta .btn { width: 100%; }
+        body { font-size: 16.5px; }
+        .cab { height: 68px; margin-bottom: -68px; }
+        .tel span { display: none; }
+        .tel { font-size: 1.1rem; }
+        .hero h1 { font-size: clamp(2.9rem, 14.6vw, 4.6rem); }
+        .hero__img { inset: 0 -60% 38% -20%; }
+        .hero__img::after { background: linear-gradient(180deg, rgba(13, 11, 9, 0.5) 0%, rgba(13, 11, 9, 0) 28%, rgba(13, 11, 9, 0.45) 60%, var(--noche) 94%); }
+        .hero__pie { grid-template-columns: minmax(0, 1fr); gap: 1.3rem; }
+        .redondo { width: auto; height: auto; border-radius: 99px; padding: 1rem 1.6rem; justify-self: start; }
+        .redondo br { display: none; }
+        .hero__ficha { gap: 1.8rem; }
+        .hero__ficha dd { font-size: 1.2rem; }
+        .datos div { grid-template-columns: minmax(0, 1fr); gap: 0; }
+        .hon__fila { grid-template-columns: minmax(0, 1fr); gap: 0.6rem; }
+        .hon__precio { text-align: left; }
+        .hon__nota { grid-row: auto; }
+        .pie { min-height: 60svh; }
       }
-      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { transition: none !important; animation: none !important; }
+      }
     </style>
   </body>
 </html>

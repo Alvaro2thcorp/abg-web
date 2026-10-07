@@ -1,0 +1,25 @@
+---
+// Cabecera común de las demos: metadatos, fuentes y el aviso de movimiento.
+import "../../styles/demo-motion.css";
+interface Props { titulo: string; descripcion: string; fuentes: string; precarga?: string; }
+const { titulo, descripcion, fuentes, precarga } = Astro.props;
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>{titulo}</title>
+<meta name="description" content={descripcion} />
+<link rel="icon" type="image/webp" href="/favicon.webp" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href={fuentes} rel="stylesheet" />
+{precarga && <link rel="preload" as="image" href={precarga} fetchpriority="high" />}
+<script is:inline>
+  (function () {
+    var d = document.documentElement;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    d.classList.add("motion");
+    // Si el script de movimiento no llega a arrancar, se muestra todo igualmente
+    setTimeout(function () { if (!window.__mo) d.classList.remove("motion"); }, 4000);
+  })();
+</script>

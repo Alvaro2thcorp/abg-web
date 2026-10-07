@@ -1,5 +1,7 @@
 ---
 import DemoBar from "../../components/demos/DemoBar.astro";
+import DemoHead from "../../components/demos/DemoHead.astro";
+import Foto from "../../components/demos/Foto.astro";
 
 const servicios = [
   { t: "Fiscal", d: "IVA, IRPF, sociedades y renta. Presentamos cada modelo en plazo y le avisamos antes, no después." },
@@ -9,170 +11,235 @@ const servicios = [
   { t: "Herencias", d: "Declaración de herederos, impuesto de sucesiones y cambio de titularidad, de principio a fin." },
   { t: "Extranjería", d: "NIE, residencia y arraigo. Le acompañamos a la cita si hace falta." },
 ];
-const plazos = [
-  { f: "20 oct", q: "3.er trimestre", m: "Modelos 303, 130, 111 y 115", n: "IVA, pago fraccionado de IRPF y retenciones" },
-  { f: "20 ene", q: "4.º trimestre", m: "Modelos 111 y 115", n: "Retenciones de nóminas, profesionales y alquileres" },
-  { f: "30 ene", q: "4.º trimestre", m: "Modelos 303, 130 y 390", n: "IVA, IRPF y resumen anual de IVA" },
-  { f: "Abr – jun", q: "Renta", m: "Modelo 100", n: "Campaña de la renta y patrimonio" },
-  { f: "25 jul", q: "Sociedades", m: "Modelo 200", n: "Impuesto sobre sociedades del ejercicio anterior" },
+const romanos = ["I", "II", "III", "IV", "V", "VI"];
+
+const historia = [
+  { a: "1989", t: "Abrimos la puerta", d: "Una máquina de escribir, un teléfono y dos clientes del barrio. Uno de ellos sigue viniendo.", img: "gestoria/farol", w: 1100, h: 1650, tono: 1 },
+  { a: "1996", t: "Llega el primer ordenador", d: "Las nóminas dejan de hacerse a mano. Las copias en papel carbón, también.", img: "gestoria/carta", w: 1500, h: 1000, tono: 0.8 },
+  { a: "2004", t: "Adiós a las colas", d: "Empezamos a presentar los impuestos por internet. Nadie echó de menos la ventanilla.", img: "gestoria/calle", w: 1100, h: 1467, tono: 0.55 },
+  { a: "2013", t: "Segunda generación", d: "Mercedes toma el relevo de su padre. Mismo despacho, misma manera de atender.", img: "gestoria/santa-cruz", w: 1600, h: 1063, tono: 0.3 },
+  { a: "2020", t: "Sin cerrar un solo día", d: "Atendemos por videollamada y recogemos la documentación por el móvil. Se quedó para siempre.", img: "gestoria/escritorio", w: 1500, h: 1000, tono: 0.12 },
+  { a: "2026", t: "Listos para Verifactu", d: "840 clientes con su facturación adaptada antes de que sea obligatorio.", img: "gestoria/playa", w: 1100, h: 1654, tono: 0 },
 ];
+
 const equipo = [
   { i: "MS", n: "Mercedes Soler", r: "Gestora administrativa colegiada", d: "Dirige el despacho. Fiscal y herencias." },
   { i: "JB", n: "Joaquín Beltrá", r: "Graduado social", d: "Nóminas, contratos y Seguridad Social." },
   { i: "LA", n: "Lucía Aracil", r: "Técnica contable", d: "Contabilidad de autónomos y sociedades." },
 ];
+const cinta = ["Fiscal", "Laboral", "Contable", "Vehículos", "Herencias", "Extranjería"];
 ---
 <!doctype html>
 <html lang="es">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex" />
-    <title>Gestoría Serra Grossa · Demostración de ABG Frame</title>
-    <meta name="description" content="Web de demostración de una gestoría administrativa, hecha por ABG Frame." />
-    <link rel="icon" type="image/webp" href="/favicon.webp" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <DemoHead
+      titulo="Gestoría Serra Grossa · Demostración de ABG Frame"
+      descripcion="Web de demostración de una gestoría administrativa, hecha por ABG Frame."
+      fuentes="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Public+Sans:wght@400;500;600&display=swap"
+      precarga="/images/demos/gestoria/balcon.webp"
+    />
   </head>
   <body>
+    <div class="telon" aria-hidden="true"><span>SG</span></div>
+    <div class="grano" aria-hidden="true"></div>
+    <i data-progreso aria-hidden="true"></i>
     <DemoBar />
 
-    <div class="util">
-      <div class="w util__in">
-        <span>Lunes a viernes · 9:00–14:00 y 16:30–19:00</span>
-        <span>Tel. 965 00 00 00 · Calle de Ejemplo, 12 · Alicante</span>
-      </div>
-    </div>
-
-    <header class="cab">
+    <header class="cab" data-cab>
       <div class="w cab__in">
         <a class="marca" href="#inicio" aria-label="Gestoría Serra Grossa, inicio">
           <span class="marca__sg">SG</span>
           <span class="marca__txt">Gestoría<br /><b>Serra Grossa</b></span>
         </a>
         <nav class="nav" aria-label="Secciones">
+          <a href="#historia">Desde 1989</a>
           <a href="#servicios">Servicios</a>
           <a href="#calendario">Calendario fiscal</a>
           <a href="#documentacion">Enviar documentación</a>
-          <a href="#despacho">El despacho</a>
         </nav>
-        <a class="btn btn--pino" href="#contacto">Pedir cita</a>
+        <a class="btn btn--pino" href="#contacto" data-magnetic="0.2"><span>Pedir cita</span></a>
       </div>
     </header>
 
-    <main id="inicio">
-      <section class="hero">
+    <main>
+      <!-- 1 · Portada -->
+      <section class="hero" id="inicio">
         <div class="w hero__grid">
-          <div>
-            <p class="sobre">Gestoría administrativa · Alicante, desde 1989</p>
-            <h1>Sus papeles al día.<br /><em>Y usted, a lo suyo.</em></h1>
-            <p class="lead">
+          <div class="hero__txt">
+            <p class="sobre" data-reveal data-delay="0.9">Gestoría administrativa · Alicante</p>
+            <h1 data-split="lines" data-delay="0.5">Sus papeles al día.<br /><em>Y usted, a lo suyo.</em></h1>
+            <p class="lead" data-reveal data-delay="1.1">
               Llevamos la parte fiscal, laboral y contable de autónomos y pequeñas empresas de Alicante.
               Le avisamos de cada plazo con tiempo y recogemos su documentación sin que tenga que venir.
             </p>
-            <div class="hero__cta">
-              <a class="btn btn--pino" href="#contacto">Pedir cita</a>
+            <div class="hero__cta" data-reveal data-delay="1.25">
+              <a class="btn btn--pino" href="#contacto" data-magnetic="0.2"><span>Pedir cita</span></a>
               <a class="enlace" href="#documentacion">Enviar documentación</a>
             </div>
           </div>
 
-          <aside class="plazo-card" aria-label="Próximos plazos">
-            <p class="plazo-card__t">Próximos plazos</p>
-            <ol>
-              {plazos.slice(0, 3).map((p) => (
-                <li>
-                  <span class="plazo-card__f">{p.f}</span>
-                  <span><b>{p.m}</b><small>{p.n}</small></span>
-                </li>
-              ))}
-            </ol>
-            <a class="enlace enlace--claro" href="#calendario">Ver el calendario completo</a>
-          </aside>
+          <div class="hero__vis">
+            <div class="marco arco arco--a"><Foto src="gestoria/balcon" ancho={1200} alto={1800} prioridad sizes="(max-width: 900px) 70vw, 30vw" alt="Balcón de un edificio blanco con contraventanas de madera" /></div>
+            <div class="marco arco arco--b" data-parallax="-14"><Foto src="gestoria/santa-cruz" ancho={1600} alto={1063} sizes="(max-width: 900px) 40vw, 16vw" alt="Calle del barrio de Santa Cruz, en Alicante" /></div>
+            <svg class="sello" viewBox="0 0 200 200" aria-hidden="true" data-gira="240">
+              <defs><path id="sg-circ" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0" /></defs>
+              <circle cx="100" cy="100" r="98" />
+              <text><textPath href="#sg-circ">Gestoría administrativa · Alicante · Desde 1989 ·</textPath></text>
+              <text class="sello__c" x="100" y="118" text-anchor="middle">SG</text>
+            </svg>
+            <a class="prox" href="#calendario" data-reveal data-delay="1.5">
+              <span class="prox__et">Próximo plazo</span>
+              <span class="prox__f"><b data-pz="dia">20</b> <span data-pz="mes">oct</span></span>
+              <span class="prox__m" data-pz="modelo">Modelos 303, 130, 111 y 115</span>
+              <span class="prox__q" data-pz="faltan">Consulte el calendario</span>
+            </a>
+          </div>
         </div>
       </section>
 
-      <section class="cifras" aria-label="El despacho en cifras">
-        <div class="w cifras__grid">
-          <div><b>37</b><span>años en el mismo despacho</span></div>
-          <div><b>840</b><span>clientes entre autónomos y empresas</span></div>
-          <div><b>6</b><span>personas, todas con nombre y apellidos</span></div>
-        </div>
-      </section>
+      <!-- 2 · Cinta -->
+      <div class="cinta" aria-hidden="true" data-marquee data-vel="50">
+        <div>{cinta.map((c) => <span>{c}<i>✦</i></span>)}</div>
+      </div>
 
-      <section id="servicios" class="sec">
+      <!-- 3 · Manifiesto y cifras -->
+      <section class="mani">
         <div class="w">
-          <p class="sobre">Servicios</p>
-          <h2>Lo que hacemos <em>cada día.</em></h2>
-          <div class="servs">
-            {servicios.map((s) => (
-              <article>
+          <p class="sobre" data-reveal>El despacho</p>
+          <p class="mani__p" data-words>
+            Treinta y siete años en la misma calle. Hemos visto pasar la peseta, el papel timbrado y la firma
+            digital. Lo que no ha cambiado es quién le coge el teléfono.
+          </p>
+          <dl class="cifras" data-stagger="0.12">
+            <div><dt><span data-count="37">37</span></dt><dd>años en el mismo despacho</dd></div>
+            <div><dt><span data-count="840" data-miles="no">840</span></dt><dd>clientes entre autónomos y empresas</dd></div>
+            <div><dt><span data-count="6">6</span></dt><dd>personas, todas con nombre y apellidos</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 4 · Historia: línea del tiempo horizontal -->
+      <section id="historia" class="hist" data-hscroll aria-label="Historia del despacho">
+        <div class="hs__pista">
+          <div class="hist__intro">
+            <p class="sobre sobre--laton">Desde 1989</p>
+            <h2>Una historia <em>corta de contar.</em></h2>
+            <p>Seis fechas y un mismo despacho.</p>
+            <span class="hist__ayuda">Siga bajando <i>→</i></span>
+          </div>
+          {historia.map((h, i) => (
+            <article class:list={["hito", { "hito--alto": h.h > h.w }]}>
+              <span class="hito__a" aria-hidden="true">{h.a}</span>
+              <div class="marco hito__img" style={`--tono:${h.tono}`}><Foto src={h.img} ancho={h.w} alto={h.h} sizes="(max-width: 900px) 70vw, 26vw" data-hpar="6" /></div>
+              <div class="hito__txt">
+                <p class="hito__n">{h.a}</p>
+                <h3>{h.t}</h3>
+                <p>{h.d}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div class="hs__barra" aria-hidden="true"><i></i></div>
+      </section>
+
+      <!-- 5 · Servicios -->
+      <section id="servicios" class="sec sec--marfil">
+        <div class="w">
+          <header class="cabsec">
+            <p class="sobre" data-reveal>Servicios</p>
+            <h2 data-split="lines">Lo que hacemos <em>cada día.</em></h2>
+          </header>
+          <div class="servs" data-stagger="0.08">
+            {servicios.map((s, i) => (
+              <article class="serv">
+                <span class="serv__n">{romanos[i]}</span>
                 <h3>{s.t}</h3>
                 <p>{s.d}</p>
+                <i class="serv__fl" aria-hidden="true">→</i>
               </article>
             ))}
           </div>
         </div>
       </section>
 
+      <!-- 6 · Almanaque fiscal -->
       <section id="calendario" class="sec sec--pino">
         <div class="w cal__grid">
           <div>
-            <p class="sobre sobre--laton">Calendario fiscal</p>
-            <h2>Las fechas que <em>no puede saltarse.</em></h2>
-            <p class="lead lead--claro">
+            <p class="sobre sobre--laton" data-reveal>Calendario fiscal</p>
+            <h2 data-split="lines">Las fechas que <em>no puede saltarse.</em></h2>
+            <p class="lead lead--claro" data-reveal>
               Una semana antes de cada plazo recibe un aviso con la documentación que nos falta.
               Así nadie corre el último día.
             </p>
-            <div class="aviso">
+            <div class="aviso" data-reveal>
               <b>Verifactu, en 2027</b>
               <p>Las sociedades deberán facturar con un programa adaptado desde el 1 de enero de 2027 y los autónomos desde el 1 de julio. Le dejamos preparado antes de la fecha.</p>
             </div>
           </div>
-          <div class="tabla" role="region" aria-label="Calendario fiscal" tabindex="0">
-            <table>
-              <thead><tr><th>Fecha límite</th><th>Periodo</th><th>Qué se presenta</th></tr></thead>
-              <tbody>
-                {plazos.map((p) => (
-                  <tr><td class="f">{p.f}</td><td>{p.q}</td><td><b>{p.m}</b><small>{p.n}</small></td></tr>
-                ))}
-              </tbody>
-            </table>
+
+          <div class="alm" data-reveal="fade">
+            <div class="alm__hoja">
+              <i class="alm__anillas" aria-hidden="true"></i>
+              <p class="alm__mes" data-pz="meslargo">octubre</p>
+              <p class="alm__dia" data-pz="dia">20</p>
+              <p class="alm__modelo" data-pz="modelo">Modelos 303, 130, 111 y 115</p>
+              <p class="alm__nota" data-pz="nota">IVA, IRPF y retenciones del 3.er trimestre</p>
+              <p class="alm__faltan" data-pz="faltan">Consulte con el despacho</p>
+            </div>
+            <ol class="alm__lista" data-pz-lista>
+              <li><span>20 ene</span><b>Modelos 111 y 115</b><small>Retenciones del 4.º trimestre</small></li>
+              <li><span>30 ene</span><b>Modelos 303, 130 y 390</b><small>IVA, IRPF y resumen anual de IVA</small></li>
+              <li><span>20 abr</span><b>Modelos 303, 130, 111 y 115</b><small>IVA, IRPF y retenciones del 1.er trimestre</small></li>
+              <li><span>30 jun</span><b>Modelo 100</b><small>Fin de la campaña de la renta</small></li>
+            </ol>
+            <p class="alm__pie">Fechas generales. Si el día cae en festivo, el plazo pasa al siguiente día hábil.</p>
           </div>
         </div>
       </section>
 
+      <!-- 7 · Documentación -->
       <section id="documentacion" class="sec">
         <div class="w doc__grid">
           <div>
-            <p class="sobre">Sin venir al despacho</p>
-            <h2>Envíenos sus facturas <em>desde el móvil.</em></h2>
-            <ol class="pasos">
+            <p class="sobre" data-reveal>Sin venir al despacho</p>
+            <h2 data-split="lines">Envíenos sus facturas <em>desde el móvil.</em></h2>
+            <div class="pila" aria-hidden="true">
+              {[0, 1, 2, 3, 4].map((n) => (
+                <div class="hoja" style={`--n:${n}`}><i></i><i></i><i></i><b>{["Factura 0412", "Ticket gasolina", "Factura 0413", "Recibo alquiler", "Factura 0414"][n]}</b></div>
+              ))}
+              <span class="pila__ok">3.er trimestre · ordenado</span>
+            </div>
+            <ol class="pasos" data-stagger="0.12">
               <li><b>Haga una foto</b> a la factura o adjunte el PDF.</li>
               <li><b>Nos llega al momento</b>, ordenada por trimestre y a su nombre.</li>
               <li><b>Le confirmamos</b> qué hemos recibido y qué falta.</li>
             </ol>
           </div>
-          <form class="subida" onsubmit="event.preventDefault(); this.querySelector('output').hidden = false;">
+          <form class="subida" data-reveal onsubmit="event.preventDefault(); this.querySelector('output').hidden = false;">
             <label for="sg-nombre">Nombre o empresa</label>
             <input id="sg-nombre" type="text" placeholder="Ej.: Reformas Llorens, S.L." />
             <label for="sg-trim">Trimestre</label>
             <select id="sg-trim"><option>3.er trimestre de 2026</option><option>4.º trimestre de 2026</option></select>
             <div class="zona">
+              <svg viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><path d="M24 32V10m0 0l-9 9m9-9l9 9M8 34v4h32v-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
               <b>Arrastre aquí sus facturas</b>
               <span>o pulse para elegir archivos · PDF, JPG o PNG</span>
             </div>
-            <button class="btn btn--pino" type="submit">Enviar documentación</button>
+            <button class="btn btn--pino" type="submit"><span>Enviar documentación</span></button>
             <output hidden>Demostración: aquí sus archivos llegarían al despacho y recibiría un justificante por correo.</output>
           </form>
         </div>
       </section>
 
-      <section id="despacho" class="sec sec--crema">
+      <!-- 8 · Quién le atiende -->
+      <section id="despacho" class="sec sec--marfil equi">
         <div class="w">
-          <p class="sobre">El despacho</p>
-          <h2>Quién le coge <em>el teléfono.</em></h2>
-          <div class="equipo">
+          <header class="cabsec">
+            <p class="sobre" data-reveal>El equipo</p>
+            <h2 data-split="lines">Quién le coge <em>el teléfono.</em></h2>
+          </header>
+          <div class="equipo" data-stagger="0.12">
             {equipo.map((e) => (
               <article>
                 <span class="mono" aria-hidden="true">{e.i}</span>
@@ -183,27 +250,32 @@ const equipo = [
             ))}
           </div>
         </div>
+        <div class="marco equi__foto" aria-hidden="true">
+          <Foto src="gestoria/sierra" ancho={1800} alto={1200} sizes="100vw" data-parallax="10" />
+          <p>Alicante, donde abrimos en 1989.</p>
+        </div>
       </section>
 
-      <section id="contacto" class="sec">
+      <!-- 9 · Contacto -->
+      <section id="contacto" class="sec sec--pino cont">
         <div class="w cont__grid">
           <div>
-            <p class="sobre">Contacto</p>
-            <h2>Pida cita. <em>Le llamamos hoy.</em></h2>
-            <dl class="datos">
+            <p class="sobre sobre--laton" data-reveal>Contacto</p>
+            <h2 class="cont__h" data-split="lines">Pida cita.<br /><em>Le llamamos hoy.</em></h2>
+            <dl class="datos" data-stagger="0.08">
               <div><dt>Dirección</dt><dd>Calle de Ejemplo, 12, entresuelo<br />03001 Alicante</dd></div>
               <div><dt>Teléfono</dt><dd>965 00 00 00</dd></div>
               <div><dt>Horario</dt><dd>Lunes a viernes<br />9:00–14:00 y 16:30–19:00</dd></div>
             </dl>
           </div>
-          <form class="cita" onsubmit="event.preventDefault(); this.querySelector('output').hidden = false;">
+          <form class="cita" data-reveal data-delay="0.1" onsubmit="event.preventDefault(); this.querySelector('output').hidden = false;">
             <label for="sg-c-nombre">Nombre</label>
             <input id="sg-c-nombre" type="text" />
             <label for="sg-c-tel">Teléfono</label>
             <input id="sg-c-tel" type="tel" />
             <label for="sg-c-tema">¿En qué podemos ayudarle?</label>
             <select id="sg-c-tema">{servicios.map((s) => <option>{s.t}</option>)}</select>
-            <button class="btn btn--pino" type="submit">Pedir cita</button>
+            <button class="btn btn--laton" type="submit"><span>Pedir cita</span></button>
             <output hidden>Demostración: aquí la solicitud llegaría al despacho y usted recibiría la confirmación.</output>
           </form>
         </div>
@@ -211,128 +283,322 @@ const equipo = [
     </main>
 
     <footer class="pie">
+      <p class="pie__marca" aria-hidden="true" data-split="chars">Serra Grossa</p>
       <div class="w pie__in">
         <span>Gestoría Serra Grossa · Negocio ficticio de demostración</span>
         <a href="/">Web hecha por ABG Frame</a>
       </div>
     </footer>
+
+    <script is:inline>
+      (function () {
+        // Próximo plazo fiscal, calculado con la fecha de hoy
+        var P = [
+          [1, 20, "Modelos 111 y 115", "Retenciones del 4.º trimestre"],
+          [1, 30, "Modelos 303, 130 y 390", "IVA, IRPF y resumen anual de IVA"],
+          [4, 20, "Modelos 303, 130, 111 y 115", "IVA, IRPF y retenciones del 1.er trimestre"],
+          [6, 30, "Modelo 100", "Fin de la campaña de la renta"],
+          [7, 20, "Modelos 303, 130, 111 y 115", "IVA, IRPF y retenciones del 2.º trimestre"],
+          [7, 25, "Modelo 200", "Impuesto sobre sociedades"],
+          [10, 20, "Modelos 303, 130, 111 y 115", "IVA, IRPF y retenciones del 3.er trimestre"]
+        ];
+        var corto = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+        var largo = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+        var hoy = new Date(); hoy.setHours(0, 0, 0, 0);
+        var lista = [];
+        [hoy.getFullYear(), hoy.getFullYear() + 1].forEach(function (a) {
+          P.forEach(function (p) { var d = new Date(a, p[0] - 1, p[1]); if (d >= hoy) lista.push({ d: d, m: p[2], n: p[3] }); });
+        });
+        var s = lista[0];
+        if (!s) return;
+        var dias = Math.round((s.d - hoy) / 864e5);
+        var faltan = dias === 0 ? "Es hoy" : dias === 1 ? "Falta 1 día" : "Faltan " + dias + " días";
+        var v = { dia: s.d.getDate(), mes: corto[s.d.getMonth()], meslargo: largo[s.d.getMonth()] + " de " + s.d.getFullYear(), modelo: s.m, nota: s.n, faltan: faltan };
+        document.querySelectorAll("[data-pz]").forEach(function (el) { el.textContent = v[el.getAttribute("data-pz")]; });
+        var ol = document.querySelector("[data-pz-lista]");
+        if (ol) ol.innerHTML = lista.slice(1, 5).map(function (x) {
+          return "<li><span>" + x.d.getDate() + " " + corto[x.d.getMonth()] + "</span><b>" + x.m + "</b><small>" + x.n + "</small></li>";
+        }).join("");
+      })();
+    </script>
+
+    <script>
+      import { iniciar, gsap, ScrollTrigger } from "../../scripts/demo-motion";
+
+      iniciar(() => {
+        // Portada: el arco se descubre y la foto respira al bajar
+        gsap.fromTo(".arco--a", { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.7, ease: "expo.inOut", delay: 0.35 });
+        gsap.from(".arco--a img", { scale: 1.4, duration: 2.4, ease: "expo.out", delay: 0.35 });
+        gsap.fromTo(".arco--b", { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.5, ease: "expo.inOut", delay: 0.8 });
+        gsap.from(".sello", { scale: 0, autoAlpha: 0, duration: 1.2, ease: "back.out(1.6)", delay: 1.4 });
+        gsap.to(".arco--a img", { yPercent: 10, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+
+        // Las facturas sueltas se ordenan en una pila según se baja
+        const hojas = gsap.utils.toArray<HTMLElement>(".hoja");
+        const tl = gsap.timeline({ scrollTrigger: { trigger: ".pila", start: "top 85%", end: "top 35%", scrub: 0.8 } });
+        hojas.forEach((h, i) => {
+          tl.fromTo(h,
+            { x: (i - 2) * 74, y: [18, -26, 30, -14, 22][i], rotate: [-16, 11, -7, 14, -10][i] },
+            { x: i * 5, y: -i * 5, rotate: 0, ease: "power2.inOut", duration: 1 }, 0);
+        });
+        tl.fromTo(".pila__ok", { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.3 }, 0.8);
+
+        // El almanaque cae como una hoja recién arrancada
+        gsap.from(".alm__hoja", {
+          rotationX: -80, transformOrigin: "top center", transformPerspective: 900, autoAlpha: 0, duration: 1.4, ease: "back.out(1.4)",
+          scrollTrigger: { trigger: ".alm", start: "top 78%", once: true },
+        });
+        gsap.from(".alm__lista li", {
+          x: 40, autoAlpha: 0, duration: 0.9, ease: "power3.out", stagger: 0.1,
+          scrollTrigger: { trigger: ".alm__lista", start: "top 88%", once: true },
+        });
+      });
+    </script>
+
+    <style is:global>
+      :root {
+        --pino: #1B3A2D; --pino-2: #11261D; --marfil: #F1EBDB; --papel: #FAF6EC; --laton: #A07C36; --laton-claro: #D9BF86; --barro: #B4532A;
+        --tinta: #1A1E1A; --gris: #5A635B; --linea: #D9D0BA;
+        --disp: "Libre Caslon Display", "Libre Caslon Text", Georgia, serif; --serif: "Libre Caslon Text", Georgia, serif; --sans: "Public Sans", system-ui, sans-serif;
+        --telon: var(--pino); --telon-txt: var(--laton-claro); --grano: 0.06;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; background: var(--papel); color: var(--tinta); font-family: var(--sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+      .grano { animation: none !important; mix-blend-mode: multiply; }
+      .w { width: 100%; max-width: 1280px; margin: 0 auto; padding-inline: clamp(1.25rem, 4.5vw, 3.5rem); }
+      h1, h2, h3 { font-family: var(--disp); font-weight: 400; margin: 0; text-wrap: balance; }
+      h1 { font-size: clamp(2.45rem, 5.3vw, 5.3rem); line-height: 1; letter-spacing: -0.02em; }
+      h2 { font-size: clamp(2.2rem, 4.8vw, 4.4rem); line-height: 1.02; letter-spacing: -0.015em; }
+      h1 em, h2 em { font-family: var(--serif); font-style: italic; color: var(--laton); letter-spacing: -0.03em; }
+      a { color: inherit; }
+      :focus-visible { outline: 2px solid var(--laton); outline-offset: 3px; }
+      [data-progreso] { background: var(--laton); }
+      .telon span { font-family: var(--serif); font-style: italic; font-size: 3rem; width: 6.5rem; height: 6.5rem; display: grid; place-items: center; border: 1px solid currentColor; border-radius: 50%; }
+      .sobre { display: flex; align-items: center; gap: 0.8rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--laton); margin: 0 0 1.4rem; }
+      .sobre::before { content: "✦"; font-size: 0.8rem; letter-spacing: 0; }
+      .sobre--laton { color: var(--laton-claro); }
+      .lead { font-size: 1.1rem; color: var(--gris); max-width: 50ch; margin: 1.6rem 0 0; }
+      .lead--claro { color: #C5D0C8; }
+      .btn { position: relative; display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0.8rem 1.7rem; border-radius: 99px; border: 0; font-family: var(--sans); font-weight: 600; font-size: 0.93rem; text-decoration: none; cursor: pointer; overflow: hidden; isolation: isolate; transition: color 0.4s; }
+      .btn::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; transform: translateY(101%); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+      .btn:hover::before { transform: none; }
+      .btn--pino { background: var(--pino); color: var(--marfil); }
+      .btn--pino::before { background: var(--laton); }
+      .btn--laton { background: var(--laton-claro); color: var(--pino-2); }
+      .btn--laton::before { background: var(--marfil); }
+      .enlace { font-family: var(--serif); font-style: italic; font-size: 1.08rem; text-decoration: none; border-bottom: 1px solid var(--laton); padding-bottom: 2px; transition: color 0.3s; }
+      .enlace:hover { color: var(--laton); }
+
+      /* Cabecera */
+      .cab { position: sticky; top: 0; z-index: 50; height: 80px; margin-bottom: -80px; }
+      .cab.cab--solida { background: rgba(250, 246, 236, 0.9); backdrop-filter: blur(14px); border-bottom: 1px solid var(--linea); }
+      .cab__in { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; height: 100%; }
+      .marca { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; }
+      .marca__sg { width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid var(--pino); border-radius: 50%; font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--pino); }
+      .marca__txt { font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gris); line-height: 1.5; }
+      .marca__txt b { font-family: var(--disp); font-weight: 400; font-size: 1.25rem; letter-spacing: 0; text-transform: none; color: var(--tinta); }
+      .nav { display: flex; gap: 2rem; }
+      .nav a { position: relative; font-size: 0.92rem; text-decoration: none; padding: 0.3rem 0; }
+      .nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--laton); transform: scaleX(0); transform-origin: right; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+      .nav a:hover::after { transform: scaleX(1); transform-origin: left; }
+      .cab .btn { min-height: 44px; padding: 0.55rem 1.3rem; }
+
+      /* 1 · Portada */
+      .hero { position: relative; min-height: calc(100svh - var(--demobar, 40px)); display: flex; align-items: center; padding: 110px 0 clamp(2.5rem, 5vw, 4rem); overflow: hidden; }
+      .hero__grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+      .hero__cta { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 2.2rem; }
+      .hero__vis { position: relative; justify-self: end; width: min(100%, 30rem); padding-left: 3.5rem; padding-bottom: 2rem; }
+      .arco { border-radius: 999px 999px 6px 6px; }
+      .arco--a { aspect-ratio: 3 / 4.25; }
+      .arco--a img { height: 112%; margin-top: -4%; }
+      .arco--b { position: absolute; left: 0; bottom: 0; width: 42%; aspect-ratio: 3 / 3.9; border: 7px solid var(--papel); border-bottom: 0; z-index: 2; }
+      .sello { position: absolute; left: 0.2rem; top: 9%; width: 7.6rem; height: 7.6rem; z-index: 3; }
+      .sello circle { fill: var(--pino); }
+      .sello text { font-family: var(--sans); font-size: 12.6px; font-weight: 600; letter-spacing: 0.21em; text-transform: uppercase; fill: var(--laton-claro); }
+      .sello .sello__c { font-family: var(--serif); font-style: italic; font-size: 52px; font-weight: 400; letter-spacing: 0; text-transform: none; fill: var(--marfil); }
+      .prox { position: absolute; right: -1.2rem; bottom: 3.2rem; z-index: 3; display: grid; gap: 0.1rem; width: 13.5rem; background: var(--pino); color: var(--marfil); text-decoration: none; padding: 1.1rem 1.25rem 1.2rem; border-radius: 6px; box-shadow: 0 30px 50px -25px rgba(17, 38, 29, 0.7); transition: translate 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+      .prox:hover { translate: 0 -6px; }
+      .prox__et { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--laton-claro); }
+      .prox__f { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--laton-claro); }
+      .prox__f b { font-family: var(--disp); font-style: normal; font-weight: 400; font-size: 3.2rem; line-height: 1; color: var(--marfil); }
+      .prox__m { font-weight: 600; font-size: 0.86rem; line-height: 1.3; margin-top: 0.2rem; }
+      .prox__q { font-size: 0.8rem; color: #B9C6BD; }
+
+      /* 2 · Cinta */
+      .cinta { background: var(--pino); color: var(--laton-claro); padding: 1.05rem 0; }
+      .cinta span { font-family: var(--serif); font-style: italic; font-size: clamp(1.4rem, 2.6vw, 2.1rem); display: inline-flex; align-items: center; }
+      .cinta i { font-style: normal; font-size: 0.55em; margin: 0 1.8rem; color: var(--marfil); }
+
+      /* 3 · Manifiesto */
+      .mani { padding: clamp(5rem, 11vw, 10rem) 0 clamp(4rem, 8vw, 7rem); }
+      .mani__p { font-family: var(--disp); font-size: clamp(1.9rem, 4.4vw, 4.2rem); line-height: 1.08; letter-spacing: -0.015em; margin: 0; max-width: 22ch; color: var(--pino); }
+      .cifras { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: clamp(3rem, 7vw, 6rem) 0 0; border-top: 1px solid var(--pino); }
+      .cifras > div { padding: 1.6rem 1.5rem 0 0; }
+      .cifras > div + div { padding-left: 1.8rem; border-left: 1px solid var(--linea); }
+      .cifras dt { font-family: var(--disp); font-size: clamp(3.4rem, 9vw, 8.4rem); line-height: 0.9; color: var(--pino); font-variant-numeric: lining-nums; }
+      .cifras dd { margin: 0.8rem 0 0; color: var(--gris); max-width: 20ch; }
+
+      /* 4 · Historia */
+      .hist { background: var(--pino-2); color: var(--marfil); position: relative; }
+      .hist .hs__pista { height: 100svh; align-items: center; gap: clamp(2rem, 5vw, 5.5rem); padding-inline: clamp(1.25rem, 4.5vw, 3.5rem) 12vw; }
+      .hist__intro { flex: none; width: min(84vw, 28rem); }
+      .hist__intro h2 em { color: var(--laton-claro); }
+      .hist__intro p:not(.sobre) { color: #B9C6BD; margin: 1.5rem 0 2rem; }
+      .hist__ayuda { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--laton-claro); }
+      .hist__ayuda i { font-style: normal; display: inline-block; animation: empuja 1.4s ease-in-out infinite; }
+      @keyframes empuja { 50% { transform: translateX(8px); } }
+      .hito { position: relative; flex: none; width: min(80vw, 34rem); display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr); gap: 1.6rem; align-items: end; }
+      .hito__a { position: absolute; left: -0.06em; top: -0.62em; font-family: var(--disp); font-size: clamp(8rem, 17vw, 16rem); line-height: 1; letter-spacing: -0.04em; color: transparent; -webkit-text-stroke: 1px rgba(217, 191, 134, 0.42); pointer-events: none; z-index: 0; }
+      .hito__img { position: relative; z-index: 1; aspect-ratio: 3 / 4; border-radius: 999px 999px 4px 4px; }
+      .hito__img img { width: 114%; max-width: none; margin-left: -7%; filter: grayscale(var(--tono)) sepia(calc(var(--tono) * 0.55)) contrast(1.04); }
+      .hito:nth-child(odd) { transform: translateY(5svh); }
+      .hito:nth-child(even) { transform: translateY(-4svh); }
+      .hito__txt { position: relative; z-index: 1; padding-bottom: 0.6rem; }
+      .hito__n { margin: 0; font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--laton-claro); }
+      .hito h3 { font-size: clamp(1.6rem, 2.4vw, 2.2rem); line-height: 1.05; margin: 0.4rem 0 0.8rem; }
+      .hito__txt p:last-child { margin: 0; color: #B9C6BD; font-size: 0.98rem; }
+      .hs__barra { position: absolute; left: clamp(1.25rem, 4.5vw, 3.5rem); right: clamp(1.25rem, 4.5vw, 3.5rem); bottom: 2.2rem; height: 1px; background: rgba(241, 235, 219, 0.2); }
+      .hs__barra i { display: block; height: 100%; background: var(--laton-claro); transform: scaleX(0); transform-origin: left; }
+
+      /* Secciones */
+      .sec { padding: clamp(5rem, 10vw, 9rem) 0; position: relative; }
+      .sec--marfil { background: var(--marfil); }
+      .sec--pino { background: var(--pino); color: var(--marfil); }
+      .sec--pino h2 em { color: var(--laton-claro); }
+      .cabsec { margin-bottom: clamp(2.5rem, 5vw, 4.5rem); }
+
+      /* 5 · Servicios */
+      .servs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--pino); border-left: 1px solid var(--linea); }
+      .serv { position: relative; padding: 2.2rem 2rem 2.6rem; border-right: 1px solid var(--linea); border-bottom: 1px solid var(--linea); overflow: hidden; isolation: isolate; transition: color 0.45s; }
+      .serv::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--pino); transform: translateY(101%); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+      .serv__n { font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--laton); transition: color 0.45s; }
+      .serv h3 { font-size: clamp(1.8rem, 2.8vw, 2.5rem); margin: 2.4rem 0 0.8rem; }
+      .serv p { margin: 0; color: var(--gris); font-size: 0.98rem; transition: color 0.45s; }
+      .serv__fl { position: absolute; right: 1.6rem; top: 1.9rem; font-style: normal; font-size: 1.4rem; color: var(--laton-claro); opacity: 0; transform: translateX(-12px); transition: opacity 0.4s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+      @media (hover: hover) {
+        .serv:hover { color: var(--marfil); }
+        .serv:hover::before { transform: none; }
+        .serv:hover p { color: #C5D0C8; }
+        .serv:hover .serv__n { color: var(--laton-claro); }
+        .serv:hover .serv__fl { opacity: 1; transform: none; }
+      }
+
+      /* 6 · Almanaque */
+      .cal__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
+      .aviso { margin-top: 2.5rem; padding: 1.4rem 1.5rem; border: 1px solid rgba(217, 191, 134, 0.45); border-radius: 6px; max-width: 34rem; }
+      .aviso b { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 1.25rem; color: var(--laton-claro); }
+      .aviso p { margin: 0.5rem 0 0; font-size: 0.95rem; color: #C5D0C8; }
+      .alm__hoja { position: relative; background: var(--papel); color: var(--tinta); border-radius: 8px; padding: 3rem 2rem 2rem; text-align: center; box-shadow: 0 6px 0 -1px #E4DCC8, 0 12px 0 -2px #D5CCB5, 0 50px 70px -35px rgba(0, 0, 0, 0.6); }
+      .alm__anillas { position: absolute; left: 50%; top: 0.9rem; width: 9rem; height: 12px; transform: translateX(-50%); background: radial-gradient(circle at 6px 6px, var(--pino) 5px, transparent 5.5px) 0 0 / 3rem 12px repeat-x; }
+      .alm__mes { margin: 0; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--barro); }
+      .alm__dia { margin: 0; font-family: var(--disp); font-size: clamp(7rem, 15vw, 12.5rem); line-height: 0.95; color: var(--pino); font-variant-numeric: lining-nums; }
+      .alm__modelo { margin: 0.4rem 0 0; font-family: var(--serif); font-size: 1.3rem; }
+      .alm__nota { margin: 0.2rem 0 0; color: var(--gris); font-size: 0.95rem; }
+      .alm__faltan { display: inline-block; margin: 1.2rem 0 0; padding: 0.35rem 1.1rem; border-radius: 99px; background: var(--pino); color: var(--laton-claro); font-weight: 600; font-size: 0.86rem; }
+      .alm__lista { list-style: none; margin: 2rem 0 0; padding: 0; border-top: 1px solid rgba(241, 235, 219, 0.25); }
+      .alm__lista li { display: grid; grid-template-columns: 5.2rem minmax(0, 1fr); gap: 0 1rem; padding: 0.95rem 0; border-bottom: 1px solid rgba(241, 235, 219, 0.25); }
+      .alm__lista span { grid-row: span 2; font-family: var(--serif); font-style: italic; font-size: 1.25rem; color: var(--laton-claro); }
+      .alm__lista b { font-weight: 600; }
+      .alm__lista small { font-size: 0.88rem; color: #B9C6BD; }
+      .alm__pie { margin: 1rem 0 0; font-size: 0.8rem; color: #9FB0A5; }
+
+      /* 7 · Documentación */
+      .doc__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
+      .pila { position: relative; height: 12rem; margin: 3rem 0 1rem; max-width: 26rem; }
+      .hoja { position: absolute; left: calc(50% - 4.2rem); top: 1.4rem; width: 8.4rem; height: 10.4rem; background: #fff; border: 1px solid var(--linea); border-radius: 3px; padding: 0.9rem 0.8rem; display: grid; align-content: start; gap: 0.45rem; box-shadow: 0 12px 22px -14px rgba(26, 30, 26, 0.5); z-index: calc(var(--n) + 1); }
+      .hoja b { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.06em; color: var(--pino); order: -1; margin-bottom: 0.3rem; }
+      .hoja i { height: 4px; border-radius: 2px; background: var(--linea); }
+      .hoja i:nth-child(2) { width: 70%; }
+      .hoja i:nth-child(3) { width: 45%; background: var(--laton-claro); }
+      .pila__ok { position: absolute; left: 50%; bottom: -0.4rem; transform: translateX(-50%); white-space: nowrap; font-size: 0.74rem; font-weight: 600; background: var(--pino); color: var(--laton-claro); padding: 0.3rem 0.9rem; border-radius: 99px; z-index: 9; }
+      html:not(.motion) .hoja { transform: translate(calc(var(--n) * 5px), calc(var(--n) * -5px)); }
+      .pasos { list-style: none; counter-reset: p; margin: 2.4rem 0 0; padding: 0; border-top: 1px solid var(--linea); }
+      .pasos li { counter-increment: p; position: relative; padding: 1.1rem 0 1.1rem 3.4rem; border-bottom: 1px solid var(--linea); color: var(--gris); }
+      .pasos li::before { content: counter(p, upper-roman) "."; position: absolute; left: 0; top: 0.85rem; font-family: var(--serif); font-style: italic; font-size: 1.3rem; color: var(--laton); }
+      .pasos b { color: var(--tinta); font-weight: 600; }
+      .subida, .cita { display: grid; gap: 0.5rem; }
+      .subida { background: var(--marfil); border-radius: 220px 220px 8px 8px; padding: clamp(4rem, 8vw, 6.5rem) clamp(1.5rem, 3.5vw, 2.8rem) clamp(1.6rem, 3vw, 2.4rem); }
+      label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris); margin-top: 0.9rem; }
+      input, select { font: inherit; font-size: 1.05rem; color: inherit; background: transparent; border: 0; border-bottom: 1px solid var(--pino); border-radius: 0; padding: 0.6rem 0; width: 100%; transition: border-color 0.3s; }
+      input:focus, select:focus { outline: 0; border-color: var(--laton); }
+      .zona { margin: 1.4rem 0 1rem; display: grid; justify-items: center; gap: 0.25rem; text-align: center; padding: 1.8rem 1rem; border: 1.5px dashed var(--laton); border-radius: 8px; color: var(--pino); transition: background 0.3s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; }
+      .zona:hover { background: rgba(160, 124, 54, 0.1); transform: scale(1.015); }
+      .zona svg { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+      .zona:hover svg { transform: translateY(-6px); }
+      .zona b { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; }
+      .zona span { font-size: 0.86rem; color: var(--gris); }
+      output { font-size: 0.92rem; padding: 0.9rem 1rem; border-radius: 6px; background: rgba(160, 124, 54, 0.14); margin-top: 0.6rem; }
+
+      /* 8 · Equipo */
+      .equi { padding-bottom: 0; }
+      .equipo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 3rem); }
+      .mono { display: grid; place-items: center; width: 100%; max-width: 13rem; aspect-ratio: 3 / 3.7; border-radius: 999px 999px 4px 4px; background: var(--pino); color: var(--laton-claro); font-family: var(--serif); font-style: italic; font-size: clamp(2.6rem, 5vw, 4.2rem); transition: background 0.5s, color 0.5s, translate 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+      .equipo article:hover .mono { background: var(--laton); color: var(--pino-2); translate: 0 -8px; }
+      .equipo h3 { font-size: clamp(1.6rem, 2.3vw, 2.1rem); margin-top: 1.4rem; }
+      .rol { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--laton); margin: 0.5rem 0 0.6rem; }
+      .equipo p { margin: 0; color: var(--gris); }
+      .equi__foto { margin-top: clamp(4rem, 8vw, 7rem); height: clamp(18rem, 62svh, 40rem); }
+      .equi__foto img { height: 124%; margin-top: -12%; }
+      .equi__foto p { position: absolute; left: clamp(1.25rem, 4.5vw, 3.5rem); bottom: 1.5rem; margin: 0; font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: #fff; text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6); }
+
+      /* 9 · Contacto */
+      .cont__grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
+      .cont__h { font-size: clamp(2.5rem, 5.4vw, 5.6rem); line-height: 0.98; }
+      .datos { margin: 2.8rem 0 0; border-top: 1px solid rgba(241, 235, 219, 0.25); }
+      .datos div { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 1rem; padding: 1.1rem 0; border-bottom: 1px solid rgba(241, 235, 219, 0.25); }
+      .datos dt { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--laton-claro); padding-top: 0.3rem; }
+      .datos dd { margin: 0; font-family: var(--serif); font-size: 1.15rem; }
+      .cita label { color: var(--laton-claro); }
+      .cita input, .cita select { border-color: rgba(241, 235, 219, 0.4); font-family: var(--serif); font-size: 1.3rem; }
+      .cita select option { color: var(--tinta); }
+      .cita .btn { justify-self: start; margin-top: 1.6rem; }
+      .cita output { background: rgba(217, 191, 134, 0.16); }
+
+      .pie { background: var(--pino-2); color: #9FB0A5; overflow: hidden; }
+      .pie__marca { margin: 0; padding: 2.5rem 1rem 0; font-family: var(--serif); font-style: italic; font-size: clamp(3.6rem, 15.5vw, 16rem); line-height: 0.95; letter-spacing: -0.04em; text-align: center; white-space: nowrap; color: var(--laton-claro); }
+      .pie__in { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 2rem; padding-block: 2rem 1.6rem; font-size: 0.86rem; }
+      .pie a { color: var(--marfil); }
+
+      @media (max-width: 1000px) {
+        .nav { display: none; }
+        .hero__grid, .cal__grid, .doc__grid, .cont__grid { grid-template-columns: minmax(0, 1fr); }
+        .hero__vis { justify-self: center; margin-top: 1.5rem; }
+        .servs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      @media (max-width: 899px) {
+        .hist .hs__pista { height: auto; padding-block: 5rem 5.5rem; align-items: start; gap: 1.5rem; }
+        .hito:nth-child(n) { transform: none; }
+        .hito { grid-template-columns: minmax(0, 1fr); width: 74vw; gap: 1rem; padding-top: 3.2rem; }
+        .hito__a { font-size: 6.4rem; top: -0.1em; }
+        .hito__img { aspect-ratio: 3 / 3.4; }
+        .hito__img img { width: 100%; margin-left: 0; }
+        .hist { scroll-padding-inline: 1.25rem; }
+        .hs__barra { display: none; }
+      }
+      @media (max-width: 640px) {
+        body { font-size: 16.5px; }
+        .cab { height: 68px; margin-bottom: -68px; }
+        .marca__sg { width: 40px; height: 40px; font-size: 1rem; }
+        .hero { padding-top: 92px; }
+        .hero__vis { width: min(100%, 21rem); padding-left: 2.4rem; }
+        .prox { right: -0.4rem; width: 11.6rem; bottom: 2.4rem; }
+        .sello { width: 6.2rem; height: 6.2rem; }
+        .cifras { grid-template-columns: minmax(0, 1fr); }
+        .cifras > div, .cifras > div + div { padding: 1.4rem 0; border-left: 0; border-bottom: 1px solid var(--linea); display: grid; grid-template-columns: 8.4rem minmax(0, 1fr); align-items: center; gap: 1rem; }
+        .cifras dt { font-size: 4.2rem; }
+        .cifras dd { margin: 0; }
+        .servs { grid-template-columns: minmax(0, 1fr); }
+        .serv h3 { margin-top: 1.2rem; }
+        .equipo { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+        .mono { max-width: 9rem; }
+        .datos div { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; }
+        .pila { transform: scale(0.82); transform-origin: left center; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { transition: none !important; animation: none !important; }
+      }
+    </style>
   </body>
 </html>
-
-<style is:global>
-  :root {
-    --pino: #1D3B2F; --pino-2: #16302A; --marfil: #F5F1E6; --papel: #FBF9F3; --laton: #9A7B3F; --laton-claro: #D2B87C;
-    --tinta: #1B1F1C; --gris: #58615A; --linea: #DDD6C4;
-    --serif: "Libre Caslon Text", Georgia, serif; --sans: "Public Sans", system-ui, sans-serif;
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--papel); color: var(--tinta); font-family: var(--sans); font-size: 17px; line-height: 1.6; }
-  .w { max-width: 1160px; margin: 0 auto; padding-inline: clamp(1.25rem, 4.5vw, 3rem); }
-  h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; text-wrap: balance; }
-  h1 { font-size: clamp(2.5rem, 5.6vw, 4.4rem); line-height: 1.04; letter-spacing: -0.015em; }
-  h2 { font-size: clamp(1.9rem, 3.8vw, 3rem); line-height: 1.1; letter-spacing: -0.01em; }
-  h1 em, h2 em { font-style: italic; color: var(--laton); }
-  .sobre { font-size: 0.76rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--laton); margin: 0 0 1.1rem; }
-  .sobre--laton { color: var(--laton-claro); }
-  .lead { font-size: 1.1rem; color: var(--gris); max-width: 52ch; margin: 1.5rem 0 0; }
-  .lead--claro { color: #C9D3CC; }
-  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0.75rem 1.5rem; border-radius: 2px; border: 0; font-family: var(--sans); font-weight: 600; font-size: 0.95rem; text-decoration: none; cursor: pointer; transition: background 0.2s; }
-  .btn--pino { background: var(--pino); color: var(--marfil); }
-  .btn--pino:hover { background: var(--pino-2); }
-  .enlace { color: var(--pino); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--pino); padding-bottom: 2px; }
-  .enlace--claro { color: var(--marfil); border-color: var(--laton-claro); }
-  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--laton); outline-offset: 3px; }
-
-  .util { background: var(--pino); color: #D7DFD9; font-size: 0.82rem; }
-  .util__in { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.25rem 1.5rem; padding-block: 0.55rem; }
-  .cab { background: var(--papel); border-bottom: 1px solid var(--linea); position: sticky; top: 0; z-index: 10; }
-  .cab__in { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: 0.9rem; }
-  .marca { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; color: var(--tinta); }
-  .marca__sg { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--laton); color: var(--laton); font-family: var(--serif); font-size: 1.05rem; letter-spacing: 0.04em; }
-  .marca__txt { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; line-height: 1.35; color: var(--gris); }
-  .marca__txt b { font-family: var(--serif); font-weight: 400; font-size: 1.15rem; letter-spacing: 0; text-transform: none; color: var(--tinta); }
-  .nav { display: flex; gap: 1.75rem; }
-  .nav a { color: var(--tinta); text-decoration: none; font-size: 0.93rem; font-weight: 500; }
-  .nav a:hover { color: var(--laton); }
-
-  .hero { padding-block: clamp(3.5rem, 7vw, 6rem); background: linear-gradient(var(--papel), var(--marfil)); }
-  .hero__grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
-  .hero__cta { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 1.75rem; margin-top: 2.25rem; }
-  .plazo-card { background: var(--pino); color: var(--marfil); padding: 1.75rem; border-top: 3px solid var(--laton); }
-  .plazo-card__t { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--laton-claro); margin: 0 0 1rem; }
-  .plazo-card ol { list-style: none; margin: 0 0 1.5rem; padding: 0; }
-  .plazo-card li { display: grid; grid-template-columns: 5.2rem 1fr; gap: 1rem; padding: 1rem 0; border-top: 1px solid rgba(245, 241, 230, 0.16); }
-  .plazo-card__f { font-family: var(--serif); font-size: 1.45rem; line-height: 1.1; color: var(--laton-claro); }
-  .plazo-card b { display: block; font-weight: 600; font-size: 0.95rem; }
-  .plazo-card small, .tabla small { display: block; font-size: 0.84rem; color: #B9C6BD; margin-top: 0.15rem; }
-
-  .cifras { background: var(--marfil); border-block: 1px solid var(--linea); }
-  .cifras__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .cifras__grid div { padding: 1.75rem 1.5rem 1.75rem 0; display: flex; align-items: baseline; gap: 0.9rem; }
-  .cifras__grid div + div { padding-left: 1.5rem; border-left: 1px solid var(--linea); }
-  .cifras b { font-family: var(--serif); font-weight: 400; font-size: 2.6rem; line-height: 1; color: var(--pino); font-variant-numeric: lining-nums; }
-  .cifras span { font-size: 0.92rem; color: var(--gris); line-height: 1.35; }
-
-  .sec { padding-block: clamp(4rem, 8vw, 6.5rem); }
-  .sec--pino { background: var(--pino); color: var(--marfil); }
-  .sec--pino h2 em { color: var(--laton-claro); }
-  .sec--crema { background: var(--marfil); }
-  .servs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 3rem; border-top: 1px solid var(--tinta); }
-  .servs article { padding: 1.75rem 1.75rem 1.75rem 0; border-bottom: 1px solid var(--linea); }
-  .servs h3 { font-size: 1.45rem; margin-bottom: 0.6rem; }
-  .servs p { margin: 0; color: var(--gris); font-size: 0.98rem; }
-
-  .cal__grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
-  .aviso { margin-top: 2rem; padding: 1.25rem 1.4rem; border: 1px solid rgba(210, 184, 124, 0.5); }
-  .aviso b { font-family: var(--serif); font-weight: 400; font-size: 1.2rem; color: var(--laton-claro); }
-  .aviso p { margin: 0.5rem 0 0; font-size: 0.95rem; color: #C9D3CC; }
-  .tabla { overflow-x: auto; background: var(--papel); color: var(--tinta); }
-  .tabla table { width: 100%; min-width: 520px; border-collapse: collapse; }
-  .tabla th { text-align: left; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris); padding: 1rem 1.25rem; border-bottom: 1px solid var(--tinta); }
-  .tabla td { padding: 1rem 1.25rem; border-bottom: 1px solid var(--linea); font-size: 0.95rem; vertical-align: top; }
-  .tabla td.f { font-family: var(--serif); font-size: 1.3rem; color: var(--pino); white-space: nowrap; }
-  .tabla small { color: var(--gris); }
-  .tabla tr:last-child td { border-bottom: 0; }
-
-  .doc__grid, .cont__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
-  .pasos { margin: 2rem 0 0; padding: 0; list-style: none; counter-reset: p; }
-  .pasos li { counter-increment: p; position: relative; padding: 1.1rem 0 1.1rem 3.2rem; border-top: 1px solid var(--linea); color: var(--gris); }
-  .pasos li::before { content: counter(p); position: absolute; left: 0; top: 0.85rem; font-family: var(--serif); font-size: 1.7rem; color: var(--laton); }
-  .pasos b { color: var(--tinta); font-weight: 600; }
-  form { display: grid; gap: 0.5rem; background: var(--marfil); border: 1px solid var(--linea); padding: clamp(1.25rem, 3vw, 2rem); }
-  label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; margin-top: 0.6rem; }
-  input, select { font: inherit; font-size: 1rem; padding: 0.7rem 0.8rem; border: 1px solid #C9C1AC; background: var(--papel); color: var(--tinta); border-radius: 2px; width: 100%; }
-  .zona { margin: 1rem 0; padding: 1.75rem 1rem; text-align: center; border: 1.5px dashed var(--laton); background: var(--papel); }
-  .zona b { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.2rem; }
-  .zona span { font-size: 0.86rem; color: var(--gris); }
-  form .btn { margin-top: 0.75rem; }
-  output { display: block; margin-top: 0.75rem; padding: 0.8rem 1rem; background: var(--papel); border-left: 3px solid var(--laton); font-size: 0.9rem; color: var(--gris); }
-  output[hidden] { display: none; }
-
-  .equipo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; margin-top: 3rem; }
-  .equipo article { border-top: 1px solid var(--tinta); padding-top: 1.5rem; }
-  .mono { width: 64px; height: 64px; display: grid; place-items: center; background: var(--pino); color: var(--laton-claro); font-family: var(--serif); font-size: 1.3rem; margin-bottom: 1.25rem; }
-  .equipo h3 { font-size: 1.4rem; }
-  .equipo .rol { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--laton); margin: 0.4rem 0 0.7rem; }
-  .equipo p { margin: 0; color: var(--gris); font-size: 0.97rem; }
-
-  .datos { margin: 2rem 0 0; }
-  .datos div { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; padding: 1rem 0; border-top: 1px solid var(--linea); }
-  .datos dt { font-size: 0.76rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--laton); padding-top: 0.2rem; }
-  .datos dd { margin: 0; }
-
-  .pie { background: var(--pino-2); color: #B9C6BD; font-size: 0.86rem; }
-  .pie__in { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 1.5rem; padding-block: 1.5rem; }
-  .pie a { color: var(--marfil); }
-
-  @media (max-width: 900px) {
-    .nav { display: none; }
-    .hero__grid, .cal__grid, .doc__grid, .cont__grid { grid-template-columns: minmax(0, 1fr); }
-    .servs, .equipo { grid-template-columns: minmax(0, 1fr); }
-    .servs article { padding-right: 0; }
-    .cifras__grid { grid-template-columns: minmax(0, 1fr); }
-    .cifras__grid div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--linea); }
-    .util__in span:first-child { display: none; }
-  }
-</style>

@@ -5,6 +5,10 @@
   <p><strong>Proyecto de demostración.</strong> Este negocio no existe: es un ejemplo hecho por ABG Frame para enseñar cómo trabajamos.</p>
   <a href="/#planes">Quiero una web así →</a>
 </div>
+<script is:inline>
+  // Altura de la franja, para que las portadas a pantalla completa la descuenten
+  document.documentElement.style.setProperty("--demobar", document.querySelector(".demobar").offsetHeight + "px");
+</script>
 <style>
   .demobar {
     display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 0.4rem 1.25rem;

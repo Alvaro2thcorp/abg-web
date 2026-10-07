@@ -1,0 +1,20 @@
+---
+// Foto de una demo con versión para móvil. Las imágenes viven en /public/images/demos/<carpeta>/.
+interface Props { src: string; alt?: string; ancho: number; alto: number; prioridad?: boolean; sizes?: string; clase?: string; [k: string]: any; }
+const { src, alt = "", ancho, alto, prioridad = false, sizes = "(max-width: 900px) 100vw, 60vw", clase, ...resto } = Astro.props;
+const base = `/images/demos/${src}`;
+const mw = Math.min(820, ancho);
+---
+<img
+  src={`${base}.webp`}
+  srcset={`${base}-m.webp ${mw}w, ${base}.webp ${ancho}w`}
+  sizes={sizes}
+  width={ancho}
+  height={alto}
+  alt={alt}
+  class={clase}
+  loading={prioridad ? "eager" : "lazy"}
+  fetchpriority={prioridad ? "high" : undefined}
+  decoding="async"
+  {...resto}
+/>

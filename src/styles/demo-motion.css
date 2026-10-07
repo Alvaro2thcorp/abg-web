@@ -1,0 +1,73 @@
+/* Estilos de apoyo del motor de movimiento de las demos. */
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+/* Estado inicial: solo se oculta si el script de movimiento va a ejecutarse */
+.motion [data-split],
+.motion [data-words],
+.motion [data-reveal],
+.motion [data-stagger] > * { visibility: hidden; }
+
+/* Líneas partidas: aire para que no se corten las letras con rabo */
+.ln-mask, .wd-mask { padding-bottom: 0.14em; margin-bottom: -0.14em; }
+[data-split] .ln, [data-split] .wd, [data-split] .ch { will-change: transform; }
+
+/* Telón de entrada */
+.telon { display: none; }
+.motion .telon { display: grid; place-items: center; position: fixed; inset: 0; z-index: 200; background: var(--telon, #111); color: var(--telon-txt, #fff); }
+.motion-lista .telon { pointer-events: none; }
+
+/* Cabecera que se esconde al bajar */
+[data-cab] { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.35s, color 0.35s, border-color 0.35s; }
+[data-cab].cab--fuera { transform: translateY(-110%); }
+
+/* Barra de progreso de lectura */
+[data-progreso] { position: fixed; left: 0; top: 0; height: 3px; width: 100%; transform: scaleX(0); transform-origin: left center; z-index: 120; pointer-events: none; }
+
+/* Marquesina */
+[data-marquee] { display: flex; overflow: hidden; white-space: nowrap; }
+[data-marquee] > * { flex: none; display: flex; align-items: center; will-change: transform; }
+
+/* Galería horizontal: en móvil se desliza con el dedo */
+[data-hscroll] { overflow: hidden; }
+.hs__pista { display: flex; width: max-content; will-change: transform; }
+@media (max-width: 899px) {
+  [data-hscroll] { overflow-x: auto; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  [data-hscroll]::-webkit-scrollbar { display: none; }
+  .hs__pista > * { scroll-snap-align: start; }
+}
+
+/* Sin movimiento o sin script, la galería se recorre con la barra horizontal */
+html:not(.motion) [data-hscroll] { overflow-x: auto; }
+
+/* Cursor propio (solo con ratón) */
+[data-cursor] { display: none; }
+.con-cursor [data-cursor] {
+  display: grid; place-items: center; position: fixed; left: 0; top: 0; z-index: 150; pointer-events: none;
+  width: 14px; height: 14px; border-radius: 50%; background: var(--cursor, #fff); mix-blend-mode: difference;
+  opacity: 0; transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s, background-color 0.3s;
+}
+.con-cursor [data-cursor].on { opacity: 1; }
+.con-cursor [data-cursor].activo { width: 54px; height: 54px; }
+.con-cursor [data-cursor].texto { width: 104px; height: 104px; mix-blend-mode: normal; background: var(--cursor-txt-bg, #fff); }
+.con-cursor [data-cursor] span { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cursor-txt, #111); opacity: 0; transition: opacity 0.2s; }
+.con-cursor [data-cursor].texto span { opacity: 1; }
+
+/* Grano de película */
+.grano { position: fixed; inset: -50%; width: 200%; height: 200%; z-index: 100; pointer-events: none; opacity: var(--grano, 0.07);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.motion .grano { animation: grano 1.1s steps(6) infinite; }
+@keyframes grano { 0% { transform: translate(0, 0); } 20% { transform: translate(-3%, 2%); } 40% { transform: translate(2%, -3%); } 60% { transform: translate(-2%, -2%); } 80% { transform: translate(3%, 3%); } 100% { transform: translate(0, 0); } }
+
+/* Imágenes dentro de marcos con recorte */
+.marco { position: relative; overflow: hidden; }
+.marco > img, .marco > picture > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+  .grano { animation: none !important; }
+  [data-cab] { transition: none; }
+}

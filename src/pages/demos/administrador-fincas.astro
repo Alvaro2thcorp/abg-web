@@ -1,5 +1,7 @@
 ---
 import DemoBar from "../../components/demos/DemoBar.astro";
+import DemoHead from "../../components/demos/DemoHead.astro";
+import Foto from "../../components/demos/Foto.astro";
 
 const tipos = [
   { id: "ascensor", t: "Ascensor", r: "Aviso al mantenedor en 15 minutos", u: true },
@@ -11,12 +13,21 @@ const tipos = [
 ];
 
 const servicios = [
-  { t: "Cuentas claras", d: "Presupuesto anual, liquidación trimestral y el saldo de la comunidad a la vista de todos los vecinos." },
-  { t: "Juntas que duran lo justo", d: "Convocatoria, orden del día y acta enviada en 7 días. Voto delegado y asistencia por videollamada." },
-  { t: "Morosidad", d: "Reclamación amistosa, certificado de deuda y proceso monitorio. Sin esperar a que la deuda crezca." },
-  { t: "Mantenimiento y obras", d: "Tres presupuestos comparados para cada obra y seguimiento hasta que se cierra." },
-  { t: "Seguros y siniestros", d: "Damos el parte, perseguimos al perito y le avisamos cuando la aseguradora paga." },
-  { t: "ITE, ascensores y normativa", d: "Inspecciones al día y un calendario para que nada caduque sin avisar." },
+  { t: "Cuentas claras", d: "Presupuesto anual, liquidación trimestral y el saldo de la comunidad a la vista de todos los vecinos.", e: "Saldo en cuenta · 18.420 €" },
+  { t: "Juntas que duran lo justo", d: "Convocatoria, orden del día y acta enviada en 7 días. Voto delegado y asistencia por videollamada.", e: "Junta · 11 dic · 19:30" },
+  { t: "Morosidad", d: "Reclamación amistosa, certificado de deuda y proceso monitorio. Sin esperar a que la deuda crezca.", e: "2 recibos pendientes de 48" },
+  { t: "Mantenimiento y obras", d: "Tres presupuestos comparados para cada obra y seguimiento hasta que se cierra.", e: "Fachada · 3 presupuestos" },
+  { t: "Seguros y siniestros", d: "Damos el parte, perseguimos al perito y le avisamos cuando la aseguradora paga.", e: "Parte 2026-031 · en peritación" },
+  { t: "ITE, ascensores y normativa", d: "Inspecciones al día y un calendario para que nada caduque sin avisar.", e: "ITE favorable · hasta 2031" },
+];
+
+const fincas = [
+  { img: "fincas/clasico", w: 1200, h: 1800, t: "Edificios del centro", d: "Fincas con historia: fachadas, ITE al día y ascensores que hay que encajar donde no los había." },
+  { img: "fincas/residencial", w: 1500, h: 843, t: "Urbanizaciones", d: "Varios portales, jardines y conserje. Un presupuesto por fase y las cuentas separadas." },
+  { img: "fincas/piscina", w: 1500, h: 1000, t: "Comunidades con piscina", d: "Socorrista, análisis del agua y apertura de temporada, contratados antes de junio." },
+  { img: "fincas/curva", w: 1500, h: 1012, t: "Residenciales de playa", d: "Propietarios que viven fuera: juntas por videollamada, actas traducidas y avisos por correo." },
+  { img: "fincas/ladrillo", w: 1500, h: 1000, t: "Bloques de barrio", d: "Muchas viviendas y cuotas ajustadas. La morosidad se vigila mes a mes, no una vez al año." },
+  { img: "fincas/portal", w: 1500, h: 1125, t: "Garajes y locales", d: "Portales, trasteros y plazas con su propio reparto de gastos, sin mezclarlo con las viviendas." },
 ];
 
 const actas = [
@@ -35,86 +46,196 @@ const avisos = [
   { e: "En curso", t: "Gotera en el rellano del 4.º", f: "2 oct", ok: false },
   { e: "Resuelta", t: "Bombilla fundida en el portal", f: "19 sep", ok: true },
 ];
+
+// Edificio dibujado: 6 plantas, 4 ventanas por planta
+const plantas = [0, 1, 2, 3, 4, 5];
+const cols = [132, 188, 292, 348];
+const morosas = ["1-3", "4-0"]; // planta-columna
+const junta = ["0-1", "1-0", "1-2", "2-3", "3-1", "4-2", "5-0", "5-3"];
+const palabras = ["Averías", "Actas", "Cuentas", "Juntas", "Morosidad", "Seguros", "Ascensores", "Obras"];
 ---
 <!doctype html>
 <html lang="es">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex" />
-    <title>Postiguet Fincas · Demostración de ABG Frame</title>
-    <meta name="description" content="Web de demostración de una administración de fincas, hecha por ABG Frame." />
-    <link rel="icon" type="image/webp" href="/favicon.webp" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
+    <DemoHead
+      titulo="Postiguet Fincas · Demostración de ABG Frame"
+      descripcion="Web de demostración de una administración de fincas, hecha por ABG Frame."
+      fuentes="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=Figtree:wght@400;500;600&display=swap"
+      precarga="/images/demos/fincas/hero.webp"
+    />
   </head>
   <body>
+    <div class="telon" aria-hidden="true"><span>Postiguet <b>Fincas</b></span></div>
+    <i data-progreso aria-hidden="true"></i>
     <DemoBar />
 
-    <header class="cab">
+    <header class="cab" data-cab>
       <div class="w cab__in">
         <a class="marca" href="#inicio" aria-label="Postiguet Fincas, inicio">
-          <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect x="3" y="12" width="11" height="17" fill="none" stroke="currentColor" stroke-width="2" /><rect x="14" y="3" width="15" height="26" fill="none" stroke="currentColor" stroke-width="2" /><path d="M19 9h5M19 15h5M19 21h5M7 18h3M7 23h3" stroke="currentColor" stroke-width="2" /></svg>
+          <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="3" y="12" width="11" height="17" fill="none" stroke="currentColor" stroke-width="2" /><rect x="14" y="3" width="15" height="26" fill="none" stroke="currentColor" stroke-width="2" /><path d="M19 9h5M19 15h5M19 21h5M7 18h3M7 23h3" stroke="currentColor" stroke-width="2" /></svg>
           <span>Postiguet <b>Fincas</b></span>
         </a>
         <nav class="nav" aria-label="Secciones">
+          <a href="#servicios">Servicios</a>
           <a href="#incidencia">Avisar de una incidencia</a>
           <a href="#vecinos">Área de vecinos</a>
-          <a href="#servicios">Servicios</a>
           <a href="#presupuesto">Presupuesto</a>
         </nav>
-        <a class="urg" href="#contacto"><span>Urgencias 24 h</span>600 00 00 00</a>
+        <a class="urg" href="#contacto" data-magnetic="0.25"><span>Urgencias 24 h</span>600 00 00 00</a>
       </div>
     </header>
 
-    <main id="inicio">
-      <section class="hero">
-        <div class="w hero__grid">
-          <div>
-            <p class="chip">Administradores de fincas colegiados · Alicante</p>
-            <h1>Su comunidad al día. Y usted, <span>sin llamar tres veces.</span></h1>
+    <main>
+      <!-- 1 · Portada: la foto se abre hasta ocupar toda la pantalla -->
+      <section class="hero" id="inicio">
+        <div class="w hero__txt">
+          <div class="hero__tit">
+            <p class="chip" data-reveal data-delay="1">Administradores de fincas colegiados · Alicante</p>
+            <h1 data-split="lines" data-delay="0.55">Su comunidad,<br />al día.</h1>
+          </div>
+          <div class="hero__lado" data-reveal data-delay="1.15">
             <p class="hero__sub">
               Los vecinos avisan de una avería desde el móvil y ven cómo va. El presidente tiene las cuentas
               y las actas a un clic. Nosotros nos ocupamos de lo demás.
             </p>
             <div class="hero__cta">
-              <a class="btn btn--pet" href="#incidencia">Avisar de una incidencia</a>
-              <a class="btn btn--linea" href="#presupuesto">Presupuesto para mi comunidad</a>
+              <a class="btn btn--pet" href="#incidencia" data-magnetic="0.2">Avisar de una incidencia</a>
+              <a class="btn btn--linea" href="#presupuesto" data-magnetic="0.2">Presupuesto para mi comunidad</a>
             </div>
-          </div>
-
-          <div class="panel" aria-label="Ejemplo de seguimiento de una incidencia">
-            <div class="panel__top"><span>Incidencia 2026-0147</span><b>En curso</b></div>
-            <p class="panel__t">Gotera en el rellano del 4.º</p>
-            <ol class="pasos">
-              <li class="hecho"><b>Recibida</b><span>Jueves, 9:12</span></li>
-              <li class="hecho"><b>Fontanero avisado</b><span>Jueves, 9:40</span></li>
-              <li class="ahora"><b>Visita programada</b><span>Hoy, 16:00–18:00</span></li>
-              <li><b>Resuelta</b><span>Pendiente</span></li>
-            </ol>
           </div>
         </div>
 
-        <div class="w">
-          <dl class="cifras">
-            <div><dt>86</dt><dd>comunidades administradas</dd></div>
-            <div><dt>2.940</dt><dd>viviendas</dd></div>
-            <div><dt>4 h</dt><dd>tiempo medio de primera respuesta</dd></div>
-            <div><dt>1998</dt><dd>año de apertura del despacho</dd></div>
-          </dl>
+        <div class="hero__img">
+          <Foto src="fincas/hero" ancho={2000} alto={1350} prioridad sizes="100vw" alt="Edificio blanco de viviendas con escalera exterior bajo un cielo despejado" />
+          <i class="hero__velo" aria-hidden="true"></i>
+        </div>
+
+        <div class="hero__sobre">
+          <div class="w">
+            <p class="hero__lema">Desde 1998, la finca en orden<br />y los vecinos informados.</p>
+            <dl class="cifras">
+              <div><dt><span data-n="86">86</span></dt><dd>comunidades administradas</dd></div>
+              <div><dt><span data-n="2940">2.940</span></dt><dd>viviendas</dd></div>
+              <div><dt><span data-n="4">4</span> h</dt><dd>tiempo medio de primera respuesta</dd></div>
+              <div><dt><span data-n="28">28</span></dt><dd>años con el despacho abierto</dd></div>
+            </dl>
+          </div>
+        </div>
+        <p class="hero__baja" aria-hidden="true"><i></i>Baje</p>
+      </section>
+
+      <!-- 2 · Cinta -->
+      <div class="cinta" aria-hidden="true" data-marquee data-vel="70">
+        <div>{palabras.map((p) => <span>{p}<i>✳</i></span>)}</div>
+      </div>
+
+      <!-- 3 · Manifiesto -->
+      <section class="mani">
+        <div class="w mani__grid">
+          <div class="mani__txt">
+            <p class="eyebrow" data-reveal>Cómo trabajamos</p>
+            <p class="mani__p" data-words>
+              Administramos 86 comunidades de Alicante con una regla sencilla: que ningún vecino tenga que
+              llamar tres veces para saber cómo va lo suyo. Lo que entra queda registrado, tiene un responsable
+              y se puede seguir desde el móvil.
+            </p>
+          </div>
+          <div class="mani__fotos" aria-hidden="true">
+            <div class="marco mani__f1" data-reveal="clip"><Foto src="fincas/terrazas" ancho={1200} alto={1800} sizes="(max-width: 900px) 60vw, 28vw" data-parallax="8" /></div>
+            <div class="marco mani__f2" data-reveal="clip" data-delay="0.15"><Foto src="fincas/palmera" ancho={1100} alto={1650} sizes="(max-width: 900px) 40vw, 18vw" data-parallax="-10" /></div>
+          </div>
         </div>
       </section>
 
-      <section id="incidencia" class="sec sec--pet">
-        <div class="w inc">
-          <header class="cabsec cabsec--pet">
-            <p class="eyebrow">Para vecinos</p>
-            <h2>¿Algo no funciona? Avísenos aquí.</h2>
-            <p>Elija qué pasa y le decimos cuánto tardamos. Queda registrado con número y puede seguirlo sin llamar.</p>
-          </header>
+      <!-- 4 · El edificio que se enciende con cada servicio -->
+      <section id="servicios" class="edi" data-paso="0">
+        <div class="w edi__grid">
+          <div class="edi__vis">
+            <div class="edi__caja">
+              <svg class="edificio" viewBox="0 0 520 640" role="img" aria-label="Dibujo de un edificio de viviendas que cambia según el servicio">
+                <g class="estrellas">
+                  {[[40, 60], [90, 130], [460, 50], [490, 150], [30, 220], [455, 250], [70, 330], [480, 360], [250, 30], [170, 55], [360, 40]].map(([x, y], i) => <circle cx={x} cy={y} r={i % 3 === 0 ? 1.8 : 1.1} style={`--i:${i}`} />)}
+                </g>
+                <circle class="luna" cx="430" cy="92" r="26" />
+                <!-- azotea -->
+                <path class="tr" d="M150 80V52h90v28M150 52l90 28M240 52l-90 28M330 80V40M330 40l-16 12M330 40l16 12M322 58h16" />
+                <!-- cuerpo -->
+                <rect class="tr cuerpo" x="110" y="80" width="300" height="480" />
+                <path class="tr tenue" d={plantas.map((p) => `M110 ${146 + p * 66}H410`).join("")} />
+                <!-- hueco del ascensor -->
+                <rect class="tr hueco" x="244" y="80" width="32" height="480" />
+                <rect class="cabina" x="248" y="512" width="24" height="44" rx="2" />
+                <!-- ventanas -->
+                {plantas.map((p) => cols.map((x, c) => {
+                  const k = `${p}-${c}`;
+                  return <rect class:list={["v", { "v--mor": morosas.includes(k), "v--junta": junta.includes(k), "v--agua": k === "2-2" }]} x={x} y={94 + p * 66} width="40" height="38" rx="2" style={`--i:${p * 4 + c}`} />;
+                }))}
+                {plantas.map((p) => cols.map((x) => <path class="tr tenue" d={`M${x - 4} ${138 + p * 66}h48`} />))}
+                <!-- planta baja -->
+                <rect class="v v--local" x="128" y="490" width="96" height="52" rx="2" />
+                <rect class="tr portal" x="244" y="496" width="32" height="64" />
+                <rect class="tr" x="300" y="500" width="92" height="60" />
+                <path class="tr tenue" d="M300 515h92M300 530h92M300 545h92" />
+                <path class="tr" d="M60 560h400" />
+                <!-- obras: andamio y grúa -->
+                <g class="andamio">
+                  <path pathLength="1" d="M96 560V150M124 560V150M96 216h28M96 282h28M96 348h28M96 414h28M96 480h28M96 150h28M96 216l28 66M124 282l-28 66M96 348l28 66M124 414l-28 66" />
+                  <path pathLength="1" d="M70 150V70h150M70 70l40 0M70 90L92 70M196 70v40" />
+                </g>
+                <!-- seguro: gota y escudo -->
+                <path class="gota" d="M312 300c6 9 10 14 10 20a10 10 0 0 1-20 0c0-6 4-11 10-20z" />
+                <path class="escudo" pathLength="1" d="M260 18c60 22 130 28 190 30 0 210-40 480-190 574C110 528 70 258 70 48c60-2 130-8 190-30z" />
+                <!-- ITE: sello -->
+                <g class="sello" transform="translate(430 470)">
+                  <circle r="34" /><path d="M-14 0l10 10 18-22" />
+                </g>
+              </svg>
+              <div class="edi__etqs" aria-hidden="true">
+                {servicios.map((s, i) => <p class="edi__etq" data-e={i + 1}>{s.e}</p>)}
+              </div>
+            </div>
+          </div>
 
-          <form class="inc__caja" id="form-inc" novalidate>
+          <div class="edi__txt">
+            <header class="edi__cab">
+              <p class="eyebrow eyebrow--amb" data-reveal>Servicios</p>
+              <h2 data-split="lines">Lo que hacemos por su comunidad.</h2>
+              <p class="edi__sub" data-reveal>Baje y mire el edificio: cada servicio enciende una parte.</p>
+            </header>
+            <ol class="edi__pasos">
+              {servicios.map((s, i) => (
+                <li class="paso" data-i={i + 1}>
+                  <span class="paso__n">{String(i + 1).padStart(2, "0")}</span>
+                  <h3>{s.t}</h3>
+                  <p>{s.d}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 · Incidencias -->
+      <section id="incidencia" class="sec inc">
+        <div class="w inc__grid">
+          <div class="inc__izq">
+            <p class="eyebrow" data-reveal>Para vecinos</p>
+            <h2 data-split="lines">¿Algo no funciona? Avísenos aquí.</h2>
+            <p class="lead" data-reveal>Elija qué pasa y le decimos cuánto tardamos. Queda registrado con número y puede seguirlo sin llamar.</p>
+
+            <div class="panel" aria-label="Ejemplo de seguimiento de una incidencia" data-reveal>
+              <div class="panel__top"><span>Incidencia 2026-0147</span><b>En curso</b></div>
+              <p class="panel__t">Gotera en el rellano del 4.º</p>
+              <ol class="pasos">
+                <li class="hecho"><b>Recibida</b><span>Jueves, 9:12</span></li>
+                <li class="hecho"><b>Fontanero avisado</b><span>Jueves, 9:40</span></li>
+                <li class="ahora"><b>Visita programada</b><span>Hoy, 16:00–18:00</span></li>
+                <li><b>Resuelta</b><span>Pendiente</span></li>
+              </ol>
+            </div>
+          </div>
+
+          <form class="inc__caja" id="form-inc" novalidate data-reveal data-delay="0.1">
             <fieldset>
               <legend>1. ¿Qué ocurre?</legend>
               <div class="tipos">
@@ -139,15 +260,40 @@ const avisos = [
         </div>
       </section>
 
+      <!-- 6 · Tipos de finca: galería horizontal -->
+      <section class="hs" data-hscroll aria-label="Tipos de comunidad que administramos">
+        <div class="hs__pista">
+          <div class="hs__intro">
+            <p class="eyebrow eyebrow--amb">Qué administramos</p>
+            <h2>Cada finca<br />es distinta.</h2>
+            <p>De un portal de seis vecinos a una urbanización con piscina y conserje.</p>
+            <span class="hs__pista-ayuda">Siga bajando <i>→</i></span>
+          </div>
+          {fincas.map((f, i) => (
+            <article class="finca">
+              <div class="marco finca__img"><Foto src={f.img} ancho={f.w} alto={f.h} sizes="(max-width: 900px) 82vw, 46vw" data-hpar="7" alt="" /></div>
+              <div class="finca__txt">
+                <span class="finca__n">{String(i + 1).padStart(2, "0")}</span>
+                <h3>{f.t}</h3>
+                <p>{f.d}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div class="hs__barra" aria-hidden="true"><i></i></div>
+      </section>
+
+      <!-- 7 · Área de vecinos -->
       <section id="vecinos" class="sec">
         <div class="w">
           <header class="cabsec">
-            <p class="eyebrow">Área de vecinos</p>
-            <h2>Así ve un vecino su comunidad.</h2>
-            <p>Cada propietario entra con su clave y encuentra lo que antes pedía por teléfono. Pruebe las pestañas.</p>
+            <p class="eyebrow" data-reveal>Área de vecinos</p>
+            <h2 data-split="lines">Así ve un vecino su comunidad.</h2>
+            <p class="lead" data-reveal>Cada propietario entra con su clave y encuentra lo que antes pedía por teléfono. Pruebe las pestañas.</p>
           </header>
 
-          <div class="area">
+          <div class="area" data-reveal>
+            <div class="area__barra" aria-hidden="true"><i></i><i></i><i></i><span>vecinos.postiguetfincas.example</span></div>
             <div class="area__cab">
               <span>Comunidad de ejemplo · Calle de Ejemplo, 8</span>
               <span>Próxima junta: 11 de diciembre, 19:30</span>
@@ -182,33 +328,16 @@ const avisos = [
         </div>
       </section>
 
-      <section id="servicios" class="sec sec--arena">
+      <!-- 8 · Calculadora -->
+      <section id="presupuesto" class="sec sec--arena">
         <div class="w">
           <header class="cabsec">
-            <p class="eyebrow">Servicios</p>
-            <h2>Lo que hacemos por su comunidad.</h2>
-          </header>
-          <div class="servs">
-            {servicios.map((s, i) => (
-              <article class="serv">
-                <span>{String(i + 1).padStart(2, "0")}</span>
-                <h3>{s.t}</h3>
-                <p>{s.d}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="presupuesto" class="sec">
-        <div class="w calc">
-          <header class="cabsec">
-            <p class="eyebrow">Para presidentes y juntas</p>
-            <h2>¿Cuánto costaría administrar su comunidad?</h2>
-            <p>Mueva los datos y verá una cifra orientativa al momento. El presupuesto definitivo se lo llevamos a la junta, por escrito.</p>
+            <p class="eyebrow" data-reveal>Para presidentes y juntas</p>
+            <h2 data-split="lines">¿Cuánto costaría administrar su comunidad?</h2>
+            <p class="lead" data-reveal>Mueva los datos y verá una cifra orientativa al momento. El presupuesto definitivo se lo llevamos a la junta, por escrito.</p>
           </header>
 
-          <div class="calc__caja">
+          <div class="calc__caja" data-reveal>
             <div class="calc__campos">
               <label for="c-viv">Viviendas <output id="o-viv">24</output></label>
               <input id="c-viv" type="range" min="6" max="120" step="1" value="24" />
@@ -224,29 +353,32 @@ const avisos = [
               <p class="calc__et">Honorarios orientativos</p>
               <p class="calc__num"><span id="r-mes">0</span> €<small>/mes</small></p>
               <p class="calc__viv">Unos <b id="r-viv">0</b> € por vivienda al mes, sin IVA</p>
-              <a class="btn btn--pet btn--ancho" href="#contacto">Pedir presupuesto en firme</a>
+              <a class="btn btn--amb btn--ancho" href="#contacto">Pedir presupuesto en firme</a>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="contacto" class="sec sec--pet">
-        <div class="w contacto">
-          <div>
-            <p class="eyebrow eyebrow--amb">Contacto</p>
-            <h2>Hablamos con su junta cuando quieran.</h2>
-            <p>Vamos a la reunión, explicamos cómo trabajamos y dejamos el presupuesto por escrito. Sin compromiso.</p>
+      <!-- 9 · Contacto -->
+      <section id="contacto" class="fin">
+        <div class="fin__img" aria-hidden="true"><Foto src="fincas/puerto" ancho={1800} alto={1200} sizes="100vw" data-parallax="10" /></div>
+        <div class="w fin__in">
+          <p class="eyebrow eyebrow--amb" data-reveal>Contacto</p>
+          <h2 class="fin__h" data-split="lines">Hablamos con su junta cuando quieran.</h2>
+          <div class="fin__grid">
+            <p class="fin__p" data-reveal>Vamos a la reunión, explicamos cómo trabajamos y dejamos el presupuesto por escrito. Sin compromiso.</p>
+            <dl class="datos" data-stagger="0.08">
+              <div><dt>Oficina</dt><dd>965 00 00 00<br />Lunes a viernes, 9:00 a 14:00 y 16:30 a 19:00</dd></div>
+              <div><dt>Urgencias</dt><dd>600 00 00 00<br />Todos los días, 24 horas</dd></div>
+              <div><dt>Dirección</dt><dd>Calle de Ejemplo, 15, bajo<br />Alicante</dd></div>
+            </dl>
           </div>
-          <dl class="datos">
-            <div><dt>Oficina</dt><dd>965 00 00 00<br />Lunes a viernes, 9:00 a 14:00 y 16:30 a 19:00</dd></div>
-            <div><dt>Urgencias</dt><dd>600 00 00 00<br />Todos los días, 24 horas</dd></div>
-            <div><dt>Dirección</dt><dd>Calle de Ejemplo, 15, bajo<br />Alicante</dd></div>
-          </dl>
         </div>
       </section>
     </main>
 
     <footer class="pie">
+      <div class="pie__marca" aria-hidden="true" data-marquee="der" data-vel="40"><div><span>Postiguet Fincas</span><span>Postiguet Fincas</span></div></div>
       <div class="w pie__in">
         <p><b>Postiguet Fincas</b> · Calle de Ejemplo, 15 · Alicante</p>
         <p>Negocio ficticio. Web de demostración creada por <a href="/">ABG Frame</a>.</p>
@@ -292,9 +424,23 @@ const avisos = [
           });
         });
 
-        // Calculadora orientativa
+        // Calculadora orientativa (la cifra rueda hasta el nuevo valor)
         var viv = document.getElementById("c-viv"), gar = document.getElementById("c-gar");
         var asc = document.getElementById("c-asc"), pis = document.getElementById("c-pis"), con = document.getElementById("c-con");
+        var rMes = document.getElementById("r-mes"), rViv = document.getElementById("r-viv");
+        var actual = 0, raf = 0;
+        var quieto = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        function rueda(hasta) {
+          cancelAnimationFrame(raf);
+          if (quieto) { actual = hasta; rMes.textContent = hasta.toLocaleString("es-ES"); return; }
+          var desde = actual, t0 = performance.now();
+          (function paso(t) {
+            var k = Math.min(1, (t - t0) / 450), e = 1 - Math.pow(1 - k, 3);
+            actual = desde + (hasta - desde) * e;
+            rMes.textContent = (Math.round(actual / 5) * 5).toLocaleString("es-ES");
+            if (k < 1) raf = requestAnimationFrame(paso); else actual = hasta;
+          })(t0);
+        }
         function calc() {
           var v = +viv.value, g = +gar.value;
           document.getElementById("o-viv").textContent = v;
@@ -302,187 +448,410 @@ const avisos = [
           var porViv = v <= 20 ? 7.5 : v <= 50 ? 6 : 5;
           var total = Math.max(120, v * porViv) + g * 1.2 + (asc.checked ? 15 : 0) + (pis.checked ? 35 : 0) + (con.checked ? 45 : 0);
           total = Math.round(total / 5) * 5;
-          document.getElementById("r-mes").textContent = total.toLocaleString("es-ES");
-          document.getElementById("r-viv").textContent = (total / v).toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          rueda(total);
+          rViv.textContent = (total / v).toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          [viv, gar].forEach(function (r) { r.style.setProperty("--p", ((r.value - r.min) / (r.max - r.min) * 100) + "%"); });
         }
         [viv, gar, asc, pis, con].forEach(function (el) { el.addEventListener("input", calc); });
         calc();
       })();
     </script>
 
-    <style>
+    <script>
+      import { iniciar, gsap, ScrollTrigger, contar } from "../../scripts/demo-motion";
+
+      iniciar(({ ancho }) => {
+        // Portada: la foto pasa de tarjeta a pantalla completa mientras se baja
+        const hero = document.querySelector<HTMLElement>(".hero")!;
+        const img = hero.querySelector<HTMLElement>(".hero__img")!;
+        const txt = hero.querySelector<HTMLElement>(".hero__txt")!;
+        // La tarjeta de la foto empieza justo debajo del texto, sea cual sea la pantalla
+        const corte = () => Math.round(txt.offsetTop + txt.offsetHeight + 30) + "px";
+        gsap.set(img, { "--t": corte() });
+        gsap.from(img, { yPercent: 12, autoAlpha: 0, duration: 1.5, ease: "expo.out", delay: 0.75 });
+        let contado = false;
+        const tl = gsap.timeline({
+          defaults: { ease: "none" },
+          scrollTrigger: { trigger: hero, start: "top top", end: "+=130%", pin: true, scrub: 0.6, anticipatePin: 1, invalidateOnRefresh: true },
+        });
+        tl.fromTo(img, { "--t": corte }, { "--t": "0px", "--x": "0%", "--b": "0%", "--r": "0px", duration: 0.55, ease: "power2.inOut" }, 0)
+          .fromTo(img.querySelector("img"), { scale: 1.2 }, { scale: 1, duration: 0.7 }, 0)
+          .to(".hero__txt", { yPercent: -35, autoAlpha: 0, duration: 0.3 }, 0)
+          .to(".hero__baja", { autoAlpha: 0, duration: 0.1 }, 0)
+          .to(".hero__velo", { opacity: 1, duration: 0.3 }, 0.35)
+          .fromTo(".hero__lema", { y: 50, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.2, ease: "power2.out" }, 0.5)
+          .to(".cifras", { borderTopColor: "rgba(255, 255, 255, 0.35)", duration: 0.15 }, 0.52)
+          .fromTo(".cifras > div", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.2, stagger: 0.05, ease: "power2.out" }, 0.56)
+          .add(() => {
+            if (contado) return;
+            contado = true;
+            hero.querySelectorAll<HTMLElement>("[data-n]").forEach((el) => contar(el, parseFloat(el.dataset.n!), { dur: 1.6 }));
+          }, 0.58)
+          .to({}, { duration: 0.2 });
+
+        // El edificio: cada paso del texto enciende una parte
+        const edi = document.querySelector<HTMLElement>(".edi")!;
+        const pasos = gsap.utils.toArray<HTMLElement>(".paso");
+        const poner = (n: number) => {
+          edi.dataset.paso = String(n);
+          pasos.forEach((p) => p.classList.toggle("on", Number(p.dataset.i) === n));
+        };
+        pasos.forEach((p) => {
+          const n = Number(p.dataset.i);
+          ScrollTrigger.create({
+            trigger: p, start: ancho ? "top 60%" : "top 78%", end: ancho ? "bottom 60%" : "bottom 78%",
+            onEnter: () => poner(n), onEnterBack: () => poner(n),
+          });
+        });
+        ScrollTrigger.create({ trigger: ".edi__pasos", start: "top 85%", onLeaveBack: () => poner(0) });
+
+        // El seguimiento de la incidencia avanza solo al llegar
+        const lis = gsap.utils.toArray<HTMLElement>(".panel .pasos li");
+        lis.forEach((li) => li.classList.remove("hecho", "ahora"));
+        ScrollTrigger.create({
+          trigger: ".panel", start: "top 75%", once: true,
+          onEnter: () => lis.forEach((li, i) => gsap.delayedCall(0.4 + i * 0.75, () => {
+            if (i > 0) { lis[i - 1].classList.remove("ahora"); lis[i - 1].classList.add("hecho"); }
+            if (i < 3) li.classList.add("ahora");
+          })),
+        });
+      });
+    </script>
+
+    <style is:global>
       :root {
-        --fondo: #F5F4EF; --arena: #ECE8DD; --tinta: #10272B; --tinta-2: #44595C; --tinta-3: #6F8083;
-        --pet: #0F4A52; --pet-2: #0B3A40; --amb: #F0A63A; --amb-2: #D98E1F; --linea: #D5D6CD; --blanco: #FFFFFF; --ok: #1F7A54;
-        --tit: "Sora", system-ui, sans-serif; --txt: "Figtree", system-ui, sans-serif;
+        --noche: #062328; --pet: #0C3F47; --pet-2: #0F4A52; --arena: #EFEAE0; --arena-2: #E3DCCD; --hueso: #F8F5EE;
+        --amb: #F2A93B; --amb-2: #D98E1F; --tinta: #0B2A2F; --tinta-2: #47605F; --tinta-3: #73878A; --linea: #D6D2C4; --blanco: #FFFFFF; --ok: #1F7A54;
+        --tit: "Archivo", system-ui, sans-serif; --txt: "Figtree", system-ui, sans-serif;
+        --telon: var(--pet); --telon-txt: var(--arena);
       }
       * { box-sizing: border-box; }
       html { scroll-behavior: smooth; }
-      body { margin: 0; background: var(--fondo); color: var(--tinta); font-family: var(--txt); font-size: 16.5px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-      .w { width: 100%; max-width: 1200px; margin: 0 auto; padding-inline: clamp(1.25rem, 4vw, 3rem); }
-      h1, h2, h3 { font-family: var(--tit); font-weight: 600; margin: 0; letter-spacing: -0.03em; }
+      body { margin: 0; background: var(--hueso); color: var(--tinta); font-family: var(--txt); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+      img { max-width: 100%; }
+      .w { width: 100%; max-width: 1320px; margin: 0 auto; padding-inline: clamp(1.25rem, 4vw, 3.5rem); }
+      h1, h2, h3 { font-family: var(--tit); font-weight: 600; font-stretch: 118%; margin: 0; letter-spacing: -0.035em; text-wrap: balance; }
+      h2 { font-size: clamp(2rem, 4.4vw, 4rem); line-height: 1; }
       a { color: inherit; }
       :focus-visible { outline: 2px solid var(--amb-2); outline-offset: 3px; }
-      .eyebrow { font-family: var(--tit); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pet); margin: 0 0 1rem; }
-      .eyebrow--amb, .cabsec--pet .eyebrow { color: var(--amb); }
+      .eyebrow { font-family: var(--tit); font-stretch: 110%; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pet-2); margin: 0 0 1.25rem; display: flex; align-items: center; gap: 0.7rem; }
+      .eyebrow::before { content: ""; width: 26px; height: 2px; background: currentColor; }
+      .eyebrow--amb { color: var(--amb); }
+      .lead { font-size: clamp(1.02rem, 1.3vw, 1.18rem); color: var(--tinta-2); max-width: 48ch; margin: 1.5rem 0 0; }
+      [data-progreso] { background: var(--amb); }
+      .telon span { font-family: var(--tit); font-stretch: 125%; font-size: clamp(1.4rem, 3vw, 2.2rem); letter-spacing: -0.03em; }
+      .telon b { font-weight: 700; color: var(--amb); }
 
-      .cab { background: var(--fondo); border-bottom: 1px solid var(--linea); position: sticky; top: 0; z-index: 10; }
-      .cab__in { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 70px; }
-      .marca { display: inline-flex; align-items: center; gap: 0.7rem; text-decoration: none; color: var(--pet); font-family: var(--tit); font-size: 1.15rem; letter-spacing: -0.02em; }
-      .marca b { font-weight: 600; }
-      .nav { display: flex; gap: 1.6rem; }
-      .nav a { font-size: 0.93rem; font-weight: 500; text-decoration: none; color: var(--tinta-2); }
-      .nav a:hover { color: var(--pet); }
-      .urg { text-decoration: none; font-family: var(--tit); font-weight: 600; font-size: 1.05rem; color: var(--pet); white-space: nowrap; text-align: right; }
-      .urg span { display: block; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amb-2); }
+      /* Cabecera */
+      .cab { position: sticky; top: 0; z-index: 50; height: 76px; margin-bottom: -76px; color: var(--pet); }
+      .cab.cab--solida { background: rgba(248, 245, 238, 0.9); backdrop-filter: blur(14px); border-bottom: 1px solid var(--linea); }
+      .cab__in { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; height: 100%; }
+      .marca { display: inline-flex; align-items: center; gap: 0.65rem; text-decoration: none; font-family: var(--tit); font-stretch: 115%; font-size: 1.1rem; letter-spacing: -0.02em; }
+      .marca b { font-weight: 700; }
+      .nav { display: flex; gap: 1.8rem; }
+      .nav a { position: relative; font-size: 0.93rem; font-weight: 500; text-decoration: none; padding: 0.3rem 0; }
+      .nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1.5px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1); }
+      .nav a:hover::after { transform: scaleX(1); transform-origin: left; }
+      .urg { text-decoration: none; font-family: var(--tit); font-stretch: 112%; font-weight: 700; font-size: 1.02rem; white-space: nowrap; text-align: right; line-height: 1.2; }
+      .urg span { display: block; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amb-2); }
 
-      .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0.8rem 1.5rem; font-family: var(--tit); font-weight: 500; font-size: 0.93rem; letter-spacing: -0.01em; text-decoration: none; border-radius: 10px; border: 1.5px solid transparent; cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s; }
+      .btn { position: relative; display: inline-flex; align-items: center; justify-content: center; min-height: 54px; padding: 0.85rem 1.6rem; font-family: var(--tit); font-stretch: 108%; font-weight: 600; font-size: 0.92rem; letter-spacing: -0.01em; text-decoration: none; border-radius: 99px; border: 1.5px solid transparent; cursor: pointer; overflow: hidden; isolation: isolate; transition: color 0.35s; }
+      .btn::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; transform: translateY(101%); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+      .btn:hover::before { transform: translateY(0); }
       .btn--pet { background: var(--pet); color: #fff; }
-      .btn--pet:hover { background: var(--pet-2); }
+      .btn--pet::before { background: var(--amb); }
+      .btn--pet:hover { color: var(--tinta); }
       .btn--linea { border-color: var(--pet); color: var(--pet); }
-      .btn--linea:hover { background: var(--pet); color: #fff; }
+      .btn--linea::before { background: var(--pet); }
+      .btn--linea:hover { color: #fff; }
       .btn--amb { background: var(--amb); color: var(--tinta); }
-      .btn--amb:hover { background: var(--amb-2); }
+      .btn--amb::before { background: var(--hueso); }
       .btn--ancho { width: 100%; }
 
-      .hero { padding: clamp(3rem, 7vw, 5.5rem) 0 0; }
-      .hero__grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
-      .chip { display: inline-block; font-size: 0.8rem; font-weight: 500; color: var(--pet); background: #DCE9E6; border-radius: 99px; padding: 0.35rem 0.9rem; margin: 0 0 1.5rem; }
-      .hero h1 { font-size: clamp(2.2rem, 4.6vw, 3.8rem); line-height: 1.05; text-wrap: balance; }
-      .hero h1 span { color: var(--pet); }
-      .hero__sub { font-size: clamp(1.02rem, 1.3vw, 1.15rem); color: var(--tinta-2); max-width: 50ch; margin: 1.5rem 0 0; }
-      .hero__cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2rem; }
+      /* 1 · Portada */
+      .hero { position: relative; height: 100svh; min-height: 620px; background: var(--arena); overflow: hidden; }
+      .hero__txt { position: relative; z-index: 2; padding-top: 100px; }
+      .hero__lado { display: flex; justify-content: space-between; align-items: flex-end; gap: 1.2rem 3rem; margin-top: 1.3rem; }
+      .hero__sub { max-width: 50ch; }
+      .chip { display: inline-block; font-size: 0.8rem; font-weight: 500; color: var(--pet); border: 1px solid rgba(12, 63, 71, 0.3); border-radius: 99px; padding: 0.3rem 0.9rem; margin: 0 0 1.1rem; }
+      .hero h1 { font-size: min(8.4vw, 14svh); font-stretch: 125%; font-weight: 600; line-height: 0.9; letter-spacing: -0.05em; color: var(--pet); text-wrap: nowrap; }
+      .hero__lado p { margin: 0; font-size: 1rem; line-height: 1.55; color: var(--tinta-2); }
+      .hero__cta { display: flex; flex-wrap: wrap; gap: 0.6rem; flex: none; }
+      .hero__cta .btn { min-height: 48px; padding: 0.7rem 1.2rem; font-size: 0.85rem; }
+      .hero__img { --t: 55%; --x: 3%; --b: 6%; --r: 26px; position: absolute; inset: 0; z-index: 1; clip-path: inset(var(--t) var(--x) var(--b) var(--x) round var(--r)); }
+      .hero__img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; display: block; }
+      .hero__velo { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6, 35, 40, 0.55), rgba(6, 35, 40, 0.82)); opacity: 0; }
+      .hero__sobre { position: absolute; inset: 0; z-index: 3; display: flex; align-items: flex-end; padding-bottom: clamp(2.5rem, 7svh, 5rem); color: #fff; pointer-events: none; }
+      .motion .hero__lema, .motion .cifras > div { visibility: hidden; }
+      .motion .cifras { border-top-color: transparent; }
+      .hero__lema { font-family: var(--tit); font-stretch: 120%; font-weight: 600; font-size: clamp(1.7rem, 4.6vw, 4.4rem); line-height: 1; letter-spacing: -0.04em; margin: 0 0 clamp(2rem, 6svh, 4rem); }
+      .cifras { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; margin: 0; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.35); }
+      .cifras dt { font-family: var(--tit); font-stretch: 122%; font-weight: 600; font-size: clamp(2rem, 4.4vw, 4rem); letter-spacing: -0.05em; line-height: 1; color: var(--amb); font-variant-numeric: tabular-nums; }
+      .cifras dd { margin: 0.6rem 0 0; font-size: 0.92rem; color: rgba(255, 255, 255, 0.82); max-width: 18ch; }
+      .hero__baja { position: absolute; z-index: 4; right: clamp(1.25rem, 4vw, 3.5rem); bottom: 1rem; margin: 0; display: flex; align-items: center; gap: 0.6rem; font-family: var(--tit); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pet); }
+      .hero__baja i { width: 1.5px; height: 30px; background: currentColor; transform-origin: top; animation: baja 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+      @keyframes baja { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+      /* Sin movimiento: la portada se lee de arriba abajo, sin capas */
+      html:not(.motion) .hero { height: auto; padding-bottom: 3rem; }
+      html:not(.motion) .hero__img { position: relative; inset: auto; height: 52svh; margin-top: 2.5rem; clip-path: inset(0 3% 0 3% round 26px); }
+      html:not(.motion) .hero__sobre { position: relative; inset: auto; color: var(--tinta); padding: 3rem 0 0; }
+      html:not(.motion) .cifras { border-color: var(--linea); }
+      html:not(.motion) .cifras dt { color: var(--pet); }
+      html:not(.motion) .cifras dd { color: var(--tinta-2); }
+      html:not(.motion) .hero__baja { display: none; }
 
-      .panel { background: var(--blanco); border: 1px solid var(--linea); border-radius: 18px; padding: 1.6rem 1.6rem 1.25rem; box-shadow: 0 24px 50px -28px rgba(16, 39, 43, 0.45); }
+      /* 2 · Cinta */
+      .cinta { background: var(--amb); color: var(--tinta); padding: 1.1rem 0; position: relative; z-index: 2; }
+      .cinta span { font-family: var(--tit); font-stretch: 125%; font-weight: 700; font-size: clamp(1.3rem, 2.6vw, 2.2rem); letter-spacing: -0.03em; text-transform: uppercase; display: inline-flex; align-items: center; }
+      .cinta i { font-style: normal; font-size: 0.7em; margin: 0 1.4rem; }
+
+      /* 3 · Manifiesto */
+      .mani { padding: clamp(5rem, 12vw, 11rem) 0; }
+      .mani__grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+      .mani__p { font-family: var(--tit); font-stretch: 108%; font-weight: 500; font-size: clamp(1.55rem, 3.1vw, 2.9rem); line-height: 1.16; letter-spacing: -0.035em; margin: 0; color: var(--pet); }
+      .mani__fotos { position: relative; aspect-ratio: 4 / 5; }
+      .mani__f1 { position: absolute; right: 0; top: 0; width: 74%; aspect-ratio: 3 / 4; border-radius: 20px; }
+      .mani__f2 { position: absolute; left: 0; bottom: 0; width: 46%; aspect-ratio: 3 / 4; border-radius: 16px; box-shadow: 0 30px 60px -30px rgba(6, 35, 40, 0.6); }
+      .mani__fotos img { height: 124%; margin-top: -12%; }
+
+      /* 4 · Edificio */
+      .edi { background: var(--noche); color: var(--arena); position: relative; z-index: 2; }
+      .edi__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); }
+      .edi__vis { position: sticky; top: 0; height: 100svh; display: grid; place-items: center; padding: 5.5rem 0 2rem; }
+      .edi__caja { position: relative; height: 100%; aspect-ratio: 520 / 640; max-width: 100%; }
+      .edificio { width: 100%; height: 100%; display: block; overflow: visible; }
+      .edificio .tr { fill: none; stroke: var(--arena); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; transition: stroke 0.6s; }
+      .edificio .tenue { stroke-width: 1; opacity: 0.3; }
+      .edificio .cuerpo { fill: #0A2F36; }
+      .edificio .hueco { fill: var(--noche); transition: fill 0.6s; }
+      .edificio .luna { fill: var(--arena); opacity: 0.9; }
+      .estrellas circle { fill: var(--arena); animation: titila 3s ease-in-out infinite; animation-delay: calc(var(--i) * -0.37s); }
+      @keyframes titila { 50% { opacity: 0.2; } }
+      .edificio .v { fill: #123E46; stroke: rgba(239, 234, 224, 0.5); stroke-width: 1.5; transition: fill 0.5s calc(var(--i, 0) * 28ms), filter 0.5s; }
+      .cabina { fill: var(--arena); transition: transform 2.2s cubic-bezier(0.65, 0, 0.35, 1), fill 0.5s; }
+      .andamio path { fill: none; stroke: var(--amb); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.4s cubic-bezier(0.65, 0, 0.35, 1); }
+      .escudo { fill: rgba(242, 169, 59, 0.06); stroke: var(--amb); stroke-width: 3; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; transition: stroke-dashoffset 1.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.4s; }
+      .gota { fill: #6CC6E0; opacity: 0; transform-box: fill-box; }
+      .sello { opacity: 0; transition: opacity 0.4s; }
+      .sello circle { fill: var(--ok); }
+      .sello path { fill: none; stroke: #fff; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+      .sello > * { transform: scale(0.4); transform-box: fill-box; transform-origin: center; transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+      /* Estados */
+      .edi[data-paso="1"] .v { fill: var(--amb); }
+      .edi[data-paso="2"] .v--junta { fill: #F7D08A; }
+      .edi[data-paso="2"] .v--local { fill: var(--amb); filter: drop-shadow(0 0 14px rgba(242, 169, 59, 0.8)); }
+      .edi[data-paso="3"] .v { fill: #1F6C56; }
+      .edi[data-paso="3"] .v--mor { fill: #E5533C; animation: late 1.2s ease-in-out infinite; }
+      @keyframes late { 50% { fill: #8E2A1C; } }
+      .edi[data-paso="4"] .andamio path { stroke-dashoffset: 0; }
+      .edi[data-paso="4"] .v { fill: #1A4F58; }
+      .edi[data-paso="5"] .escudo { stroke-dashoffset: 0; opacity: 1; }
+      .edi[data-paso="5"] .v--agua { fill: #6CC6E0; }
+      .edi[data-paso="5"] .gota { opacity: 1; animation: cae 1.4s ease-in infinite; }
+      @keyframes cae { 0% { transform: translateY(-14px); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(150px); opacity: 0; } }
+      .edi[data-paso="6"] .cabina { transform: translateY(-420px); fill: var(--amb); }
+      .edi[data-paso="6"] .hueco { fill: #0E3A42; }
+      .edi[data-paso="6"] .sello { opacity: 1; }
+      .edi[data-paso="6"] .sello > * { transform: scale(1); }
+      .edi__etqs { position: absolute; left: 50%; bottom: 4%; transform: translateX(-50%); width: max-content; max-width: 100%; display: grid; }
+      .edi__etq { grid-area: 1 / 1; margin: 0; justify-self: center; background: var(--arena); color: var(--tinta); font-family: var(--tit); font-stretch: 108%; font-weight: 600; font-size: 0.82rem; padding: 0.5rem 1rem; border-radius: 99px; opacity: 0; transform: translateY(14px) scale(0.94); transition: opacity 0.4s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); white-space: nowrap; box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.6); }
+      .edi[data-paso="1"] [data-e="1"], .edi[data-paso="2"] [data-e="2"], .edi[data-paso="3"] [data-e="3"], .edi[data-paso="4"] [data-e="4"], .edi[data-paso="5"] [data-e="5"], .edi[data-paso="6"] [data-e="6"] { opacity: 1; transform: none; }
+      .edi__txt { padding: clamp(5rem, 12vw, 10rem) 0 22svh; }
+      .edi__cab { min-height: 56svh; }
+      .edi__cab h2 { color: #fff; }
+      .edi__sub { color: #A9C2C0; margin: 1.5rem 0 0; max-width: 34ch; }
+      .edi__pasos { list-style: none; margin: 0; padding: 0; }
+      .paso { min-height: 62svh; display: flex; flex-direction: column; justify-content: center; opacity: 0.28; transition: opacity 0.5s; }
+      .paso.on { opacity: 1; }
+      html:not(.motion) .paso { opacity: 1; min-height: 0; padding: 1.5rem 0; }
+      .paso__n { font-family: var(--tit); font-stretch: 125%; font-weight: 700; font-size: 0.9rem; color: var(--amb); letter-spacing: 0.06em; }
+      .paso h3 { font-size: clamp(1.8rem, 3.6vw, 3.2rem); line-height: 1; margin: 0.8rem 0 1rem; color: #fff; }
+      .paso p { margin: 0; color: #B9CFCC; max-width: 38ch; font-size: 1.06rem; }
+
+      /* Secciones */
+      .sec { padding: clamp(5rem, 10vw, 9rem) 0; position: relative; z-index: 2; background: var(--hueso); }
+      .sec--arena { background: var(--arena); }
+      .cabsec { max-width: 62ch; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+
+      /* 5 · Incidencias */
+      .inc__grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+      .inc__izq { position: sticky; top: 100px; }
+      .panel { background: var(--blanco); border: 1px solid var(--linea); border-radius: 22px; padding: 1.6rem 1.6rem 1.25rem; box-shadow: 0 40px 70px -40px rgba(6, 35, 40, 0.5); margin-top: 2.5rem; max-width: 26rem; }
       .panel__top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-size: 0.8rem; color: var(--tinta-3); }
-      .panel__top b { font-family: var(--tit); font-weight: 500; font-size: 0.72rem; color: #7A4B00; background: #FCE9C8; border-radius: 99px; padding: 0.2rem 0.7rem; }
-      .panel__t { font-family: var(--tit); font-weight: 600; font-size: 1.2rem; letter-spacing: -0.02em; margin: 0.7rem 0 1.25rem; }
+      .panel__top b { font-family: var(--tit); font-weight: 600; font-size: 0.7rem; color: #7A4B00; background: #FCE9C8; border-radius: 99px; padding: 0.2rem 0.7rem; }
+      .panel__t { font-family: var(--tit); font-stretch: 110%; font-weight: 600; font-size: 1.2rem; letter-spacing: -0.02em; margin: 0.7rem 0 1.25rem; }
       .pasos { list-style: none; margin: 0; padding: 0; }
       .pasos li { position: relative; display: flex; justify-content: space-between; gap: 1rem; padding: 0.75rem 0 0.75rem 1.9rem; font-size: 0.92rem; color: var(--tinta-3); }
-      .pasos li::before { content: ""; position: absolute; left: 0.25rem; top: 1.12rem; width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--linea); background: var(--blanco); z-index: 1; }
-      .pasos li:not(:last-child)::after { content: ""; position: absolute; left: calc(0.25rem + 5px); top: 1.5rem; bottom: -1.1rem; width: 1.5px; background: var(--linea); }
-      .pasos b { font-weight: 500; color: var(--tinta-3); }
+      .pasos li::before { content: ""; position: absolute; left: 0.25rem; top: 1.12rem; width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--linea); background: var(--blanco); z-index: 1; transition: background 0.4s, border-color 0.4s, box-shadow 0.4s; }
+      .pasos li:not(:last-child)::after { content: ""; position: absolute; left: calc(0.25rem + 5px); top: 1.5rem; bottom: -1.1rem; width: 1.5px; background: var(--linea); transition: background 0.4s; }
+      .pasos b { font-weight: 500; color: var(--tinta-3); transition: color 0.4s; }
       .pasos .hecho b, .pasos .ahora b { color: var(--tinta); }
       .pasos .hecho::before { background: var(--ok); border-color: var(--ok); }
       .pasos .hecho::after { background: var(--ok) !important; }
-      .pasos .ahora::before { border-color: var(--amb-2); background: var(--amb); box-shadow: 0 0 0 4px #FCE9C8; }
+      .pasos .ahora::before { border-color: var(--amb-2); background: var(--amb); box-shadow: 0 0 0 5px #FCE9C8; }
       .pasos .ahora span { color: #7A4B00; font-weight: 500; }
-
-      .cifras { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; margin: clamp(3rem, 6vw, 4.5rem) 0 0; padding: 1.75rem 0 clamp(3rem, 6vw, 4.5rem); border-top: 1px solid var(--linea); }
-      .cifras dt { font-family: var(--tit); font-weight: 600; font-size: clamp(1.7rem, 3vw, 2.4rem); letter-spacing: -0.04em; color: var(--pet); line-height: 1; }
-      .cifras dd { margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--tinta-2); }
-
-      .sec { padding: clamp(4rem, 8vw, 6.5rem) 0; }
-      .sec--arena { background: var(--arena); }
-      .sec--pet { background: var(--pet); color: #EAF2F0; }
-      .cabsec { max-width: 58ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
-      .cabsec h2, .contacto h2 { font-size: clamp(1.8rem, 3.4vw, 2.7rem); line-height: 1.1; text-wrap: balance; }
-      .cabsec p:last-child { color: var(--tinta-2); margin: 1rem 0 0; }
-      .cabsec--pet p:last-child { color: #BFD5D1; }
-
-      .inc { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
-      .inc .cabsec { margin-bottom: 0; position: sticky; top: 110px; }
-      .inc__caja { background: var(--blanco); color: var(--tinta); border-radius: 18px; padding: clamp(1.4rem, 3vw, 2.1rem); display: grid; gap: 1.25rem; }
+      .inc__caja { background: var(--pet); color: #EAF2F0; border-radius: 28px; padding: clamp(1.5rem, 3.4vw, 2.6rem); display: grid; gap: 1.4rem; }
       fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
-      legend { font-family: var(--tit); font-weight: 600; font-size: 1rem; letter-spacing: -0.02em; padding: 0; margin-bottom: 0.8rem; }
+      legend { font-family: var(--tit); font-stretch: 112%; font-weight: 600; font-size: 1.1rem; letter-spacing: -0.02em; padding: 0; margin-bottom: 0.9rem; }
       .tipos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.55rem; }
       .tipo { position: relative; display: block; }
       .tipo input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
-      .tipo span { display: flex; align-items: center; min-height: 56px; padding: 0.6rem 0.9rem; border: 1.5px solid var(--linea); border-radius: 10px; font-weight: 500; font-size: 0.92rem; line-height: 1.25; transition: border-color 0.15s, background 0.15s; }
-      .tipo:hover span { border-color: var(--pet); }
-      .tipo input:checked + span { border-color: var(--pet); background: #E3EFEC; color: var(--pet-2); }
-      .tipo input:focus-visible + span { outline: 2px solid var(--amb-2); outline-offset: 2px; }
-      .inc__resp { margin: 0; padding: 0.75rem 1rem; border-radius: 10px; background: #EEF1EC; font-weight: 500; font-size: 0.95rem; color: var(--tinta); }
+      .tipo span { display: flex; align-items: center; min-height: 60px; padding: 0.6rem 0.95rem; border: 1.5px solid rgba(255, 255, 255, 0.22); border-radius: 14px; font-weight: 500; font-size: 0.93rem; line-height: 1.25; transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.3s; }
+      .tipo:hover span { border-color: var(--amb); transform: translateY(-2px); }
+      .tipo input:checked + span { border-color: var(--amb); background: var(--amb); color: var(--tinta); }
+      .tipo input:focus-visible + span { outline: 2px solid #fff; outline-offset: 2px; }
+      .inc__resp { margin: 0; padding: 0.85rem 1.1rem; border-radius: 14px; background: rgba(255, 255, 255, 0.1); font-weight: 500; font-size: 0.97rem; }
       .inc__resp--u { background: #FCE9C8; color: #6B4100; }
       .inc__campos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; }
       .inc__campos legend { grid-column: 1 / -1; }
-      .inc__campos label { display: grid; gap: 0.35rem; font-size: 0.85rem; font-weight: 500; color: var(--tinta-2); }
+      .inc__campos label { display: grid; gap: 0.35rem; font-size: 0.85rem; font-weight: 500; color: #BFD5D1; }
       .inc__tel { grid-column: 1 / -1; }
-      .inc__campos input { font: inherit; font-size: 1rem; color: var(--tinta); background: var(--blanco); border: 1.5px solid var(--linea); border-radius: 10px; padding: 0.75rem 0.9rem; width: 100%; }
-      .inc__campos input:focus { outline: 2px solid var(--pet); outline-offset: 1px; border-color: var(--pet); }
-      .inc__ok { margin: 0; padding: 0.85rem 1rem; border-radius: 10px; background: #E3EFEC; font-size: 0.9rem; color: var(--pet-2); }
+      .inc__campos input { font: inherit; font-size: 1rem; color: #fff; background: transparent; border: 0; border-bottom: 1.5px solid rgba(255, 255, 255, 0.3); border-radius: 0; padding: 0.7rem 0; width: 100%; transition: border-color 0.3s; }
+      .inc__campos input::placeholder { color: rgba(255, 255, 255, 0.4); }
+      .inc__campos input:focus { outline: 0; border-color: var(--amb); }
+      .inc__ok { margin: 0; padding: 0.85rem 1.1rem; border-radius: 14px; background: rgba(255, 255, 255, 0.12); font-size: 0.9rem; }
 
-      .area { background: var(--blanco); border: 1px solid var(--linea); border-radius: 18px; overflow: hidden; }
-      .area__cab { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem 1.5rem; padding: 1rem 1.5rem; background: var(--tinta); color: #DCE6E4; font-size: 0.86rem; }
+      /* 6 · Galería horizontal */
+      .hs { background: var(--pet); color: var(--arena); position: relative; z-index: 2; }
+      .hs__pista { height: 100svh; align-items: center; gap: clamp(1.5rem, 3vw, 3rem); padding-inline: clamp(1.25rem, 4vw, 3.5rem); }
+      .hs__intro { width: min(84vw, 30rem); flex: none; }
+      .hs__intro h2 { color: #fff; font-size: clamp(2.6rem, 5.4vw, 5rem); }
+      .hs__intro p:not(.eyebrow) { color: #B9CFCC; margin: 1.5rem 0 2rem; max-width: 30ch; }
+      .hs__pista-ayuda { font-family: var(--tit); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amb); }
+      .hs__pista-ayuda i { font-style: normal; display: inline-block; animation: empuja 1.4s ease-in-out infinite; }
+      @keyframes empuja { 50% { transform: translateX(8px); } }
+      .finca { flex: none; width: min(82vw, 44rem); display: grid; gap: 1.2rem; }
+      .finca:nth-child(even) { transform: translateY(4svh); }
+      .finca:nth-child(odd) { transform: translateY(-3svh); }
+      .finca__img { height: 56svh; border-radius: 22px; }
+      .finca__img img { width: 116%; max-width: none; margin-left: -8%; }
+      .finca__txt { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.2rem 1.2rem; align-items: baseline; }
+      .finca__n { grid-row: span 2; font-family: var(--tit); font-stretch: 125%; font-weight: 700; font-size: clamp(2.4rem, 4vw, 3.6rem); line-height: 0.9; color: transparent; -webkit-text-stroke: 1.5px var(--amb); }
+      .finca h3 { font-size: clamp(1.3rem, 2.1vw, 1.8rem); color: #fff; }
+      .finca p { margin: 0.3rem 0 0; color: #B9CFCC; font-size: 0.98rem; max-width: 44ch; }
+      .hs__barra { position: absolute; left: clamp(1.25rem, 4vw, 3.5rem); right: clamp(1.25rem, 4vw, 3.5rem); bottom: 2.2rem; height: 2px; background: rgba(255, 255, 255, 0.18); }
+      .hs__barra i { display: block; height: 100%; background: var(--amb); transform: scaleX(0); transform-origin: left; }
+
+      /* 7 · Área de vecinos */
+      .area { background: var(--blanco); border: 1px solid var(--linea); border-radius: 22px; overflow: hidden; box-shadow: 0 50px 90px -50px rgba(6, 35, 40, 0.45); }
+      .area__barra { display: flex; align-items: center; gap: 0.4rem; padding: 0.7rem 1rem; background: #ECEAE2; border-bottom: 1px solid var(--linea); }
+      .area__barra i { width: 11px; height: 11px; border-radius: 50%; background: #CFCBBE; }
+      .area__barra span { margin-left: 0.8rem; font-size: 0.78rem; color: var(--tinta-3); background: var(--blanco); border-radius: 99px; padding: 0.2rem 1rem; }
+      .area__cab { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem 1.5rem; padding: 1.1rem 1.6rem; background: var(--noche); color: #DCE6E4; font-size: 0.88rem; }
       .area__cab span:last-child { color: var(--amb); font-weight: 500; }
       .area__tabs { display: flex; gap: 0.25rem; padding: 0.75rem 1rem 0; border-bottom: 1px solid var(--linea); }
-      .area__tabs button { font-family: var(--tit); font-weight: 500; font-size: 0.93rem; color: var(--tinta-3); background: none; border: 0; border-bottom: 2.5px solid transparent; padding: 0.75rem 1rem; margin-bottom: -1px; cursor: pointer; }
+      .area__tabs button { font-family: var(--tit); font-stretch: 108%; font-weight: 600; font-size: 0.93rem; color: var(--tinta-3); background: none; border: 0; border-bottom: 2.5px solid transparent; padding: 0.8rem 1.1rem; margin-bottom: -1px; cursor: pointer; transition: color 0.2s; }
       .area__tabs button:hover { color: var(--tinta); }
-      .area__tabs button[aria-selected="true"] { color: var(--pet); border-color: var(--pet); }
-      .area__panel { padding: 0.5rem 1.5rem 1.5rem; }
+      .area__tabs button[aria-selected="true"] { color: var(--pet); border-color: var(--amb); }
+      .area__panel { padding: 0.5rem 1.6rem 1.6rem; animation: entra 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+      @keyframes entra { from { opacity: 0; transform: translateY(12px); } }
       .lista { list-style: none; margin: 0; padding: 0; }
-      .lista li { display: grid; grid-template-columns: 6.2rem minmax(0, 1fr) auto; gap: 1rem; align-items: center; padding: 1rem 0; border-bottom: 1px solid #E8E8E1; }
+      .lista li { display: grid; grid-template-columns: 6.2rem minmax(0, 1fr) auto; gap: 1rem; align-items: center; padding: 1.1rem 0; border-bottom: 1px solid #E8E8E1; }
       .lista li:last-child { border-bottom: 0; }
       .lista b { font-weight: 500; }
       .lista time { font-size: 0.86rem; color: var(--tinta-3); white-space: nowrap; }
-      .est { justify-self: start; font-family: var(--tit); font-weight: 500; font-size: 0.72rem; border-radius: 99px; padding: 0.22rem 0.7rem; background: #FCE9C8; color: #7A4B00; }
+      .est { justify-self: start; font-family: var(--tit); font-weight: 600; font-size: 0.7rem; border-radius: 99px; padding: 0.22rem 0.7rem; background: #FCE9C8; color: #7A4B00; }
       .est--ok { background: #DDF0E6; color: #14553A; }
       .est--pdf { background: #E3EFEC; color: var(--pet-2); }
       .cuentas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin: 1rem 0 0; }
-      .cuentas div { background: var(--fondo); border-radius: 12px; padding: 1.1rem 1.2rem; }
+      .cuentas div { background: var(--hueso); border-radius: 14px; padding: 1.2rem 1.3rem; }
       .cuentas dt { font-size: 0.82rem; color: var(--tinta-3); }
-      .cuentas dd { margin: 0.35rem 0 0; font-family: var(--tit); font-weight: 600; font-size: 1.45rem; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+      .cuentas dd { margin: 0.35rem 0 0; font-family: var(--tit); font-stretch: 112%; font-weight: 600; font-size: 1.5rem; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
       .area__nota { margin: 1rem 0 0; font-size: 0.8rem; color: var(--tinta-3); }
 
-      .servs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-      .serv { background: var(--fondo); border-radius: 16px; padding: 1.6rem 1.5rem 1.75rem; }
-      .serv span { font-family: var(--tit); font-weight: 500; font-size: 0.8rem; color: var(--amb-2); }
-      .serv h3 { font-size: 1.2rem; margin: 0.5rem 0 0.55rem; }
-      .serv p { margin: 0; font-size: 0.95rem; color: var(--tinta-2); }
-
-      .calc__caja { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); border: 1px solid var(--linea); border-radius: 18px; overflow: hidden; background: var(--blanco); }
-      .calc__campos { padding: clamp(1.5rem, 3vw, 2.25rem); display: grid; gap: 0.6rem; align-content: start; }
-      .calc__campos > label { display: flex; justify-content: space-between; align-items: baseline; font-weight: 500; margin-top: 0.6rem; }
-      .calc__campos output { font-family: var(--tit); font-weight: 600; font-size: 1.35rem; color: var(--pet); font-variant-numeric: tabular-nums; }
-      input[type="range"] { width: 100%; accent-color: var(--pet); height: 28px; }
-      .calc__checks { display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; margin-top: 1rem; }
-      .calc__checks label { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; min-height: 32px; }
-      .calc__checks input { width: 19px; height: 19px; accent-color: var(--pet); }
-      .calc__res { background: var(--tinta); color: #EAF2F0; padding: clamp(1.5rem, 3vw, 2.25rem); display: grid; align-content: center; gap: 0.4rem; }
-      .calc__et { font-family: var(--tit); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amb); margin: 0; }
-      .calc__num { font-family: var(--tit); font-weight: 600; font-size: clamp(2.8rem, 5vw, 3.8rem); letter-spacing: -0.05em; line-height: 1; margin: 0.4rem 0 0; font-variant-numeric: tabular-nums; }
-      .calc__num small { font-size: 1.1rem; font-weight: 400; letter-spacing: 0; color: #A9BDBA; margin-left: 0.2rem; }
-      .calc__viv { margin: 0 0 1.4rem; font-size: 0.93rem; color: #BFD5D1; }
+      /* 8 · Calculadora */
+      .calc__caja { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); border-radius: 28px; overflow: hidden; background: var(--blanco); box-shadow: 0 50px 90px -55px rgba(6, 35, 40, 0.5); }
+      .calc__campos { padding: clamp(1.6rem, 3.5vw, 3rem); display: grid; gap: 0.7rem; align-content: start; }
+      .calc__campos > label { display: flex; justify-content: space-between; align-items: baseline; font-weight: 500; margin-top: 0.8rem; }
+      .calc__campos output { font-family: var(--tit); font-stretch: 118%; font-weight: 700; font-size: 1.7rem; letter-spacing: -0.03em; color: var(--pet); font-variant-numeric: tabular-nums; }
+      input[type="range"] { --p: 20%; -webkit-appearance: none; appearance: none; width: 100%; height: 30px; background: transparent; cursor: pointer; }
+      input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 99px; background: linear-gradient(90deg, var(--pet) var(--p), var(--arena-2) var(--p)); }
+      input[type="range"]::-moz-range-track { height: 6px; border-radius: 99px; background: linear-gradient(90deg, var(--pet) var(--p), var(--arena-2) var(--p)); }
+      input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; margin-top: -10px; border-radius: 50%; background: var(--amb); border: 4px solid var(--blanco); box-shadow: 0 4px 12px rgba(6, 35, 40, 0.35); transition: transform 0.2s; }
+      input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--amb); border: 4px solid var(--blanco); box-shadow: 0 4px 12px rgba(6, 35, 40, 0.35); }
+      input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.2); }
+      .calc__checks { display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; margin-top: 1.2rem; }
+      .calc__checks label { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.97rem; min-height: 34px; cursor: pointer; }
+      .calc__checks input { width: 20px; height: 20px; accent-color: var(--pet); }
+      .calc__res { background: var(--noche); color: #EAF2F0; padding: clamp(1.6rem, 3.5vw, 3rem); display: grid; align-content: center; gap: 0.4rem; }
+      .calc__et { font-family: var(--tit); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amb); margin: 0; }
+      .calc__num { font-family: var(--tit); font-stretch: 122%; font-weight: 700; font-size: clamp(3.2rem, 6.4vw, 5.6rem); letter-spacing: -0.06em; line-height: 1; margin: 0.4rem 0 0; font-variant-numeric: tabular-nums; }
+      .calc__num small { font-size: 1.1rem; font-weight: 400; letter-spacing: 0; font-stretch: 100%; color: #A9BDBA; margin-left: 0.2rem; }
+      .calc__viv { margin: 0 0 1.6rem; font-size: 0.95rem; color: #BFD5D1; }
       .calc__viv b { color: #fff; font-weight: 600; }
-      .calc__res .btn--pet { background: var(--amb); color: var(--tinta); }
-      .calc__res .btn--pet:hover { background: var(--amb-2); }
 
-      .contacto { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 5rem); align-items: start; }
-      .contacto p { color: #BFD5D1; max-width: 46ch; margin: 1rem 0 0; }
-      .datos { margin: 0; border-top: 1px solid rgba(255, 255, 255, 0.2); }
-      .datos div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1rem; padding: 1.1rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
-      .datos dt { font-family: var(--tit); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amb); padding-top: 0.25rem; }
+      /* 9 · Contacto */
+      .fin { position: relative; z-index: 2; color: #fff; overflow: hidden; background: var(--noche); }
+      .fin__img { position: absolute; inset: -12% 0; }
+      .fin__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .fin__img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6, 35, 40, 0.9) 0%, rgba(6, 35, 40, 0.72) 50%, rgba(6, 35, 40, 0.95) 100%); }
+      .fin__in { position: relative; padding-block: clamp(6rem, 13vw, 12rem) clamp(4rem, 8vw, 7rem); }
+      .fin__h { font-size: clamp(2.6rem, 7.6vw, 7.6rem); font-stretch: 122%; line-height: 0.92; letter-spacing: -0.05em; max-width: 14ch; }
+      .fin__grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(2rem, 6vw, 6rem); margin-top: clamp(3rem, 6vw, 5rem); align-items: start; }
+      .fin__p { margin: 0; color: #C7DAD7; font-size: 1.12rem; max-width: 36ch; }
+      .datos { margin: 0; border-top: 1px solid rgba(255, 255, 255, 0.25); }
+      .datos div { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 1rem; padding: 1.2rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.25); }
+      .datos dt { font-family: var(--tit); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amb); padding-top: 0.3rem; }
       .datos dd { margin: 0; }
 
-      .pie { background: var(--tinta); color: #9FB2AF; padding: 1.75rem 0; font-size: 0.86rem; }
-      .pie__in { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 2rem; }
+      .pie { position: relative; z-index: 2; background: var(--noche); color: #9FB2AF; font-size: 0.86rem; overflow: hidden; }
+      .pie__marca { padding: 1rem 0 0; }
+      .pie__marca span { font-family: var(--tit); font-stretch: 125%; font-weight: 700; font-size: clamp(4rem, 15vw, 14rem); line-height: 0.9; letter-spacing: -0.06em; text-transform: uppercase; color: transparent; -webkit-text-stroke: 1.5px rgba(239, 234, 224, 0.28); padding-right: 0.35em; }
+      .pie__in { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 2rem; padding-block: 1.75rem; }
       .pie p { margin: 0; }
       .pie b { color: #fff; font-weight: 500; }
       .pie a { color: #fff; }
 
-      @media (max-width: 1000px) {
+      @media (max-width: 1100px) {
         .nav { display: none; }
-        .hero__grid, .inc, .contacto { grid-template-columns: minmax(0, 1fr); }
-        .inc .cabsec { position: static; }
-        .servs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .hero__lado { flex-direction: column; align-items: flex-start; }
+        .hero__img { --t: 60%; }
+      }
+      @media (max-width: 899px) {
+        .mani__grid, .inc__grid, .fin__grid, .calc__caja { grid-template-columns: minmax(0, 1fr); }
+        .mani__fotos { max-width: 26rem; }
+        .inc__izq { position: static; }
+        .edi__grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+        .edi__txt { display: contents; }
+        .edi__cab { order: -1; min-height: 0; padding: 4.5rem 0 1rem; }
+        .edi__vis { height: 50svh; padding: 0.75rem 0 2.6rem; z-index: 3; background: var(--noche); box-shadow: 0 18px 24px -6px var(--noche); }
+        .edi__pasos { padding-bottom: 12svh; }
+        .paso { min-height: 44svh; }
         .cuentas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        .calc__caja { grid-template-columns: minmax(0, 1fr); }
+        .hs__pista { height: auto; padding-block: 4.5rem 5rem; align-items: start; }
+        .finca:nth-child(n) { transform: none; }
+        .finca__img { height: 46svh; }
+        .finca__img img { width: 100%; margin-left: 0; }
+        .hs__barra { display: none; }
+        .cifras { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem 1rem; }
       }
       @media (max-width: 640px) {
-        .cifras { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        body { font-size: 16.5px; }
+        .cab { height: 64px; margin-bottom: -64px; }
+        .urg span { display: none; }
+        .hero__txt { padding-top: 84px; }
+        .hero h1 { font-size: min(11.4vw, 9svh); font-stretch: 112%; }
+        .hero__lado p { font-size: 0.95rem; }
+        .hero__cta { width: 100%; }
+        .hero__cta .btn { flex: 1 1 100%; }
+        .hero__img { --t: 66%; --b: 4%; --x: 4%; }
+        .hero__baja { display: none; }
+        .hero__lema br { display: none; }
+        .hs { scroll-padding-inline: 1.25rem; }
         .tipos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         .inc__campos { grid-template-columns: minmax(0, 1fr); }
-        .servs { grid-template-columns: minmax(0, 1fr); }
         .lista li { grid-template-columns: minmax(0, 1fr) auto; }
         .lista .est { grid-column: 1 / -1; }
-        .area__tabs { padding-inline: 0.5rem; }
+        .area__tabs { padding-inline: 0.4rem; }
         .area__tabs button { padding-inline: 0.7rem; }
         .area__panel { padding-inline: 1.1rem; }
-        .hero__cta .btn { width: 100%; }
+        .area__barra span { display: none; }
         .datos div { grid-template-columns: minmax(0, 1fr); gap: 0.2rem; }
-        .marca span { font-size: 1rem; }
       }
-      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { transition: none !important; animation: none !important; }
+      }
     </style>
   </body>
 </html>
