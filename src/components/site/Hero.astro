@@ -8,31 +8,37 @@ import BotonModal from "./BotonModal";
       <p class="hero__badge abg-rise"><span></span>Estudio web · San Juan de Alicante</p>
 
       <h1 class="hero__title abg-rise abg-rise--2">
-        Tu web, lista<br /><span class="hero__nw">en <em>una semana.</em></span>
+        <span class="abg-sr">Webs para gestorías, asesorías, administradores de fincas y despachos de abogados.</span>
+        <span aria-hidden="true">Webs para<br />
+          <span class="rota" data-rota>
+            <em class="rota__w is-on">gestorías<br />y asesorías.</em>
+            <em class="rota__w">administradores<br />de fincas.</em>
+            <em class="rota__w">despachos<br />de abogados.</em>
+          </span></span>
       </h1>
 
       <p class="hero__sub abg-rise abg-rise--3">
-        Hacemos webs para despachos profesionales y negocios de Alicante. Precio cerrado antes de empezar,
-        plazo por escrito y un responsable que contesta cuando algo falla.
+        En San Juan de Alicante diseñamos la web de tu despacho para que transmita la misma seriedad con la que trabajas:
+        clara para tus clientes, fácil de encontrar en Google y atendida por la persona que la hizo.
       </p>
 
       <div class="hero__cta abg-rise abg-rise--3">
-        <BotonModal client:load label="Pide tu diagnóstico gratis →" className="abg-btn abg-btn--ink" />
-        <a class="abg-link" href="#planes">Ver planes y precios</a>
+        <BotonModal client:load label="Solicitar una reunión" className="abg-btn abg-btn--ink" />
+        <a class="abg-link" href="#ejemplos">Ver webs de ejemplo</a>
       </div>
 
       <dl class="hero__facts">
         <div>
-          <dt>Desde 590 €</dt>
-          <dd>Precio cerrado, sin sorpresas</dd>
+          <dt>Precio cerrado</dt>
+          <dd>Por escrito antes de empezar</dd>
         </div>
         <div>
-          <dt>5 a 10 días</dt>
-          <dd>Plazo por escrito</dd>
+          <dt>Un responsable</dt>
+          <dd>La misma persona de principio a fin</dd>
         </div>
         <div>
-          <dt>Tuya</dt>
-          <dd>Web y dominio a tu nombre</dd>
+          <dt>A tu nombre</dt>
+          <dd>La web y el dominio son tuyos</dd>
         </div>
       </dl>
     </div>
@@ -55,6 +61,29 @@ import BotonModal from "./BotonModal";
     </div>
   </div>
 </section>
+
+<script>
+  const rota = document.querySelector<HTMLElement>("[data-rota]");
+  if (rota) {
+    const words = Array.from(rota.querySelectorAll<HTMLElement>(".rota__w"));
+    let i = 0;
+    let timer: number | undefined;
+    const paso = () => {
+      const actual = words[i];
+      i = (i + 1) % words.length;
+      const sig = words[i];
+      actual.classList.remove("is-on");
+      actual.classList.add("is-out");
+      sig.classList.remove("is-out");
+      sig.classList.add("is-on");
+      window.setTimeout(() => actual.classList.remove("is-out"), 650);
+    };
+    const start = () => { if (timer === undefined) timer = window.setInterval(paso, 3000); };
+    const stop = () => { if (timer !== undefined) { window.clearInterval(timer); timer = undefined; } };
+    start();
+    document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
+  }
+</script>
 
 <style>
   .hero {
@@ -84,7 +113,19 @@ import BotonModal from "./BotonModal";
     margin: 0; text-wrap: balance;
   }
   .hero__title em { font-style: italic; color: var(--coral); }
-  .hero__nw { white-space: nowrap; }
+  .abg-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  /* Palabra que cambia: todas ocupan la misma celda, así la altura no salta */
+  .rota { display: inline-grid; vertical-align: top; overflow: hidden; padding-bottom: 0.08em; }
+  .rota__w {
+    grid-area: 1 / 1; font-style: italic; color: var(--coral);
+    opacity: 0; transform: translateY(0.45em);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .rota__w.is-on { opacity: 1; transform: none; }
+  .rota__w.is-out { opacity: 0; transform: translateY(-0.45em); }
+  @media (prefers-reduced-motion: reduce) {
+    .rota__w { transition: opacity 0.2s linear; transform: none !important; }
+  }
   .hero__sub {
     font-family: var(--font-body); font-size: clamp(1.02rem, 1.35vw, 1.18rem); line-height: 1.6;
     color: var(--ink-2); max-width: 46ch; margin: 1.75rem 0 0;

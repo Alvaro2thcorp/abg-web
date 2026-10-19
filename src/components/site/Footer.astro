@@ -9,14 +9,14 @@ const wa = `https://wa.me/34601058997?text=${encodeURIComponent("Hola, quiero ha
       <h2>¿Hablamos de <em>tu web?</em></h2>
       <div class="pie__botones">
         <a class="abg-btn abg-btn--coral" href={wa} target="_blank" rel="noopener noreferrer">Escríbenos por WhatsApp</a>
-        <a class="abg-btn abg-btn--ghost-night" href="/contacto/">Pedir diagnóstico gratis</a>
+        <a class="abg-btn abg-btn--ghost-night" href="/contacto/">Solicitar una reunión</a>
       </div>
     </div>
 
     <div class="pie__cols">
       <div class="pie__marca">
         <p class="pie__logo">ABG Frame</p>
-        <p>Estudio web en San Juan de Alicante. Webs para despachos profesionales y negocios, con precio cerrado, entregadas en una semana y cuidadas cada mes.</p>
+        <p>Estudio web en San Juan de Alicante. Webs para despachos profesionales y negocios, con precio cerrado, plazo por escrito y mantenimiento cada mes.</p>
       </div>
       <nav aria-label="Páginas">
         <p class="pie__titulo">Páginas</p>
@@ -28,10 +28,18 @@ const wa = `https://wa.me/34601058997?text=${encodeURIComponent("Hola, quiero ha
           <li><a href="/contacto/">Contacto</a></li>
         </ul>
       </nav>
+      <nav aria-label="Sectores">
+        <p class="pie__titulo">Sectores</p>
+        <ul>
+          <li><a href="/diseno-web-gestorias/">Webs para gestorías</a></li>
+          <li><a href="/diseno-web-administradores-de-fincas/">Webs para administradores de fincas</a></li>
+          <li><a href="/diseno-web-abogados/">Webs para abogados</a></li>
+        </ul>
+      </nav>
       <div>
         <p class="pie__titulo">Contacto</p>
         <ul>
-          <li><a href="mailto:contacto@abgframe.com">contacto@abgframe.com</a></li>
+          <li><a href="mailto:alvaro@abgframe.com">alvaro@abgframe.com</a></li>
           <li><a href="tel:+34601058997">601 05 89 97</a></li>
           <li>San Juan de Alicante</li>
           <li><a href="https://instagram.com/abgframe" target="_blank" rel="noopener noreferrer">Instagram</a></li>
@@ -52,7 +60,7 @@ const wa = `https://wa.me/34601058997?text=${encodeURIComponent("Hola, quiero ha
   .pie__cta h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.6rem, 7vw, 5.6rem); letter-spacing: -0.03em; line-height: 0.95; margin: 0; }
   .pie__cta h2 em { font-style: italic; color: #EE6A4D; }
   .pie__botones { display: flex; flex-wrap: wrap; gap: 0.9rem; }
-  .pie__cols { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); gap: 2.5rem; padding-block: clamp(2.5rem, 5vw, 4rem); }
+  .pie__cols { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.8fr) minmax(0, 1.1fr) minmax(0, 1fr); gap: 2.5rem; padding-block: clamp(2.5rem, 5vw, 4rem); }
   .pie__logo { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: -0.01em; margin: 0 0 0.9rem; color: var(--on-night); }
   .pie__marca p { font-family: var(--font-body); font-size: 0.95rem; line-height: 1.6; color: var(--on-night-2); margin: 0; max-width: 34ch; }
   .pie__titulo { font-family: var(--font-body); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--on-night-2); margin: 0 0 1.1rem; }

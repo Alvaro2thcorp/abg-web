@@ -1,0 +1,15 @@
+# ABG Frame
+
+> Estudio de diseño y desarrollo web en San Juan de Alicante (España), dirigido por Álvaro Bergillos. Hace webs para despachos profesionales: gestorías y asesorías, administradores de fincas y despachos de abogados, con precio cerrado, plazo por escrito y mantenimiento mensual.
+
+## Servicios
+- [Servicios y precios](https://abgframe.com/servicios/): planes Esencial (590 €), Profesional (1.190 €) y Completa (1.990 €), sin IVA; mantenimiento Plan Cuidado desde 49 €/mes; Rescate Web 290 €.
+- [Diseño web para gestorías y asesorías](https://abgframe.com/diseno-web-gestorias/)
+- [Diseño web para administradores de fincas](https://abgframe.com/diseno-web-administradores-de-fincas/)
+- [Diseño web para despachos de abogados](https://abgframe.com/diseno-web-abogados/)
+
+## Ejemplos
+- [Webs de demostración](https://abgframe.com/proyectos/): cuatro webs de ejemplo con despachos ficticios, etiquetadas como demostración.
+
+## Contacto
+- [Contacto](https://abgframe.com/contacto/): alvaro@abgframe.com · +34 601 05 89 97 · San Juan de Alicante. Atiende el área de Alicante en persona y el resto de España por videollamada.

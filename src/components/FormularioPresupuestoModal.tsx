@@ -38,9 +38,9 @@ export default function FormularioPresupuestoModal({ isOpen, onClose }: Formular
         headers: { Accept: "application/json" },
       });
       if (response.ok) { setSuccess(true); (e.target as HTMLFormElement).reset(); }
-      else setError("Hubo un problema. Inténtalo de nuevo o escríbenos a contacto@abgframe.com");
+      else setError("Hubo un problema. Inténtalo de nuevo o escríbenos a alvaro@abgframe.com");
     } catch {
-      setError("Hubo un problema. Inténtalo de nuevo o escríbenos a contacto@abgframe.com");
+      setError("Hubo un problema. Inténtalo de nuevo o escríbenos a alvaro@abgframe.com");
     } finally { setSubmitting(false); }
   };
 

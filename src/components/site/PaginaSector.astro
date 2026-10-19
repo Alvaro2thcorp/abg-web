@@ -1,0 +1,250 @@
+---
+/*
+ * Página de sector (gestorías, fincas, abogados).
+ * Toda la información viene de la página que la usa: aquí solo está la estructura.
+ */
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../Navbar";
+import Cabecera from "./Cabecera.astro";
+import BotonModal from "./BotonModal";
+
+interface Demo { titulo: string; url: string; img: string; alt: string }
+interface Problema { titulo: string; texto: string }
+interface Pieza { titulo: string; texto: string }
+interface Pregunta { q: string; a: string }
+
+interface Props {
+  slug: string;
+  title: string;
+  description: string;
+  eyebrow: string;
+  h1: string;          // admite <em>
+  lead: string;
+  servicio: string;    // nombre del servicio para schema y migas
+  intro: string[];     // párrafos de contexto
+  problemas: Problema[];
+  piezas: Pieza[];
+  demos: Demo[];
+  preguntas: Pregunta[];
+  cierre: string;
+}
+
+const p = Astro.props;
+const url = `https://abgframe.com/${p.slug}/`;
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: p.servicio,
+  serviceType: "Diseño y desarrollo web",
+  url,
+  description: p.description,
+  provider: { "@type": "ProfessionalService", name: "ABG Frame", url: "https://abgframe.com" },
+  areaServed: [
+    { "@type": "City", name: "Alicante" },
+    { "@type": "City", name: "San Juan de Alicante" },
+    { "@type": "City", name: "San Vicente del Raspeig" },
+    { "@type": "City", name: "El Campello" },
+    { "@type": "City", name: "Mutxamel" },
+    { "@type": "City", name: "Elche" },
+    { "@type": "Country", name: "España" },
+  ],
+  offers: {
+    "@type": "AggregateOffer",
+    priceCurrency: "EUR",
+    lowPrice: "590",
+    highPrice: "1990",
+    url: "https://abgframe.com/servicios/",
+  },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: "https://abgframe.com/" },
+    { "@type": "ListItem", position: 2, name: p.servicio, item: url },
+  ],
+};
+---
+
+<Layout title={p.title} description={p.description}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Navbar client:load />
+
+  <main>
+    <Cabecera eyebrow={p.eyebrow} lead={p.lead}>
+      <Fragment set:html={p.h1} />
+    </Cabecera>
+
+    <section class="abg-section sec-intro" aria-label="Contexto">
+      <div class="abg-wrap sec-intro__grid">
+        <div class="sec-intro__cta">
+          <BotonModal client:visible label="Solicitar una reunión" className="abg-btn abg-btn--ink" />
+          <a class="abg-link" href="#ejemplo">Ver la web de ejemplo</a>
+        </div>
+        <div class="sec-intro__texto">
+          {p.intro.map((t) => <p>{t}</p>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="abg-section abg-section--tint" aria-labelledby="problemas-h">
+      <div class="abg-wrap">
+        <header class="abg-head">
+          <p class="abg-eyebrow">Lo que suele pasar</p>
+          <h2 id="problemas-h" class="abg-h2">Lo que <em>resuelve</em> una buena web.</h2>
+        </header>
+        <ol class="lista-num">
+          {p.problemas.map((x, i) => (
+            <li>
+              <span class="lista-num__n">{String(i + 1).padStart(2, "0")}</span>
+              <h3>{x.titulo}</h3>
+              <p>{x.texto}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="abg-section" aria-labelledby="piezas-h">
+      <div class="abg-wrap">
+        <header class="abg-head">
+          <p class="abg-eyebrow">Qué incluye</p>
+          <h2 id="piezas-h" class="abg-h2">Las piezas de <em>tu web.</em></h2>
+          <p class="abg-lead">Elegimos contigo qué piezas necesita tu despacho según el plan. El precio queda cerrado y por escrito antes de empezar.</p>
+        </header>
+        <div class="piezas">
+          {p.piezas.map((x) => (
+            <article class="pieza">
+              <h3>{x.titulo}</h3>
+              <p>{x.texto}</p>
+            </article>
+          ))}
+        </div>
+        <p class="sec-mas"><a class="abg-link" href="/servicios/">Ver planes, plazos y precios</a></p>
+      </div>
+    </section>
+
+    <section id="ejemplo" class="abg-section abg-section--tint" aria-labelledby="ejemplo-h">
+      <div class="abg-wrap">
+        <header class="abg-head">
+          <p class="abg-eyebrow">Web de demostración</p>
+          <h2 id="ejemplo-h" class="abg-h2">Ábrela y <em>pruébala.</em></h2>
+          <p class="abg-lead">Es un despacho inventado, pero la web funciona de verdad. Así puedes ver cómo quedaría la tuya antes de hablar con nosotros.</p>
+        </header>
+        <div class={`demos demos--${p.demos.length}`}>
+          {p.demos.map((d) => (
+            <a class="demo" href={d.url}>
+              <figure class="abg-browser">
+                <div class="abg-browser__bar"><i></i><i></i><i></i><span class="abg-browser__url">{d.titulo}</span></div>
+                <img src={d.img} width="900" height="563" alt={d.alt} loading="lazy" />
+              </figure>
+              <span class="demo__ir">Abrir «{d.titulo}» →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="abg-section" aria-labelledby="como-h">
+      <div class="abg-wrap como">
+        <header>
+          <p class="abg-eyebrow">Cómo trabajamos</p>
+          <h2 id="como-h" class="abg-h2">Cuatro pasos y <em>una persona</em> al otro lado.</h2>
+        </header>
+        <ol class="como__pasos">
+          <li><strong>Reunión.</strong> Media hora, en tu despacho o por videollamada: qué haces, a quién atiendes y qué te preguntan siempre.</li>
+          <li><strong>Diseño y textos.</strong> Preparamos la web completa con tus palabras. Tú solo nos pasas el logo y las fotos que tengas.</li>
+          <li><strong>Revisión.</strong> La ves en tu móvil con un enlace privado y nos dices qué cambiarías.</li>
+          <li><strong>Publicación y cuidado.</strong> Sale con tu dominio, conectada a tu ficha de Google, y seguimos a cargo de ella cada mes.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="abg-section abg-section--tint" aria-labelledby="faq-h">
+      <div class="abg-wrap faq">
+        <header>
+          <p class="abg-eyebrow">Preguntas frecuentes</p>
+          <h2 id="faq-h" class="abg-h2">Antes de <em>empezar.</em></h2>
+        </header>
+        <div class="faq__lista">
+          {p.preguntas.map((x) => (
+            <details>
+              <summary>{x.q}</summary>
+              <p set:html={x.a} />
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="abg-section cierre" aria-label="Contacto">
+      <div class="abg-wrap cierre__in">
+        <p class="cierre__txt">{p.cierre}</p>
+        <BotonModal client:visible label="Solicitar una reunión" className="abg-btn abg-btn--coral" />
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .sec-intro { padding-top: clamp(1rem, 2vw, 1.5rem); }
+  .sec-intro__grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; border-top: 1px solid var(--ink); padding-top: 2rem; }
+  .sec-intro__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
+  .sec-intro__texto p { font-family: var(--font-body); font-size: clamp(1.02rem, 1.3vw, 1.14rem); line-height: 1.7; color: var(--ink-2); margin: 0 0 1.1rem; max-width: 62ch; }
+
+  .lista-num { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+  .lista-num li { padding: 1.75rem 2rem 0.5rem 0; }
+  .lista-num li + li { padding-left: 2rem; border-left: 1px solid var(--line); }
+  .lista-num__n { font-family: var(--font-display); font-style: italic; color: var(--coral); font-size: 1.15rem; }
+  .lista-num h3, .pieza h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.35rem, 2vw, 1.7rem); letter-spacing: -0.015em; line-height: 1.15; margin: 0.8rem 0 0.7rem; }
+  .lista-num p, .pieza p { font-family: var(--font-body); font-size: 0.98rem; line-height: 1.65; color: var(--ink-2); margin: 0; }
+
+  .piezas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--ink); }
+  .pieza { padding: 1.5rem 1.75rem 1.75rem 0; border-bottom: 1px solid var(--line); }
+  .pieza:not(:nth-child(3n + 1)) { padding-left: 1.75rem; border-left: 1px solid var(--line); }
+  .pieza h3 { margin-top: 0; font-size: clamp(1.2rem, 1.7vw, 1.45rem); }
+  .sec-mas { margin: 2.25rem 0 0; font-family: var(--font-body); }
+
+  .demos { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); }
+  .demos--1 { grid-template-columns: minmax(0, 1fr); max-width: 860px; }
+  .demos--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .demo { display: grid; gap: 0.9rem; text-decoration: none; color: inherit; }
+  .demo figure { margin: 0; transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+  .demo:hover figure { transform: translateY(-4px); }
+  .demo:focus-visible { outline: 2px solid var(--coral); outline-offset: 6px; }
+  .demo__ir { font-family: var(--font-body); font-weight: 500; font-size: 0.95rem; color: var(--coral-ink); }
+
+  .como { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+  .como__pasos { margin: 0; padding: 0; list-style: none; counter-reset: paso; border-top: 1px solid var(--ink); }
+  .como__pasos li { counter-increment: paso; position: relative; padding: 1.25rem 0 1.25rem 3rem; border-bottom: 1px solid var(--line); font-family: var(--font-body); line-height: 1.65; color: var(--ink-2); }
+  .como__pasos li::before { content: counter(paso, decimal-leading-zero); position: absolute; left: 0; top: 1.2rem; font-family: var(--font-display); font-style: italic; color: var(--coral); }
+  .como__pasos strong { color: var(--ink); font-weight: 600; }
+
+  .faq { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+  .faq__lista { border-top: 1px solid var(--ink); }
+  .faq__lista details { border-bottom: 1px solid var(--line); }
+  .faq__lista summary { cursor: pointer; list-style: none; padding: 1.2rem 2rem 1.2rem 0; position: relative; font-family: var(--font-body); font-weight: 500; font-size: 1.02rem; color: var(--ink); }
+  .faq__lista summary::-webkit-details-marker { display: none; }
+  .faq__lista summary::after { content: "+"; position: absolute; right: 0; top: 1.05rem; font-size: 1.3rem; color: var(--coral); transition: transform 0.3s ease; }
+  .faq__lista details[open] summary::after { transform: rotate(45deg); }
+  .faq__lista summary:focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; }
+  .faq__lista p { font-family: var(--font-body); line-height: 1.7; color: var(--ink-2); margin: 0 0 1.25rem; max-width: 62ch; }
+
+  .cierre { padding-block: clamp(3.5rem, 7vw, 5.5rem); }
+  .cierre__in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; border-top: 1px solid var(--ink); padding-top: 2rem; }
+  .cierre__txt { font-family: var(--font-display); font-size: clamp(1.5rem, 2.8vw, 2.3rem); line-height: 1.15; letter-spacing: -0.02em; margin: 0; max-width: 28ch; }
+
+  @media (max-width: 900px) {
+    .sec-intro__grid, .como, .faq { grid-template-columns: minmax(0, 1fr); }
+    .lista-num, .piezas { grid-template-columns: minmax(0, 1fr); }
+    .lista-num li + li, .pieza:not(:nth-child(3n + 1)) { padding-left: 0; border-left: 0; }
+    .lista-num li { border-bottom: 1px solid var(--line); padding-bottom: 1.5rem; }
+    .demos--2 { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .demo figure, .faq__lista summary::after { transition: none; }
+  }
+</style>

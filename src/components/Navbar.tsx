@@ -44,7 +44,7 @@ export default function Navbar() {
       onMouseEnter={(e) => { e.currentTarget.style.background = "#D14124"; }}
       onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(209, 65, 36, 0.85)"; }}
     >
-      Presupuesto →
+      Hablemos →
     </button>
   );
 

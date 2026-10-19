@@ -1,9 +1,9 @@
 ---
 const pasos = [
-  { dia: "Día 1", titulo: "Hablamos 30 minutos", texto: "Nos cuentas qué haces, a quién atiendes y qué te preguntan siempre. De ahí salen los textos, con tus palabras." },
-  { dia: "Días 2 y 3", titulo: "Diseño y textos", texto: "Preparamos tu web completa. Nos pasas el logo y las fotos que tengas; si faltan, te decimos cuáles hacer con el móvil." },
-  { dia: "Días 4 y 5", titulo: "La ves y pides cambios", texto: "Te mandamos un enlace privado para verla en tu móvil. Nos dices qué cambiarías y la dejamos como quieres." },
-  { dia: "Día 7", titulo: "Publicada", texto: "La web sale con tu dominio, aparece en Google y te explicamos cómo ver quién te contacta." },
+  { dia: "01 · Reunión", titulo: "Hablamos 30 minutos", texto: "Nos cuentas qué haces, a quién atiendes y qué te preguntan siempre. De ahí salen los textos, con tus palabras." },
+  { dia: "02 · Diseño", titulo: "Diseño y textos", texto: "Preparamos tu web completa. Nos pasas el logo y las fotos que tengas; si faltan, te decimos cuáles hacer con el móvil." },
+  { dia: "03 · Revisión", titulo: "La ves y pides cambios", texto: "Te mandamos un enlace privado para verla en tu móvil. Nos dices qué cambiarías y la dejamos como quieres." },
+  { dia: "04 · Publicación", titulo: "Publicada", texto: "La web sale con tu dominio, aparece en Google y te explicamos cómo ver quién te contacta." },
 ];
 ---
 
@@ -11,10 +11,10 @@ const pasos = [
   <div class="abg-wrap">
     <header class="abg-head">
       <p class="abg-eyebrow">Cómo trabajamos</p>
-      <h2 class="abg-h2">Una semana, <em>cuatro pasos.</em></h2>
+      <h2 class="abg-h2">Un método claro, <em>en cuatro pasos.</em></h2>
       <p class="abg-lead">
-        Así va el plan Profesional. El plazo empieza a contar cuando tenemos tus fotos y tus datos,
-        y queda por escrito: si nos retrasamos, te descontamos 100 € de la factura.
+        Antes de empezar dejamos por escrito qué incluye tu web, cuánto cuesta y cuándo se publica.
+        Tú solo tienes que contarnos cómo trabajas; los textos, el diseño y la puesta en marcha corren de nuestra cuenta.
       </p>
     </header>
 
@@ -27,10 +27,12 @@ const pasos = [
         </li>
       ))}
     </ol>
+    <p class="proceso__mas"><a class="abg-link" href="/servicios/">Ver planes, plazos y precios</a></p>
   </div>
 </section>
 
 <style>
+  .proceso__mas { margin: 2.5rem 0 0; font-family: var(--font-body); }
   .proceso__pasos {
     list-style: none; margin: 0; padding: 0;
     display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0;

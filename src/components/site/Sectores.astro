@@ -3,6 +3,7 @@ const sectores = [
   {
     n: "01",
     nombre: "Gestorías y asesorías",
+    pagina: "/diseno-web-gestorias/",
     para: "Que el cliente mande sus facturas desde el móvil y sepa qué plazo le toca, sin llamar al despacho.",
     demos: [
       { t: "Demo clásica", url: "/demos/gestoria-clasica/" },
@@ -12,12 +13,14 @@ const sectores = [
   {
     n: "02",
     nombre: "Despachos de abogados",
+    pagina: "/diseno-web-abogados/",
     para: "Que quien te busca entienda en diez segundos qué llevas, cuánto cuesta la primera consulta y cómo pedirla.",
     demos: [{ t: "Ver la demo", url: "/demos/despacho-abogados/" }],
   },
   {
     n: "03",
     nombre: "Administradores de fincas",
+    pagina: "/diseno-web-administradores-de-fincas/",
     para: "Que los vecinos avisen de una avería y consulten actas y cuentas sin colapsar el teléfono de la oficina.",
     demos: [{ t: "Ver la demo", url: "/demos/administrador-fincas/" }],
   },
@@ -39,10 +42,11 @@ const sectores = [
       {sectores.map((s) => (
         <article class="sector">
           <p class="sector__n">{s.n}</p>
-          <h3 class="sector__nombre">{s.nombre}</h3>
+          <h3 class="sector__nombre"><a href={s.pagina}>{s.nombre}</a></h3>
           <p class="sector__para">{s.para}</p>
           <p class="sector__demos">
-            {s.demos.map((d) => <a class="abg-link" href={d.url}>{d.t} →</a>)}
+            <a class="abg-link" href={s.pagina}>Cómo sería tu web →</a>
+            {s.demos.map((d) => <a class="abg-link" href={d.url}>{d.t}</a>)}
           </p>
         </article>
       ))}
@@ -51,6 +55,8 @@ const sectores = [
 </section>
 
 <style>
+  .sector__nombre a { color: inherit; text-decoration: none; }
+  .sector__nombre a:hover { color: var(--coral-ink); }
   .sectores { padding-top: clamp(3.5rem, 7vw, 6rem); padding-bottom: clamp(1.5rem, 3vw, 2.5rem); border-top: 1px solid var(--line); }
   .sectores__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
   .sector { display: flex; flex-direction: column; padding: 1.75rem 2rem 0.25rem 0; }
