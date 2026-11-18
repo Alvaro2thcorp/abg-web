@@ -166,9 +166,17 @@ $$('[data-magnet]').forEach((el) => magnet(el));
 $$('.cards, .tabs__list').forEach((g) => { $$(':scope > *', g).forEach((c) => (c.dataset.spot = '')); spotlight(g); });
 
 /* Maqueta 3D y visita 360º: su código (three.js) solo se descarga al acercarse a la sección */
+// y solo después de que el visitante haga algo (bajar, tocar, una tecla): así no compite con la carga inicial
+let interacted = false;
+const waiting: (() => void)[] = [];
+const onFirst = () => { if (interacted) return; interacted = true; waiting.splice(0).forEach((f) => f()); };
+['scroll', 'pointerdown', 'keydown', 'touchstart', 'wheel'].forEach((ev) => addEventListener(ev, onFirst, { once: true, passive: true }));
 const lazyMount = (sel: string, load: (el: HTMLElement) => Promise<unknown>) => $$(sel).forEach((el) => {
-  const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) { o.disconnect(); load(el).catch(() => {}); } }, { rootMargin: '600px 0px' });
-  o.observe(el);
+  const watch = () => {
+    const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) { o.disconnect(); load(el).catch(() => {}); } }, { rootMargin: '600px 0px' });
+    o.observe(el);
+  };
+  if (interacted) watch(); else waiting.push(watch);
 });
 lazyMount('[data-maqueta]', (el) => import('./maqueta').then((m) => m.mountMaqueta(el)));
 lazyMount('[data-pano]', (el) => import('./pano').then((m) => m.mountPano(el)));

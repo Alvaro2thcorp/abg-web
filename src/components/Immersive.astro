@@ -2,9 +2,18 @@
 // Maqueta 3D girable + visita virtual 360º. Las dos piezas cargan su código (three.js) solo al acercarse
 // a esta sección, así la portada sigue rápida. Sin JS o sin WebGL se queda la imagen fija.
 import Sel from './Sel.astro';
-import { type Lang } from '../i18n';
-interface Props { lang: Lang }
-const { lang } = Astro.props;
+import { r, type Lang } from '../i18n';
+interface Props {
+  lang: Lang;
+  /** qué piezas enseñar: las dos, solo la maqueta o solo la visita 360º */
+  show?: 'all' | 'maqueta' | 'pano';
+  /** solo Leo Villa, sin selector de la casa de ejemplo (página del caso de Ceyra) */
+  ceyraOnly?: boolean;
+  h2?: string;
+  lead?: string;
+  tone?: 'papel' | 'con';
+}
+const { lang, show = 'all', ceyraOnly = false, h2, lead, tone = 'papel' } = Astro.props;
 const es = lang === 'es';
 const c = es ? {
   h2: 'Que la vean antes de que exista.',
@@ -91,40 +100,40 @@ const rooms = [
   { id: 'bano', name: name.bano, src: '/img/360/bano', start: [0.72, 0.5], hot: [{ to: 'dormitorio', u: 0.81, v: 0.64 }] },
 ];
 ---
-<section class="sec imm" id="3d" aria-labelledby="imm-t">
+<section class:list={['sec imm', tone === 'con' && 'sec--con']} id="3d" aria-labelledby="imm-t">
   <div class="wrap">
-    <div class="head" data-stagger><h2 class="h2 rv" id="imm-t">{c.h2}</h2><p class="rv">{c.lead}</p></div>
+    <div class="head" data-stagger><h2 class="h2 rv" id="imm-t">{h2 ?? c.h2}</h2><p class="rv">{lead ?? c.lead}{!h2 && <><br /><a class="link" style="display:inline-block;margin-top:14px" href={r('tresd', lang)}>{es ? 'Ver el servicio' : 'See the service'} <span class="arrow" aria-hidden="true">→</span></a></>}</p></div>
 
-    <div class="mq" data-maqueta>
+    {show !== 'pano' && <div class="mq" data-maqueta data-ceyra-only={ceyraOnly ? '' : undefined}>
       <div class="mq__txt">
         <span class="kick">{c.mqKick}</span>
         <h3 class="h3">{c.mqT}</h3>
         <p>{c.mqD}</p>
-        <div class="mq__sw" role="group" aria-label={c.mqKick}>
+        {!ceyraOnly && <div class="mq__sw" role="group" aria-label={c.mqKick}>
           {c.models.map(([k, n], i) => <button type="button" data-mq-model={k} aria-pressed={i === 0 ? 'true' : 'false'}>{n}</button>)}
-        </div>
+        </div>}
         <div data-mq-set="ceyra" data-name={c.ceyra.name} data-info={c.ceyra.info} data-ex={c.ceyra.ex}>
           <div class="mq__levels" role="group" aria-label={c.ceyra.name}>
             {c.ceyra.levels.map(([k, n, info]) => <button type="button" data-mq-level={k} data-name={n} data-info={info} aria-pressed="false">{n}</button>)}
           </div>
         </div>
-        <div data-mq-set="ejemplo" data-name={c.mqDefName} data-info={c.mqDefInfo} data-ex={c.explode} hidden>
+        {!ceyraOnly && <div data-mq-set="ejemplo" data-name={c.mqDefName} data-info={c.mqDefInfo} data-ex={c.explode} hidden>
           <div class="mq__levels" role="group" aria-label={c.mqDefName}>
             {c.levels.map(([k, n, info]) => <button type="button" data-mq-level={k} data-name={n} data-info={info} aria-pressed="false">{n}</button>)}
           </div>
-        </div>
+        </div>}
         <button type="button" class="mq__ex" data-mq-explode aria-pressed="false"><span class="mq__exi" aria-hidden="true"><i></i><i></i><i></i></span><span data-mq-exlabel>{c.ceyra.ex}</span></button>
         <div class="mq__info" aria-live="polite"><b data-mq-name>{c.ceyra.name}</b><span data-mq-info>{c.ceyra.info}</span></div>
         <p class="note mq__note" data-for="ceyra">{c.ceyra.note}</p>
-        <p class="note mq__note" data-for="ejemplo">{c.sample}</p>
+        {!ceyraOnly && <p class="note mq__note" data-for="ejemplo">{c.sample}</p>}
       </div>
       <Sel class="mq__stage" data-mq-stage data-label={c.mqLabel}>
         <img class="mq__poster" src="/img/maqueta/poster-960.webp" srcset="/img/maqueta/poster-960.webp 960w, /img/maqueta/poster-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 62vw" width="1600" height="1100" alt={c.mqPosterAlt} loading="lazy" decoding="async" />
         <span class="hint" aria-hidden="true"><span class="hint__ic"></span>{c.mqHint}</span>
       </Sel>
-    </div>
+    </div>}
 
-    <div class="pano" data-pano data-rooms={JSON.stringify(rooms)}>
+    {show !== 'maqueta' && <div class:list={['pano', show === 'pano' && 'pano--solo']} data-pano data-rooms={JSON.stringify(rooms)}>
       <div class="pano__stage" data-pano-stage data-label={c.pLabel}>
         <img class="pano__poster" src="/img/360/poster-960.webp" srcset="/img/360/poster-960.webp 960w, /img/360/poster-1600.webp 1600w" sizes="100vw" width="1600" height="800" alt={c.posterAlt} loading="lazy" decoding="async" />
         <div class="pano__hots" data-pano-hots></div>
@@ -148,7 +157,7 @@ const rooms = [
         </div>
         <p class="note pano__cr">{c.credit}</p>
       </div>
-    </div>
+    </div>}
   </div>
 </section>
 
@@ -198,6 +207,7 @@ const rooms = [
 
   /* 360 */
   .pano{margin-top:clamp(72px,9vw,128px)}
+  .pano--solo{margin-top:0}
   .pano__stage{position:relative;aspect-ratio:21/9;background:var(--tinta);overflow:hidden;cursor:grab;user-select:none}
   .pano__stage:active{cursor:grabbing}
   .pano__stage :global(canvas){position:absolute;inset:0;width:100%!important;height:100%!important;display:block;outline:none}

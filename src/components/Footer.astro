@@ -14,7 +14,7 @@ const year = new Date().getFullYear();
       </div>
       <div class="ft__col">
         <h2>{t.services}</h2>
-        <ul>{LINE_KEYS.map((k) => <li><a href={r(k, lang)}>{t.lines[k][0]}</a></li>)}</ul>
+        <ul>{LINE_KEYS.map((k) => <li><a href={r(k, lang)}>{t.lines[k][0]}</a></li>)}<li><a href={r('tresd', lang)}>{lang === 'es' ? 'Maquetas 3D y 360º' : '3D models and 360º'}</a></li></ul>
       </div>
       <div class="ft__col">
         <h2>ABGFRAME</h2>

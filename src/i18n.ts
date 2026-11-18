@@ -14,6 +14,7 @@ export const routes = {
   casos: { es: '/casos/', en: '/en/work/' },
   ceyra: { es: '/casos/ceyra-studio/', en: '/en/work/ceyra-studio/' },
   demo: { es: '/demo/', en: '/en/demo/' },
+  tresd: { es: '/maquetas-3d-visitas-virtuales/', en: '/en/3d-models-virtual-tours/' },
   proceso: { es: '/proceso/', en: '/en/process/' },
   estudio: { es: '/estudio/', en: '/en/studio/' },
   contacto: { es: '/contacto/', en: '/en/contact/' },

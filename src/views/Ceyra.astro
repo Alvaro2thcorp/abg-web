@@ -4,6 +4,7 @@ import Sel from '../components/Sel.astro';
 import Pic from '../components/Pic.astro';
 import Crumbs from '../components/Crumbs.astro';
 import ContactBlock from '../components/ContactBlock.astro';
+import Immersive from '../components/Immersive.astro';
 import { r, ui, type Lang } from '../i18n';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -135,6 +136,10 @@ const shots = ['home', 'villa', 'experiencia', 'inversores'];
       <figure class="phone phone--poster"><Pic src="/img/ceyra/revista" w={1080} h={1350} widths={[640, 960, 1280]} alt={es ? 'Cartel de la campaña de Ceyra Studio' : 'Ceyra Studio campaign poster'} sizes="300px" /></figure>
     </div>
   </section>
+
+  <Immersive lang={lang} show="maqueta" ceyraOnly tone="con"
+    h2={es ? 'Leo Villa, en 3D.' : 'Leo Villa in 3D.'}
+    lead={es ? 'Con el modelo de Rhino de Ceyra hemos montado esta maqueta. Así puede verla un inversor: girarla, levantar las cubiertas y ver cómo se reparte por dentro, sin haber pisado Sri Lanka.' : 'We built this model from Ceyra’s Rhino file. This is how an investor can see it: rotate it, lift the roofs and see the layout inside without ever setting foot in Sri Lanka.'} />
 
   <section class="sec sec--ink" aria-labelledby="res-t">
     <div class="wrap">

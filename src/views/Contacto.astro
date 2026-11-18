@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Crumbs from '../components/Crumbs.astro';
 import ContactBlock from '../components/ContactBlock.astro';
+import SpeedTest from '../components/SpeedTest.astro';
 import { r, ui, type Lang } from '../i18n';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -25,6 +26,7 @@ const page = { '@type': 'ContactPage', name: t.contact, url: `https://abgframe.c
       </ol>
     </div>
   </section>
+  <SpeedTest lang={lang} />
 </Base>
 <style>
   .nxt{align-items:start}

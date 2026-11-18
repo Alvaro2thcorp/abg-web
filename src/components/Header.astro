@@ -3,7 +3,7 @@ import { ui, r, routes, LINE_KEYS, type Lang, type RouteKey } from '../i18n';
 interface Props { lang: Lang; current?: RouteKey; alt?: string | null }
 const { lang, current, alt } = Astro.props;
 const t = ui[lang];
-const isServ = current && (LINE_KEYS as readonly string[]).includes(current);
+const isServ = current && ([...LINE_KEYS, 'tresd'] as readonly string[]).includes(current);
 const nav: { key: RouteKey; label: string }[] = [
   { key: 'casos', label: t.work },
   { key: 'proceso', label: t.process },
@@ -23,6 +23,7 @@ const altHref = alt ?? routes.home[lang === 'es' ? 'en' : 'es'];
         <summary aria-current={isServ ? 'page' : undefined}>{t.services}</summary>
         <div class="mega">
           {LINE_KEYS.map((k) => <a href={r(k, lang)}><b>{t.lines[k][0]}</b><span>{t.lines[k][1]}</span></a>)}
+          <a href={r('tresd', lang)}><b>{lang === 'es' ? 'Maquetas 3D y visitas 360º' : '3D models and 360º tours'}</b><span>{lang === 'es' ? 'Para cualquier línea' : 'For any line'}</span></a>
         </div>
       </details>
       {nav.map((n) => <a href={r(n.key, lang)} aria-current={current === n.key ? 'page' : undefined}>{n.label}</a>)}
@@ -35,6 +36,7 @@ const altHref = alt ?? routes.home[lang === 'es' ? 'en' : 'es'];
 <div class="mnav" id="mnav" hidden>
   <ul class="lines">
     {LINE_KEYS.map((k) => <li><a href={r(k, lang)}>{t.lines[k][0]}<span>{t.lines[k][1]}</span></a></li>)}
+    <li><a href={r('tresd', lang)}>{lang === 'es' ? 'Maquetas 3D y visitas 360º' : '3D models and 360º tours'}<span>{lang === 'es' ? 'Para cualquier línea' : 'For any line'}</span></a></li>
   </ul>
   <ul class="big">
     {nav.map((n) => <li><a href={r(n.key, lang)}>{n.label}</a></li>)}
