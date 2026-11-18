@@ -29,6 +29,7 @@ const service = {
 const others = LINE_KEYS.filter((x) => x !== k);
 ---
 <Base lang={lang} title={c.seoTitle} description={c.seoDesc} route={k} breadcrumbs={crumbs} schema={[service, faqLd(c.faq)]}>
+  <link slot="head" rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset={[640, 960, 1280, 1920].map((x) => `${c.photo.src}-${x}.webp ${x}w`).join(", ")} imagesizes="(max-width: 860px) 100vw, 38vw" />
   <Crumbs items={crumbs} />
   <section class="phero">
     <div class="wrap grid lh">
