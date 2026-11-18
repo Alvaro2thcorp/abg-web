@@ -1,0 +1,89 @@
+---
+import Base from '../layouts/Base.astro';
+import Crumbs from '../components/Crumbs.astro';
+import Sel from '../components/Sel.astro';
+import Pic from '../components/Pic.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import { r, ui, CONTACT, type Lang } from '../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const es = lang === 'es';
+const t = ui[lang];
+const crumbs = [{ name: t.breadcrumbHome, href: r('home', lang) }, { name: t.studio, href: r('estudio', lang) }];
+const c = es ? {
+  title: 'El estudio: Álvaro Bergillos y ABGFRAME, en Alicante | ABGFRAME',
+  desc: 'ABGFRAME es una agencia web de Alicante especializada en arquitectura, construcción e inmobiliaria. La dirige Álvaro Bergillos, que diseña y programa cada web.',
+  h1: 'Una agencia pequeña, especializada en un solo sector',
+  lead: 'ABGFRAME hace webs para quien diseña, construye y vende espacios. Nada más. Así hablamos tu idioma desde la primera llamada y podemos enseñarte casos de tu mismo sector.',
+  whoT: 'Quién hay detrás',
+  who: ['Álvaro Bergillos fundó ABGFRAME en Alicante. Diseña y programa cada web, y es quien habla contigo el primer día y quien te contesta después de publicar.', 'No hay comerciales ni centralita. Si estás en la provincia de Alicante, vamos a verte a tu estudio o a tu obra.'],
+  whyT: 'Por qué solo este sector',
+  why: [
+    ['Hablamos el mismo idioma', 'Plano, memoria de calidades, sobre plano, llave en mano. No hace falta explicarnos qué es una reserva o una cesión de terreno.'],
+    ['Las piezas ya están pensadas', 'Selector de viviendas, portfolio por proyecto, calculadora de presupuesto, valorador. Cada una resuelve un problema concreto del sector.'],
+    ['El sector se conecta', 'El arquitecto conoce a la promotora, la promotora a la constructora, la constructora a la inmobiliaria. Un buen trabajo se recomienda solo.'],
+  ],
+  nameT: 'Por qué ABGFRAME',
+  name: 'En las herramientas con las que se diseñan las webs, cada pantalla vive dentro de un frame. El logo es ABG seleccionado, como una palabra marcada en un editor: seleccionamos lo importante de cada proyecto y lo enseñamos bien.',
+} : {
+  title: 'The studio: Álvaro Bergillos and ABGFRAME, Alicante | ABGFRAME',
+  desc: 'ABGFRAME is an Alicante web studio specialised in architecture, construction and real estate. It is led by Álvaro Bergillos, who designs and builds every website.',
+  h1: 'A small studio, specialised in one sector',
+  lead: 'ABGFRAME builds websites for people who design, build and sell spaces. Nothing else. That way we speak your language from the first call and can show you work from your own sector.',
+  whoT: 'Who is behind it',
+  who: ['Álvaro Bergillos founded ABGFRAME in Alicante. He designs and builds every website, and he is the one who talks to you on day one and answers after launch.', 'No sales team, no switchboard. If you are in the province of Alicante, we come to see you at your studio or on site.'],
+  whyT: 'Why only this sector',
+  why: [
+    ['We speak the same language', 'Floor plans, specification sheets, off-plan, turnkey. You do not need to explain what a reservation or a land lease is.'],
+    ['The pieces are already thought through', 'Unit selector, project portfolio, estimate calculator, valuation tool. Each one solves a specific problem in the sector.'],
+    ['The sector is connected', 'Architects know developers, developers know builders, builders know agencies. Good work gets referred.'],
+  ],
+  nameT: 'Why ABGFRAME',
+  name: 'In the tools used to design websites, every screen lives inside a frame. The logo is ABG selected, like a highlighted word in an editor: we select what matters in each project and show it well.',
+};
+const person = { '@type': 'Person', '@id': 'https://abgframe.com/#alvaro', name: 'Álvaro Bergillos', jobTitle: es ? 'Fundador de ABGFRAME' : 'Founder of ABGFRAME', worksFor: { '@id': 'https://abgframe.com/#org' }, image: 'https://abgframe.com/img/alvaro-bergillos-960.webp', sameAs: [`https://www.instagram.com/${CONTACT.instagramAlvaro}/`], address: { '@type': 'PostalAddress', addressLocality: 'Alicante', addressCountry: 'ES' } };
+const about = { '@type': 'AboutPage', name: c.h1, url: `https://abgframe.com${r('estudio', lang)}`, mainEntity: { '@id': 'https://abgframe.com/#alvaro' } };
+---
+<Base lang={lang} title={c.title} description={c.desc} route="estudio" breadcrumbs={crumbs} schema={[person, about]}>
+  <Crumbs items={crumbs} />
+  <section class="phero"><div class="wrap"><h1 class="h1">{c.h1}</h1><p class="lead">{c.lead}</p></div></section>
+  <section class="sec sec--con">
+    <div class="wrap grid es-who">
+      <Sel as="figure" class="es-fig">
+        <Pic src="/img/alvaro-bergillos" w={960} h={1200} widths={[480, 960]} eager alt={es ? 'Álvaro Bergillos, fundador de ABGFRAME' : 'Álvaro Bergillos, founder of ABGFRAME'} sizes="(max-width: 860px) 80vw, 34vw" />
+        <figcaption class="cap"><a href={`https://www.instagram.com/${CONTACT.instagramAlvaro}/`} rel="noopener" target="_blank">Instagram @{CONTACT.instagramAlvaro}</a></figcaption>
+      </Sel>
+      <div class="es-txt">
+        <h2 class="h2">{c.whoT}</h2>
+        <div class="prose lead" style="margin-top:24px">{c.who.map((p) => <p>{p}</p>)}</div>
+        <p style="margin-top:28px"><a class="link" href={r('contacto', lang)}>{es ? 'Hablar con Álvaro' : 'Talk to Álvaro'} <span class="arrow" aria-hidden="true">→</span></a></p>
+      </div>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap">
+      <div class="head"><h2 class="h2 rv">{c.whyT}</h2></div>
+      <ol class="steps three" data-stagger>{c.why.map(([a, b], i) => <li class="rv"><span class="n">{String(i + 1).padStart(2, '0')}</span><b>{a}</b><p>{b}</p></li>)}</ol>
+    </div>
+  </section>
+  <section class="sec sec--ink">
+    <div class="wrap grid">
+      <div class="es-logo"><img src="/img/abgframe-logo-color-negativo.svg" alt="ABGFRAME" width="480" height="97" loading="lazy" /></div>
+      <div class="es-name"><h2 class="h3">{c.nameT}</h2><p style="margin-top:14px;color:#BDBCB7">{c.name}</p></div>
+    </div>
+  </section>
+  <ContactBlock lang={lang} />
+</Base>
+<style>
+  .phero .lead{margin-top:24px}
+  .es-who{align-items:center}
+  .es-fig{grid-column:1/6;margin:12px}
+  .es-fig>:global(img){aspect-ratio:4/5;width:100%;object-fit:cover;object-position:top}
+  .es-fig .cap{position:absolute;left:0;bottom:-44px}
+  .es-txt{grid-column:7/13}
+  .three{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .es-logo{grid-column:1/7;align-self:center}
+  .es-logo img{width:min(480px,100%)}
+  .es-name{grid-column:8/13}
+  @media (max-width:860px){.es-fig,.es-txt,.es-logo,.es-name{grid-column:1/-1}.es-fig{max-width:360px}.es-txt,.es-name{margin-top:64px}.three{grid-template-columns:1fr}}
+</style>

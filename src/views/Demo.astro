@@ -1,0 +1,34 @@
+---
+// Hueco reservado para P2 (demo de promoción). noindex hasta que exista.
+import Base from '../layouts/Base.astro';
+import Crumbs from '../components/Crumbs.astro';
+import Piece from '../components/Piece.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import { r, ui, type Lang } from '../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const es = lang === 'es';
+const t = ui[lang];
+const crumbs = [{ name: t.breadcrumbHome, href: r('home', lang) }, { name: 'Demo', href: r('demo', lang) }];
+---
+<Base lang={lang} noindex route="demo" breadcrumbs={crumbs}
+  title={es ? 'Demo de promoción de obra nueva · próximamente | ABGFRAME' : 'New-build development demo · coming soon | ABGFRAME'}
+  description={es ? 'Una promoción ficticia en la Costa Blanca para probar el selector de viviendas. Próximamente.' : 'A fictional Costa Blanca development to try the unit selector. Coming soon.'}>
+  <Crumbs items={crumbs} />
+  <section class="phero">
+    <div class="wrap grid">
+      <div style="grid-column:1/7" class="dm-t">
+        <span class="kick">{es ? 'Demo · proyecto ficticio' : 'Demo · fictional project'}</span>
+        <h1 class="h1">{es ? 'Una promoción para probar el selector de viviendas' : 'A development to try the unit selector'}</h1>
+        <p class="lead" style="margin-top:24px">{es ? 'Doce viviendas en la Costa Blanca, con el edificio, cada planta, plano y estado, en varios idiomas. La estamos terminando. Mientras, aquí tienes la pieza en pequeño.' : 'Twelve homes on the Costa Blanca, with the building, every floor, plan and status, in several languages. We are finishing it. Meanwhile, here is the piece in miniature.'}</p>
+        <div class="actions"><a class="link" href={r('promotoras', lang)}>{es ? 'Web para promotoras' : 'Websites for developers'} <span class="arrow" aria-hidden="true">→</span></a></div>
+      </div>
+      <div class="dm-p"><Piece k="promotoras" lang={lang} uid="demo" /><p class="note" style="text-align:center;margin-top:12px">{es ? 'Datos de ejemplo.' : 'Sample data.'}</p></div>
+    </div>
+  </section>
+  <div class="sec--con"><ContactBlock lang={lang} preset="promotoras" title={es ? '¿Quieres verla antes que nadie?' : 'Want to see it first?'} text={es ? 'Déjanos tu contacto y te la enseñamos en una llamada cuando esté lista.' : 'Leave your details and we will show it to you on a call when it is ready.'} /></div>
+</Base>
+<style>
+  .dm-p{grid-column:8/13;align-self:center;background:var(--hormigon);padding:clamp(20px,3vw,40px)}
+  @media (max-width:860px){.dm-t,.dm-p{grid-column:1/-1!important}.dm-p{margin-top:32px}}
+</style>

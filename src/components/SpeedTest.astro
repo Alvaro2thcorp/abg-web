@@ -1,0 +1,199 @@
+---
+// "¿Cuánto tarda tu web?" · el visitante mide su propia web en el móvil con Google PageSpeed Insights
+// y, si quiere, nos deja su contacto para recibir qué cambiaríamos. Sin datos inventados: todo sale de Google.
+import { CONTACT, r, type Lang } from '../i18n';
+interface Props { lang: Lang; tone?: 'papel' | 'con' }
+const { lang, tone = 'papel' } = Astro.props;
+// La API de Google necesita una clave gratuita (la cuota compartida sin clave suele estar agotada).
+// Se pone en Netlify como PUBLIC_PSI_KEY. Sin clave, la sección no se muestra.
+const KEY = import.meta.env.PUBLIC_PSI_KEY ?? '';
+const show = !!KEY || import.meta.env.PUBLIC_PSI_FORCE === '1';
+const es = lang === 'es';
+const c = es ? {
+  kick: 'Herramienta gratuita',
+  h2: '¿Cuánto tarda tu web en el móvil?',
+  lead: 'Escribe la dirección de tu web y la medimos ahora con Google PageSpeed Insights, la misma prueba que usa Google. Tarda unos 20 segundos.',
+  ph: 'tuempresa.com', btn: 'Medir mi web', label: 'Dirección de tu web',
+  steps: ['Abriendo tu web en un móvil simulado…', 'Midiendo cuándo aparece lo importante…', 'Comprobando si algo se mueve al cargar…', 'Calculando la nota…'],
+  score: 'Nota de rendimiento en móvil', lcp: 'Contenido principal visible', cls: 'Saltos al cargar', tbt: 'Tiempo bloqueado',
+  good: 'bien', mid: 'mejorable', bad: 'lento',
+  scoreGood: 'Tu web carga rápido en el móvil. Ahora toca que convierta: que el visitante encuentre proyectos y una forma clara de contactar.',
+  scoreMid: 'Tu web es mejorable. Cada segundo de espera en el móvil hace que más gente se vaya antes de ver tus proyectos.',
+  scoreBad: 'Tu web carga lenta en el móvil. Muchos visitantes se irán antes de ver tus proyectos o tu teléfono.',
+  err: 'No hemos podido medirla ahora (puede que Google esté saturado o que la dirección no responda). Prueba otra vez en un minuto o déjanos tu contacto y la revisamos nosotros.',
+  bad_url: 'Escribe una dirección válida, por ejemplo tuempresa.com.',
+  leadT: '¿Te mandamos qué cambiaríamos?',
+  leadD: 'Álvaro revisa tu web y te envía tres cambios concretos por email. Gratis y sin compromiso.',
+  contact: 'Email o teléfono', send: 'Quiero la revisión',
+  ok: 'Recibido. Te escribimos con la revisión en un par de días.',
+  errSend: `No se ha podido enviar. Escríbenos a ${CONTACT.email}.`,
+  note: 'La medición la hace Google PageSpeed Insights. No guardamos la dirección salvo que nos pidas la revisión.',
+  privacy: 'Privacidad',
+} : {
+  kick: 'Free tool',
+  h2: 'How fast is your website on a phone?',
+  lead: 'Type your website address and we measure it now with Google PageSpeed Insights, the same test Google uses. It takes about 20 seconds.',
+  ph: 'yourcompany.com', btn: 'Test my website', label: 'Your website address',
+  steps: ['Opening your site on a simulated phone…', 'Measuring when the main content shows…', 'Checking whether anything jumps while loading…', 'Working out the score…'],
+  score: 'Mobile performance score', lcp: 'Main content visible', cls: 'Layout shift', tbt: 'Blocking time',
+  good: 'good', mid: 'needs work', bad: 'slow',
+  scoreGood: 'Your website loads fast on mobile. Next step is converting: visitors should find projects and a clear way to get in touch.',
+  scoreMid: 'Your website could be faster. Every second of waiting on a phone means more people leave before seeing your projects.',
+  scoreBad: 'Your website is slow on mobile. Many visitors will leave before seeing your projects or your phone number.',
+  err: 'We could not test it right now (Google may be busy or the address is not responding). Try again in a minute, or leave your details and we will review it ourselves.',
+  bad_url: 'Please type a valid address, for example yourcompany.com.',
+  leadT: 'Shall we send you what we would change?',
+  leadD: 'Álvaro reviews your website and emails you three specific changes. Free, no strings attached.',
+  contact: 'Email or phone', send: 'Send me the review',
+  ok: 'Received. We will email you the review within a couple of days.',
+  errSend: `It could not be sent. Please email ${CONTACT.email}.`,
+  note: 'The test is run by Google PageSpeed Insights. We do not store the address unless you ask for the review.',
+  privacy: 'Privacy',
+};
+---
+{show && <section data-key={KEY} class:list={['sec speed', tone === 'con' && 'sec--con']} id="mide-tu-web" aria-labelledby="sp-t" data-speed
+  data-steps={JSON.stringify(c.steps)} data-labels={JSON.stringify({ good: c.good, mid: c.mid, bad: c.bad, scoreGood: c.scoreGood, scoreMid: c.scoreMid, scoreBad: c.scoreBad, err: c.err, badUrl: c.bad_url })}>
+  <div class="wrap grid">
+    <div class="sp__txt">
+      <span class="kick">{c.kick}</span>
+      <h2 class="h2" id="sp-t">{c.h2}</h2>
+      <p class="lead">{c.lead}</p>
+      <form class="sp__form" data-speed-form novalidate>
+        <label class="visually-hidden" for="sp-url">{c.label}</label>
+        <input id="sp-url" name="url" type="text" inputmode="url" autocomplete="url" placeholder={c.ph} required />
+        <button class="btn" type="submit" data-magnet>{c.btn}</button>
+      </form>
+      <p class="note sp__note">{c.note}</p>
+    </div>
+
+    <div class="sp__out" aria-live="polite">
+      <div class="sp__idle" data-sp-idle aria-hidden="true">
+        <div class="sp__gauge"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="tr"/><circle cx="60" cy="60" r="52" class="ar" style="--p:.72"/></svg><b>?</b></div>
+      </div>
+      <p class="sp__run" data-sp-run hidden><span class="sp__spin" aria-hidden="true"></span><span data-sp-step></span></p>
+      <div class="sp__res" data-sp-res hidden>
+        <div class="sp__head">
+          <div class="sp__gauge" data-sp-gauge><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" class="tr"/><circle cx="60" cy="60" r="52" class="ar"/></svg><b data-sp-score>–</b></div>
+          <div><span class="kick" style="margin:0">{c.score}</span><p class="sp__host" data-sp-host></p><p class="sp__verdict" data-sp-verdict></p></div>
+        </div>
+        <dl class="sp__m">
+          <div><dt>{c.lcp}</dt><dd data-sp-m="lcp"></dd></div>
+          <div><dt>{c.cls}</dt><dd data-sp-m="cls"></dd></div>
+          <div><dt>{c.tbt}</dt><dd data-sp-m="tbt"></dd></div>
+        </dl>
+        <form class="cform sp__lead" action={CONTACT.formspree} method="POST" data-form>
+          <input type="hidden" name="_language" value={lang} />
+          <input type="hidden" name="_subject" value={es ? 'Revisión gratuita pedida desde el medidor' : 'Free review requested from the speed test (EN)'} />
+          <input type="hidden" name="pagina" value={Astro.url.pathname} />
+          <input type="hidden" name="web" data-sp-field="web" />
+          <input type="hidden" name="nota_movil" data-sp-field="nota" />
+          <label class="hp" aria-hidden="true">No rellenar<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+          <p class="full"><b>{c.leadT}</b><br /><span class="note">{c.leadD}</span></p>
+          <div class="fld full"><label for="sp-c">{c.contact}</label><input id="sp-c" name="contacto" type="text" autocomplete="email" required /></div>
+          <div class="full" style="display:flex;flex-wrap:wrap;align-items:center;gap:16px">
+            <button class="btn" type="submit">{c.send}</button>
+            <p class="status" role="status" aria-live="polite" data-ok={c.ok} data-err={c.errSend}></p>
+          </div>
+          <p class="legalnote full"><a href={r('privacidad', lang)}>{c.privacy}</a></p>
+        </form>
+      </div>
+      <p class="sp__err" data-sp-err hidden></p>
+    </div>
+  </div>
+</section>}
+
+<script>
+  // Medición con la API de PageSpeed Insights (Google), con la clave pública restringida a abgframe.com.
+  const root = document.querySelector<HTMLElement>('[data-speed]');
+  if (root) {
+    const KEY = root.dataset.key || '';
+    const form = root.querySelector<HTMLFormElement>('[data-speed-form]')!;
+    const steps: string[] = JSON.parse(root.dataset.steps!);
+    const L = JSON.parse(root.dataset.labels!);
+    const q = <T extends HTMLElement = HTMLElement>(s: string) => root.querySelector<T>(s)!;
+    const idle = q('[data-sp-idle]'), run = q('[data-sp-run]'), res = q('[data-sp-res]'), err = q('[data-sp-err]');
+    const push = (event: string, data: Record<string, unknown> = {}) => ((window as any).dataLayer = (window as any).dataLayer || []).push({ event, ...data });
+    const grade = (v: number, good: number, bad: number) => (v <= good ? 'good' : v <= bad ? 'mid' : 'bad');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      let raw = (form.elements.namedItem('url') as HTMLInputElement).value.trim();
+      if (!/^https?:\/\//i.test(raw)) raw = 'https://' + raw;
+      let url: URL;
+      try { url = new URL(raw); if (!url.hostname.includes('.')) throw 0; } catch { err.textContent = L.badUrl; err.hidden = false; return; }
+      const btn = form.querySelector('button')!;
+      btn.disabled = true; err.hidden = true; res.hidden = true; idle.hidden = true; run.hidden = false;
+      let i = 0;
+      const stepEl = q('[data-sp-step]');
+      stepEl.textContent = steps[0];
+      const timer = setInterval(() => { i = Math.min(i + 1, steps.length - 1); stepEl.textContent = steps[i]; }, 5000);
+      push('medidor_inicio', { web: url.hostname });
+      try {
+        const api = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(url.href)}&strategy=mobile&category=performance${KEY ? `&key=${KEY}` : ''}`;
+        const r = await fetch(api);
+        if (!r.ok) throw new Error(String(r.status));
+        const j = await r.json();
+        const lh = j.lighthouseResult;
+        const score = Math.round((lh.categories.performance.score ?? 0) * 100);
+        const a = lh.audits;
+        const lcp = a['largest-contentful-paint'].numericValue / 1000, cls = a['cumulative-layout-shift'].numericValue, tbt = a['total-blocking-time'].numericValue;
+        q('[data-sp-score]').textContent = String(score);
+        const g = q('[data-sp-gauge]');
+        g.style.setProperty('--p', String(score / 100));
+        g.dataset.grade = score >= 90 ? 'good' : score >= 50 ? 'mid' : 'bad';
+        q('[data-sp-host]').textContent = url.hostname.replace(/^www\./, '');
+        q('[data-sp-verdict]').textContent = score >= 90 ? L.scoreGood : score >= 50 ? L.scoreMid : L.scoreBad;
+        const fmt = new Intl.NumberFormat(document.documentElement.lang, { maximumFractionDigits: 2 });
+        const set = (k: string, txt: string, gr: string) => { const d = q(`[data-sp-m="${k}"]`); d.textContent = `${txt} · ${L[gr]}`; d.dataset.grade = gr; };
+        set('lcp', `${fmt.format(Math.round(lcp * 10) / 10)} s`, grade(lcp, 2.5, 4));
+        set('cls', fmt.format(Math.round(cls * 100) / 100), grade(cls, 0.1, 0.25));
+        set('tbt', `${Math.round(tbt)} ms`, grade(tbt, 200, 600));
+        q<HTMLInputElement>('[data-sp-field="web"]').value = url.href;
+        q<HTMLInputElement>('[data-sp-field="nota"]').value = `${score}/100 · LCP ${lcp.toFixed(1)} s · CLS ${cls.toFixed(2)} · TBT ${Math.round(tbt)} ms`;
+        run.hidden = true; res.hidden = false;
+        push('medidor_resultado', { web: url.hostname, nota: score });
+      } catch (x) {
+        run.hidden = true; idle.hidden = false;
+        err.textContent = L.err; err.hidden = false;
+        q<HTMLInputElement>('[data-sp-field="web"]').value = url.href;
+        push('medidor_error', { motivo: String(x) });
+      } finally { clearInterval(timer); btn.disabled = false; }
+    });
+  }
+</script>
+
+<style>
+  .sp__txt{grid-column:1/6}
+  .sp__txt .lead{margin-top:20px}
+  .sp__form{display:flex;gap:8px;margin-top:28px;max-width:520px}
+  .sp__form input{flex:1;min-width:0;min-height:48px;padding:10px 14px;font:inherit;font-size:16px;background:var(--blanco);border:1px solid var(--filete);color:var(--tinta)}
+  .sp__form input:focus{outline:2px solid var(--acero);outline-offset:1px;border-color:var(--acero)}
+  .sp__note{margin-top:12px;max-width:52ch}
+  .sp__out{grid-column:7/13;align-self:center;min-height:320px;display:grid;align-content:center}
+  .sp__idle{display:grid;place-items:center;opacity:.5}
+  .sp__gauge{position:relative;width:132px;height:132px;flex:none}
+  .sp__gauge svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .sp__gauge circle{fill:none;stroke-width:8}
+  .sp__gauge .tr{stroke:var(--filete)}
+  .sp__gauge .ar{stroke:var(--acero);stroke-dasharray:326.7;stroke-dashoffset:calc(326.7 * (1 - var(--p,0)));transition:stroke-dashoffset 1.2s var(--ease)}
+  .sp__gauge b{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--wide);font-weight:500;font-size:38px;letter-spacing:-.03em}
+  .sp__gauge[data-grade=mid] .ar{stroke:#B7791F}
+  .sp__gauge[data-grade=bad] .ar{stroke:#B54134}
+  .sp__run{display:flex;align-items:center;gap:14px;font-size:17px}
+  .sp__spin{width:22px;height:22px;border:2px solid var(--filete);border-top-color:var(--acero);border-radius:50%;animation:spin 900ms linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .sp__head{display:flex;gap:24px;align-items:center}
+  .sp__host{font-weight:500;font-size:18px;margin-top:4px;word-break:break-all}
+  .sp__verdict{margin-top:6px;color:#3a3a38;max-width:46ch}
+  .sp__m{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:24px}
+  .sp__m div{background:var(--blanco);padding:12px 14px}
+  .sp__m dt{font-size:13px;color:var(--gris)}
+  .sp__m dd{margin-top:4px;font-weight:500}
+  .sp__m dd[data-grade=good]{color:#2F6B47}
+  .sp__m dd[data-grade=mid]{color:#8A5A12}
+  .sp__m dd[data-grade=bad]{color:#A33A2E}
+  .sp__lead{margin-top:24px}
+  .sp__err{color:#A33A2E;max-width:52ch}
+  [data-sp-run][hidden],[data-sp-res][hidden],[data-sp-err][hidden],[data-sp-idle][hidden]{display:none}
+  @media (max-width:860px){ .sp__txt,.sp__out{grid-column:1/-1} .sp__out{margin-top:32px;min-height:0} .sp__m{grid-template-columns:1fr} .sp__head{flex-direction:column;align-items:flex-start} }
+  @media (max-width:480px){ .sp__form{flex-direction:column} }
+</style>

@@ -1,0 +1,137 @@
+---
+// Landing de una línea de servicio: problema → pieza interactiva → prueba → proceso → contacto.
+import Base from '../layouts/Base.astro';
+import Sel from '../components/Sel.astro';
+import Pic from '../components/Pic.astro';
+import Piece from '../components/Piece.astro';
+import Faq from '../components/Faq.astro';
+import Crumbs from '../components/Crumbs.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import { r, ui, LINE_KEYS, type Lang, type LineKey } from '../i18n';
+import { lines } from '../data/lines';
+import { steps, faqLd } from '../data/common';
+interface Props { lang: Lang; k: LineKey }
+const { lang, k } = Astro.props;
+const es = lang === 'es';
+const t = ui[lang];
+const c = lines[k][lang];
+const [before, after] = c.h1.split(c.h1Mark);
+const crumbs = [{ name: t.breadcrumbHome, href: r('home', lang) }, { name: t.lines[k][0], href: r(k, lang) }];
+const service = {
+  '@type': 'Service',
+  name: c.h1,
+  serviceType: es ? `Diseño web para ${t.lines[k][0].toLowerCase()}` : `Website design for ${t.lines[k][0].toLowerCase()}`,
+  description: c.seoDesc,
+  provider: { '@id': 'https://abgframe.com/#org' },
+  areaServed: [{ '@type': 'Place', name: 'Alicante' }, { '@type': 'Place', name: 'Costa Blanca' }, { '@type': 'Country', name: es ? 'España' : 'Spain' }],
+  url: `https://abgframe.com${r(k, lang)}`,
+};
+const others = LINE_KEYS.filter((x) => x !== k);
+---
+<Base lang={lang} title={c.seoTitle} description={c.seoDesc} route={k} image={`/og/${k}-${lang}.jpg`} breadcrumbs={crumbs} schema={[service, faqLd(c.faq)]}>
+  <link slot="head" rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset={[640, 960, 1280, 1920].map((x) => `${c.photo.src}-${x}.webp ${x}w`).join(", ")} imagesizes="(max-width: 860px) 100vw, 38vw" />
+  <Crumbs items={crumbs} />
+  <section class="phero">
+    <div class="wrap grid lh">
+      <div class="lh__txt">
+        <span class="kick">{c.kicker}</span>
+        <h1 class="h1">{before}<span class="mark">{c.h1Mark}</span>{after}</h1>
+        <p class="lead">{c.lead}</p>
+        <div class="actions"><a class="btn" href="#contacto" data-track={`cta_${k}`}>{es ? 'Cuéntanos tu proyecto' : 'Tell us about your project'} <span class="arrow" aria-hidden="true">→</span></a></div>
+      </div>
+      <Sel as="figure" class="lh__fig">
+        <Pic src={c.photo.src} w={c.photo.w} h={c.photo.h} alt={c.photo.alt} eager priority sizes="(max-width: 860px) 100vw, 38vw" />
+      </Sel>
+    </div>
+  </section>
+
+  <section class="sec sec--con" aria-labelledby="pr-t">
+    <div class="wrap">
+      <div class="head"><h2 class="h2 rv" id="pr-t">{c.problemTitle}</h2></div>
+      <ol class="probs" data-stagger>{c.problems.map((p) => <li class="rv"><b class="h3">{p.t}</b><p>{p.d}</p></li>)}</ol>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="pc-t">
+    <div class="wrap grid piece">
+      <div class="piece__txt" data-stagger>
+        <h2 class="h2 rv" id="pc-t">{c.pieceTitle}</h2>
+        <p class="lead rv" style="margin-top:20px">{c.pieceText}</p>
+        <h3 class="inc-t rv">{es ? 'Qué incluye' : 'What it includes'}</h3>
+        <ul class="inc rv">{c.includes.map((i) => <li>{i}</li>)}</ul>
+      </div>
+      <div class="piece__demo">
+        <Piece k={k} lang={lang} />
+        <p class="note">{c.pieceCaption}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--ink" aria-labelledby="pf-t">
+    <div class="wrap grid proof">
+      <Sel as="figure" class="proof__fig">
+        <Pic src="/img/ceyra/piscina" w={1920} h={1072} alt={es ? 'Render de Leo Villa: la piscina entra en la casa' : 'Render of Leo Villa: the pool reaches into the house'} sizes="(max-width: 860px) 100vw, 55vw" />
+      </Sel>
+      <div class="proof__txt">
+        <span class="kick">{es ? 'Caso · Ceyra Studio' : 'Case study · Ceyra Studio'}</span>
+        <h2 class="h2" id="pf-t">{c.proofTitle}</h2>
+        <p style="margin-top:18px;color:#BDBCB7">{c.proofText}</p>
+        <p style="margin-top:24px"><a class="link" href={r('ceyra', lang)}>{es ? 'Leer el caso' : 'Read the case study'} <span class="arrow" aria-hidden="true">→</span></a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="st-t">
+    <div class="wrap">
+      <div class="head"><h2 class="h2" id="st-t">{es ? 'Cómo trabajamos.' : 'How we work.'}</h2><p><a class="link" href={r('proceso', lang)}>{es ? 'Ver el proceso completo' : 'See the full process'} <span class="arrow" aria-hidden="true">→</span></a></p></div>
+      <ol class="steps" data-stagger>{steps[lang].map((s, i) => <li class="rv"><span class="n">{String(i + 1).padStart(2, '0')}</span><b>{s.t}</b><p>{s.d}</p></li>)}</ol>
+    </div>
+  </section>
+
+  <section class="sec sec--con" aria-labelledby="fq-t">
+    <div class="wrap grid">
+      <h2 class="h2 fq-h" id="fq-t">{es ? 'Preguntas frecuentes.' : 'Frequently asked questions.'}</h2>
+      <div class="fq-b"><Faq items={c.faq} /></div>
+    </div>
+  </section>
+
+  <ContactBlock lang={lang} preset={k} title={c.ctaTitle} />
+
+  <nav class="sec--tight sec--con" aria-label={es ? 'Otras líneas' : 'Other services'}>
+    <div class="wrap">
+      <span class="kick">{es ? 'También hacemos webs para' : 'We also build websites for'}</span>
+      <div class="cards three">{others.map((o) => <a class="card" href={r(o, lang)}><span class="h3">{t.lines[o][0]}</span><p>{t.lines[o][1]}</p></a>)}</div>
+    </div>
+  </nav>
+</Base>
+
+<style>
+  .lh{align-items:end}
+  .lh__txt{grid-column:1/8}
+  .lh__fig{grid-column:9/13;margin:10px}
+  .lh__fig>:global(img){aspect-ratio:4/5;width:100%;object-fit:cover;object-position:50% 70%}
+  .probs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap)}
+  .probs li{border-top:1px solid var(--tinta);padding-top:18px}
+  .probs b{display:block;margin-bottom:12px}
+  .probs p{color:#3a3a38}
+  .piece{align-items:center}
+  .piece__txt{grid-column:1/6}
+  .piece__demo{grid-column:7/13;display:grid;gap:12px;background:var(--hormigon);padding:clamp(20px,4vw,48px);min-width:0}
+  .piece__demo .note{text-align:center}
+  .inc-t{font-size:14px;font-weight:400;color:var(--gris);margin-top:36px;margin-bottom:10px}
+  .inc{border-top:1px solid var(--tinta)}
+  .inc li{padding:11px 0 11px 22px;border-bottom:1px solid var(--filete);position:relative;font-size:16px}
+  .inc li::before{content:"";position:absolute;left:2px;top:19px;width:8px;height:8px;background:var(--acero)}
+  .proof{align-items:center}
+  .proof__fig{grid-column:1/8;margin:10px}
+  .proof__fig>:global(img){aspect-ratio:16/9;width:100%;object-fit:cover}
+  .proof__txt{grid-column:9/13}
+  .fq-h{grid-column:1/5}.fq-b{grid-column:6/13}
+  .three{grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media (max-width:860px){
+    .lh__txt,.lh__fig,.piece__txt,.piece__demo,.proof__fig,.proof__txt,.fq-h,.fq-b{grid-column:1/-1}
+    .lh__fig{margin-top:32px;max-width:520px}
+    .probs,.three{grid-template-columns:1fr}
+    .piece__demo,.proof__txt,.fq-b{margin-top:24px}
+  }
+</style>

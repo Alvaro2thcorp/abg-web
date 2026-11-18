@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import Crumbs from '../components/Crumbs.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import SpeedTest from '../components/SpeedTest.astro';
+import { r, ui, type Lang } from '../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const es = lang === 'es';
+const t = ui[lang];
+const crumbs = [{ name: t.breadcrumbHome, href: r('home', lang) }, { name: t.contact, href: r('contacto', lang) }];
+const page = { '@type': 'ContactPage', name: t.contact, url: `https://abgframe.com${r('contacto', lang)}`, about: { '@id': 'https://abgframe.com/#org' } };
+---
+<Base lang={lang} route="contacto" breadcrumbs={crumbs} schema={[page]}
+  title={es ? 'Contacto: cuéntanos tu proyecto | ABGFRAME, Alicante' : 'Contact: tell us about your project | ABGFRAME, Alicante'}
+  description={es ? 'Cuéntanos tu proyecto: web para promotora, estudio, constructora o inmobiliaria. Formulario, WhatsApp +34 601 058 997 o contacto@abgframe.com.' : 'Tell us about your project: a website for a developer, studio, builder or agency. Form, WhatsApp +34 601 058 997 or contacto@abgframe.com.'}>
+  <Crumbs items={crumbs} />
+  <ContactBlock lang={lang} asH1 id="form" title={es ? 'Cuéntanos tu proyecto' : 'Tell us about your project'} />
+  <section class="sec--tight sec--con">
+    <div class="wrap grid nxt">
+      <h2 class="h3">{es ? 'Qué pasa después' : 'What happens next'}</h2>
+      <ol class="steps three">
+        <li><span class="n">01</span><b>{es ? 'Te escribimos' : 'We reply'}</b><p>{es ? 'Álvaro lee tu mensaje y te propone una llamada o una visita.' : 'Álvaro reads your message and suggests a call or a visit.'}</p></li>
+        <li><span class="n">02</span><b>{es ? 'Hablamos' : 'We talk'}</b><p>{es ? 'Media hora para entender qué vendes y a quién. Sin compromiso.' : 'Half an hour to understand what you sell and to whom. No commitment.'}</p></li>
+        <li><span class="n">03</span><b>{es ? 'Propuesta por escrito' : 'Written proposal'}</b><p>{es ? 'Alcance, plazos y precio cerrados, para que decidas con calma.' : 'Scope, timeline and fixed price, so you can decide calmly.'}</p></li>
+      </ol>
+    </div>
+  </section>
+  <SpeedTest lang={lang} />
+</Base>
+<style>
+  .nxt{align-items:start}
+  .nxt>h2{grid-column:1/4}
+  .three{grid-column:4/13;grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media (max-width:860px){.nxt>h2,.three{grid-column:1/-1}.three{grid-template-columns:1fr;margin-top:20px}}
+</style>

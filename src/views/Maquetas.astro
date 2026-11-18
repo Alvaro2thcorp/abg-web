@@ -1,0 +1,110 @@
+---
+// Página de servicio: maquetas 3D y visitas virtuales 360º para webs del sector (cualquier línea).
+import Base from '../layouts/Base.astro';
+import Crumbs from '../components/Crumbs.astro';
+import Faq from '../components/Faq.astro';
+import Immersive from '../components/Immersive.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import { r, ui, type Lang } from '../i18n';
+import { faqLd } from '../data/common';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const es = lang === 'es';
+const t = ui[lang];
+const name = es ? 'Maquetas 3D y visitas 360º' : '3D models and 360º tours';
+const crumbs = [{ name: t.breadcrumbHome, href: r('home', lang) }, { name, href: r('tresd', lang) }];
+const c = es ? {
+  title: 'Maqueta 3D interactiva y visita 360º para tu web | ABGFRAME',
+  desc: 'Maquetas 3D que el cliente gira desde el móvil y visitas 360º por estancias, dentro de la web de tu promotora, estudio o inmobiliaria. Rápidas, sin instalar nada.',
+  h1: 'Que giren el proyecto y lo recorran por dentro, desde tu web',
+  lead: 'Una maqueta 3D que se abre por plantas y una visita 360º que pasa de una estancia a otra. Dentro de tu web, sin apps ni plataformas aparte, y sin que la web se vuelva lenta.',
+  forT: 'Para quién tiene sentido',
+  for: [
+    ['Promotoras', 'Vender sobre plano: el comprador ve el edificio y su vivienda antes de que exista.'],
+    ['Arquitectura e interiorismo', 'Presentar un proyecto a un cliente o a un concurso con algo más que renders.'],
+    ['Constructoras', 'Enseñar cómo quedará una obra, o una vivienda terminada, a quien no puede visitarla.'],
+    ['Inmobiliarias', 'Visitas 360º de cada inmueble para filtrar curiosos y recibir visitas con más intención.'],
+  ],
+  needT: 'Qué necesitamos',
+  need: [
+    ['Para la maqueta 3D', 'El modelo del proyecto (SketchUp, Revit, Rhino, ArchiCAD, Blender…) o, si no hay modelo, los planos. Lo limpiamos, lo aligeramos y lo dividimos en las partes que quieres enseñar.'],
+    ['Para la visita 360º', 'Una foto 360º de cada estancia, hecha con una cámara 360º en la vivienda o el piso piloto. Si aún no existe, se puede hacer con renders 360º del proyecto.'],
+  ],
+  faqT: 'Preguntas frecuentes',
+  faq: [
+    { q: '¿La web va a cargar más lenta?', a: 'No. La maqueta y la visita solo se descargan cuando el visitante llega a esa parte de la página. La portada de esta web lleva las dos y saca entre 98 y 100 en la prueba de velocidad de Google para móvil.' },
+    { q: '¿Funciona en el móvil?', a: 'Sí. Se gira con el dedo y en vertical la página sigue bajando con normalidad, para que nadie se quede atrapado.' },
+    { q: '¿Cuánto pesa una maqueta?', a: 'Depende del modelo. La de Leo Villa salió de un archivo de Rhino de 7 MB y en la web pesa unos 160 KB.' },
+    { q: '¿Se puede poner en mi web actual?', a: 'Normalmente sí, como una sección más. Lo vemos en la primera conversación.' },
+    { q: '¿Necesito una plataforma de pago para la visita 360º?', a: 'No. La visita va dentro de tu web, sin cuotas de terceros ni marcas de agua.' },
+  ],
+  ctaT: '¿Tienes un modelo o unos planos?',
+  ctaD: 'Cuéntanos qué proyecto quieres enseñar y te decimos cómo quedaría en tu web.',
+} : {
+  title: '3D model and 360º virtual tour for your website | ABGFRAME',
+  desc: '3D models clients rotate on their phone and room-by-room 360º tours, built into your developer, studio or agency website. Fast, with nothing to install.',
+  h1: 'Let them rotate the project and walk through it, on your website',
+  lead: 'A 3D model that opens floor by floor and a 360º tour that moves from room to room. Inside your website, with no separate apps or platforms, and without slowing it down.',
+  forT: 'Who it makes sense for',
+  for: [
+    ['Developers', 'Selling off-plan: buyers see the building and their home before it exists.'],
+    ['Architecture and interiors', 'Presenting a project to a client or a competition with more than renders.'],
+    ['Builders', 'Showing how a build will look, or a finished home, to people who cannot visit.'],
+    ['Real estate agencies', '360º tours of each property to filter out browsers and get viewings with real intent.'],
+  ],
+  needT: 'What we need',
+  need: [
+    ['For the 3D model', 'The project model (SketchUp, Revit, Rhino, ArchiCAD, Blender…) or, if there is none, the plans. We clean it up, make it light and split it into the parts you want to show.'],
+    ['For the 360º tour', 'A 360º photo of each room, taken with a 360º camera in the home or show flat. If it does not exist yet, 360º renders of the project work too.'],
+  ],
+  faqT: 'Frequently asked questions',
+  faq: [
+    { q: 'Will my website get slower?', a: 'No. The model and the tour only download when the visitor reaches that part of the page. This website’s home page has both and scores 98 to 100 in Google’s mobile speed test.' },
+    { q: 'Does it work on mobile?', a: 'Yes. It rotates with a finger, and vertical swipes still scroll the page, so nobody gets stuck.' },
+    { q: 'How heavy is a model?', a: 'It depends on the model. Leo Villa came from a 7 MB Rhino file and weighs about 160 KB on the web.' },
+    { q: 'Can it go on my current website?', a: 'Usually yes, as one more section. We look at it in the first conversation.' },
+    { q: 'Do I need a paid platform for the 360º tour?', a: 'No. The tour lives inside your website, with no third-party fees or watermarks.' },
+  ],
+  ctaT: 'Do you have a model or plans?',
+  ctaD: 'Tell us which project you want to show and we will tell you how it would look on your website.',
+};
+const service = { '@type': 'Service', name, description: c.desc, url: `https://abgframe.com${r('tresd', lang)}`, provider: { '@id': 'https://abgframe.com/#org' }, areaServed: 'Costa Blanca', serviceType: es ? 'Maqueta 3D interactiva y visita virtual 360º para webs' : 'Interactive 3D model and 360º virtual tour for websites' };
+---
+<Base lang={lang} title={c.title} description={c.desc} route="tresd" image={`/og/tresd-${lang}.jpg`} breadcrumbs={crumbs} schema={[service, faqLd(c.faq)]}>
+  <Crumbs items={crumbs} />
+  <section class="phero"><div class="wrap"><span class="kick">{name}</span><h1 class="h1">{c.h1}</h1><p class="lead">{c.lead}</p></div></section>
+
+  <Immersive lang={lang} tone="con"
+    h2={es ? 'Pruébalas.' : 'Try them.'}
+    lead={es ? 'La maqueta es Leo Villa, el proyecto real de Ceyra Studio, y lleva al lado una casa de ejemplo de dos plantas. La visita 360º usa fotos de ejemplo.' : 'The model is Leo Villa, Ceyra Studio’s real project, with a sample two-storey house alongside. The 360º tour uses sample photos.'} />
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="head"><h2 class="h2 rv">{c.forT}</h2></div>
+      <ol class="steps" data-stagger>{c.for.map(([a, b], i) => <li class="rv"><span class="n">{String(i + 1).padStart(2, '0')}</span><b>{a}</b><p>{b}</p></li>)}</ol>
+    </div>
+  </section>
+
+  <section class="sec sec--con">
+    <div class="wrap grid">
+      <h2 class="h2" style="grid-column:1/5">{c.needT}</h2>
+      <div class="mq-need">{c.need.map(([a, b]) => <div><h3 class="h3">{a}</h3><p>{b}</p></div>)}</div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="mq-faq">
+    <div class="wrap grid">
+      <h2 class="h2" id="mq-faq" style="grid-column:1/5">{c.faqT}</h2>
+      <div class="mq-faq"><Faq items={c.faq} /></div>
+    </div>
+  </section>
+
+  <div class="sec--con"><ContactBlock lang={lang} title={c.ctaT} text={c.ctaD} /></div>
+</Base>
+<style>
+  .phero .lead{margin-top:24px}
+  .mq-need{grid-column:6/13;display:grid;gap:32px}
+  .mq-need p{margin-top:10px;color:#3a3a38;max-width:60ch}
+  .mq-faq{grid-column:6/13}
+  @media (max-width:860px){.mq-need,.mq-faq{grid-column:1/-1;margin-top:24px}.h2[style]{grid-column:1/-1!important}}
+</style>

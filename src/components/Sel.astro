@@ -1,0 +1,6 @@
+---
+// La caja de selección de la marca, con sus cuatro tiradores. draw: se dibuja al entrar en pantalla.
+interface Props { as?: string; draw?: boolean; class?: string; [k: string]: any }
+const { as: Tag = 'div', draw = true, class: cls, ...rest } = Astro.props;
+---
+<Tag class:list={['sel', cls]} data-draw={draw ? '' : undefined} {...rest}><slot /><i class="hdl" aria-hidden="true"></i><i class="hdl" aria-hidden="true"></i><i class="hdl" aria-hidden="true"></i><i class="hdl" aria-hidden="true"></i></Tag>

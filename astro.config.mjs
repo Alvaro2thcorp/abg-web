@@ -1,18 +1,18 @@
 import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
-import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
-import path from 'path';
+
+// Páginas que no deben aparecer en Google todavía (la demo llega con P2).
+const NOINDEX = ['/demo/', '/en/demo/', '/404'];
 
 export default defineConfig({
   site: 'https://abgframe.com',
-  integrations: [react(), sitemap({ filter: (page) => !page.includes('/el-sistema') && !page.includes('/demos/') && !page.includes('/yates-alicante') })],
-  vite: {
-    plugins: [tailwindcss()],
-    resolve: {
-      alias: {
-        '@': path.resolve('./src')
-      }
-    }
-  },
+  trailingSlash: 'always',
+  build: { inlineStylesheets: 'always' },
+  prefetch: { prefetchAll: false, defaultStrategy: 'hover' },
+  integrations: [
+    sitemap({
+      filter: (page) => !NOINDEX.some((p) => page.endsWith(p)),
+      i18n: { defaultLocale: 'es', locales: { es: 'es-ES', en: 'en' } },
+    }),
+  ],
 });

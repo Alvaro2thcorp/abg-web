@@ -1,0 +1,10 @@
+---
+// Imagen responsive desde /img/<dir>/<name>-{640,960,1280,1920}.webp (generadas con sharp).
+// eager: se carga sin esperar (arriba del todo). priority: además, prioridad alta (solo si es el LCP).
+interface Props { src: string; alt: string; w: number; h: number; sizes?: string; eager?: boolean; priority?: boolean; widths?: number[]; class?: string; }
+const { src, alt, w, h, sizes = '100vw', eager = false, priority = false, widths = [640, 960, 1280, 1920], class: cls } = Astro.props;
+const srcset = widths.map((x) => `${src}-${x}.webp ${Math.min(x, w)}w`).join(', ');
+const fallback = `${src}-${widths.includes(960) ? 960 : widths[0]}.webp`;
+---
+<img src={fallback} srcset={srcset} sizes={sizes} alt={alt} width={w} height={h} class={cls}
+  loading={eager ? 'eager' : 'lazy'} decoding="async" fetchpriority={priority ? 'high' : eager ? 'auto' : 'low'} />
