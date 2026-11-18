@@ -94,7 +94,7 @@ const updated = es ? 'Última actualización: noviembre de 2026.' : 'Last update
           <h2>5. Cuánto tiempo</h2>
           <p>Mientras dure la conversación y, si llegamos a trabajar juntos, el tiempo que exija la ley. Si no, como máximo un año desde el último contacto.</p>
           <h2>6. Quién más los ve</h2>
-          <p>Proveedores que nos ayudan a prestar el servicio, con contrato de encargado del tratamiento: Formspree (formulario, EE. UU., con cláusulas contractuales tipo), Netlify (alojamiento) y Google (analítica).</p>
+          <p>Proveedores que nos ayudan a prestar el servicio, con contrato de encargado del tratamiento: Formspree (formulario, EE. UU., con cláusulas contractuales tipo), Netlify (alojamiento) y Google (analítica, solo si la aceptas).</p>
           <h2>7. Tus derechos</h2>
           <p>Puedes acceder, rectificar, suprimir, oponerte, limitar el tratamiento y pedir la portabilidad de tus datos escribiendo a {CONTACT.email}. Si crees que no hemos atendido bien tu petición, puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</p>
         </div>
@@ -103,7 +103,7 @@ const updated = es ? 'Última actualización: noviembre de 2026.' : 'Last update
           <h2>1. Data controller</h2>
           <p>{v(LEGAL.razon)}, tax ID {v(LEGAL.nif)}, address {v(LEGAL.domicilio)}. Email: {CONTACT.email}.</p>
           <h2>2. What data we process</h2>
-          <p>The data you give us in the contact form (name, email or phone, type of company and message) or when you write to us by email or WhatsApp. Also aggregated browsing data through analytics cookies.</p>
+          <p>The data you give us in the contact form (name, email or phone, type of company and message) or when you write to us by email or WhatsApp. Also aggregated browsing data through analytics cookies, if you accept them.</p>
           <h2>3. Why</h2>
           <p>To reply to your enquiry and, if you ask, prepare a proposal. We do not send advertising or share your data with third parties for marketing.</p>
           <h2>4. Legal basis</h2>
@@ -111,7 +111,7 @@ const updated = es ? 'Última actualización: noviembre de 2026.' : 'Last update
           <h2>5. How long</h2>
           <p>For as long as the conversation lasts and, if we work together, as long as the law requires. Otherwise, at most one year from the last contact.</p>
           <h2>6. Who else sees it</h2>
-          <p>Providers that help us deliver the service, under data processing agreements: Formspree (form, USA, with standard contractual clauses), Netlify (hosting) and Google (analytics).</p>
+          <p>Providers that help us deliver the service, under data processing agreements: Formspree (form, USA, with standard contractual clauses), Netlify (hosting) and Google (analytics, only if you accept it).</p>
           <h2>7. Your rights</h2>
           <p>You can access, rectify, erase, object to, restrict and port your data by writing to {CONTACT.email}. You can also complain to the Spanish Data Protection Agency (aepd.es).</p>
         </div>
@@ -123,11 +123,11 @@ const updated = es ? 'Última actualización: noviembre de 2026.' : 'Last update
           <p>Pequeños archivos que una web guarda en tu navegador para recordar información sobre tu visita.</p>
           <h2>Cuáles usamos</h2>
           <dl class="ficha">
-            <div><dt>Técnicas</dt><dd>Ninguna propia necesaria para navegar.</dd></div>
-            <div><dt>Analítica</dt><dd>Google Analytics a través de Google Tag Manager (_ga, _ga_*): cuántas personas visitan la web y qué páginas leen. Duración: hasta 2 años.</dd></div>
+            <div><dt>Técnicas</dt><dd>Ninguna cookie propia. Tu elección sobre cookies se guarda en el almacenamiento local del navegador.</dd></div>
+            <div><dt>Analítica</dt><dd>Google Analytics a través de Google Tag Manager (_ga, _ga_*), solo si aceptas: cuántas personas visitan la web y qué páginas leen. Duración: hasta 2 años.</dd></div>
           </dl>
           <h2>Cómo gestionarlas</h2>
-          <p>Puedes bloquearlas o borrarlas cuando quieras desde la configuración de tu navegador.</p>
+          <p>Al entrar por primera vez te preguntamos. Las cookies de analítica solo se activan si pulsas Aceptar; si pulsas Rechazar, no se instalan. Puedes cambiar tu elección cuando quieras en <a href="#" data-cookie-settings>Configurar cookies</a> (también en el pie de cada página) o borrarlas desde tu navegador.</p><p>Tu elección se guarda en tu navegador (almacenamiento local, clave abg-consent) para no volver a preguntarte.</p>
         </div>
       ) : (
         <div class="lg__body">
@@ -135,11 +135,11 @@ const updated = es ? 'Última actualización: noviembre de 2026.' : 'Last update
           <p>Small files a website stores in your browser to remember information about your visit.</p>
           <h2>Which ones we use</h2>
           <dl class="ficha">
-            <div><dt>Technical</dt><dd>None of our own required to browse.</dd></div>
-            <div><dt>Analytics</dt><dd>Google Analytics via Google Tag Manager (_ga, _ga_*): how many people visit and which pages they read. Duration: up to 2 years.</dd></div>
+            <div><dt>Technical</dt><dd>No cookies of our own. Your cookie choice is kept in the browser’s local storage.</dd></div>
+            <div><dt>Analytics</dt><dd>Google Analytics via Google Tag Manager (_ga, _ga_*), only if you accept: how many people visit and which pages they read. Duration: up to 2 years.</dd></div>
           </dl>
           <h2>How to manage them</h2>
-          <p>You can block or delete them at any time in your browser settings.</p>
+          <p>On your first visit we ask you. Analytics cookies are only set if you click Accept; if you click Reject, they are not set. You can change your choice at any time in <a href="#" data-cookie-settings>Cookie settings</a> (also in the footer of every page) or delete them in your browser.</p><p>Your choice is stored in your browser (local storage, key abg-consent) so we do not ask again.</p>
         </div>
       ))}
     </div>

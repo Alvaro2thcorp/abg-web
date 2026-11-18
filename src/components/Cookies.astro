@@ -1,0 +1,47 @@
+---
+// Aviso de cookies. Aceptar y Rechazar con el mismo peso (lo pide la AEPD).
+// Funciona con Google Consent Mode v2: por defecto todo "denied" (ver Base.astro); al aceptar, se actualiza a "granted".
+// La elección se guarda en localStorage ("abg-consent") y se puede cambiar desde el pie: "Configurar cookies".
+import { r, type Lang } from '../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const es = lang === 'es';
+---
+<div class="ck" id="ck" role="dialog" aria-labelledby="ck-t" aria-describedby="ck-d" hidden>
+  <p class="ck__t" id="ck-t">{es ? 'Cookies de analítica' : 'Analytics cookies'}</p>
+  <p class="ck__d" id="ck-d">{es ? 'Usamos Google Analytics para saber qué páginas se leen y mejorar la web. Solo se activa si aceptas.' : 'We use Google Analytics to see which pages are read and improve the site. It only runs if you accept.'} <a href={r('cookies', lang)}>{es ? 'Política de cookies' : 'Cookie policy'}</a>.</p>
+  <div class="ck__b">
+    <button type="button" class="ck__btn" data-consent="denied">{es ? 'Rechazar' : 'Reject'}</button>
+    <button type="button" class="ck__btn" data-consent="granted">{es ? 'Aceptar' : 'Accept'}</button>
+  </div>
+</div>
+<script is:inline>
+(function(){
+  var box=document.getElementById('ck');var K='abg-consent';var v=null;
+  try{v=localStorage.getItem(K)}catch(e){}
+  function show(){box.hidden=false;document.documentElement.classList.add('ck-open')}
+  function hide(){box.hidden=true;document.documentElement.classList.remove('ck-open')}
+  if(v!=='granted'&&v!=='denied')show();
+  box.addEventListener('click',function(e){
+    var b=e.target.closest('[data-consent]');if(!b)return;
+    var c=b.getAttribute('data-consent');
+    try{localStorage.setItem(K,c)}catch(err){}
+    window.gtag('consent','update',{analytics_storage:c});
+    window.dataLayer.push({event:'consent_'+c});
+    if(c==='denied'){document.cookie.split(';').forEach(function(x){var n=x.split('=')[0].trim();if(/^_ga/.test(n)){var h=location.hostname.split('.');for(var i=0;i<h.length-1;i++){var d=h.slice(i).join('.');document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=.'+d;}document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';}})}
+    hide();
+  });
+  document.addEventListener('click',function(e){var a=e.target.closest('[data-cookie-settings]');if(a){e.preventDefault();show();box.querySelector('[data-consent="granted"]').focus()}});
+})();
+</script>
+<style>
+  .ck{position:fixed;left:max(16px,env(safe-area-inset-left));bottom:max(16px,env(safe-area-inset-bottom));z-index:60;width:min(400px,calc(100vw - 32px));background:var(--blanco);color:var(--tinta);padding:20px;box-shadow:0 0 0 1px var(--filete),0 18px 40px rgba(21,21,21,.12)}
+  .ck[hidden]{display:none}
+  .ck__t{font-weight:500;font-size:15px}
+  .ck__d{font-size:14px;line-height:1.5;color:#3a3a38;margin-top:6px}
+  .ck__d a{color:var(--acero)}
+  .ck__b{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+  .ck__btn{min-height:44px;font:inherit;font-size:15px;font-weight:500;cursor:pointer;background:var(--blanco);color:var(--tinta);border:1px solid var(--tinta);transition:background var(--t-ui),color var(--t-ui)}
+  .ck__btn:hover{background:var(--tinta);color:var(--papel)}
+  :global(.ck-open) :global(.wa){transform:translateY(160%)!important}
+</style>

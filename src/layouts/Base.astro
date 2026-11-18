@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Cookies from '../components/Cookies.astro';
 import '../styles/site.css';
 import { SITE, routes, CONTACT, type Lang, type RouteKey } from '../i18n';
 
@@ -82,7 +83,11 @@ const graph = { '@context': 'https://schema.org', '@graph': [org, website, ...cr
   <meta name="twitter:card" content="summary_large_image" />
 
   <script type="application/ld+json" set:html={JSON.stringify(graph)} />
-  <script is:inline>document.documentElement.classList.add('js');window.dataLayer=window.dataLayer||[];</script>
+  <script is:inline>document.documentElement.classList.add('js');window.dataLayer=window.dataLayer||[];
+    // Consent Mode v2: nada de cookies de analítica ni publicidad hasta que la persona acepte en el aviso.
+    window.gtag=function(){dataLayer.push(arguments)};
+    gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});
+    try{if(localStorage.getItem('abg-consent')==='granted')gtag('consent','update',{analytics_storage:'granted'})}catch(e){}</script>
   <!-- Google Tag Manager: se carga tras la primera interacción o a los 3,5 s, para no frenar la carga (LCP/INP). -->
   <script is:inline>
     (function(){var done=false;function gtm(){if(done)return;done=true;var w=window,d=document,l='dataLayer',i='GTM-PQ76T6V6';w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName('script')[0],j=d.createElement('script');j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f);}
@@ -91,12 +96,12 @@ const graph = { '@context': 'https://schema.org', '@graph': [org, website, ...cr
   <slot name="head" />
 </head>
 <body>
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ76T6V6" height="0" width="0" style="display:none;visibility:hidden" title="GTM"></iframe></noscript>
   <Header lang={lang} current={route} alt={altHref} />
   <main id="main">
     <slot />
   </main>
   <Footer lang={lang} />
+  <Cookies lang={lang} />
   <script>import '../scripts/site.ts';</script>
 </body>
 </html>
