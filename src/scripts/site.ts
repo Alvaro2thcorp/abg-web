@@ -1,4 +1,5 @@
 // Todo el JavaScript de la web. Sin librerías: más rápido de cargar y de responder (LCP e INP).
+import { dotGrid, scrollReveal, magnet, spotlight } from './bits';
 declare global { interface Window { dataLayer: any[] } }
 const $ = <T extends Element = HTMLElement>(s: string, el: ParentNode = document) => el.querySelector<T>(s as any) as T | null;
 const $$ = <T extends Element = HTMLElement>(s: string, el: ParentNode = document) => Array.from(el.querySelectorAll<T>(s as any)) as T[];
@@ -153,6 +154,16 @@ $$('[data-val]').forEach((root) => {
   form.addEventListener('submit', (e) => { e.preventDefault(); calc(); });
   calc();
 });
+
+/* Piezas de React Bits adaptadas (ver bits.ts) */
+// Fondo de puntos del titular: arranca cuando el navegador está libre, para no retrasar la carga
+$$<HTMLCanvasElement>('canvas[data-dotgrid]').forEach((cv) => {
+  const go = () => dotGrid(cv, cv.closest<HTMLElement>('[data-hero]') || cv.parentElement!);
+  if ('requestIdleCallback' in window) (window as any).requestIdleCallback(go, { timeout: 1500 }); else setTimeout(go, 300);
+});
+$$('[data-scroll-reveal]').forEach((el) => scrollReveal(el));
+$$('[data-magnet]').forEach((el) => magnet(el));
+$$('.cards, .tabs__list').forEach((g) => { $$(':scope > *', g).forEach((c) => (c.dataset.spot = '')); spotlight(g); });
 
 /* Maqueta 3D y visita 360º: su código (three.js) solo se descarga al acercarse a la sección */
 const lazyMount = (sel: string, load: (el: HTMLElement) => Promise<unknown>) => $$(sel).forEach((el) => {

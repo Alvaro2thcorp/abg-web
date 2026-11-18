@@ -46,7 +46,7 @@ const Heading = asH1 ? 'h1' : 'h2';
       </div>
       <p class="legalnote full">{es ? 'Usamos tus datos solo para responderte.' : 'We only use your details to reply to you.'} <a href={r('privacidad', lang)}>{es ? 'Privacidad' : 'Privacy'}</a>.</p>
       <div class="full" style="display:flex;flex-wrap:wrap;align-items:center;gap:16px">
-        <button class="btn" type="submit">{es ? 'Enviar' : 'Send'}</button>
+        <button class="btn" type="submit" data-magnet>{es ? 'Enviar' : 'Send'}</button>
         <p class="status" role="status" aria-live="polite" data-ok={es ? 'Recibido. Álvaro te escribe en breve.' : 'Received. Álvaro will get back to you shortly.'} data-err={es ? `No se ha podido enviar. Escríbenos a ${CONTACT.email} o por WhatsApp.` : `It could not be sent. Please email ${CONTACT.email} or use WhatsApp.`}></p>
       </div>
     </form>

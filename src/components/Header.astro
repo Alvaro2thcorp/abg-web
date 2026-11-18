@@ -27,7 +27,7 @@ const altHref = alt ?? routes.home[lang === 'es' ? 'en' : 'es'];
       </details>
       {nav.map((n) => <a href={r(n.key, lang)} aria-current={current === n.key ? 'page' : undefined}>{n.label}</a>)}
       <a class="hd__lang" href={altHref} hreflang={lang === 'es' ? 'en' : 'es'} lang={lang === 'es' ? 'en' : 'es'} title={t.otherLang}>{t.otherLangShort}</a>
-      <a class="btn btn--ink hd__cta" href={r('contacto', lang)} data-track="cta_header">{t.contact}</a>
+      <a class="btn btn--ink hd__cta" href={r('contacto', lang)} data-track="cta_header" data-magnet="40">{t.contact}</a>
     </nav>
     <button class="hd__burger" type="button" aria-expanded="false" aria-controls="mnav" data-open={t.menu} data-close={t.close}>{t.menu}</button>
   </div>
