@@ -5,6 +5,7 @@ import Pic from '../components/Pic.astro';
 import Piece from '../components/Piece.astro';
 import Faq from '../components/Faq.astro';
 import ContactBlock from '../components/ContactBlock.astro';
+import Immersive from '../components/Immersive.astro';
 import { r, ui, wa, LINE_KEYS, CONTACT, type Lang } from '../i18n';
 import { lines } from '../data/lines';
 import { steps, homeFaq, faqLd } from '../data/common';
@@ -112,6 +113,8 @@ const services = LINE_KEYS.map((k) => ({ '@type': 'Service', name: t.lines[k][0]
       </div>
     </div>
   </section>
+
+  <Immersive lang={lang} />
 
   <section class="sec" aria-labelledby="case-t">
     <div class="wrap">

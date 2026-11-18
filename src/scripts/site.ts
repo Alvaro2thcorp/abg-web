@@ -154,6 +154,14 @@ $$('[data-val]').forEach((root) => {
   calc();
 });
 
+/* Maqueta 3D y visita 360º: su código (three.js) solo se descarga al acercarse a la sección */
+const lazyMount = (sel: string, load: (el: HTMLElement) => Promise<unknown>) => $$(sel).forEach((el) => {
+  const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) { o.disconnect(); load(el).catch(() => {}); } }, { rootMargin: '600px 0px' });
+  o.observe(el);
+});
+lazyMount('[data-maqueta]', (el) => import('./maqueta').then((m) => m.mountMaqueta(el)));
+lazyMount('[data-pano]', (el) => import('./pano').then((m) => m.mountPano(el)));
+
 /* Formulario de contacto (Formspree, sin salir de la página) */
 $$<HTMLFormElement>('form[data-form]').forEach((f) => {
   const status = $('.status', f)!;

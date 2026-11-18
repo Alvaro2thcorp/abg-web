@@ -1,0 +1,195 @@
+---
+// Maqueta 3D girable + visita virtual 360º. Las dos piezas cargan su código (three.js) solo al acercarse
+// a esta sección, así la portada sigue rápida. Sin JS o sin WebGL se queda la imagen fija.
+import Sel from './Sel.astro';
+import { type Lang } from '../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const es = lang === 'es';
+const c = es ? {
+  h2: 'Que la vean antes de que exista.',
+  lead: 'Además de las piezas de cada línea, tu web puede llevar una maqueta 3D que el cliente gira con el dedo o una visita 360º por dentro de la vivienda.',
+  mqKick: 'Maqueta 3D · ejemplo',
+  mqT: 'Gírala, ábrela por plantas y toca cada parte.',
+  mqD: 'Se hace a partir de los planos o del modelo 3D del proyecto (SketchUp, Revit, Blender…). Funciona en el móvil y no hace falta instalar nada.',
+  mqLabel: 'Maqueta 3D de una vivienda de ejemplo con dos plantas, terraza y piscina. Arrastra para girarla.',
+  mqHint: 'Arrastra para girar', mqKeys: 'o usa las flechas',
+  mqDefName: 'Vivienda de ejemplo', mqDefInfo: 'Dos plantas, terraza y piscina. Elige una parte para ver sus datos.',
+  explode: 'Ver por plantas',
+  levels: [
+    ['pb', 'Planta baja', 'Planta baja · 96 m². Salón, cocina y comedor abiertos al jardín.'],
+    ['p1', 'Planta primera', 'Planta primera · 82 m². Tres dormitorios; el principal vuela sobre la piscina.'],
+    ['terraza', 'Terraza', 'Terraza · 32 m². Solárium con pérgola sobre la planta baja.'],
+    ['jardin', 'Piscina y jardín', 'Parcela de 520 m² con piscina de 7 × 4 m.'],
+  ],
+  sample: 'Datos de ejemplo.',
+  pKick: 'Visita virtual 360º · ejemplo',
+  pT: 'Que recorran la casa desde el sofá.',
+  pD: 'Una foto 360º de cada estancia, unidas como en Street View. El cliente mira alrededor y pasa de una habitación a otra. Se hacen con una cámara 360º en la vivienda o en el piso piloto.',
+  pLabel: 'Visita virtual 360º de una vivienda de ejemplo. Arrastra para mirar alrededor.',
+  pHint: 'Arrastra para mirar · toca los puntos para pasar',
+  rooms: [['salon', 'Salón con vistas'], ['dormitorio', 'Dormitorio principal'], ['bano', 'Baño']],
+  zin: 'Acercar', zout: 'Alejar', fs: 'Pantalla completa',
+  credit: 'Fotos 360º: Poly Haven (CC0).',
+  posterAlt: 'Estancia con grandes ventanales y vistas, en la visita 360º de ejemplo',
+  mqPosterAlt: 'Maqueta 3D blanca de una vivienda con dos plantas, terraza y piscina',
+} : {
+  h2: 'Let them see it before it exists.',
+  lead: 'On top of each line’s pieces, your website can include a 3D model clients rotate with a finger, or a 360º walk-through inside the home.',
+  mqKick: '3D model · example',
+  mqT: 'Rotate it, open it floor by floor and tap each part.',
+  mqD: 'Built from the project’s drawings or 3D model (SketchUp, Revit, Blender…). It works on mobile and needs nothing installed.',
+  mqLabel: '3D model of a sample house with two floors, a roof terrace and a pool. Drag to rotate.',
+  mqHint: 'Drag to rotate', mqKeys: 'or use the arrow keys',
+  mqDefName: 'Sample house', mqDefInfo: 'Two floors, roof terrace and pool. Pick a part to see its details.',
+  explode: 'Floor by floor',
+  levels: [
+    ['pb', 'Ground floor', 'Ground floor · 96 m². Living, kitchen and dining open to the garden.'],
+    ['p1', 'First floor', 'First floor · 82 m². Three bedrooms; the main one cantilevers over the pool.'],
+    ['terraza', 'Terrace', 'Terrace · 32 m². Sun deck with pergola over the ground floor.'],
+    ['jardin', 'Pool and garden', '520 m² plot with a 7 × 4 m pool.'],
+  ],
+  sample: 'Sample data.',
+  pKick: '360º virtual tour · example',
+  pT: 'Let them walk through the home from their sofa.',
+  pD: 'A 360º photo of each room, linked like Street View. Clients look around and move from room to room. Shot with a 360º camera in the home or show flat.',
+  pLabel: '360º virtual tour of a sample home. Drag to look around.',
+  pHint: 'Drag to look around · tap the dots to move',
+  rooms: [['salon', 'Living room with a view'], ['dormitorio', 'Main bedroom'], ['bano', 'Bathroom']],
+  zin: 'Zoom in', zout: 'Zoom out', fs: 'Full screen',
+  credit: '360º photos: Poly Haven (CC0).',
+  posterAlt: 'Room with large windows and views, from the sample 360º tour',
+  mqPosterAlt: 'White 3D model of a house with two floors, a roof terrace and a pool',
+};
+const name = Object.fromEntries(c.rooms);
+// Puntos de paso: posición en la foto (u, v de 0 a 1)
+const rooms = [
+  { id: 'salon', name: name.salon, src: '/img/360/salon', start: [0.6, 0.52], hot: [{ to: 'dormitorio', u: 0.685, v: 0.64 }] },
+  { id: 'dormitorio', name: name.dormitorio, src: '/img/360/dormitorio', start: [0.56, 0.5], hot: [{ to: 'salon', u: 0.47, v: 0.64 }, { to: 'bano', u: 0.65, v: 0.64 }] },
+  { id: 'bano', name: name.bano, src: '/img/360/bano', start: [0.72, 0.5], hot: [{ to: 'dormitorio', u: 0.81, v: 0.64 }] },
+];
+---
+<section class="sec imm" id="3d" aria-labelledby="imm-t">
+  <div class="wrap">
+    <div class="head" data-stagger><h2 class="h2 rv" id="imm-t">{c.h2}</h2><p class="rv">{c.lead}</p></div>
+
+    <div class="mq" data-maqueta>
+      <div class="mq__txt">
+        <span class="kick">{c.mqKick}</span>
+        <h3 class="h3">{c.mqT}</h3>
+        <p>{c.mqD}</p>
+        <div class="mq__levels" role="group" aria-label={c.mqKick}>
+          {c.levels.map(([k, n, info]) => <button type="button" data-mq-level={k} data-name={n} data-info={info} aria-pressed="false">{n}</button>)}
+        </div>
+        <button type="button" class="mq__ex" data-mq-explode aria-pressed="false"><span class="mq__exi" aria-hidden="true"><i></i><i></i><i></i></span>{c.explode}</button>
+        <div class="mq__info" aria-live="polite"><b data-mq-name data-default={c.mqDefName}>{c.mqDefName}</b><span data-mq-info data-default={c.mqDefInfo}>{c.mqDefInfo}</span></div>
+        <p class="note">{c.sample}</p>
+      </div>
+      <Sel class="mq__stage" data-mq-stage data-label={c.mqLabel}>
+        <img class="mq__poster" src="/img/maqueta/poster-960.webp" srcset="/img/maqueta/poster-960.webp 960w, /img/maqueta/poster-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 62vw" width="1600" height="1100" alt={c.mqPosterAlt} loading="lazy" decoding="async" />
+        <span class="hint" aria-hidden="true"><span class="hint__ic"></span>{c.mqHint}</span>
+      </Sel>
+    </div>
+
+    <div class="pano" data-pano data-rooms={JSON.stringify(rooms)}>
+      <div class="pano__stage" data-pano-stage data-label={c.pLabel}>
+        <img class="pano__poster" src="/img/360/poster-960.webp" srcset="/img/360/poster-960.webp 960w, /img/360/poster-1600.webp 1600w" sizes="100vw" width="1600" height="800" alt={c.posterAlt} loading="lazy" decoding="async" />
+        <div class="pano__hots" data-pano-hots></div>
+        <div class="pano__fade" aria-hidden="true"></div>
+        <span class="pano__name" data-pano-name aria-live="polite">{rooms[0].name}</span>
+        <div class="pano__ctl">
+          <button type="button" data-pano-in aria-label={c.zin}>+</button>
+          <button type="button" data-pano-out aria-label={c.zout}>−</button>
+          <button type="button" data-pano-fs aria-label={c.fs} hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button>
+        </div>
+        <span class="hint" aria-hidden="true"><span class="hint__ic"></span>{c.pHint}</span>
+      </div>
+      <div class="pano__bar">
+        <div class="pano__txt">
+          <span class="kick">{c.pKick}</span>
+          <h3 class="h3">{c.pT}</h3>
+          <p>{c.pD}</p>
+        </div>
+        <div class="pano__rooms" role="group" aria-label={c.pKick}>
+          {c.rooms.map(([k, n], i) => <button type="button" data-pano-room={k} aria-pressed={i === 0 ? 'true' : 'false'}>{n}</button>)}
+        </div>
+        <p class="note pano__cr">{c.credit}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .imm{overflow:hidden}
+  /* Maqueta */
+  .mq{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap);align-items:center}
+  .mq__txt{grid-column:1/5}
+  .mq__txt>p{margin-top:14px;color:#3a3a38}
+  .mq__levels{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+  .mq__levels button,.pano__rooms button{min-height:44px;padding:8px 14px;font:inherit;font-size:15px;background:var(--blanco);color:var(--tinta);border:1px solid var(--filete);cursor:pointer;transition:border-color var(--t-ui),background var(--t-ui),color var(--t-ui)}
+  .mq__levels button:hover,.pano__rooms button:hover{border-color:var(--tinta)}
+  .mq__levels button[aria-pressed=true],.pano__rooms button[aria-pressed=true]{background:var(--acero);border-color:var(--acero);color:var(--blanco)}
+  .mq__ex{display:inline-flex;align-items:center;gap:10px;margin-top:12px;min-height:44px;padding:8px 14px 8px 10px;font:inherit;font-size:15px;font-weight:500;background:none;border:1px solid var(--tinta);color:var(--tinta);cursor:pointer;transition:background var(--t-ui),color var(--t-ui)}
+  .mq__ex:hover,.mq__ex[aria-pressed=true]{background:var(--tinta);color:var(--papel)}
+  .mq__exi{display:grid;gap:3px;width:18px}
+  .mq__exi i{height:3px;background:currentColor;transition:transform var(--t-sel) var(--ease)}
+  .mq__ex[aria-pressed=true] .mq__exi i:nth-child(1){transform:translateY(-2px)}
+  .mq__ex[aria-pressed=true] .mq__exi i:nth-child(3){transform:translateY(2px)}
+  .mq__info{display:grid;gap:4px;margin-top:22px;padding:14px 16px;border-left:2px solid var(--acero);background:var(--blanco);min-height:84px}
+  .mq__info b{font-weight:500}
+  .mq__info span{font-size:15px;color:#3a3a38}
+  .mq__txt .note{margin-top:10px}
+  .mq__stage{grid-column:5/13;margin:12px;aspect-ratio:16/11;background:radial-gradient(120% 90% at 50% 40%,#FAF9F7 0,var(--hormigon) 100%);cursor:grab}
+  .mq__stage:active{cursor:grabbing}
+  .mq__stage :global(canvas){position:absolute;inset:0;width:100%!important;height:100%!important;display:block;outline:none}
+  .mq__stage :global(canvas:focus-visible){box-shadow:inset 0 0 0 2px var(--acero)}
+  .mq__poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 400ms var(--ease)}
+  :global(.is-live) .mq__poster,:global(.is-live) .pano__poster{opacity:0;pointer-events:none}
+
+  /* Pista de gesto */
+  .hint{z-index:2;position:absolute;left:50%;bottom:16px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(21,21,21,.72);color:var(--blanco);font-size:14px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity 300ms var(--ease)}
+  :global(.is-live:not(.touched)) .hint{opacity:1}
+  .hint__ic{width:16px;height:16px;border:1.5px solid currentColor;border-radius:50%;position:relative}
+  .hint__ic::after{content:"";position:absolute;inset:4px;background:currentColor;border-radius:50%}
+  @media (hover:none){.hint__k{display:none}}
+  @media (prefers-reduced-motion:no-preference){:global(.is-live:not(.touched)) .hint__ic{animation:nudge 1.8s var(--ease) infinite}}
+  @keyframes nudge{0%,100%{transform:translateX(-4px)}50%{transform:translateX(4px)}}
+
+  /* 360 */
+  .pano{margin-top:clamp(72px,9vw,128px)}
+  .pano__stage{position:relative;aspect-ratio:21/9;background:var(--tinta);overflow:hidden;cursor:grab;user-select:none}
+  .pano__stage:active{cursor:grabbing}
+  .pano__stage :global(canvas){position:absolute;inset:0;width:100%!important;height:100%!important;display:block;outline:none}
+  .pano__stage :global(canvas:focus-visible){box-shadow:inset 0 0 0 2px var(--acero-claro)}
+  .pano__poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 400ms var(--ease)}
+  .pano__fade{position:absolute;inset:0;background:var(--papel);opacity:0;pointer-events:none;transition:opacity 300ms var(--ease)}
+  :global(.fading) .pano__fade{opacity:1}
+  .pano__hots{position:absolute;inset:0;pointer-events:none}
+  .pano__hots :global(.pano__hot){position:absolute;left:0;top:0;margin:-22px 0 0 -22px;display:flex;align-items:center;gap:10px;padding:0;border:0;background:none;cursor:pointer;pointer-events:auto;visibility:hidden;color:var(--blanco);font:inherit;font-size:14px;font-weight:500}
+  .pano__hots :global(.pano__hot i){width:44px;height:44px;border-radius:50%;border:2px solid var(--blanco);background:rgba(69,98,127,.55);box-shadow:0 2px 14px rgba(0,0,0,.3);position:relative;flex:none}
+  .pano__hots :global(.pano__hot i::after){content:"";position:absolute;inset:13px;border-radius:50%;background:var(--blanco)}
+  @media (prefers-reduced-motion:no-preference){.pano__hots :global(.pano__hot i){animation:pulse 2.2s var(--ease) infinite}}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.55),0 2px 14px rgba(0,0,0,.3)}60%{box-shadow:0 0 0 12px rgba(255,255,255,0),0 2px 14px rgba(0,0,0,.3)}}
+  .pano__hots :global(.pano__hot span){padding:6px 10px;background:rgba(21,21,21,.72);white-space:nowrap}
+  .pano__hots :global(.pano__hot.l span){position:absolute;right:54px}
+  .pano__hots :global(.pano__hot:hover i),.pano__hots :global(.pano__hot:focus-visible i){background:var(--acero)}
+  .pano__name{position:absolute;left:16px;top:16px;padding:6px 12px;background:var(--papel);color:var(--tinta);font-size:14px;font-weight:500;box-shadow:inset 0 0 0 1.5px var(--acero)}
+  .pano__ctl{position:absolute;right:16px;top:16px;display:flex;gap:6px}
+  .pano__ctl button{width:44px;height:44px;display:grid;place-items:center;font:inherit;font-size:22px;line-height:1;background:var(--papel);color:var(--tinta);border:0;cursor:pointer;transition:background var(--t-ui),color var(--t-ui)}
+  .pano__ctl button:hover{background:var(--tinta);color:var(--papel)}
+  .pano__ctl button[hidden]{display:none}
+  .pano__ctl svg{width:18px;height:18px}
+  .pano__stage:fullscreen{aspect-ratio:auto;width:100vw;height:100vh}
+  .pano__bar{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap);margin-top:28px;align-items:start}
+  .pano__txt{grid-column:1/7}
+  .pano__txt p{margin-top:12px;color:#3a3a38;max-width:52ch}
+  .pano__rooms{grid-column:8/13;display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;align-self:end}
+  .pano__cr{grid-column:1/-1}
+
+  @media (max-width:860px){
+    .mq__txt,.mq__stage,.pano__txt,.pano__rooms{grid-column:1/-1}
+    .mq__stage{order:-1;aspect-ratio:4/5;margin:8px 8px 20px}
+    .pano__stage{aspect-ratio:4/5}
+    .pano__rooms{justify-content:flex-start;align-self:start}
+  }
+</style>
