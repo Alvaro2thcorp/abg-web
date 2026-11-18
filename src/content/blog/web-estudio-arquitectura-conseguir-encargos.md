@@ -1,7 +1,7 @@
 ---
 title: "Qué necesita la web de un estudio de arquitectura para conseguir encargos"
-seoTitle: "Web para estudio de arquitectura: cómo conseguir encargos | ABGFRAME"
-description: "Un portfolio bonito no basta. Qué debe tener la web de un estudio de arquitectura o interiorismo para que el cliente adecuado te escriba y llegue a la primera reunión con un encargo claro."
+seoTitle: "Web de estudio de arquitectura que consigue encargos | ABGFRAME"
+description: "Un portfolio bonito no basta. Qué debe tener la web de un estudio de arquitectura o interiorismo para que el cliente adecuado te escriba con un encargo claro."
 pubDate: 2026-11-18
 line: "arquitectura"
 image: "/img/foto/muros"

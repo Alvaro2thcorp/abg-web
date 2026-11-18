@@ -7,7 +7,7 @@ import Faq from '../components/Faq.astro';
 import ContactBlock from '../components/ContactBlock.astro';
 import Immersive from '../components/Immersive.astro';
 import SpeedTest from '../components/SpeedTest.astro';
-import { r, ui, wa, LINE_KEYS, CONTACT, type Lang } from '../i18n';
+import { r, ui, wa, LINE_KEYS, CONTACT, DEMO_READY, type Lang } from '../i18n';
 import { lines } from '../data/lines';
 import { steps, homeFaq, faqLd } from '../data/common';
 interface Props { lang: Lang }
@@ -15,8 +15,8 @@ const { lang } = Astro.props;
 const es = lang === 'es';
 const t = ui[lang];
 const c = es ? {
-  title: 'ABGFRAME · Agencia web para arquitectura, construcción e inmobiliaria en Alicante',
-  desc: 'Webs que venden viviendas sobre plano, consiguen encargos, traen presupuestos y captan propietarios. Para promotoras, arquitectos, interioristas, constructoras, reformas e inmobiliarias.',
+  title: 'ABGFRAME · Agencia web para arquitectura e inmobiliaria',
+  desc: 'Webs que venden viviendas sobre plano, consiguen encargos, traen presupuestos y captan propietarios. Para promotoras, arquitectos, constructoras e inmobiliarias.',
   h1a: 'Webs que',
   words: ['venden viviendas', 'consiguen encargos', 'traen presupuestos', 'captan propietarios'],
   sub: 'Diseñamos y programamos webs para promotoras, estudios de arquitectura e interiorismo, constructoras, empresas de reformas e inmobiliarias. Desde Alicante, para clientes de la Costa Blanca y de fuera.',
@@ -36,8 +36,8 @@ const c = es ? {
   meD: 'Álvaro Bergillos diseña y programa las webs de ABGFRAME. Habla contigo el primer día y es quien te responde después de publicar.', meLink: 'Conocer el estudio',
   faqT: 'Preguntas frecuentes.',
 } : {
-  title: 'ABGFRAME · Web studio for architecture, construction and real estate in Spain',
-  desc: 'Websites that sell homes off-plan, win commissions, bring in quote requests and win listings. For developers, architects, interior designers, builders and real estate agencies on the Costa Blanca.',
+  title: 'ABGFRAME · Web studio for architecture and real estate',
+  desc: 'Websites that sell homes off-plan, win commissions, bring in quotes and win listings. For developers, architects, builders and real estate agencies in Spain.',
   h1a: 'Websites that',
   words: ['sell homes', 'win commissions', 'bring in quotes', 'win listings'],
   sub: 'We design and build websites for property developers, architecture and interior design studios, builders, renovation companies and real estate agencies. Based in Alicante, working across the Costa Blanca and beyond.',
@@ -136,7 +136,7 @@ const services = LINE_KEYS.map((k) => ({ '@type': 'Service', name: t.lines[k][0]
     </div>
   </section>
 
-  <section class="sec--tight">
+  {DEMO_READY && <section class="sec--tight">
     <div class="wrap">
       <a class="demo" href={r('demo', lang)}>
         <span class="kick">{c.demoKick}</span>
@@ -144,7 +144,7 @@ const services = LINE_KEYS.map((k) => ({ '@type': 'Service', name: t.lines[k][0]
         <span class="note">{c.demoD}</span>
       </a>
     </div>
-  </section>
+  </section>}
 
   <section class="sec" aria-labelledby="proc-t">
     <div class="wrap">

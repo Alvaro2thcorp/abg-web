@@ -99,3 +99,6 @@ export const ui = {
 
 export const LINE_KEYS = ['promotoras', 'arquitectura', 'reformas', 'inmobiliarias'] as const;
 export type LineKey = (typeof LINE_KEYS)[number];
+
+// La demo (P2) aún no existe: mientras sea false, no se enlaza desde portada ni casos.
+export const DEMO_READY = false;

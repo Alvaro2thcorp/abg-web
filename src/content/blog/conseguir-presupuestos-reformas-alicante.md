@@ -1,7 +1,7 @@
 ---
 title: "Cómo conseguir más presupuestos de reformas en Alicante con tu web"
-seoTitle: "Cómo conseguir más presupuestos de reformas en Alicante | ABGFRAME"
-description: "Qué tiene que tener la web de una empresa de reformas para recibir solicitudes de presupuesto de calidad: obras reales, una primera cifra orientativa, SEO local y contacto sin fricción."
+seoTitle: "Más presupuestos de reformas en Alicante con tu web | ABGFRAME"
+description: "Qué necesita la web de una empresa de reformas para recibir presupuestos de calidad: obras reales, una cifra orientativa, SEO local y contacto sin fricción."
 pubDate: 2026-11-18
 line: "reformas"
 image: "/img/foto/escalera"

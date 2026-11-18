@@ -1,7 +1,7 @@
 ---
 title: "Cómo vender obra nueva a comprador extranjero desde la web"
 seoTitle: "Cómo vender obra nueva a comprador extranjero online | ABGFRAME"
-description: "Qué necesita la web de una promoción para que un comprador de fuera elija vivienda sin viajar: idiomas, selector de viviendas, disponibilidad real, dosier y una visita fácil de reservar."
+description: "Qué necesita la web de una promoción para que un comprador de fuera elija vivienda sin viajar: idiomas, selector, disponibilidad real y visita fácil de reservar."
 pubDate: 2026-11-18
 line: "promotoras"
 image: "/img/foto/fachada"

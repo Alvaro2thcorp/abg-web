@@ -1,6 +1,6 @@
 ---
 title: "Valorador online: cómo captan propietarios las inmobiliarias desde su web"
-seoTitle: "Valorador online de viviendas para inmobiliarias: captar propietarios | ABGFRAME"
+seoTitle: "Valorador online para inmobiliarias | ABGFRAME"
 description: "Qué es un valorador online, por qué funciona para captar propietarios que quieren vender y cómo montarlo bien en la web de una inmobiliaria sin prometer tasaciones."
 pubDate: 2026-11-18
 line: "inmobiliarias"

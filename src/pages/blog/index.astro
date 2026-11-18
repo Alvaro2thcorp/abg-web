@@ -10,8 +10,8 @@ const crumbs = [{ name: t.breadcrumbHome, href: '/' }, { name: 'Blog', href: '/b
 const fmt = (d: Date) => d.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
 const blogLd = { '@type': 'Blog', name: 'Blog de ABGFRAME', url: 'https://abgframe.com/blog/', inLanguage: 'es-ES', publisher: { '@id': 'https://abgframe.com/#org' }, blogPost: posts.map((p) => ({ '@type': 'BlogPosting', headline: p.data.title, url: `https://abgframe.com/blog/${p.slug}/` })) };
 ---
-<Base lang="es" route="blog" breadcrumbs={crumbs} schema={[blogLd]} title="Blog: webs para arquitectura, construcción e inmobiliaria | ABGFRAME"
-  description="Artículos prácticos para promotoras, estudios de arquitectura, constructoras, empresas de reformas e inmobiliarias: cómo vender, conseguir encargos y captar clientes desde la web.">
+<Base lang="es" route="blog" breadcrumbs={crumbs} schema={[blogLd]} title="Blog: webs para arquitectura e inmobiliaria | ABGFRAME"
+  description="Artículos prácticos para promotoras, estudios, constructoras e inmobiliarias: cómo vender, conseguir encargos y captar clientes desde la web.">
   <Crumbs items={crumbs} />
   <section class="phero"><div class="wrap"><h1 class="h1">Blog</h1><p class="lead">Lo que vemos funcionar en las webs del sector, explicado sin tecnicismos. Un artículo por cada forma de vender.</p></div></section>
   <section class="sec--tight" style="padding-top:0">

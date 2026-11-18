@@ -1,7 +1,7 @@
 ---
 title: "SEO para inmobiliaria de lujo en la Costa Blanca: cómo llegar al comprador internacional"
 seoTitle: "SEO para inmobiliaria de lujo en la Costa Blanca | ABGFRAME"
-description: "Cómo posicionar una inmobiliaria de lujo de Alicante y la Costa Blanca ante compradores británicos, alemanes, franceses y nórdicos: idiomas, estructura de la web, páginas por zona y contenido útil."
+description: "Cómo posicionar una inmobiliaria de lujo de la Costa Blanca ante compradores británicos, alemanes y nórdicos: idiomas, páginas por zona y contenido útil."
 pubDate: 2025-02-03
 updatedDate: 2026-11-18
 line: "inmobiliarias"

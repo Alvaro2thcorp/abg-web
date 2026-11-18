@@ -34,7 +34,7 @@ const P = {
 export const lines: Record<LineKey, Record<Lang, LineCopy>> = {
   promotoras: {
     es: {
-      seoTitle: 'Diseño web para promotoras inmobiliarias en Alicante y Costa Blanca | ABGFRAME',
+      seoTitle: 'Diseño web para promotoras en Alicante | ABGFRAME',
       seoDesc: 'Webs para vender obra nueva sobre plano: selector de viviendas con plano, estado y reserva de visita, dosier del inversor y varios idiomas. Alicante y Costa Blanca.',
       kicker: 'Promotoras y obra nueva',
       h1: 'Diseño web para promotoras que venden sobre plano',
@@ -64,7 +64,7 @@ export const lines: Record<LineKey, Record<Lang, LineCopy>> = {
       photo: { ...P.fachada, alt: 'Fachada de un edificio residencial con terrazas y celosías de madera' },
     },
     en: {
-      seoTitle: 'Website design for property developers in Alicante and the Costa Blanca | ABGFRAME',
+      seoTitle: 'Websites for property developers in Spain | ABGFRAME',
       seoDesc: 'Websites that sell new builds off-plan: an interactive unit selector with floor plans, availability and viewing requests, an investor pack and multiple languages.',
       kicker: 'Developers and new builds',
       h1: 'Websites for developers who sell off-plan',
@@ -96,7 +96,7 @@ export const lines: Record<LineKey, Record<Lang, LineCopy>> = {
   },
   arquitectura: {
     es: {
-      seoTitle: 'Diseño web para estudios de arquitectura e interiorismo en Alicante | ABGFRAME',
+      seoTitle: 'Diseño web para arquitectos e interioristas | ABGFRAME',
       seoDesc: 'Webs para estudios de arquitectura e interiorismo que quieren conseguir encargos: portfolio por proyecto a pantalla completa y briefing guiado para el cliente.',
       kicker: 'Arquitectura e interiorismo',
       h1: 'Webs para estudios de arquitectura e interiorismo que buscan encargos',
@@ -126,7 +126,7 @@ export const lines: Record<LineKey, Record<Lang, LineCopy>> = {
       photo: { ...P.muros, alt: 'Volúmenes blancos de arquitectura contemporánea contra el cielo' },
     },
     en: {
-      seoTitle: 'Website design for architecture and interior design studios | ABGFRAME',
+      seoTitle: 'Websites for architects and interior designers | ABGFRAME',
       seoDesc: 'Websites for architecture and interior design studios that want to win commissions: full-screen project portfolio and a guided client brief.',
       kicker: 'Architecture and interiors',
       h1: 'Websites for architecture and interior design studios that want commissions',
@@ -158,7 +158,7 @@ export const lines: Record<LineKey, Record<Lang, LineCopy>> = {
   },
   reformas: {
     es: {
-      seoTitle: 'Diseño web para constructoras y empresas de reformas en Alicante | ABGFRAME',
+      seoTitle: 'Diseño web para constructoras y reformas | ABGFRAME',
       seoDesc: 'Webs para constructoras y empresas de reformas que quieren recibir presupuestos: calculadora orientativa, antes y después de tus obras y SEO local en Alicante.',
       kicker: 'Constructoras y reformas',
       h1: 'Webs para constructoras y empresas de reformas que traen presupuestos',
@@ -188,7 +188,7 @@ export const lines: Record<LineKey, Record<Lang, LineCopy>> = {
       photo: { ...P.escalera, alt: 'Escalera interior de obra con paredes encaladas y luz natural' },
     },
     en: {
-      seoTitle: 'Website design for builders and renovation companies in Alicante | ABGFRAME',
+      seoTitle: 'Websites for builders and renovation firms | ABGFRAME',
       seoDesc: 'Websites for builders and renovation companies that want quote requests: an estimate calculator, before-and-after of your work and local SEO.',
       kicker: 'Builders and renovation',
       h1: 'Websites for builders and renovation companies that bring in quote requests',
@@ -220,7 +220,7 @@ export const lines: Record<LineKey, Record<Lang, LineCopy>> = {
   },
   inmobiliarias: {
     es: {
-      seoTitle: 'Diseño web para inmobiliarias en Alicante y Costa Blanca | ABGFRAME',
+      seoTitle: 'Diseño web para inmobiliarias en Alicante | ABGFRAME',
       seoDesc: 'Webs para inmobiliarias que quieren captar propietarios: valorador online de viviendas, fichas de inmueble cuidadas y versión en inglés para el comprador extranjero.',
       kicker: 'Inmobiliarias',
       h1: 'Webs para inmobiliarias que captan propietarios',
@@ -250,8 +250,8 @@ export const lines: Record<LineKey, Record<Lang, LineCopy>> = {
       photo: { ...P.escalonada, alt: 'Edificio residencial escalonado de hormigón blanco contra el cielo azul' },
     },
     en: {
-      seoTitle: 'Website design for real estate agencies on the Costa Blanca | ABGFRAME',
-      seoDesc: 'Websites for real estate agencies that want more listings: an online home valuation tool, well-designed property pages and an English version for international buyers.',
+      seoTitle: 'Websites for real estate agencies in Spain | ABGFRAME',
+      seoDesc: 'Websites for agencies that want more listings: an online valuation tool, well-designed property pages and an English version for international buyers.',
       kicker: 'Real estate agencies',
       h1: 'Websites for real estate agencies that win property owners',
       h1Mark: 'owners',

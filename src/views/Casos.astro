@@ -4,26 +4,28 @@ import Sel from '../components/Sel.astro';
 import Pic from '../components/Pic.astro';
 import Crumbs from '../components/Crumbs.astro';
 import ContactBlock from '../components/ContactBlock.astro';
-import { r, ui, type Lang } from '../i18n';
+import { r, ui, DEMO_READY, type Lang } from '../i18n';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const es = lang === 'es';
 const t = ui[lang];
 const crumbs = [{ name: t.breadcrumbHome, href: r('home', lang) }, { name: t.work, href: r('casos', lang) }];
 const c = es ? {
-  title: 'Casos: webs para arquitectura, construcción e inmobiliaria | ABGFRAME',
+  title: 'Casos: webs para arquitectura e inmobiliaria | ABGFRAME',
   desc: 'Casos reales de ABGFRAME: qué pedía cada cliente, qué hicimos y qué puede hacer ahora con su web. Empezamos por Ceyra Studio y Leo Villa.',
   h1: 'Casos', lead: 'Cada caso cuenta qué pedía el cliente, qué piezas hicimos y qué puede hacer ahora. Sin cifras inventadas: lo que se puede comprobar.',
   ceyraT: 'Ceyra Studio · Leo Villa', ceyraD: 'Vender una villa en Sri Lanka a inversores que no pueden visitarla.', ceyraTags: ['Promoción', 'Arquitectura', 'Inversores'],
   demoT: 'Promoción de obra nueva en la Costa Blanca', demoD: 'Demo con selector de viviendas. Proyecto ficticio. Próximamente.',
+  tresdT: 'Leo Villa en 3D y una visita 360º', tresdD: 'Gira la maqueta real de Ceyra, levanta sus cubiertas y recorre una casa por dentro.',
   nextT: 'Tu proyecto, aquí', nextD: 'Estamos trabajando en los siguientes casos. Si el tuyo encaja, hablemos.',
   read: 'Leer el caso',
 } : {
-  title: 'Work: websites for architecture, construction and real estate | ABGFRAME',
+  title: 'Work: websites for architecture and real estate | ABGFRAME',
   desc: 'ABGFRAME case studies: what each client needed, what we built and what they can do now with their website. Starting with Ceyra Studio and Leo Villa.',
   h1: 'Work', lead: 'Each case study explains what the client needed, what we built and what they can do now. No invented figures: only what can be checked.',
   ceyraT: 'Ceyra Studio · Leo Villa', ceyraD: 'Selling a villa in Sri Lanka to investors who cannot visit it.', ceyraTags: ['Development', 'Architecture', 'Investors'],
   demoT: 'New-build development on the Costa Blanca', demoD: 'Demo with a unit selector. Fictional project. Coming soon.',
+  tresdT: 'Leo Villa in 3D and a 360º tour', tresdD: 'Rotate Ceyra’s real model, lift its roofs and walk through a home inside.',
   nextT: 'Your project, here', nextD: 'We are working on the next case studies. If yours fits, let’s talk.',
   read: 'Read the case study',
 };
@@ -47,7 +49,9 @@ const list = { '@type': 'CollectionPage', name: c.h1, description: c.desc, url: 
         </span>
       </a>
       <div class="cards" style="margin-top:clamp(56px,7vw,96px)">
-        <a class="card hatch" href={r('demo', lang)}><span class="kick">Demo</span><span class="h3">{c.demoT}</span><p>{c.demoD}</p></a>
+        {DEMO_READY
+          ? <a class="card hatch" href={r('demo', lang)}><span class="kick">Demo</span><span class="h3">{c.demoT}</span><p>{c.demoD}</p></a>
+          : <a class="card hatch" href={r('tresd', lang)}><span class="kick">{es ? 'Pruébalo' : 'Try it'}</span><span class="h3">{c.tresdT}</span><p>{c.tresdD}</p></a>}
         <a class="card" href={r('contacto', lang)}><span class="kick">{es ? 'Siguiente' : 'Next'}</span><span class="h3">{c.nextT}</span><p>{c.nextD}</p></a>
       </div>
     </div>

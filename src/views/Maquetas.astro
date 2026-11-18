@@ -14,8 +14,8 @@ const t = ui[lang];
 const name = es ? 'Maquetas 3D y visitas 360º' : '3D models and 360º tours';
 const crumbs = [{ name: t.breadcrumbHome, href: r('home', lang) }, { name, href: r('tresd', lang) }];
 const c = es ? {
-  title: 'Maqueta 3D interactiva y visita virtual 360º para tu web | ABGFRAME',
-  desc: 'Maquetas 3D que el cliente gira desde el móvil y visitas virtuales 360º por estancias, integradas en la web de tu promotora, estudio, constructora o inmobiliaria. Rápidas y sin instalar nada.',
+  title: 'Maqueta 3D interactiva y visita 360º para tu web | ABGFRAME',
+  desc: 'Maquetas 3D que el cliente gira desde el móvil y visitas 360º por estancias, dentro de la web de tu promotora, estudio o inmobiliaria. Rápidas, sin instalar nada.',
   h1: 'Que giren el proyecto y lo recorran por dentro, desde tu web',
   lead: 'Una maqueta 3D que se abre por plantas y una visita 360º que pasa de una estancia a otra. Dentro de tu web, sin apps ni plataformas aparte, y sin que la web se vuelva lenta.',
   forT: 'Para quién tiene sentido',
@@ -41,8 +41,8 @@ const c = es ? {
   ctaT: '¿Tienes un modelo o unos planos?',
   ctaD: 'Cuéntanos qué proyecto quieres enseñar y te decimos cómo quedaría en tu web.',
 } : {
-  title: 'Interactive 3D model and 360º virtual tour for your website | ABGFRAME',
-  desc: '3D models clients rotate on their phone and room-by-room 360º virtual tours, built into the website of your development, studio, construction company or agency. Fast, nothing to install.',
+  title: '3D model and 360º virtual tour for your website | ABGFRAME',
+  desc: '3D models clients rotate on their phone and room-by-room 360º tours, built into your developer, studio or agency website. Fast, with nothing to install.',
   h1: 'Let them rotate the project and walk through it, on your website',
   lead: 'A 3D model that opens floor by floor and a 360º tour that moves from room to room. Inside your website, with no separate apps or platforms, and without slowing it down.',
   forT: 'Who it makes sense for',
@@ -70,7 +70,7 @@ const c = es ? {
 };
 const service = { '@type': 'Service', name, description: c.desc, url: `https://abgframe.com${r('tresd', lang)}`, provider: { '@id': 'https://abgframe.com/#org' }, areaServed: 'Costa Blanca', serviceType: es ? 'Maqueta 3D interactiva y visita virtual 360º para webs' : 'Interactive 3D model and 360º virtual tour for websites' };
 ---
-<Base lang={lang} title={c.title} description={c.desc} route="tresd" breadcrumbs={crumbs} schema={[service, faqLd(c.faq)]}>
+<Base lang={lang} title={c.title} description={c.desc} route="tresd" image={`/og/tresd-${lang}.jpg`} breadcrumbs={crumbs} schema={[service, faqLd(c.faq)]}>
   <Crumbs items={crumbs} />
   <section class="phero"><div class="wrap"><span class="kick">{name}</span><h1 class="h1">{c.h1}</h1><p class="lead">{c.lead}</p></div></section>
 
