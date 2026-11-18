@@ -9,10 +9,21 @@ const es = lang === 'es';
 const c = es ? {
   h2: 'Que la vean antes de que exista.',
   lead: 'Además de las piezas de cada línea, tu web puede llevar una maqueta 3D que el cliente gira con el dedo o una visita 360º por dentro de la vivienda.',
-  mqKick: 'Maqueta 3D · ejemplo',
-  mqT: 'Gírala, ábrela por plantas y toca cada parte.',
-  mqD: 'Se hace a partir de los planos o del modelo 3D del proyecto (SketchUp, Revit, Blender…). Funciona en el móvil y no hace falta instalar nada.',
-  mqLabel: 'Maqueta 3D de una vivienda de ejemplo con dos plantas, terraza y piscina. Arrastra para girarla.',
+  mqKick: 'Maqueta 3D',
+  mqT: 'Gírala, ábrela y toca cada parte.',
+  mqD: 'Es Leo Villa, el proyecto real de Ceyra Studio, pasada de su modelo de Rhino a la web. Lo mismo se hace con los planos o el modelo 3D de tu proyecto (SketchUp, Revit, Rhino…). Funciona en el móvil sin instalar nada.',
+  mqLabel: 'Maqueta 3D interactiva de una vivienda. Arrastra para girarla.',
+  models: [['ceyra', 'Leo Villa · proyecto real'], ['ejemplo', 'Casa de ejemplo']],
+  ceyra: {
+    name: 'Leo Villa · Ceyra Studio', info: 'Dos módulos con piscina entre palmeras, en Midigama (Sri Lanka). Elige una parte para verla.', ex: 'Quitar cubiertas',
+    levels: [
+      ['modulos', 'Los dos módulos', 'Dos módulos unidos por un porche cubierto, con celosías de madera.'],
+      ['cubierta', 'Cubiertas', 'Cubiertas planas rematadas en madera. Quítalas para ver la distribución por dentro.'],
+      ['piscina', 'Piscina', 'Piscina de 5,2 × 2,2 m.'],
+      ['jardin', 'Patio y jardín', 'Parcela de unos 16 × 16 m cerrada con muro, con patio y zonas verdes.'],
+    ],
+    note: 'Modelo 3D real de Leo Villa, cedido por Ceyra Studio. Medidas tomadas del modelo.',
+  },
   mqHint: 'Arrastra para girar', mqKeys: 'o usa las flechas',
   mqDefName: 'Vivienda de ejemplo', mqDefInfo: 'Dos plantas, terraza y piscina. Elige una parte para ver sus datos.',
   explode: 'Ver por plantas',
@@ -32,14 +43,25 @@ const c = es ? {
   zin: 'Acercar', zout: 'Alejar', fs: 'Pantalla completa',
   credit: 'Fotos 360º: Poly Haven (CC0).',
   posterAlt: 'Estancia con grandes ventanales y vistas, en la visita 360º de ejemplo',
-  mqPosterAlt: 'Maqueta 3D blanca de una vivienda con dos plantas, terraza y piscina',
+  mqPosterAlt: 'Maqueta 3D blanca de Leo Villa, de Ceyra Studio: dos módulos con piscina entre palmeras',
 } : {
   h2: 'Let them see it before it exists.',
   lead: 'On top of each line’s pieces, your website can include a 3D model clients rotate with a finger, or a 360º walk-through inside the home.',
-  mqKick: '3D model · example',
-  mqT: 'Rotate it, open it floor by floor and tap each part.',
-  mqD: 'Built from the project’s drawings or 3D model (SketchUp, Revit, Blender…). It works on mobile and needs nothing installed.',
-  mqLabel: '3D model of a sample house with two floors, a roof terrace and a pool. Drag to rotate.',
+  mqKick: '3D model',
+  mqT: 'Rotate it, open it up and tap each part.',
+  mqD: 'This is Leo Villa, Ceyra Studio’s real project, taken from its Rhino model to the web. The same works with your project’s drawings or 3D model (SketchUp, Revit, Rhino…). It runs on mobile with nothing to install.',
+  mqLabel: 'Interactive 3D model of a house. Drag to rotate.',
+  models: [['ceyra', 'Leo Villa · real project'], ['ejemplo', 'Sample house']],
+  ceyra: {
+    name: 'Leo Villa · Ceyra Studio', info: 'Two modules with a pool among palm trees, in Midigama (Sri Lanka). Pick a part to see it.', ex: 'Lift the roofs',
+    levels: [
+      ['modulos', 'The two modules', 'Two modules joined by a covered porch, with timber screens.'],
+      ['cubierta', 'Roofs', 'Flat roofs with timber edges. Lift them to see the layout inside.'],
+      ['piscina', 'Pool', '5.2 × 2.2 m pool.'],
+      ['jardin', 'Courtyard and garden', 'Walled plot of about 16 × 16 m, with a courtyard and planted areas.'],
+    ],
+    note: 'Real 3D model of Leo Villa, courtesy of Ceyra Studio. Measurements taken from the model.',
+  },
   mqHint: 'Drag to rotate', mqKeys: 'or use the arrow keys',
   mqDefName: 'Sample house', mqDefInfo: 'Two floors, roof terrace and pool. Pick a part to see its details.',
   explode: 'Floor by floor',
@@ -59,7 +81,7 @@ const c = es ? {
   zin: 'Zoom in', zout: 'Zoom out', fs: 'Full screen',
   credit: '360º photos: Poly Haven (CC0).',
   posterAlt: 'Room with large windows and views, from the sample 360º tour',
-  mqPosterAlt: 'White 3D model of a house with two floors, a roof terrace and a pool',
+  mqPosterAlt: 'White 3D model of Leo Villa by Ceyra Studio: two modules with a pool among palm trees',
 };
 const name = Object.fromEntries(c.rooms);
 // Puntos de paso: posición en la foto (u, v de 0 a 1)
@@ -78,12 +100,23 @@ const rooms = [
         <span class="kick">{c.mqKick}</span>
         <h3 class="h3">{c.mqT}</h3>
         <p>{c.mqD}</p>
-        <div class="mq__levels" role="group" aria-label={c.mqKick}>
-          {c.levels.map(([k, n, info]) => <button type="button" data-mq-level={k} data-name={n} data-info={info} aria-pressed="false">{n}</button>)}
+        <div class="mq__sw" role="group" aria-label={c.mqKick}>
+          {c.models.map(([k, n], i) => <button type="button" data-mq-model={k} aria-pressed={i === 0 ? 'true' : 'false'}>{n}</button>)}
         </div>
-        <button type="button" class="mq__ex" data-mq-explode aria-pressed="false"><span class="mq__exi" aria-hidden="true"><i></i><i></i><i></i></span>{c.explode}</button>
-        <div class="mq__info" aria-live="polite"><b data-mq-name data-default={c.mqDefName}>{c.mqDefName}</b><span data-mq-info data-default={c.mqDefInfo}>{c.mqDefInfo}</span></div>
-        <p class="note">{c.sample}</p>
+        <div data-mq-set="ceyra" data-name={c.ceyra.name} data-info={c.ceyra.info} data-ex={c.ceyra.ex}>
+          <div class="mq__levels" role="group" aria-label={c.ceyra.name}>
+            {c.ceyra.levels.map(([k, n, info]) => <button type="button" data-mq-level={k} data-name={n} data-info={info} aria-pressed="false">{n}</button>)}
+          </div>
+        </div>
+        <div data-mq-set="ejemplo" data-name={c.mqDefName} data-info={c.mqDefInfo} data-ex={c.explode} hidden>
+          <div class="mq__levels" role="group" aria-label={c.mqDefName}>
+            {c.levels.map(([k, n, info]) => <button type="button" data-mq-level={k} data-name={n} data-info={info} aria-pressed="false">{n}</button>)}
+          </div>
+        </div>
+        <button type="button" class="mq__ex" data-mq-explode aria-pressed="false"><span class="mq__exi" aria-hidden="true"><i></i><i></i><i></i></span><span data-mq-exlabel>{c.ceyra.ex}</span></button>
+        <div class="mq__info" aria-live="polite"><b data-mq-name>{c.ceyra.name}</b><span data-mq-info>{c.ceyra.info}</span></div>
+        <p class="note mq__note" data-for="ceyra">{c.ceyra.note}</p>
+        <p class="note mq__note" data-for="ejemplo">{c.sample}</p>
       </div>
       <Sel class="mq__stage" data-mq-stage data-label={c.mqLabel}>
         <img class="mq__poster" src="/img/maqueta/poster-960.webp" srcset="/img/maqueta/poster-960.webp 960w, /img/maqueta/poster-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 62vw" width="1600" height="1100" alt={c.mqPosterAlt} loading="lazy" decoding="async" />
@@ -125,7 +158,15 @@ const rooms = [
   .mq{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap);align-items:center}
   .mq__txt{grid-column:1/5}
   .mq__txt>p{margin-top:14px;color:#3a3a38}
-  .mq__levels{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+  .mq__levels{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .mq__sw{display:inline-flex;margin-top:24px;border:1px solid var(--tinta)}
+  .mq__sw button{min-height:40px;padding:6px 12px;font:inherit;font-size:14px;background:none;border:0;color:var(--tinta);cursor:pointer;transition:background var(--t-ui),color var(--t-ui)}
+  .mq__sw button[aria-pressed=true]{background:var(--tinta);color:var(--papel)}
+  [data-mq-set][hidden]{display:none}
+  .mq__note[data-for=ejemplo]{display:none}
+  :global([data-model=ejemplo]) .mq__note[data-for=ejemplo]{display:block}
+  :global([data-model=ejemplo]) .mq__note[data-for=ceyra]{display:none}
+  :global(.loading) .mq__stage{opacity:.6;transition:opacity 200ms}
   .mq__levels button,.pano__rooms button{min-height:44px;padding:8px 14px;font:inherit;font-size:15px;background:var(--blanco);color:var(--tinta);border:1px solid var(--filete);cursor:pointer;transition:border-color var(--t-ui),background var(--t-ui),color var(--t-ui)}
   .mq__levels button:hover,.pano__rooms button:hover{border-color:var(--tinta)}
   .mq__levels button[aria-pressed=true],.pano__rooms button[aria-pressed=true]{background:var(--acero);border-color:var(--acero);color:var(--blanco)}
