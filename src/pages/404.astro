@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import Sel from '../components/Sel.astro';
+import { r, ui, LINE_KEYS } from '../i18n';
+const t = ui.es;
+---
+<Base lang="es" noindex title="Página no encontrada | ABGFRAME" description="Esta página no existe o ha cambiado de sitio.">
+  <section class="sec">
+    <div class="wrap">
+      <Sel class="nf" draw={false}><span class="h1">404</span></Sel>
+      <h1 class="h2" style="margin-top:48px">Esta página no existe o ha cambiado de sitio.</h1>
+      <p class="lead" style="margin-top:16px">Hemos renovado la web. Quizá buscabas una de estas: <span lang="en">(Page not found. <a href="/en/">English version</a>.)</span></p>
+      <ul class="nf-l">
+        {LINE_KEYS.map((k) => <li><a class="link" href={r(k, 'es')}>{t.lines[k][0]}</a></li>)}
+        <li><a class="link" href="/casos/">Casos</a></li>
+        <li><a class="link" href="/blog/">Blog</a></li>
+        <li><a class="link" href="/">Inicio</a></li>
+      </ul>
+    </div>
+  </section>
+</Base>
+<style>
+  .nf{display:inline-block;padding:4px 18px;margin:14px}
+  .nf-l{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:32px}
+</style>

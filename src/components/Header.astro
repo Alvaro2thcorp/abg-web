@@ -1,0 +1,44 @@
+---
+import { ui, r, routes, LINE_KEYS, type Lang, type RouteKey } from '../i18n';
+interface Props { lang: Lang; current?: RouteKey; alt?: string | null }
+const { lang, current, alt } = Astro.props;
+const t = ui[lang];
+const isServ = current && (LINE_KEYS as readonly string[]).includes(current);
+const nav: { key: RouteKey; label: string }[] = [
+  { key: 'casos', label: t.work },
+  { key: 'proceso', label: t.process },
+  { key: 'estudio', label: t.studio },
+  ...(lang === 'es' ? [{ key: 'blog' as RouteKey, label: t.blog }] : []),
+];
+const altHref = alt ?? routes.home[lang === 'es' ? 'en' : 'es'];
+---
+<a class="skip" href="#main">{t.skip}</a>
+<header class="hd" id="hd">
+  <div class="wrap hd__in">
+    <a class="hd__logo" href={r('home', lang)} aria-label={lang === 'es' ? 'ABGFRAME, inicio' : 'ABGFRAME, home'}>
+      <img src="/img/abgframe-logo-color.svg" alt="ABGFRAME" width="136" height="28" />
+    </a>
+    <nav class="hd__nav" aria-label={lang === 'es' ? 'Principal' : 'Main'}>
+      <details class="hd__serv">
+        <summary aria-current={isServ ? 'page' : undefined}>{t.services}</summary>
+        <div class="mega">
+          {LINE_KEYS.map((k) => <a href={r(k, lang)}><b>{t.lines[k][0]}</b><span>{t.lines[k][1]}</span></a>)}
+        </div>
+      </details>
+      {nav.map((n) => <a href={r(n.key, lang)} aria-current={current === n.key ? 'page' : undefined}>{n.label}</a>)}
+      <a class="hd__lang" href={altHref} hreflang={lang === 'es' ? 'en' : 'es'} lang={lang === 'es' ? 'en' : 'es'} title={t.otherLang}>{t.otherLangShort}</a>
+      <a class="btn btn--ink hd__cta" href={r('contacto', lang)} data-track="cta_header">{t.contact}</a>
+    </nav>
+    <button class="hd__burger" type="button" aria-expanded="false" aria-controls="mnav" data-open={t.menu} data-close={t.close}>{t.menu}</button>
+  </div>
+</header>
+<div class="mnav" id="mnav" hidden>
+  <ul class="lines">
+    {LINE_KEYS.map((k) => <li><a href={r(k, lang)}>{t.lines[k][0]}<span>{t.lines[k][1]}</span></a></li>)}
+  </ul>
+  <ul class="big">
+    {nav.map((n) => <li><a href={r(n.key, lang)}>{n.label}</a></li>)}
+    <li><a href={r('contacto', lang)}>{t.contact}</a></li>
+  </ul>
+  <a class="hd__lang" href={altHref} hreflang={lang === 'es' ? 'en' : 'es'}>{t.otherLang}</a>
+</div>

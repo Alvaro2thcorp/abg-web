@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import Sel from '../components/Sel.astro';
+import Pic from '../components/Pic.astro';
+import Crumbs from '../components/Crumbs.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import { r, ui, type Lang } from '../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const es = lang === 'es';
+const t = ui[lang];
+const crumbs = [{ name: t.breadcrumbHome, href: r('home', lang) }, { name: t.work, href: r('casos', lang) }];
+const c = es ? {
+  title: 'Casos: webs para arquitectura, construcción e inmobiliaria | ABGFRAME',
+  desc: 'Casos reales de ABGFRAME: qué pedía cada cliente, qué hicimos y qué puede hacer ahora con su web. Empezamos por Ceyra Studio y Leo Villa.',
+  h1: 'Casos', lead: 'Cada caso cuenta qué pedía el cliente, qué piezas hicimos y qué puede hacer ahora. Sin cifras inventadas: lo que se puede comprobar.',
+  ceyraT: 'Ceyra Studio · Leo Villa', ceyraD: 'Vender una villa en Sri Lanka a inversores que no pueden visitarla.', ceyraTags: ['Promoción', 'Arquitectura', 'Inversores'],
+  demoT: 'Promoción de obra nueva en la Costa Blanca', demoD: 'Demo con selector de viviendas. Proyecto ficticio. Próximamente.',
+  nextT: 'Tu proyecto, aquí', nextD: 'Estamos trabajando en los siguientes casos. Si el tuyo encaja, hablemos.',
+  read: 'Leer el caso',
+} : {
+  title: 'Work: websites for architecture, construction and real estate | ABGFRAME',
+  desc: 'ABGFRAME case studies: what each client needed, what we built and what they can do now with their website. Starting with Ceyra Studio and Leo Villa.',
+  h1: 'Work', lead: 'Each case study explains what the client needed, what we built and what they can do now. No invented figures: only what can be checked.',
+  ceyraT: 'Ceyra Studio · Leo Villa', ceyraD: 'Selling a villa in Sri Lanka to investors who cannot visit it.', ceyraTags: ['Development', 'Architecture', 'Investors'],
+  demoT: 'New-build development on the Costa Blanca', demoD: 'Demo with a unit selector. Fictional project. Coming soon.',
+  nextT: 'Your project, here', nextD: 'We are working on the next case studies. If yours fits, let’s talk.',
+  read: 'Read the case study',
+};
+const list = { '@type': 'CollectionPage', name: c.h1, description: c.desc, url: `https://abgframe.com${r('casos', lang)}`, hasPart: [{ '@type': 'Article', headline: c.ceyraD, url: `https://abgframe.com${r('ceyra', lang)}` }] };
+---
+<Base lang={lang} title={c.title} description={c.desc} route="casos" breadcrumbs={crumbs} schema={[list]}>
+  <Crumbs items={crumbs} />
+  <section class="phero"><div class="wrap"><h1 class="h1">{c.h1}</h1><p class="lead">{c.lead}</p></div></section>
+  <section class="sec--tight" style="padding-top:0">
+    <div class="wrap">
+      <a class="cs" href={r('ceyra', lang)}>
+        <Sel as="figure" class="cs__fig">
+          <Pic src="/img/ceyra/atardecer" w={1920} h={1088} eager alt={es ? 'Leo Villa al atardecer' : 'Leo Villa at sunset'} sizes="(max-width: 860px) 100vw, 60vw" />
+          <span class="cs__logo"><img src="/img/ceyra/ceyra-logo.webp" alt="Ceyra Studio" width="480" height="149" /></span>
+        </Sel>
+        <span class="cs__txt">
+          <span class="kick">{c.ceyraT}</span>
+          <span class="h2">{c.ceyraD}</span>
+          <span class="cs__tags">{c.ceyraTags.map((x) => <span>{x}</span>)}</span>
+          <span class="link">{c.read} <span class="arrow" aria-hidden="true">→</span></span>
+        </span>
+      </a>
+      <div class="cards" style="margin-top:clamp(56px,7vw,96px)">
+        <a class="card hatch" href={r('demo', lang)}><span class="kick">Demo</span><span class="h3">{c.demoT}</span><p>{c.demoD}</p></a>
+        <a class="card" href={r('contacto', lang)}><span class="kick">{es ? 'Siguiente' : 'Next'}</span><span class="h3">{c.nextT}</span><p>{c.nextD}</p></a>
+      </div>
+    </div>
+  </section>
+  <div class="sec--con" style="margin-top:clamp(56px,7vw,104px)"><ContactBlock lang={lang} /></div>
+</Base>
+<style>
+  .phero .lead{margin-top:24px}
+  .cs{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap);align-items:center;text-decoration:none}
+  .cs__fig{grid-column:1/8;margin:12px}
+  .cs__fig>:global(img){aspect-ratio:16/10;width:100%;object-fit:cover;transition:transform 900ms var(--ease)}
+  .cs:hover .cs__fig>:global(img){transform:scale(1.02)}
+  .cs__fig{overflow:visible}
+  .cs__logo{position:absolute;left:0;bottom:0;background:var(--papel);padding:14px 20px;z-index:1}
+  .cs__logo img{width:clamp(110px,12vw,168px)}
+  .cs__txt{grid-column:9/13;display:grid;gap:18px;justify-items:start}
+  .cs__txt .kick{margin:0}
+  .cs__tags{display:flex;flex-wrap:wrap;gap:8px}
+  .cs__tags span{font-size:14px;border:1px solid var(--filete);padding:4px 10px}
+  .hatch{background:repeating-linear-gradient(135deg,var(--papel) 0 10px,var(--hormigon) 10px 11px);box-shadow:inset 0 0 0 1px var(--filete)}
+  .card .kick{margin-bottom:10px}
+  @media (max-width:860px){.cs__fig,.cs__txt{grid-column:1/-1}.cs__txt{margin-top:20px}}
+</style>

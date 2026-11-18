@@ -1,0 +1,57 @@
+---
+// Bloque de contacto único: un formulario corto (Formspree) que ya clasifica por tipo de empresa.
+import { CONTACT, wa, r, type Lang, type LineKey } from '../i18n';
+interface Props { lang: Lang; title?: string; text?: string; preset?: LineKey | 'otra'; id?: string; asH1?: boolean }
+const { lang, preset, id = 'contacto', asH1 = false } = Astro.props;
+const es = lang === 'es';
+const title = Astro.props.title ?? (es ? '¿Qué tienes entre manos?' : 'What are you working on?');
+const text = Astro.props.text ?? (es ? 'Cuéntanoslo en dos líneas. Te contesta Álvaro, que es quien hará tu web.' : 'Tell us in a couple of lines. Álvaro, who will build your website, replies personally.');
+const types: [string, string][] = es
+  ? [['promotoras', 'Promotora'], ['arquitectura', 'Arquitectura o interiorismo'], ['reformas', 'Constructora o reformas'], ['inmobiliarias', 'Inmobiliaria'], ['otra', 'Otra']]
+  : [['promotoras', 'Developer'], ['arquitectura', 'Architecture or interiors'], ['reformas', 'Builder or renovation'], ['inmobiliarias', 'Real estate agency'], ['otra', 'Other']];
+const Heading = asH1 ? 'h1' : 'h2';
+---
+<section class="sec" id={id} aria-labelledby={`${id}-t`}>
+  <div class="wrap grid">
+    <div style="grid-column:1/6" class="cb-head">
+      <Heading class={asH1 ? 'h1' : 'h2'} id={`${id}-t`}>{title}</Heading>
+      <p class="lead" style="margin-top:20px">{text}</p>
+      <div class="contact-alt">
+        <a href={wa(lang)} rel="noopener" target="_blank" data-track="whatsapp_contact">WhatsApp · {CONTACT.phone}</a>
+        <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+      </div>
+    </div>
+    <form class="cform" style="grid-column:7/13" action={CONTACT.formspree} method="POST" data-form>
+      <input type="hidden" name="_language" value={lang} />
+      <input type="hidden" name="pagina" value={Astro.url.pathname} />
+      <input type="hidden" name="_subject" value={es ? 'Nuevo contacto desde abgframe.com' : 'New enquiry from abgframe.com (EN)'} />
+      <label class="hp" aria-hidden="true">No rellenar<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+      <div class="fld">
+        <label for={`${id}-n`}>{es ? 'Nombre' : 'Name'}</label>
+        <input id={`${id}-n`} name="nombre" type="text" autocomplete="name" required />
+      </div>
+      <div class="fld">
+        <label for={`${id}-c`}>{es ? 'Email o teléfono' : 'Email or phone'}</label>
+        <input id={`${id}-c`} name="contacto" type="text" autocomplete="email" required />
+      </div>
+      <fieldset class="fld full">
+        <legend>{es ? 'Tu empresa es' : 'Your company is a'}</legend>
+        <div class="chips">
+          {types.map(([v, l]) => <label><input type="radio" name="tipo" value={v} checked={preset === v} /><span>{l}</span></label>)}
+        </div>
+      </fieldset>
+      <div class="fld full">
+        <label for={`${id}-m`}>{es ? 'Tu proyecto en dos líneas' : 'Your project in a couple of lines'}</label>
+        <textarea id={`${id}-m`} name="mensaje" required></textarea>
+      </div>
+      <p class="legalnote full">{es ? 'Usamos tus datos solo para responderte.' : 'We only use your details to reply to you.'} <a href={r('privacidad', lang)}>{es ? 'Privacidad' : 'Privacy'}</a>.</p>
+      <div class="full" style="display:flex;flex-wrap:wrap;align-items:center;gap:16px">
+        <button class="btn" type="submit">{es ? 'Enviar' : 'Send'}</button>
+        <p class="status" role="status" aria-live="polite" data-ok={es ? 'Recibido. Álvaro te escribe en breve.' : 'Received. Álvaro will get back to you shortly.'} data-err={es ? `No se ha podido enviar. Escríbenos a ${CONTACT.email} o por WhatsApp.` : `It could not be sent. Please email ${CONTACT.email} or use WhatsApp.`}></p>
+      </div>
+    </form>
+  </div>
+</section>
+<style>
+  @media (max-width:860px){ .cb-head,.cform{grid-column:1/-1!important} .cform{margin-top:16px} }
+</style>

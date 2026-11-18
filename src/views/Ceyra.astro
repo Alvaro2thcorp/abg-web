@@ -1,0 +1,196 @@
+---
+import Base from '../layouts/Base.astro';
+import Sel from '../components/Sel.astro';
+import Pic from '../components/Pic.astro';
+import Crumbs from '../components/Crumbs.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import { r, ui, type Lang } from '../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const es = lang === 'es';
+const t = ui[lang];
+const crumbs = [{ name: t.breadcrumbHome, href: r('home', lang) }, { name: t.work, href: r('casos', lang) }, { name: 'Ceyra Studio', href: r('ceyra', lang) }];
+const c = es ? {
+  title: 'Caso Ceyra Studio: web para vender villas a inversores | ABGFRAME',
+  desc: 'Cómo hicimos la web de Ceyra Studio para vender Leo Villa, una villa llave en mano en Sri Lanka, a inversores que no pueden visitarla: proyecto, un día en la villa, dosier y simulador.',
+  h1: 'Vender una villa en Sri Lanka a inversores que no pueden visitarla',
+  intro: 'Ceyra Studio diseña, construye y entrega villas llave en mano en la costa sur de Sri Lanka. Su primer proyecto, Leo Villa, se vende en preventa a inversores europeos. Hicimos su web.',
+  ficha: [['Cliente', 'Ceyra Studio'], ['Sector', 'Arquitectura, diseño e inversión'], ['Proyecto', 'Leo Villa · Midigama, Sri Lanka'], ['Qué hicimos', 'Web completa, página de proyecto, experiencia, dosier del inversor con simulador y reserva de llamada'], ['Web', 'ceyra.studio']],
+  retoT: 'El reto', reto: [
+    'Leo Villa es una casa de dos módulos con piscina, en un terreno rodeado de palmeras. Se vende antes de estar construida y a personas que, en su mayoría, nunca han estado allí.',
+    'Un inversor así tiene muchas preguntas antes de llamar: qué compra exactamente, cómo funciona la cesión del terreno a largo plazo, cuánto puede rendir y qué riesgos hay. Si la web no las responde, la llamada no llega.',
+  ],
+  hechoT: 'Qué hicimos', hechoD: 'Cuatro piezas, cada una con una pregunta del inversor detrás.',
+  piezas: [
+    { t: 'La villa, como proyecto con nombre', d: 'Leo Villa tiene su propia página: planta, superficies, materiales y una galería de renders a pantalla completa. El inversor entiende qué compra sin abrir un PDF.', img: 'villa', q: '¿Qué compro?' },
+    { t: 'Un día en la villa', d: 'Una página que recorre un día dentro de la casa, de la primera luz a la noche, con la hora de Sri Lanka. Sirve para imaginarse allí antes de viajar.', img: 'experiencia', q: '¿Cómo es estar allí?' },
+    { t: 'Dosier del inversor y simulador', d: 'Lo que incluye el precio, cómo funciona la cesión del terreno, los riesgos y un simulador en el que el inversor mueve precio por noche y ocupación y ve el resultado.', img: 'inversores', q: '¿Tiene sentido para mí?' },
+    { t: 'Una sola llamada a la acción', d: 'Todo termina en lo mismo: reservar una llamada de 20 minutos con uno de los socios, eligiendo día, hora y si es llamada o videollamada.', img: 'home', q: '¿Con quién hablo?' },
+  ],
+  recT: 'Recorrido', recD: 'La web en el móvil, que es donde la ve la mayoría. Desliza.',
+  resT: 'Lo que Ceyra puede hacer ahora',
+  res: [
+    ['Enviar un enlace en lugar de un PDF', 'Cuando un inversor pregunta, recibe la web: proyecto, día en la villa y dosier en un mismo sitio.'],
+    ['Llegar a la llamada con lo básico resuelto', 'Quien reserva ya ha visto qué incluye el precio, cómo funciona la cesión del terreno y los riesgos. La llamada empieza en las dudas importantes.'],
+    ['Contar la misma historia en todas partes', 'La web, los carteles de la campaña y las redes hablan igual. El tono relajado de Ceyra convive con datos serios.'],
+  ],
+  galT: 'Las imágenes del proyecto',
+  galCap: 'Renders de Leo Villa, cedidos por Ceyra Studio.',
+  visit: 'Ver la web de Ceyra',
+  ctaT: '¿Tienes un proyecto que vender a distancia?',
+} : {
+  title: 'Ceyra Studio case study: a website that sells villas to investors | ABGFRAME',
+  desc: 'How we built Ceyra Studio’s website to sell Leo Villa, a turnkey villa in Sri Lanka, to investors who cannot visit it: project page, a day at the villa, investor pack and simulator.',
+  h1: 'Selling a villa in Sri Lanka to investors who cannot visit it',
+  intro: 'Ceyra Studio designs, builds and delivers turnkey villas on the south coast of Sri Lanka. Their first project, Leo Villa, is sold off-plan to European investors. We built their website.',
+  ficha: [['Client', 'Ceyra Studio'], ['Sector', 'Architecture, design and investment'], ['Project', 'Leo Villa · Midigama, Sri Lanka'], ['What we did', 'Full website, project page, experience page, investor pack with simulator and call booking'], ['Website', 'ceyra.studio']],
+  retoT: 'The challenge', reto: [
+    'Leo Villa is a two-module house with a pool, on a plot surrounded by palm trees. It is sold before it is built, mostly to people who have never been there.',
+    'An investor like that has many questions before calling: what exactly they are buying, how the long-term land lease works, what it could earn and what the risks are. If the website does not answer them, the call never comes.',
+  ],
+  hechoT: 'What we did', hechoD: 'Four pieces, each with an investor’s question behind it.',
+  piezas: [
+    { t: 'The villa as a named project', d: 'Leo Villa has its own page: plan, areas, materials and a full-screen gallery of renders. The investor understands what they are buying without opening a PDF.', img: 'villa', q: 'What am I buying?' },
+    { t: 'A day at the villa', d: 'A page that walks through a day inside the house, from first light to night, on Sri Lanka time. It lets people picture themselves there before travelling.', img: 'experiencia', q: 'What is it like to be there?' },
+    { t: 'Investor pack and simulator', d: 'What the price includes, how the land lease works, the risks, and a simulator where the investor adjusts nightly rate and occupancy and sees the outcome.', img: 'inversores', q: 'Does it make sense for me?' },
+    { t: 'One single call to action', d: 'Everything leads to the same place: booking a 20-minute call with one of the partners, choosing day, time and phone or video.', img: 'home', q: 'Who do I talk to?' },
+  ],
+  recT: 'Walkthrough', recD: 'The site on a phone, where most people see it. Swipe.',
+  resT: 'What Ceyra can do now',
+  res: [
+    ['Send a link instead of a PDF', 'When an investor asks, they get the website: project, a day at the villa and investor pack in one place.'],
+    ['Start calls with the basics covered', 'Whoever books has already seen what the price includes, how the lease works and the risks. The call starts with the questions that matter.'],
+    ['Tell the same story everywhere', 'The website, the campaign posters and social media speak the same way. Ceyra’s relaxed tone sits alongside serious numbers.'],
+  ],
+  galT: 'The project imagery',
+  galCap: 'Renders of Leo Villa, courtesy of Ceyra Studio.',
+  visit: 'Visit Ceyra’s website',
+  ctaT: 'Do you have a project to sell from a distance?',
+};
+const article = {
+  '@type': 'Article',
+  headline: c.h1,
+  description: c.desc,
+  image: 'https://abgframe.com/img/ceyra/atardecer-1280.webp',
+  author: { '@id': 'https://abgframe.com/#alvaro' },
+  publisher: { '@id': 'https://abgframe.com/#org' },
+  about: { '@type': 'Organization', name: 'Ceyra Studio', url: 'https://ceyra.studio/' },
+  inLanguage: es ? 'es-ES' : 'en',
+  datePublished: '2026-11-18',
+};
+const shots = ['home', 'villa', 'experiencia', 'inversores'];
+---
+<Base lang={lang} title={c.title} description={c.desc} route="ceyra" breadcrumbs={crumbs} schema={[article]} type="article" image="/og/ceyra.jpg">
+  <Crumbs items={crumbs} />
+  <section class="phero">
+    <div class="wrap grid ch">
+      <div class="ch__txt">
+        <img class="ch__logo" src="/img/ceyra/ceyra-logo.webp" alt="Ceyra Studio" width="480" height="149" />
+        <h1 class="h1">{c.h1}</h1>
+        <p class="lead">{c.intro}</p>
+      </div>
+      <dl class="ficha ch__ficha">
+        {c.ficha.map(([k, v]) => <div><dt>{k}</dt><dd>{v === 'ceyra.studio' ? <a href="https://ceyra.studio/" rel="noopener" target="_blank">ceyra.studio</a> : v}</dd></div>)}
+      </dl>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <Sel as="figure" class="ch__hero">
+      <Pic src="/img/ceyra/atardecer" w={1920} h={1088} eager alt={es ? 'Leo Villa al atardecer: dos módulos con piscina entre palmeras' : 'Leo Villa at sunset: two modules with a pool among palm trees'} sizes="(max-width: 1440px) 92vw, 1280px" />
+    </Sel>
+  </div>
+
+  <section class="sec" aria-labelledby="reto-t">
+    <div class="wrap grid">
+      <h2 class="h2 rv" id="reto-t" style="grid-column:1/5">{c.retoT}</h2>
+      <div class="prose lead reto" data-stagger>{c.reto.map((p) => <p class="rv">{p}</p>)}</div>
+    </div>
+  </section>
+
+  <section class="sec sec--con" aria-labelledby="hecho-t">
+    <div class="wrap">
+      <div class="head"><h2 class="h2 rv" id="hecho-t">{c.hechoT}</h2><p class="rv">{c.hechoD}</p></div>
+      <div class="pz">
+        {c.piezas.map((p, i) => (
+          <article class="pz__it">
+            <div class="pz__shot"><img src={`/img/ceyra/web-${p.img}-d-720.webp`} srcset={`/img/ceyra/web-${p.img}-d-720.webp 720w, /img/ceyra/web-${p.img}-d.webp 1440w`} sizes="(max-width: 860px) 92vw, 55vw" alt={es ? `Captura de ceyra.studio: ${p.t.toLowerCase()}` : `Screenshot of ceyra.studio: ${p.t.toLowerCase()}`} width="1440" height="900" loading="lazy" decoding="async" /></div>
+            <div class="pz__txt">
+              <span class="pz__q">{p.q}</span>
+              <h3 class="h3">{p.t}</h3>
+              <p>{p.d}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="rec-t">
+    <div class="wrap">
+      <div class="head"><h2 class="h2 rv" id="rec-t">{c.recT}</h2><p class="rv">{c.recD}</p></div>
+    </div>
+    <div class="strip" tabindex="0" aria-label={c.recT}>
+      {shots.map((s) => <figure class="phone"><img src={`/img/ceyra/web-${s}-m.webp`} alt={es ? `ceyra.studio en el móvil: ${s}` : `ceyra.studio on a phone: ${s}`} width="390" height="844" loading="lazy" decoding="async" /></figure>)}
+      <figure class="phone phone--poster"><Pic src="/img/ceyra/revista" w={1080} h={1350} widths={[640, 960, 1280]} alt={es ? 'Cartel de la campaña de Ceyra Studio' : 'Ceyra Studio campaign poster'} sizes="300px" /></figure>
+    </div>
+  </section>
+
+  <section class="sec sec--ink" aria-labelledby="res-t">
+    <div class="wrap">
+      <div class="head"><h2 class="h2" id="res-t">{c.resT}</h2></div>
+      <ol class="steps res" data-stagger>{c.res.map(([a, b], i) => <li class="rv"><span class="n">{String(i + 1).padStart(2, '0')}</span><b>{a}</b><p>{b}</p></li>)}</ol>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="gal-t">
+    <div class="wrap">
+      <div class="head"><h2 class="h2" id="gal-t">{c.galT}</h2><p><a class="link" href="https://ceyra.studio/" rel="noopener" target="_blank">{c.visit} <span class="arrow" aria-hidden="true">↗</span></a></p></div>
+      <div class="gal">
+        <figure class="g1"><Pic src="/img/ceyra/palmeras" w={1920} h={1072} alt={es ? 'Acceso a Leo Villa entre palmeras' : 'Entrance to Leo Villa among palm trees'} sizes="(max-width: 860px) 100vw, 60vw" /></figure>
+        <figure class="g2"><Pic src="/img/ceyra/salon" w={1672} h={941} alt={es ? 'Salón de Leo Villa con celosías de madera' : 'Leo Villa living room with timber screens'} sizes="(max-width: 860px) 100vw, 40vw" /></figure>
+        <figure class="g3"><Pic src="/img/ceyra/dormitorio" w={1920} h={1088} alt={es ? 'Dormitorio de Leo Villa' : 'Leo Villa bedroom'} sizes="(max-width: 860px) 100vw, 40vw" /></figure>
+        <figure class="g4"><Pic src="/img/ceyra/noche" w={1920} h={1072} alt={es ? 'Leo Villa de noche, con la casa iluminada' : 'Leo Villa at night, lit from inside'} sizes="(max-width: 860px) 100vw, 60vw" /></figure>
+      </div>
+      <p class="cap">{c.galCap}</p>
+    </div>
+  </section>
+
+  <div class="sec--con"><ContactBlock lang={lang} title={c.ctaT} /></div>
+</Base>
+
+<style>
+  .ch{align-items:end}
+  .ch__txt{grid-column:1/8}
+  .ch__logo{width:clamp(140px,14vw,200px);margin-bottom:36px}
+  .ch__txt .lead{margin-top:28px}
+  .ch__ficha{grid-column:9/13}
+  .ch__ficha dd a{color:var(--acero)}
+  .ch__hero{margin:12px}
+  .ch__hero>:global(img){aspect-ratio:16/8;width:100%;object-fit:cover}
+  .reto{grid-column:6/13}
+  .pz{display:grid;gap:clamp(48px,6vw,96px)}
+  .pz__it{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap);align-items:center}
+  .pz__shot{grid-column:1/8;box-shadow:0 0 0 1px var(--filete),0 24px 48px rgba(21,21,21,.08);background:var(--blanco)}
+  .pz__txt{grid-column:9/13}
+  .pz__it:nth-child(even) .pz__shot{grid-column:6/13;order:2}
+  .pz__it:nth-child(even) .pz__txt{grid-column:1/5}
+  .pz__q{display:inline-block;font-size:14px;color:#34495F;background:var(--acero-suave);box-shadow:inset 0 -2px 0 var(--acero);padding:2px 6px;margin-bottom:16px}
+  .pz__txt p{margin-top:12px;color:#3a3a38}
+  .strip{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--m);padding:8px var(--m) 24px;scrollbar-width:thin}
+  .strip:focus-visible{outline-offset:-4px}
+  .phone{flex:none;width:clamp(220px,22vw,300px);scroll-snap-align:start;background:var(--blanco);padding:8px;box-shadow:0 0 0 1px var(--filete)}
+  .phone img{width:100%;height:auto}
+  .phone--poster{align-self:stretch;display:flex;align-items:center}
+  .res{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .gal{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
+  .gal figure{overflow:hidden;background:var(--hormigon)}
+  .gal :global(img){width:100%;height:100%;object-fit:cover}
+  .g1{grid-column:1/8;aspect-ratio:16/10}.g2{grid-column:8/13}.g3{grid-column:1/6}.g4{grid-column:6/13;aspect-ratio:16/9}
+  @media (max-width:860px){
+    .ch__txt,.ch__ficha,.reto,.pz__shot,.pz__txt,.pz__it:nth-child(even) .pz__shot,.pz__it:nth-child(even) .pz__txt{grid-column:1/-1!important;order:0!important}
+    .ch__ficha,.reto{margin-top:28px}
+    .res{grid-template-columns:1fr}
+    .gal>*{grid-column:1/-1!important;aspect-ratio:16/10}
+  }
+</style>

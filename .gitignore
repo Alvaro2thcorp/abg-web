@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # Archivos que Claude entrega en el chat (capturas, listados): no forman parte de la web
 Claude outputs/
+
+# Configuración local de Claude Code
+.claude/

@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import Crumbs from '../components/Crumbs.astro';
+import Sel from '../components/Sel.astro';
+import Pic from '../components/Pic.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import { r, ui, type Lang } from '../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const es = lang === 'es';
+const t = ui[lang];
+const crumbs = [{ name: t.breadcrumbHome, href: r('home', lang) }, { name: t.process, href: r('proceso', lang) }];
+const c = es ? {
+  title: 'Proceso: cómo hacemos tu web, paso a paso | ABGFRAME',
+  desc: 'Cuatro pasos, con plazos y precio cerrados por escrito antes de empezar. Qué pasa en cada uno, qué recibes y qué necesitamos de ti.',
+  h1: 'Cuatro pasos, y siempre sabes en cuál estás',
+  lead: 'Quien invierte mucho quiere saber qué pasa y cuándo. Por eso el proceso es corto, está por escrito y cada paso termina en algo que puedes ver.',
+  steps: [
+    { t: 'Conversación', when: 'Semana 1', d: 'Una llamada o una visita si estás en la provincia de Alicante. Hablamos de qué vendes, a quién, cómo te llegan hoy los clientes y qué tiene que pasar cuando alguien entra en tu web.', get: 'Te decimos con franqueza si podemos ayudarte y qué pieza tiene sentido.' },
+    { t: 'Propuesta por escrito', when: 'Pocos días después', d: 'Alcance, páginas, piezas interactivas, idiomas, plazos y precio cerrado. Sin letra pequeña.', get: 'Un documento con todo, que puedes comparar y enseñar a tu socio.' },
+    { t: 'Diseño y desarrollo', when: 'Según el alcance', d: 'Primero el contenido y la estructura, después el diseño, después la programación. Desde el principio ves la web en un enlace privado y comentas sobre ella.', get: 'Avances cada semana y una fecha de publicación que no se mueve sin avisarte.' },
+    { t: 'Publicación y cuidado', when: 'Cada mes', d: 'Publicamos, conectamos la analítica y la ficha de Google, y comprobamos que cada formulario llega. Después medimos qué funciona y lo mejoramos.', get: 'Datos claros de qué funciona y alguien que responde cuando lo necesitas.' },
+  ],
+  needT: 'Qué necesitamos de ti',
+  need: ['Una persona con quien decidir, que conteste en pocos días.', 'El material que ya tengas: planos, renders, fotos de obra, textos, logotipo.', 'Acceso a tu dominio, o te ayudamos a conseguirlo a tu nombre.'],
+  ownT: 'Lo que es tuyo', own: 'El dominio, la web y los textos son tuyos desde el primer día. Si un día quieres cambiar de proveedor, te la llevas.',
+} : {
+  title: 'Process: how we build your website, step by step | ABGFRAME',
+  desc: 'Four steps, with timeline and a fixed price agreed in writing before we start. What happens in each one, what you get and what we need from you.',
+  h1: 'Four steps, and you always know where you are',
+  lead: 'People who invest a lot want to know what happens and when. That is why the process is short, written down, and each step ends in something you can see.',
+  steps: [
+    { t: 'Conversation', when: 'Week 1', d: 'A call, or a visit if you are in the province of Alicante. We talk about what you sell, to whom, how clients reach you today and what needs to happen when someone lands on your site.', get: 'We tell you frankly whether we can help and which piece makes sense.' },
+    { t: 'Written proposal', when: 'A few days later', d: 'Scope, pages, interactive pieces, languages, timeline and a fixed price. No small print.', get: 'One document with everything, which you can compare and share with your partner.' },
+    { t: 'Design and build', when: 'Depending on scope', d: 'Content and structure first, then design, then development. From the start you see the site on a private link and comment on it.', get: 'Weekly progress and a launch date that does not move without telling you.' },
+    { t: 'Launch and care', when: 'Every month', d: 'We launch, connect analytics and your Google profile, and check every form arrives. Then we measure what works and improve it.', get: 'Clear data on what works and someone who answers when you need it.' },
+  ],
+  needT: 'What we need from you',
+  need: ['One decision-maker who replies within a few days.', 'The material you already have: plans, renders, site photos, copy, logo.', 'Access to your domain, or we help you register it in your name.'],
+  ownT: 'What is yours', own: 'The domain, the website and the copy are yours from day one. If you ever want to change provider, you take it with you.',
+};
+const howto = { '@type': 'HowTo', name: c.h1, description: c.desc, step: c.steps.map((s, i) => ({ '@type': 'HowToStep', position: i + 1, name: s.t, text: s.d })) };
+---
+<Base lang={lang} title={c.title} description={c.desc} route="proceso" breadcrumbs={crumbs} schema={[howto]}>
+  <Crumbs items={crumbs} />
+  <section class="phero"><div class="wrap"><h1 class="h1">{c.h1}</h1><p class="lead">{c.lead}</p></div></section>
+  <section class="sec--tight" style="padding-top:0">
+    <div class="wrap">
+      <ol class="pr">
+        {c.steps.map((s, i) => (
+          <li class="pr__it rv">
+            <span class="pr__n">{String(i + 1).padStart(2, '0')}</span>
+            <div class="pr__h"><h2 class="h2">{s.t}</h2><span class="note">{s.when}</span></div>
+            <p class="pr__d">{s.d}</p>
+            <p class="pr__g"><span class="mark">{es ? 'Recibes' : 'You get'}</span> {s.get}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+  <section class="sec sec--con">
+    <div class="wrap grid">
+      <Sel as="figure" class="pr__fig"><Pic src="/img/foto/escalera-exterior" w={1920} h={1260} alt={es ? 'Escalera exterior de hormigón blanco' : 'White concrete exterior staircase'} sizes="(max-width: 860px) 100vw, 45vw" /></Sel>
+      <div class="pr__need">
+        <h2 class="h3">{c.needT}</h2>
+        <ul class="inc">{c.need.map((n) => <li>{n}</li>)}</ul>
+        <h2 class="h3" style="margin-top:40px">{c.ownT}</h2>
+        <p style="margin-top:12px;color:#3a3a38">{c.own}</p>
+      </div>
+    </div>
+  </section>
+  <ContactBlock lang={lang} />
+</Base>
+<style>
+  .phero .lead{margin-top:24px}
+  .pr{border-top:1px solid var(--tinta)}
+  .pr__it{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap);padding:clamp(28px,4vw,48px) 0;border-bottom:1px solid var(--filete);align-items:start}
+  .pr__n{grid-column:1/2;font-size:14px;color:var(--acero);font-variant-numeric:tabular-nums;padding-top:10px}
+  .pr__h{grid-column:2/6;display:grid;gap:8px}
+  .pr__d{grid-column:7/13;font-size:18px}
+  .pr__g{grid-column:7/13;color:#3a3a38}
+  .pr__fig{grid-column:1/7;margin:12px}
+  .pr__fig>:global(img){aspect-ratio:3/2;width:100%;object-fit:cover}
+  .pr__need{grid-column:8/13;align-self:center}
+  .pr__need .inc{margin-top:16px}
+  .inc{border-top:1px solid var(--tinta)}
+  .inc li{padding:11px 0 11px 22px;border-bottom:1px solid var(--filete);position:relative}
+  .inc li::before{content:"";position:absolute;left:2px;top:19px;width:8px;height:8px;background:var(--acero)}
+  @media (max-width:860px){.pr__n,.pr__h,.pr__d,.pr__g,.pr__fig,.pr__need{grid-column:1/-1}.pr__need{margin-top:32px}}
+</style>

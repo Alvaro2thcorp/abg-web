@@ -1,0 +1,273 @@
+---
+import Base from '../layouts/Base.astro';
+import Sel from '../components/Sel.astro';
+import Pic from '../components/Pic.astro';
+import Piece from '../components/Piece.astro';
+import Faq from '../components/Faq.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import { r, ui, wa, LINE_KEYS, CONTACT, type Lang } from '../i18n';
+import { lines } from '../data/lines';
+import { steps, homeFaq, faqLd } from '../data/common';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const es = lang === 'es';
+const t = ui[lang];
+const c = es ? {
+  title: 'ABGFRAME · Agencia web para arquitectura, construcción e inmobiliaria en Alicante',
+  desc: 'Webs que venden viviendas sobre plano, consiguen encargos, traen presupuestos y captan propietarios. Para promotoras, arquitectos, interioristas, constructoras, reformas e inmobiliarias.',
+  h1a: 'Webs que',
+  words: ['venden viviendas', 'consiguen encargos', 'traen presupuestos', 'captan propietarios'],
+  sub: 'Diseñamos y programamos webs para promotoras, estudios de arquitectura e interiorismo, constructoras, empresas de reformas e inmobiliarias. Desde Alicante, para clientes de la Costa Blanca y de fuera.',
+  cta: 'Cuéntanos tu proyecto', alt: 'o escríbenos por WhatsApp',
+  zoomCap: 'Seleccionamos lo importante de cada proyecto y lo enseñamos bien.',
+  zoomAlt: 'Fachada de un edificio residencial con terrazas',
+  probT: 'Tu cliente decide antes de llamarte.',
+  probD: 'Compara tu web con otras tres. Busca proyectos, plazos y una forma clara de contactar. Si no la encuentra, llama al siguiente.',
+  linesT: 'Una web distinta para cada forma de vender.',
+  linesD: 'Cada línea tiene su pieza interactiva, pensada para el resultado que buscas. Prueba las cuatro.',
+  caseKick: 'Casos', caseT: 'Vender una villa a inversores que no pueden visitarla.',
+  caseD: 'Ceyra Studio diseña, construye y entrega villas llave en mano en Sri Lanka. Su web enseña la villa hora a hora, explica la inversión y termina en una llamada reservada.',
+  pieces: ['Un día en la villa', 'Dosier del inversor', 'Simulador', 'Reserva de llamada'], caseLink: 'Leer el caso',
+  demoKick: 'Demo · proyecto ficticio', demoT: 'Una promoción en la Costa Blanca para probar el selector de viviendas.', demoD: 'Doce viviendas, plano y estado de cada una, en varios idiomas. Próximamente.',
+  procT: 'Cómo trabajamos.', procLink: 'Ver el proceso completo',
+  meKick: 'El estudio', meT: 'Detrás de cada web, una persona que contesta.',
+  meD: 'Álvaro Bergillos diseña y programa las webs de ABGFRAME. Habla contigo el primer día y es quien te responde después de publicar.', meLink: 'Conocer el estudio',
+  faqT: 'Preguntas frecuentes.',
+} : {
+  title: 'ABGFRAME · Web studio for architecture, construction and real estate in Spain',
+  desc: 'Websites that sell homes off-plan, win commissions, bring in quote requests and win listings. For developers, architects, interior designers, builders and real estate agencies on the Costa Blanca.',
+  h1a: 'Websites that',
+  words: ['sell homes', 'win commissions', 'bring in quotes', 'win listings'],
+  sub: 'We design and build websites for property developers, architecture and interior design studios, builders, renovation companies and real estate agencies. Based in Alicante, working across the Costa Blanca and beyond.',
+  cta: 'Tell us about your project', alt: 'or message us on WhatsApp',
+  zoomCap: 'We select what matters in each project and show it well.',
+  zoomAlt: 'Residential building facade with terraces',
+  probT: 'Your client decides before calling you.',
+  probD: 'They compare your website with three others. They look for projects, timelines and a clear way to get in touch. If they cannot find it, they call the next one.',
+  linesT: 'A different website for each way of selling.',
+  linesD: 'Each line has its own interactive piece, built for the result you are after. Try all four.',
+  caseKick: 'Work', caseT: 'Selling a villa to investors who cannot visit it.',
+  caseD: 'Ceyra Studio designs, builds and delivers turnkey villas in Sri Lanka. Their website shows the villa hour by hour, explains the investment and ends in a booked call.',
+  pieces: ['A day at the villa', 'Investor pack', 'Simulator', 'Call booking'], caseLink: 'Read the case study',
+  demoKick: 'Demo · fictional project', demoT: 'A Costa Blanca development to try the unit selector.', demoD: 'Twelve homes, each with its plan and status, in several languages. Coming soon.',
+  procT: 'How we work.', procLink: 'See the full process',
+  meKick: 'The studio', meT: 'Behind every website, a person who answers.',
+  meD: 'Álvaro Bergillos designs and builds ABGFRAME’s websites. He talks to you on day one and is the one who answers after launch.', meLink: 'Meet the studio',
+  faqT: 'Frequently asked questions.',
+};
+const faq = homeFaq[lang];
+const services = LINE_KEYS.map((k) => ({ '@type': 'Service', name: t.lines[k][0], description: lines[k][lang].tabText, url: `https://abgframe.com${r(k, lang)}`, provider: { '@id': 'https://abgframe.com/#org' }, areaServed: 'Costa Blanca' }));
+---
+<Base lang={lang} title={c.title} description={c.desc} route="home" schema={[faqLd(faq), ...services]}>
+  <section class="hero" data-hero>
+    <div class="wrap">
+      <h1 class="h1 hero__h1">
+        {c.h1a}<br /><span class="cyc" data-cycle={JSON.stringify(c.words)}><span data-word>{c.words[0]}</span><span class="cyc__bx" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span>
+        <span class="visually-hidden">, {c.words.slice(1).join(', ')}</span>
+      </h1>
+      <div class="hero__foot">
+        <p class="lead">{c.sub}</p>
+        <div class="actions">
+          <a class="btn" href="#contacto" data-track="cta_hero">{c.cta} <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="hero__wa" href={wa(lang)} rel="noopener" target="_blank" data-track="whatsapp_hero">{c.alt}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="zoom" data-zoom aria-label={c.zoomCap}>
+    <div class="zoom__stage">
+      <div class="zoom__media" data-zoom-media>
+        <Pic src="/img/foto/fachada" w={1920} h={2880} alt={c.zoomAlt} sizes="(max-width: 700px) 90vw, 100vw" />
+      </div>
+      <div class="zoom__box" data-zoom-box aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <p class="zoom__cap wide" data-zoom-cap>{c.zoomCap}</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap grid" data-stagger>
+      <h2 class="h2 rv" style="grid-column:1/7">{c.probT}</h2>
+      <p class="lead rv prob__d">{c.probD}</p>
+    </div>
+  </section>
+
+  <section class="sec sec--con" id="servicios" aria-labelledby="lin-t">
+    <div class="wrap">
+      <div class="head" data-stagger><h2 class="h2 rv" id="lin-t">{c.linesT}</h2><p class="rv">{c.linesD}</p></div>
+      <div class="tabs" data-tabs>
+        <div class="tabs__list" role="tablist" aria-label={t.services}>
+          {LINE_KEYS.map((k, i) => <button role="tab" id={`tab-${k}`} aria-controls={`panel-${k}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} data-key={k}><b>{t.lines[k][0]}</b><span>{t.lines[k][1]}</span></button>)}
+        </div>
+        {LINE_KEYS.map((k, i) => (
+          <div class="tabs__panel" role="tabpanel" id={`panel-${k}`} aria-labelledby={`tab-${k}`} hidden={i !== 0}>
+            <div class="tabs__txt">
+              <h3 class="h3">{lines[k][lang].tabTitle}</h3>
+              <p>{lines[k][lang].tabText}</p>
+              <a class="link" href={r(k, lang)}>{es ? 'Web para ' : 'Websites for '}{t.lines[k][0].toLowerCase()} <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+            <div class="tabs__piece"><Piece k={k} lang={lang} uid={`h-${k}`} /><p class="note">{lines[k][lang].pieceCaption}</p></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="case-t">
+    <div class="wrap">
+      <span class="kick">{c.caseKick}</span>
+      <div class="grid case">
+        <Sel as="figure" class="case__fig">
+          <Pic src="/img/ceyra/atardecer" w={1920} h={1088} alt={es ? 'Render de Leo Villa al atardecer, de Ceyra Studio' : 'Render of Leo Villa at sunset, by Ceyra Studio'} sizes="(max-width: 860px) 100vw, 58vw" />
+          <span class="case__logo"><img src="/img/ceyra/ceyra-logo.webp" alt="Ceyra Studio" width="480" height="149" loading="lazy" /></span>
+        </Sel>
+        <div class="case__txt" data-stagger>
+          <h2 class="h2 rv" id="case-t">{c.caseT}</h2>
+          <p class="rv">{c.caseD}</p>
+          <ul class="case__pieces rv">{c.pieces.map((p) => <li>{p}</li>)}</ul>
+          <a class="small-link rv" href={r('ceyra', lang)}>{c.caseLink} <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec--tight">
+    <div class="wrap">
+      <a class="demo" href={r('demo', lang)}>
+        <span class="kick">{c.demoKick}</span>
+        <span class="h3">{c.demoT}</span>
+        <span class="note">{c.demoD}</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="proc-t">
+    <div class="wrap">
+      <div class="head"><h2 class="h2 rv" id="proc-t">{c.procT}</h2><p><a class="link" href={r('proceso', lang)}>{c.procLink} <span class="arrow" aria-hidden="true">→</span></a></p></div>
+      <ol class="steps" data-stagger>{steps[lang].map((s, i) => <li class="rv"><span class="n">{String(i + 1).padStart(2, '0')}</span><b>{s.t}</b><p>{s.d}</p></li>)}</ol>
+    </div>
+  </section>
+
+  <section class="sec sec--con" aria-labelledby="me-t">
+    <div class="wrap grid me">
+      <Sel as="figure" class="me__fig">
+        <Pic src="/img/alvaro-bergillos" w={960} h={1200} widths={[480, 960]} alt={es ? 'Álvaro Bergillos, fundador de ABGFRAME' : 'Álvaro Bergillos, founder of ABGFRAME'} sizes="(max-width: 860px) 70vw, 30vw" />
+      </Sel>
+      <div class="me__txt" data-stagger>
+        <span class="kick rv">{c.meKick}</span>
+        <h2 class="h2 rv" id="me-t">{c.meT}</h2>
+        <p class="lead rv" style="margin-top:20px">{c.meD}</p>
+        <p class="rv" style="margin-top:24px;display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center">
+          <a class="link" href={r('estudio', lang)}>{c.meLink} <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="note" href={`https://www.instagram.com/${CONTACT.instagramAlvaro}/`} rel="noopener" target="_blank">Instagram @{CONTACT.instagramAlvaro}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="faq-t">
+    <div class="wrap grid">
+      <h2 class="h2" id="faq-t" style="grid-column:1/5">{c.faqT}</h2>
+      <div class="faqwrap"><Faq items={faq} /></div>
+    </div>
+  </section>
+
+  <div class="sec--con"><ContactBlock lang={lang} /></div>
+</Base>
+
+<style>
+  .hero{padding-block:clamp(56px,9vw,136px) clamp(48px,6vw,88px)}
+  .hero__h1{font-size:clamp(32px,5.4vw,80px);min-height:2.1em}
+  @media (max-width:700px){.hero__h1{min-height:3.15em}}
+  .hero__foot{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap);margin-top:clamp(36px,4vw,56px);align-items:end}
+  .hero__foot .lead{grid-column:1/7}
+  .hero__foot .actions{grid-column:8/13;margin-top:0;justify-content:flex-end}
+  .hero__wa{font-size:15px;color:var(--gris)}
+  .hero__wa:hover{color:var(--tinta)}
+  .cyc{position:relative;display:inline-block;white-space:nowrap;padding:0 .1em;margin-left:-.02em}
+  .cyc__bx{position:absolute;inset:.02em -.04em -.02em;border:2px solid var(--acero);transform-origin:left center;transition:transform 460ms var(--ease)}
+  .cyc__bx i{position:absolute;width:12px;height:12px;background:var(--acero);transition:opacity 180ms var(--ease) 360ms}
+  .cyc__bx i:nth-child(1){left:-7px;top:-7px}.cyc__bx i:nth-child(2){right:-7px;top:-7px}.cyc__bx i:nth-child(3){left:-7px;bottom:-7px}.cyc__bx i:nth-child(4){right:-7px;bottom:-7px}
+  :global(.cyc.off) .cyc__bx{transform:scaleX(0)}
+  :global(.cyc.off) .cyc__bx i{opacity:0;transition-delay:0ms}
+  :global(.cyc.off) [data-word]{opacity:.35}
+  [data-word]{transition:opacity 300ms var(--ease)}
+
+  /* Momento 2 · sin JS o con "reducir movimiento": la foto, seleccionada y quieta */
+  .zoom{position:relative}
+  .zoom__stage{position:relative;max-width:var(--max);margin-inline:auto;padding-inline:var(--m)}
+  .zoom__media{aspect-ratio:16/9;overflow:hidden;outline:1.5px solid var(--acero);outline-offset:8px}
+  .zoom__media :global(img){width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+  .zoom__box{display:none}
+  .zoom__cap{display:none}
+  @media (prefers-reduced-motion:no-preference){
+    :global(.js) .zoom{height:230vh;--sw:min(46vw,760px);--sh:calc(var(--sw) * .66)}
+    :global(.js) .zoom__stage{position:sticky;top:0;height:100vh;max-width:none;padding:0;overflow:hidden}
+    :global(.js) .zoom__media{position:absolute;inset:0;aspect-ratio:auto;outline:0;clip-path:inset(calc((100vh - var(--sh)) / 2) calc((100vw - var(--sw)) / 2));will-change:clip-path}
+    :global(.js) .zoom__box{display:block;position:absolute;inset:calc((100vh - var(--sh)) / 2) calc((100vw - var(--sw)) / 2);border:1.5px solid var(--acero);pointer-events:none}
+    :global(.js) .zoom__box i{position:absolute;width:11px;height:11px;background:var(--acero)}
+    :global(.js) .zoom__box i:nth-child(1){left:-6px;top:-6px}:global(.js) .zoom__box i:nth-child(2){right:-6px;top:-6px}
+    :global(.js) .zoom__box i:nth-child(3){left:-6px;bottom:-6px}:global(.js) .zoom__box i:nth-child(4){right:-6px;bottom:-6px}
+    :global(.js) .zoom__cap{display:block;position:absolute;left:var(--m);right:var(--m);bottom:clamp(32px,6vh,72px);margin:0 auto;max-width:var(--max);color:var(--blanco);font-size:clamp(22px,2.6vw,40px);line-height:1.12;letter-spacing:-.02em;max-inline-size:20ch;margin-left:max(var(--m),calc((100vw - var(--max)) / 2 + var(--m)));opacity:0;text-shadow:0 1px 24px rgba(0,0,0,.35)}
+    :global(.js) .zoom__stage::after{content:"";position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,rgba(21,21,21,.5));opacity:var(--o,0);pointer-events:none}
+    :global(.js) .zoom__stage::after{z-index:0} :global(.js) .zoom__cap{z-index:1}
+  }
+  @media (prefers-reduced-motion:no-preference) and (max-width:700px){
+    :global(.js) .zoom{height:200vh;--sw:min(82vw,760px);--sh:calc(var(--sw) * 1.2)}
+  }
+
+  .prob__d{grid-column:8/13;align-self:end}
+
+  /* pestañas */
+  .tabs__list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--tinta)}
+  .tabs__list button{text-align:left;background:none;border:0;border-right:1px solid var(--filete);padding:18px 18px 20px;cursor:pointer;color:var(--gris);font-size:15px;transition:background var(--t-ui)}
+  .tabs__list button:last-child{border-right:0}
+  .tabs__list button b{display:block;color:var(--tinta);font-weight:500;font-size:16px;margin-bottom:2px}
+  .tabs__list button:hover{background:rgba(255,255,255,.5)}
+  .tabs__list button[aria-selected=true]{background:var(--blanco);box-shadow:inset 0 2px 0 var(--acero)}
+  .tabs__panel{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap);background:var(--blanco);padding:clamp(28px,4vw,56px)}
+  .tabs__panel[hidden]{display:none}
+  .tabs__txt{grid-column:1/6;align-self:center}
+  .tabs__txt p{margin-block:16px 24px;max-width:46ch;color:#3a3a38}
+  .tabs__piece{grid-column:7/13;display:grid;gap:12px;align-content:center;background:var(--papel);padding:clamp(18px,3vw,36px);min-width:0}
+  .tabs__piece .note{text-align:center}
+
+  /* caso */
+  .case{align-items:center}
+  .case__fig{grid-column:1/8;margin:12px}
+  .case__fig>:global(img){aspect-ratio:16/9;width:100%;object-fit:cover}
+  .case__logo{position:absolute;left:0;bottom:0;background:var(--papel);padding:14px 20px}
+  .case__logo img{width:clamp(110px,12vw,168px)}
+  .case__txt{grid-column:9/13}
+  .case__txt p{margin-top:18px;color:#3a3a38}
+  .case__pieces{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .case__pieces li{font-size:14px;border:1px solid var(--filete);padding:5px 10px}
+  .small-link{display:inline-block;margin-top:22px;font-size:15px;color:var(--gris);text-decoration:none}
+  .small-link:hover{color:var(--tinta)}
+
+  /* demo */
+  .demo{display:grid;gap:8px;text-decoration:none;padding:clamp(28px,4vw,48px);background:repeating-linear-gradient(135deg,var(--papel) 0 10px,var(--hormigon) 10px 11px);box-shadow:inset 0 0 0 1px var(--filete)}
+  .demo .kick{margin:0}
+  .demo .h3{max-width:30ch}
+
+  /* estudio */
+  .me{align-items:center}
+  .me__fig{grid-column:2/6;margin:12px}
+  .me__fig>:global(img){aspect-ratio:4/5;width:100%;object-fit:cover;object-position:top}
+  .me__txt{grid-column:7/12}
+
+  .faqwrap{grid-column:6/13}
+
+  @media (max-width:860px){
+    .hero__foot>*,.prob__d,.tabs__txt,.tabs__piece,.case__fig,.case__txt,.me__fig,.me__txt,.faqwrap,.prob__d{grid-column:1/-1!important}
+    .hero__foot .actions{justify-content:flex-start}
+    .tabs__list{grid-template-columns:1fr 1fr}
+    .tabs__list button:nth-child(2){border-right:0}
+    .tabs__list button:nth-child(-n+2){border-bottom:1px solid var(--filete)}
+    .case__txt{margin-top:24px}
+    .me__fig{max-width:320px}
+    .faqwrap{margin-top:16px}
+    .h2#faq-t{grid-column:1/-1!important}
+  }
+  @media (max-width:560px){ .cyc__bx i{width:9px;height:9px} .cyc{white-space:normal} }
+</style>

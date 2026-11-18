@@ -1,158 +1,49 @@
-﻿---
-import { getCollection, type CollectionEntry } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import Navbar from '../../components/Navbar';
-import BlogCard from '../../components/blog/BlogCard';
-
-const posts = await getCollection('blog');
-const sortedPosts = posts.sort(
-  (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
-const featuredPosts = sortedPosts.filter((p: CollectionEntry<'blog'>) => p.data.featured);
-const regularPosts = sortedPosts.filter((p: CollectionEntry<'blog'>) => !p.data.featured);
 ---
-
-<Layout
-  title="Blog de Diseño Web y Captación Digital | ABG Frame"
-  description="Artículos prácticos sobre diseño web y captación digital para negocios y despachos de Alicante. Solo lo que funciona de verdad."
->
-  <Navbar client:load />
-
-  <!-- HERO DEL BLOG -->
-  <section style="background:#080808; padding: 3rem clamp(1.5rem,5vw,5rem) 2rem; position:relative; overflow:hidden; border-bottom: 1px solid rgba(242,240,237,0.06)">
-
-    <!-- Texto decorativo fondo -->
-    <div style="position:absolute; bottom:-2rem; right:-1rem; font-family:var(--font-display); font-weight:800; font-size:18vw; line-height:1; color:rgba(242,240,237,0.025); pointer-events:none; user-select:none; white-space:nowrap">
-      BLOG
-    </div>
-
-    <div style="position:relative; z-index:1; max-width:1400px; margin:0 auto">
-
-      {/* Breadcrumb */}
-      <p style="font-family:var(--font-mono); font-size:0.6rem; color:rgba(242,240,237,0.25); text-transform:uppercase; letter-spacing:0.15em; margin-bottom:3rem">
-        <a href="/" style="color:inherit; text-decoration:none; transition:color 0.2s" onmouseover="this.style.color='#D14124'" onmouseout="this.style.color='rgba(242,240,237,0.25)'">ABG</a>
-        {" / "} Blog
-      </p>
-
-      {/* Grid: titular izquierda + info derecha */}
-      <div style="display:grid; grid-template-columns:1fr; gap:2rem; align-items:end">
-        <div>
-          <h1 style="font-family:var(--font-display); font-weight:800; font-size:clamp(2rem,3.5vw,3.5rem); color:#F2F0ED; line-height:0.95; letter-spacing:-0.03em; margin:0;">
-            Conversaciones
-            <span class="highlight-word" style="display:block">sin filtros.</span>
-          </h1>
-          <p style="font-family:var(--font-body); font-weight:300; font-size:0.9rem; color:rgba(242,240,237,0.4); line-height:1.85; margin-top:2rem; margin-bottom:0; max-width:420px">
-            Artículos sobre diseño web, SEO y captación digital
-            para negocios de Alicante. Sin teoría — solo
-            lo que funciona en la práctica.
-          </p>
-        </div>
-      </div>
-
-      <div style="margin-top:2.5rem; padding-top:1.5rem; border-top: 1px solid rgba(242,240,237,0.08); display:flex; justify-content:space-between; align-items:center;">
-        <div style="display:flex; align-items:center; gap:8px">
-          <div style="width:8px; height:8px; border-radius:50%; background:#D14124; animation:pulse 2s infinite" />
-          <span style="font-family:var(--font-display); font-weight:500; font-size:0.85rem; color:rgba(242,240,237,0.4)">
-            Guías prácticas para negocios de Alicante
-          </span>
-        </div>
-        <span style="font-family:var(--font-mono); font-size:0.6rem; color:rgba(242,240,237,0.25); text-transform:uppercase;">
-          {sortedPosts.length} ARTÍCULOS PUBLICADOS
-        </span>
-      </div>
-
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Crumbs from '../../components/Crumbs.astro';
+import Pic from '../../components/Pic.astro';
+import { ui } from '../../i18n';
+const posts = (await getCollection('blog')).sort((a, b) => (b.data.updatedDate ?? b.data.pubDate).valueOf() - (a.data.updatedDate ?? a.data.pubDate).valueOf());
+const t = ui.es;
+const crumbs = [{ name: t.breadcrumbHome, href: '/' }, { name: 'Blog', href: '/blog/' }];
+const fmt = (d: Date) => d.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+const blogLd = { '@type': 'Blog', name: 'Blog de ABGFRAME', url: 'https://abgframe.com/blog/', inLanguage: 'es-ES', publisher: { '@id': 'https://abgframe.com/#org' }, blogPost: posts.map((p) => ({ '@type': 'BlogPosting', headline: p.data.title, url: `https://abgframe.com/blog/${p.slug}/` })) };
+---
+<Base lang="es" route="blog" breadcrumbs={crumbs} schema={[blogLd]} title="Blog: webs para arquitectura, construcción e inmobiliaria | ABGFRAME"
+  description="Artículos prácticos para promotoras, estudios de arquitectura, constructoras, empresas de reformas e inmobiliarias: cómo vender, conseguir encargos y captar clientes desde la web.">
+  <Crumbs items={crumbs} />
+  <section class="phero"><div class="wrap"><h1 class="h1">Blog</h1><p class="lead">Lo que vemos funcionar en las webs del sector, explicado sin tecnicismos. Un artículo por cada forma de vender.</p></div></section>
+  <section class="sec--tight" style="padding-top:0">
+    <div class="wrap">
+      <ul class="bl">
+        {posts.map((p, i) => (
+          <li>
+            <a href={`/blog/${p.slug}/`} class="bl__it">
+              <span class="bl__img"><Pic src={p.data.image} w={p.data.imageW} h={p.data.imageH} widths={[640, 960, 1280]} alt={p.data.imageAlt} eager={i === 0} sizes="(max-width: 860px) 100vw, 30vw" /></span>
+              <span class="bl__txt">
+                <span class="kick">{t.lines[p.data.line][0]} · {fmt(p.data.updatedDate ?? p.data.pubDate)} · {p.data.readingTime} min</span>
+                <span class="h3">{p.data.title}</span>
+                <span class="bl__d">{p.data.description}</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
-
-  <!-- CONTENIDO BLOG -->
-  <section style="background:#F2F0ED; padding: 4rem clamp(1.5rem,5vw,5rem)">
-    <div style="max-width:1400px; margin:0 auto">
-
-      {/* ARTÍCULOS DESTACADOS */}
-      {featuredPosts.length > 0 && (
-        <div style="margin-bottom:3rem">
-          <p style="font-family:var(--font-mono); font-size:0.6rem; color:#D14124; text-transform:uppercase; letter-spacing:0.15em; margin-bottom:2rem">
-            DESTACADOS
-          </p>
-          <div class="destacados-grid">
-            {featuredPosts.map((post: CollectionEntry<'blog'>) => (
-              <BlogCard
-                title={post.data.title}
-                description={post.data.description}
-                pubDate={post.data.pubDate}
-                category={post.data.category}
-                tags={post.data.tags}
-                slug={post.slug}
-                readingTime={post.data.readingTime}
-                image={post.data.image}
-                imageAlt={post.data.imageAlt}
-                featured={true}
-                client:load
-              />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* SEPARADOR */}
-      {featuredPosts.length > 0 && regularPosts.length > 0 && (
-        <div style="height:1px; background:rgba(8,8,8,0.08); margin-bottom:3rem" />
-      )}
-
-      {/* TODOS LOS ARTÍCULOS */}
-      {regularPosts.length > 0 && (
-        <div>
-          <p style="font-family:var(--font-mono); font-size:0.6rem; color:rgba(8,8,8,0.3); text-transform:uppercase; letter-spacing:0.15em; margin-bottom:1.5rem">
-            TODOS LOS ARTÍCULOS ({regularPosts.length})
-          </p>
-          <div class="todos-grid">
-            {regularPosts.map((post: CollectionEntry<'blog'>) => (
-              <BlogCard
-                title={post.data.title}
-                description={post.data.description}
-                pubDate={post.data.pubDate}
-                category={post.data.category}
-                tags={post.data.tags}
-                slug={post.slug}
-                readingTime={post.data.readingTime}
-                image={post.data.image}
-                imageAlt={post.data.imageAlt}
-                client:load
-              />
-            ))}
-          </div>
-        </div>
-      )}
-
-    </div>
-  </section>
-</Layout>
-
+</Base>
 <style>
-  .destacados-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.2rem;
-  }
-  .todos-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.2rem;
-  }
-  @media (max-width: 1024px) {
-    .todos-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (max-width: 767px) {
-    .destacados-grid, .todos-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-  }
-  @keyframes pulse {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(209, 65, 36, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(209, 65, 36, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(209, 65, 36, 0); }
-  }
+  .phero .lead{margin-top:24px}
+  .bl{border-top:1px solid var(--tinta)}
+  .bl li{border-bottom:1px solid var(--filete)}
+  .bl__it{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap);padding:28px 0;text-decoration:none;align-items:center}
+  .bl__img{grid-column:1/4;aspect-ratio:4/3;overflow:hidden;background:var(--hormigon)}
+  .bl__img :global(img){width:100%;height:100%;object-fit:cover;transition:transform 900ms var(--ease)}
+  .bl__it:hover .bl__img :global(img){transform:scale(1.03)}
+  .bl__txt{grid-column:5/12;display:grid;gap:8px}
+  .bl__txt .kick{margin:0}
+  .bl__d{color:#3a3a38;max-width:62ch}
+  .bl__it:hover .h3{color:var(--acero)}
+  @media (max-width:700px){.bl__img,.bl__txt{grid-column:1/-1}}
 </style>

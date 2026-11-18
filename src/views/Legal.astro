@@ -1,0 +1,157 @@
+---
+// Páginas legales. Los datos de la empresa (razón social, NIF, domicilio) están en trámite:
+// cuando los tengas, rellena LEGAL abajo y desaparecen los avisos de "pendiente".
+import Base from '../layouts/Base.astro';
+import Crumbs from '../components/Crumbs.astro';
+import { r, ui, CONTACT, type Lang } from '../i18n';
+interface Props { lang: Lang; doc: 'aviso' | 'privacidad' | 'cookies' }
+const { lang, doc } = Astro.props;
+const es = lang === 'es';
+const t = ui[lang];
+const LEGAL = { razon: '', nif: '', domicilio: '', registro: '' };
+const pend = es ? '[pendiente: en trámite]' : '[pending: being registered]';
+const v = (x: string) => x || pend;
+const key = doc === 'aviso' ? 'avisoLegal' : doc === 'privacidad' ? 'privacidad' : 'cookies';
+const titles = {
+  aviso: es ? 'Aviso legal' : 'Legal notice',
+  privacidad: es ? 'Política de privacidad' : 'Privacy policy',
+  cookies: es ? 'Política de cookies' : 'Cookie policy',
+};
+const crumbs = [{ name: t.breadcrumbHome, href: r('home', lang) }, { name: titles[doc], href: r(key, lang) }];
+const updated = es ? 'Última actualización: noviembre de 2026.' : 'Last updated: November 2026.';
+---
+<Base lang={lang} route={key} breadcrumbs={crumbs} title={`${titles[doc]} | ABGFRAME`}
+  description={es ? `${titles[doc]} de abgframe.com, agencia web para arquitectura, construcción e inmobiliaria.` : `${titles[doc]} for abgframe.com, web studio for architecture, construction and real estate.`}>
+  <Crumbs items={crumbs} />
+  <article class="sec--tight">
+    <div class="wrap lg">
+      <h1 class="h1">{titles[doc]}</h1>
+      <p class="note" style="margin-top:16px">{updated}</p>
+      {!LEGAL.nif && <p class="pending">{es ? 'Los datos de la empresa están en trámite y se publicarán aquí en cuanto estén disponibles.' : 'Company details are being registered and will be published here as soon as they are available.'}</p>}
+
+      {doc === 'aviso' && (es ? (
+        <div class="lg__body">
+          <h2>1. Titular de la web</h2>
+          <p>En cumplimiento de la Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico (LSSI-CE), se informa de los datos del titular de abgframe.com:</p>
+          <dl class="ficha">
+            <div><dt>Titular</dt><dd>{v(LEGAL.razon)}</dd></div>
+            <div><dt>NIF</dt><dd>{v(LEGAL.nif)}</dd></div>
+            <div><dt>Domicilio</dt><dd>{v(LEGAL.domicilio)}</dd></div>
+            <div><dt>Registro</dt><dd>{v(LEGAL.registro)}</dd></div>
+            <div><dt>Email</dt><dd>{CONTACT.email}</dd></div>
+            <div><dt>Teléfono</dt><dd>{CONTACT.phone}</dd></div>
+          </dl>
+          <h2>2. Objeto</h2>
+          <p>Esta web presenta los servicios de ABGFRAME, agencia de diseño y desarrollo web para arquitectura, interiorismo, construcción, reformas, promotoras e inmobiliarias, y permite contactar con ella.</p>
+          <h2>3. Condiciones de uso</h2>
+          <p>Quien navega por esta web se compromete a hacer un uso correcto de ella y de sus contenidos, conforme a la ley y a este aviso. Las piezas interactivas de ejemplo (selector de viviendas, valorador, calculadora) muestran datos ficticios con fines ilustrativos y no constituyen una oferta, una tasación ni un presupuesto.</p>
+          <h2>4. Propiedad intelectual</h2>
+          <p>El diseño, los textos, el logotipo y el código de esta web pertenecen a ABGFRAME o se usan con permiso. Las imágenes de Leo Villa y la marca Ceyra Studio pertenecen a Ceyra Studio y se muestran con su autorización. La fotografía de arquitectura procede de Unsplash, con su licencia.</p>
+          <h2>5. Responsabilidad</h2>
+          <p>ABGFRAME no se hace responsable de los contenidos de webs de terceros enlazadas desde aquí ni de interrupciones del servicio ajenas a su control.</p>
+          <h2>6. Legislación aplicable</h2>
+          <p>Este aviso se rige por la legislación española. Para cualquier controversia, las partes se someten a los juzgados y tribunales que correspondan conforme a la ley.</p>
+          <h2>Créditos de fotografía</h2>
+          <p>Unsplash: <a href="https://unsplash.com/photos/87jHTTqQ4os" rel="noopener">fachada residencial</a>, <a href="https://unsplash.com/photos/0B7ijYKaKcE" rel="noopener">escalera interior</a>, <a href="https://unsplash.com/photos/NRLnzGXtoE4" rel="noopener">escalera exterior</a>, <a href="https://unsplash.com/photos/ItvVUpgac0o" rel="noopener">fachada escalonada</a>, <a href="https://unsplash.com/photos/R-wQExeiGrc" rel="noopener">sala de hormigón</a>, <a href="https://unsplash.com/photos/0mXdghvJ61U" rel="noopener">volúmenes blancos</a>, <a href="https://unsplash.com/photos/m7tgHmlL0Ek" rel="noopener">pasarela</a>.</p>
+        </div>
+      ) : (
+        <div class="lg__body">
+          <h2>1. Website owner</h2>
+          <p>In accordance with Spanish Law 34/2002 on information society services (LSSI-CE), the owner of abgframe.com is:</p>
+          <dl class="ficha">
+            <div><dt>Owner</dt><dd>{v(LEGAL.razon)}</dd></div>
+            <div><dt>Tax ID</dt><dd>{v(LEGAL.nif)}</dd></div>
+            <div><dt>Address</dt><dd>{v(LEGAL.domicilio)}</dd></div>
+            <div><dt>Registry</dt><dd>{v(LEGAL.registro)}</dd></div>
+            <div><dt>Email</dt><dd>{CONTACT.email}</dd></div>
+            <div><dt>Phone</dt><dd>{CONTACT.phone}</dd></div>
+          </dl>
+          <h2>2. Purpose</h2>
+          <p>This website presents the services of ABGFRAME, a web design and development studio for architecture, interior design, construction, renovation, property developers and real estate agencies, and allows visitors to contact it.</p>
+          <h2>3. Terms of use</h2>
+          <p>Visitors agree to use this website and its content lawfully and in line with this notice. The sample interactive pieces (unit selector, valuation tool, calculator) show fictional data for illustration and are not an offer, a valuation or a quote.</p>
+          <h2>4. Intellectual property</h2>
+          <p>The design, copy, logo and code of this website belong to ABGFRAME or are used with permission. Leo Villa images and the Ceyra Studio brand belong to Ceyra Studio and are shown with their permission. Architectural photography comes from Unsplash under its licence.</p>
+          <h2>5. Liability</h2>
+          <p>ABGFRAME is not responsible for the content of third-party websites linked from here, nor for service interruptions beyond its control.</p>
+          <h2>6. Governing law</h2>
+          <p>This notice is governed by Spanish law. The Spanish version prevails in case of discrepancy.</p>
+          <h2>Photo credits</h2>
+          <p>Unsplash: <a href="https://unsplash.com/photos/87jHTTqQ4os" rel="noopener">residential facade</a>, <a href="https://unsplash.com/photos/0B7ijYKaKcE" rel="noopener">interior staircase</a>, <a href="https://unsplash.com/photos/NRLnzGXtoE4" rel="noopener">exterior staircase</a>, <a href="https://unsplash.com/photos/ItvVUpgac0o" rel="noopener">stepped facade</a>, <a href="https://unsplash.com/photos/R-wQExeiGrc" rel="noopener">concrete room</a>, <a href="https://unsplash.com/photos/0mXdghvJ61U" rel="noopener">white volumes</a>, <a href="https://unsplash.com/photos/m7tgHmlL0Ek" rel="noopener">walkway</a>.</p>
+        </div>
+      ))}
+
+      {doc === 'privacidad' && (es ? (
+        <div class="lg__body">
+          <h2>1. Responsable del tratamiento</h2>
+          <p>{v(LEGAL.razon)}, NIF {v(LEGAL.nif)}, con domicilio en {v(LEGAL.domicilio)}. Email: {CONTACT.email}.</p>
+          <h2>2. Qué datos tratamos</h2>
+          <p>Los que nos das en el formulario de contacto (nombre, email o teléfono, tipo de empresa y mensaje) o al escribirnos por email o WhatsApp. También datos de navegación agregados si aceptas las cookies de analítica.</p>
+          <h2>3. Para qué</h2>
+          <p>Para responder a tu consulta y, si nos lo pides, prepararte una propuesta. No enviamos publicidad ni cedemos tus datos a terceros con fines comerciales.</p>
+          <h2>4. Base legal</h2>
+          <p>Tu consentimiento al enviarnos el formulario y, en su caso, la aplicación de medidas precontractuales a petición tuya (art. 6.1.a y 6.1.b del RGPD).</p>
+          <h2>5. Cuánto tiempo</h2>
+          <p>Mientras dure la conversación y, si llegamos a trabajar juntos, el tiempo que exija la ley. Si no, como máximo un año desde el último contacto.</p>
+          <h2>6. Quién más los ve</h2>
+          <p>Proveedores que nos ayudan a prestar el servicio, con contrato de encargado del tratamiento: Formspree (formulario, EE. UU., con cláusulas contractuales tipo), Netlify (alojamiento) y Google (analítica).</p>
+          <h2>7. Tus derechos</h2>
+          <p>Puedes acceder, rectificar, suprimir, oponerte, limitar el tratamiento y pedir la portabilidad de tus datos escribiendo a {CONTACT.email}. Si crees que no hemos atendido bien tu petición, puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</p>
+        </div>
+      ) : (
+        <div class="lg__body">
+          <h2>1. Data controller</h2>
+          <p>{v(LEGAL.razon)}, tax ID {v(LEGAL.nif)}, address {v(LEGAL.domicilio)}. Email: {CONTACT.email}.</p>
+          <h2>2. What data we process</h2>
+          <p>The data you give us in the contact form (name, email or phone, type of company and message) or when you write to us by email or WhatsApp. Also aggregated browsing data through analytics cookies.</p>
+          <h2>3. Why</h2>
+          <p>To reply to your enquiry and, if you ask, prepare a proposal. We do not send advertising or share your data with third parties for marketing.</p>
+          <h2>4. Legal basis</h2>
+          <p>Your consent when submitting the form and, where relevant, pre-contractual steps at your request (GDPR art. 6.1.a and 6.1.b).</p>
+          <h2>5. How long</h2>
+          <p>For as long as the conversation lasts and, if we work together, as long as the law requires. Otherwise, at most one year from the last contact.</p>
+          <h2>6. Who else sees it</h2>
+          <p>Providers that help us deliver the service, under data processing agreements: Formspree (form, USA, with standard contractual clauses), Netlify (hosting) and Google (analytics).</p>
+          <h2>7. Your rights</h2>
+          <p>You can access, rectify, erase, object to, restrict and port your data by writing to {CONTACT.email}. You can also complain to the Spanish Data Protection Agency (aepd.es).</p>
+        </div>
+      ))}
+
+      {doc === 'cookies' && (es ? (
+        <div class="lg__body">
+          <h2>Qué son</h2>
+          <p>Pequeños archivos que una web guarda en tu navegador para recordar información sobre tu visita.</p>
+          <h2>Cuáles usamos</h2>
+          <dl class="ficha">
+            <div><dt>Técnicas</dt><dd>Ninguna propia necesaria para navegar.</dd></div>
+            <div><dt>Analítica</dt><dd>Google Analytics a través de Google Tag Manager (_ga, _ga_*): cuántas personas visitan la web y qué páginas leen. Duración: hasta 2 años.</dd></div>
+          </dl>
+          <h2>Cómo gestionarlas</h2>
+          <p>Puedes bloquearlas o borrarlas cuando quieras desde la configuración de tu navegador.</p>
+        </div>
+      ) : (
+        <div class="lg__body">
+          <h2>What they are</h2>
+          <p>Small files a website stores in your browser to remember information about your visit.</p>
+          <h2>Which ones we use</h2>
+          <dl class="ficha">
+            <div><dt>Technical</dt><dd>None of our own required to browse.</dd></div>
+            <div><dt>Analytics</dt><dd>Google Analytics via Google Tag Manager (_ga, _ga_*): how many people visit and which pages they read. Duration: up to 2 years.</dd></div>
+          </dl>
+          <h2>How to manage them</h2>
+          <p>You can block or delete them at any time in your browser settings.</p>
+        </div>
+      ))}
+    </div>
+  </article>
+</Base>
+<style>
+  .lg{max-width:860px}
+  .pending{margin-top:28px;padding:14px 16px;background:var(--acero-suave);box-shadow:inset 2px 0 0 var(--acero);font-size:15px}
+  .lg__body{margin-top:clamp(40px,5vw,64px)}
+  .lg__body h2{font-family:var(--wide);font-weight:500;font-size:20px;letter-spacing:-.01em;margin:40px 0 12px}
+  .lg__body h2:first-child{margin-top:0}
+  .lg__body p{max-width:68ch;color:#3a3a38}
+  .lg__body .ficha{margin-top:16px;max-width:620px}
+  .lg__body a{color:var(--acero)}
+</style>

@@ -1,0 +1,102 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/site.css';
+import { SITE, routes, CONTACT, type Lang, type RouteKey } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  route?: RouteKey;            // para hreflang automático
+  alternates?: Partial<Record<Lang, string>> | null; // o rutas explícitas (blog)
+  image?: string;              // ruta absoluta en el sitio, 1200×630
+  noindex?: boolean;
+  type?: 'website' | 'article';
+  schema?: object[];
+  breadcrumbs?: { name: string; href: string }[];
+}
+const { lang, title, description, route, image = '/og/abgframe.jpg', noindex = false, type = 'website', schema = [], breadcrumbs } = Astro.props;
+const path = Astro.url.pathname;
+const canonical = new URL(path, SITE).href;
+const alts: Partial<Record<Lang, string>> = Astro.props.alternates ?? (route ? { es: routes[route].es, en: routes[route].en ?? undefined } : { [lang]: path });
+const otherLang: Lang = lang === 'es' ? 'en' : 'es';
+const altHref = alts[otherLang] ?? null;
+
+const org = {
+  '@type': ['Organization', 'ProfessionalService'],
+  '@id': `${SITE}/#org`,
+  name: 'ABGFRAME',
+  url: `${SITE}/`,
+  logo: `${SITE}/img/abgframe-logo-color.svg`,
+  image: `${SITE}/og/abgframe.jpg`,
+  description: lang === 'es'
+    ? 'Agencia web para arquitectura, interiorismo, construcción, reformas, promotoras e inmobiliarias en Alicante y la Costa Blanca.'
+    : 'Web studio for architecture, interior design, construction, renovation, property developers and real estate agencies in Alicante and the Costa Blanca.',
+  email: CONTACT.email,
+  telephone: '+34601058997',
+  address: { '@type': 'PostalAddress', addressLocality: 'Alicante', addressRegion: 'Comunidad Valenciana', addressCountry: 'ES' },
+  areaServed: [{ '@type': 'AdministrativeArea', name: 'Provincia de Alicante' }, { '@type': 'Place', name: 'Costa Blanca' }, { '@type': 'Country', name: 'España' }],
+  founder: { '@type': 'Person', '@id': `${SITE}/#alvaro`, name: 'Álvaro Bergillos' },
+  sameAs: [`https://www.instagram.com/${CONTACT.instagram}/`],
+  knowsLanguage: ['es', 'en'],
+};
+const website = { '@type': 'WebSite', '@id': `${SITE}/#web`, url: `${SITE}/`, name: 'ABGFRAME', inLanguage: ['es-ES', 'en'], publisher: { '@id': `${SITE}/#org` } };
+const crumbLd = breadcrumbs && breadcrumbs.length > 1 ? [{
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbs.map((b, i) => ({ '@type': 'ListItem', position: i + 1, name: b.name, item: new URL(b.href, SITE).href })),
+}] : [];
+const graph = { '@context': 'https://schema.org', '@graph': [org, website, ...crumbLd, ...schema] };
+---
+<!doctype html>
+<html lang={lang === 'es' ? 'es-ES' : 'en'}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  {noindex ? <meta name="robots" content="noindex, follow" /> : <meta name="robots" content="index, follow, max-image-preview:large" />}
+  {!noindex && alts.es && <link rel="alternate" hreflang="es-ES" href={new URL(alts.es, SITE).href} />}
+  {!noindex && alts.en && <link rel="alternate" hreflang="en" href={new URL(alts.en, SITE).href} />}
+  {!noindex && alts.es && <link rel="alternate" hreflang="x-default" href={new URL(alts.es, SITE).href} />}
+
+  <link rel="preload" href="/fonts/Archivo-Expanded-Medium.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/Archivo-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon-180.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#F3F2EF" />
+
+  <meta property="og:type" content={type} />
+  <meta property="og:site_name" content="ABGFRAME" />
+  <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_GB'} />
+  {altHref && <meta property="og:locale:alternate" content={lang === 'es' ? 'en_GB' : 'es_ES'} />}
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={new URL(image, SITE).href} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json" set:html={JSON.stringify(graph)} />
+  <script is:inline>document.documentElement.classList.add('js');window.dataLayer=window.dataLayer||[];</script>
+  <!-- Google Tag Manager: se carga tras la primera interacción o a los 3,5 s, para no frenar la carga (LCP/INP). -->
+  <script is:inline>
+    (function(){var done=false;function gtm(){if(done)return;done=true;var w=window,d=document,l='dataLayer',i='GTM-PQ76T6V6';w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName('script')[0],j=d.createElement('script');j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f);}
+    ['pointerdown','keydown','scroll','touchstart'].forEach(function(e){addEventListener(e,gtm,{once:true,passive:true})});setTimeout(gtm,3500);})();
+  </script>
+  <slot name="head" />
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQ76T6V6" height="0" width="0" style="display:none;visibility:hidden" title="GTM"></iframe></noscript>
+  <Header lang={lang} current={route} alt={altHref} />
+  <main id="main">
+    <slot />
+  </main>
+  <Footer lang={lang} />
+  <script>import '../scripts/site.ts';</script>
+</body>
+</html>

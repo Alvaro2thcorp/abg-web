@@ -2,6 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://abgframe.com/sitemap-index.xml
-
-Disallow: /api/
-Disallow: /_astro/

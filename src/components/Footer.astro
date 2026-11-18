@@ -1,0 +1,51 @@
+---
+import { ui, r, CONTACT, wa, LINE_KEYS, type Lang } from '../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
+const year = new Date().getFullYear();
+---
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft__top">
+      <div class="ft__about">
+        <img class="ft__logo" src="/img/abgframe-logo-color-negativo.svg" alt="ABGFRAME" width="320" height="65" loading="lazy" />
+        <p>{t.footerAbout}</p>
+      </div>
+      <div class="ft__col">
+        <h2>{t.services}</h2>
+        <ul>{LINE_KEYS.map((k) => <li><a href={r(k, lang)}>{t.lines[k][0]}</a></li>)}</ul>
+      </div>
+      <div class="ft__col">
+        <h2>ABGFRAME</h2>
+        <ul>
+          <li><a href={r('casos', lang)}>{t.work}</a></li>
+          <li><a href={r('proceso', lang)}>{t.process}</a></li>
+          <li><a href={r('estudio', lang)}>{t.studio}</a></li>
+          {lang === 'es' && <li><a href={r('blog', lang)}>{t.blog}</a></li>}
+        </ul>
+      </div>
+      <div class="ft__col">
+        <h2>{t.contact}</h2>
+        <ul>
+          <li><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>
+          <li><a href={wa(lang)} rel="noopener" target="_blank" data-track="whatsapp_footer">WhatsApp {CONTACT.phone}</a></li>
+          <li><a href={`https://www.instagram.com/${CONTACT.instagram}/`} rel="noopener" target="_blank">Instagram @{CONTACT.instagram}</a></li>
+          <li>Alicante · {lang === 'es' ? 'Costa Blanca' : 'Costa Blanca, Spain'}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft__bottom">
+      <span>© {year} ABGFRAME · {t.tagline}</span>
+      <ul>
+        <li><a href={r('avisoLegal', lang)}>{t.legal}</a></li>
+        <li><a href={r('privacidad', lang)}>{t.privacy}</a></li>
+        <li><a href={r('cookies', lang)}>{t.cookies}</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<a class="wa" id="wa" href={wa(lang)} rel="noopener" target="_blank" data-track="whatsapp_float" aria-label={t.whatsapp}>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+  <span>WhatsApp</span>
+</a>

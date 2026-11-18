@@ -1,26 +1,4 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Navbar from "../components/Navbar";
-import Hero from "../components/site/Hero.astro";
-import Sectores from "../components/site/Sectores.astro";
-import Proyectos from "../components/site/Proyectos.astro";
-import Proceso from "../components/site/Proceso.astro";
-import PorQue from "../components/site/PorQue.astro";
-import FAQ from "../components/site/FAQ.astro";
+import Home from '../views/Home.astro';
 ---
-
-<Layout
-	title="Diseño web para despachos profesionales en Alicante | ABG Frame"
-	description="Webs para gestorías, asesorías, administradores de fincas y despachos de abogados de Alicante. Precio cerrado y plazo por escrito. Estudio en San Juan de Alicante."
->
-	<Navbar client:load />
-
-	<main>
-		<Hero />
-		<Sectores />
-		<Proyectos />
-		<Proceso />
-		<PorQue />
-		<FAQ />
-	</main>
-</Layout>
+<Home lang="es" />
