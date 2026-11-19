@@ -1,0 +1,374 @@
+---
+// Demo · Residencial Alba (promotora ficticia). Edificio 3D, viviendas, ficha con plano, visita, idiomas.
+import Base from '../../layouts/Base.astro';
+---
+<Base lang="es" route="demoPromotora" demo={{ sector: 'promotoras', tipo: 'promotoras' }}
+  title="Demo · Residencial Alba, web de promotora | ABGFRAME"
+  description="Demo de ABGFRAME: web de una promoción ficticia con el edificio en 3D, cada vivienda con su plano, estado y precio, reserva de visita y tres idiomas.">
+  <div class="alba" data-alba>
+    <header class="a-nav">
+      <a class="a-logo" href="#top"><b>ALBA</b><span>Residencial · Playa de San Juan</span></a>
+      <nav class="a-links"><a href="#viviendas" data-t="nav1">Viviendas</a><a href="#calidades" data-t="nav2">Calidades</a><a href="#zona" data-t="nav3">La zona</a><a href="#obra" data-t="nav4">Avance de obra</a></nav>
+      <div class="a-lang" role="group" aria-label="Idioma">
+        <button type="button" data-lang="es" aria-pressed="true">ES</button><button type="button" data-lang="en" aria-pressed="false">EN</button><button type="button" data-lang="de" aria-pressed="false">DE</button>
+      </div>
+    </header>
+
+    <section class="a-hero" id="top">
+      <div class="a-hero__txt">
+        <p class="a-kick" data-t="kick">14 viviendas · entrega prevista 2028</p>
+        <h1 data-t="h1">Tu casa frente al Mediterráneo, antes de que exista.</h1>
+        <p class="a-lead" data-t="lead">Dos y tres dormitorios, plantas bajas con jardín y dos áticos con solárium, a 300 metros de la playa. Gira el edificio y elige la tuya.</p>
+        <div class="a-stats">
+          <div><b data-count>14</b><span data-t="st1">viviendas</span></div>
+          <div><b data-avail>8</b><span data-t="st2">disponibles</span></div>
+          <div><b>300 m</b><span data-t="st3">a la playa</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="a-pick" id="viviendas">
+      <div class="a-stage" data-b-stage data-label="Edificio Residencial Alba en 3D. Toca una vivienda para ver su ficha.">
+        <img class="a-poster" src="/img/maqueta/poster-960.webp" alt="" aria-hidden="true" width="960" height="660" />
+        <div class="a-legend"><span><i class="d-s"></i><em data-t="s">Disponible</em></span><span><i class="d-r"></i><em data-t="r">Reservada</em></span><span><i class="d-v"></i><em data-t="v">Vendida</em></span></div>
+        <div class="a-sun">
+          <label for="sun"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="1.6"/></svg><span data-t="sunL">Sol a las</span> <output data-sun-out>16:00</output></label>
+          <input id="sun" type="range" min="7" max="20.5" step="0.25" value="16" data-sun />
+        </div>
+        <p class="a-hint" data-t="hint">Arrastra para girar · toca una vivienda</p>
+      </div>
+
+      <aside class="a-side">
+        <div class="a-filters" data-filters>
+          <p class="a-lab" data-t="fBeds">Dormitorios</p>
+          <div class="a-chips" role="group"><button type="button" data-beds="0" aria-pressed="true" data-t="all">Todas</button><button type="button" data-beds="2" aria-pressed="false">2</button><button type="button" data-beds="3" aria-pressed="false">3</button></div>
+          <p class="a-lab"><span data-t="fMax">Precio hasta</span> <output data-max-out></output></p>
+          <input type="range" min="280000" max="580000" step="10000" value="580000" data-max aria-label="Precio máximo" />
+          <label class="a-check"><input type="checkbox" data-only-avail /> <span data-t="fAvail">Solo disponibles</span></label>
+          <label class="a-check"><input type="checkbox" data-plain /> <span data-t="fPlain">Ver el edificio sin colores</span></label>
+        </div>
+        <div class="a-list" data-list></div>
+        <p class="a-empty" data-empty hidden></p>
+      </aside>
+
+      <div class="a-sheet" data-sheet hidden>
+        <button type="button" class="a-x" data-close aria-label="Cerrar">×</button>
+        <div data-sheet-body></div>
+      </div>
+    </section>
+
+    <section class="a-sec" id="calidades">
+      <div class="a-wrap">
+        <p class="a-kick" data-t="qK">Memoria de calidades</p>
+        <h2 data-t="qT">Lo que no se ve en un render, explicado.</h2>
+        <div class="a-q">
+          <details open><summary><b>01</b><span data-t="q1">Estructura y fachada</span></summary><p data-t="q1d">Estructura de hormigón armado. Fachada ventilada con aislamiento térmico continuo y celosías de madera tratada en las orientaciones de más sol.</p></details>
+          <details><summary><b>02</b><span data-t="q2">Carpintería y vidrio</span></summary><p data-t="q2d">Aluminio con rotura de puente térmico, doble acristalamiento bajo emisivo y persianas motorizadas en dormitorios.</p></details>
+          <details><summary><b>03</b><span data-t="q3">Cocina</span></summary><p data-t="q3d">Cocina abierta al salón con muebles hasta techo, encimera porcelánica, placa de inducción, horno y campana integrada.</p></details>
+          <details><summary><b>04</b><span data-t="q4">Baños</span></summary><p data-t="q4d">Porcelánico de gran formato, plato de ducha extraplano, mampara de vidrio y grifería termostática.</p></details>
+          <details><summary><b>05</b><span data-t="q5">Clima y energía</span></summary><p data-t="q5d">Aerotermia para agua caliente, suelo radiante y refrescante, y placas solares en cubierta para zonas comunes.</p></details>
+          <details><summary><b>06</b><span data-t="q6">Zonas comunes</span></summary><p data-t="q6d">Piscina con solárium, jardín mediterráneo de bajo consumo, garaje con preinstalación para cargador eléctrico y trastero.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="a-sec a-sec--sand" id="zona">
+      <div class="a-wrap a-zone">
+        <div>
+          <p class="a-kick" data-t="zK">La zona</p>
+          <h2 data-t="zT">Todo a pie, o casi.</h2>
+          <ul class="a-dist">
+            <li><b>300 m</b><span data-t="z1">Playa de San Juan</span></li>
+            <li><b>650 m</b><span data-t="z2">Supermercado y farmacia</span></li>
+            <li><b>1,2 km</b><span data-t="z3">Colegio internacional</span></li>
+            <li><b>2,4 km</b><span data-t="z4">Campo de golf</span></li>
+            <li><b>12 km</b><span data-t="z5">Centro de Alicante</span></li>
+            <li><b>20 min</b><span data-t="z6">Aeropuerto de Alicante</span></li>
+          </ul>
+        </div>
+        <svg class="a-map" viewBox="0 0 400 300" role="img" aria-label="Plano de situación esquemático">
+          <path d="M0 220 C60 200 90 230 140 205 S230 160 270 170 S350 150 400 120 L400 300 L0 300Z" class="m-sea"/>
+          <path d="M0 220 C60 200 90 230 140 205 S230 160 270 170 S350 150 400 120" class="m-coast"/>
+          <path d="M40 40 L360 70 M120 10 L150 260 M250 20 L230 200" class="m-road"/>
+          <g class="m-poi"><circle cx="190" cy="150" r="6"/><text x="200" y="146">Golf</text></g>
+          <g class="m-poi"><circle cx="110" cy="120" r="6"/><text x="120" y="116" data-t="mSch">Colegio</text></g>
+          <g class="m-poi"><circle cx="300" cy="120" r="6"/><text x="310" y="116" data-t="mShop">Súper</text></g>
+          <g class="m-me"><rect x="236" y="148" width="22" height="22"/><text x="200" y="194">ALBA</text></g>
+          <text x="300" y="250" class="m-sea-t" data-t="mSea">Mar Mediterráneo</text>
+          <path d="M370 30 l8 -12 l8 12" class="m-n"/><text x="374" y="44" class="m-nt">N</text>
+        </svg>
+      </div>
+    </section>
+
+    <section class="a-sec" id="obra">
+      <div class="a-wrap">
+        <p class="a-kick" data-t="oK">Avance de obra</p>
+        <h2 data-t="oT">Sabes en qué punto está tu casa.</h2>
+        <ol class="a-time">
+          <li class="done"><b data-t="o1">Licencia</b><span>03/2026</span></li>
+          <li class="done"><b data-t="o2">Cimentación</b><span>06/2026</span></li>
+          <li class="now"><b data-t="o3">Estructura</b><span data-t="o3s">en curso · 45 %</span></li>
+          <li><b data-t="o4">Fachada e interiores</b><span>2027</span></li>
+          <li><b data-t="o5">Entrega de llaves</b><span>2028</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="a-sec a-sec--ink" id="contacto">
+      <div class="a-wrap a-cta">
+        <h2 data-t="cT">¿Hablamos de tu vivienda?</h2>
+        <p data-t="cD">Te llamamos, te enseñamos el piso piloto o hacemos una videollamada si vives fuera.</p>
+        <form class="a-form" data-demo-form>
+          <input name="n" placeholder="Nombre" aria-label="Nombre" required />
+          <input name="t" placeholder="Teléfono o email" aria-label="Teléfono o email" required />
+          <button type="submit" data-t="cB">Quiero información</button>
+          <p class="a-ok" data-ok hidden data-t="cOk">Demo: en la web real esta solicitud te llegaría al momento, con el idioma y las viviendas que ha mirado.</p>
+        </form>
+      </div>
+    </section>
+    <footer class="a-foot"><span>ALBA Residencial · <span data-t="fic">proyecto ficticio de demostración</span></span><span>Web: ABGFRAME</span></footer>
+  </div>
+</Base>
+
+<script>
+  import { UNITS, T, planSVG, type Unit } from '../../scripts/demo-promotora';
+  type L = 'es' | 'en' | 'de';
+  const PAGE: Record<L, Record<string, string>> = {
+    es: {},
+    en: { nav1: 'Homes', nav2: 'Specifications', nav3: 'The area', nav4: 'Build progress', kick: '14 homes · completion 2028', h1: 'Your home facing the Mediterranean, before it exists.', lead: 'Two and three bedrooms, ground floors with gardens and two penthouses with sun decks, 300 metres from the beach. Rotate the building and pick yours.', st1: 'homes', st2: 'available', st3: 'to the beach', s: 'Available', r: 'Reserved', v: 'Sold', sunL: 'Sun at', hint: 'Drag to rotate · tap a home', fBeds: 'Bedrooms', all: 'All', fMax: 'Up to', fAvail: 'Available only', fPlain: 'Show the building without colours', qK: 'Specifications', qT: 'What a render does not show, explained.', q1: 'Structure and facade', q1d: 'Reinforced concrete structure. Ventilated facade with continuous insulation and treated timber screens on the sunniest sides.', q2: 'Windows and glazing', q2d: 'Thermally broken aluminium, low-emissivity double glazing and motorised blinds in bedrooms.', q3: 'Kitchen', q3d: 'Kitchen open to the living room, floor-to-ceiling units, porcelain worktop, induction hob, oven and integrated hood.', q4: 'Bathrooms', q4d: 'Large-format porcelain tiles, flush shower tray, glass screen and thermostatic taps.', q5: 'Climate and energy', q5d: 'Aerothermal hot water, underfloor heating and cooling, and solar panels on the roof for common areas.', q6: 'Shared areas', q6d: 'Pool with sun deck, low-water Mediterranean garden, garage pre-wired for EV charging and storage room.', zK: 'The area', zT: 'Everything within walking distance, almost.', z1: 'San Juan beach', z2: 'Supermarket and pharmacy', z3: 'International school', z4: 'Golf course', z5: 'Alicante city centre', z6: 'Alicante airport', mSch: 'School', mShop: 'Shop', mSea: 'Mediterranean Sea', oK: 'Build progress', oT: 'You know where your home is at.', o1: 'Licence', o2: 'Foundations', o3: 'Structure', o3s: 'in progress · 45%', o4: 'Facade and interiors', o5: 'Handover', cT: 'Shall we talk about your home?', cD: 'We call you, show you the show flat or set up a video call if you live abroad.', cB: 'Request information', cOk: 'Demo: on the real website this request would reach you instantly, with the language and the homes they looked at.', fic: 'fictional demo project' },
+    de: { nav1: 'Wohnungen', nav2: 'Ausstattung', nav3: 'Die Lage', nav4: 'Baufortschritt', kick: '14 Wohnungen · Fertigstellung 2028', h1: 'Ihr Zuhause am Mittelmeer, bevor es existiert.', lead: 'Zwei und drei Schlafzimmer, Erdgeschosswohnungen mit Garten und zwei Penthäuser mit Sonnendeck, 300 Meter vom Strand. Drehen Sie das Gebäude und wählen Sie Ihre Wohnung.', st1: 'Wohnungen', st2: 'verfügbar', st3: 'zum Strand', s: 'Verfügbar', r: 'Reserviert', v: 'Verkauft', sunL: 'Sonne um', hint: 'Zum Drehen ziehen · Wohnung antippen', fBeds: 'Schlafzimmer', all: 'Alle', fMax: 'Bis', fAvail: 'Nur verfügbare', fPlain: 'Gebäude ohne Farben zeigen', qK: 'Baubeschreibung', qT: 'Was ein Rendering nicht zeigt, erklärt.', q1: 'Struktur und Fassade', q1d: 'Stahlbetonkonstruktion. Hinterlüftete Fassade mit durchgehender Dämmung und Holzlamellen auf den Sonnenseiten.', q2: 'Fenster und Verglasung', q2d: 'Thermisch getrenntes Aluminium, Low-E-Doppelverglasung und elektrische Rollläden in den Schlafzimmern.', q3: 'Küche', q3d: 'Offene Küche mit raumhohen Schränken, Keramik-Arbeitsplatte, Induktionskochfeld, Backofen und integrierter Haube.', q4: 'Bäder', q4d: 'Großformatiges Feinsteinzeug, bodengleiche Dusche, Glasabtrennung und Thermostatarmaturen.', q5: 'Klima und Energie', q5d: 'Luftwärmepumpe für Warmwasser, Fußbodenheizung und -kühlung, Solarpaneele auf dem Dach.', q6: 'Gemeinschaftsbereiche', q6d: 'Pool mit Sonnendeck, wassersparender Mittelmeergarten, Garage mit Vorbereitung für E-Ladestation und Abstellraum.', zK: 'Die Lage', zT: 'Fast alles zu Fuß.', z1: 'Strand San Juan', z2: 'Supermarkt und Apotheke', z3: 'Internationale Schule', z4: 'Golfplatz', z5: 'Zentrum von Alicante', z6: 'Flughafen Alicante', mSch: 'Schule', mShop: 'Markt', mSea: 'Mittelmeer', oK: 'Baufortschritt', oT: 'Sie wissen, wie weit Ihr Zuhause ist.', o1: 'Baugenehmigung', o2: 'Fundament', o3: 'Rohbau', o3s: 'läuft · 45 %', o4: 'Fassade und Innenausbau', o5: 'Schlüsselübergabe', cT: 'Sprechen wir über Ihre Wohnung?', cD: 'Wir rufen Sie an, zeigen Ihnen die Musterwohnung oder per Videoanruf, wenn Sie im Ausland leben.', cB: 'Informationen anfordern', cOk: 'Demo: Auf der echten Website erreicht Sie diese Anfrage sofort, mit Sprache und angesehenen Wohnungen.', fic: 'fiktives Demo-Projekt' },
+  };
+  const root = document.querySelector<HTMLElement>('[data-alba]')!;
+  const $ = <T extends HTMLElement = HTMLElement>(s: string) => root.querySelector<T>(s)!;
+  const $$ = <T extends HTMLElement = HTMLElement>(s: string) => Array.from(root.querySelectorAll<T>(s));
+  let lang: L = 'es';
+  const ES: Record<string, string> = {};
+  $$('[data-t]').forEach((el) => { ES[el.dataset.t!] = el.textContent!; });
+  const tr = (k: string) => (lang === 'es' ? ES[k] : PAGE[lang][k]) ?? ES[k];
+  const fmt = (n: number) => new Intl.NumberFormat({ es: 'es-ES', en: 'en-GB', de: 'de-DE' }[lang], { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
+  const floorName = (u: Unit) => (u.type === 'ph' ? T[lang].ph : u.floor === 0 ? T[lang].pb : `${T[lang].floor} ${u.floor}`);
+
+  // filtros
+  let beds = 0, max = 580000, onlyAvail = false, current: Unit | null = null;
+  const visible = () => UNITS.filter((u) => (!beds || u.beds === beds) && u.price <= max && (!onlyAvail || u.status === 's'));
+  $('[data-avail]').textContent = String(UNITS.filter((u) => u.status === 's').length);
+
+  let building: ReturnType<typeof import('../../scripts/demo-promotora').mountBuilding> = null;
+  const renderList = () => {
+    const vs = visible();
+    $('[data-list]').innerHTML = vs.map((u) => `<button type="button" class="a-u st-${u.status}${current?.id === u.id ? ' on' : ''}" data-u="${u.id}">
+      <b>${u.id}</b><span>${u.beds} ${T[lang].beds} · ${u.m2} m²</span><em>${u.status === 'v' ? T[lang].v : fmt(u.price)}</em></button>`).join('');
+    const e = $('[data-empty]'); e.hidden = vs.length > 0; e.textContent = T[lang].none;
+    $$('[data-u]').forEach((b) => b.addEventListener('click', () => open(UNITS.find((u) => u.id === b.dataset.u)!, true)));
+    $('[data-max-out]').textContent = fmt(max);
+    building?.filter(new Set(vs.map((u) => u.id)));
+  };
+
+  const days = () => Array.from({ length: 6 }, (_, i) => { const d = new Date(); d.setDate(d.getDate() + i + 1); return d; });
+  const open = (u: Unit | null, from3d = false) => {
+    current = u;
+    if (from3d) building?.select(u?.id ?? null);
+    const sheet = $('[data-sheet]');
+    const padFor = () => building?.pad(innerWidth >= 900 && !sheet.hidden ? sheet.offsetWidth : 0);
+    if (!u) { sheet.hidden = true; padFor(); renderList(); return; }
+    const t = T[lang];
+    const df = new Intl.DateTimeFormat({ es: 'es-ES', en: 'en-GB', de: 'de-DE' }[lang], { weekday: 'short', day: 'numeric' });
+    $('[data-sheet-body]').innerHTML = `
+      <div class="s-head"><span class="s-st st-${u.status}">${t[u.status]}</span><h3>${u.id}</h3><p>${floorName(u)} · ${t.orient} ${u.orient}</p></div>
+      <div class="s-plan">${planSVG(u, lang)}</div>
+      <dl class="s-data">
+        <div><dt>${t.built}</dt><dd>${u.m2} m²</dd></div>
+        <div><dt>${u.type === 'garden' ? t.garden : u.type === 'ph' ? t.solarium : t.terrace}</dt><dd>${u.terrace} m²</dd></div>
+        <div><dt>${t.beds}</dt><dd>${u.beds}</dd></div>
+        <div><dt>${t.baths}</dt><dd>${u.baths}</dd></div>
+      </dl>
+      ${u.status === 'v' ? `<p class="s-sold">${t.sold}</p><button type="button" class="s-btn" data-notify>${t.notify}</button>` : `
+      <p class="s-price"><span>${t.from}</span>${fmt(u.price)}</p>
+      <div class="s-acts"><button type="button" class="s-btn" data-book>${t.book}</button><button type="button" class="s-btn s-btn--o" data-dossier>${t.dossier}</button></div>
+      <form class="s-book" data-book-form hidden>
+        <p class="s-lab">${t.when}</p>
+        <div class="s-days">${days().map((d, i) => `<label><input type="radio" name="d" ${i === 0 ? 'checked' : ''}/><span>${df.format(d)}</span></label>`).join('')}</div>
+        <div class="s-days">${['10:00', '12:00', '17:00', '19:00'].map((h, i) => `<label><input type="radio" name="h" ${i === 2 ? 'checked' : ''}/><span>${h}</span></label>`).join('')}</div>
+        <input placeholder="${t.name}" aria-label="${t.name}" required /><input placeholder="${t.phone}" aria-label="${t.phone}" required />
+        <button class="s-btn" type="submit">${t.send}</button>
+      </form>`}
+      <p class="s-note" data-note hidden></p>`;
+    sheet.hidden = false;
+    padFor();
+    const note = (txt: string, title?: string) => { const n = $('[data-note]'); n.innerHTML = title ? `<b>${title}</b><br>${txt}` : txt; n.hidden = false; };
+    root.querySelector('[data-book]')?.addEventListener('click', () => { const f = $('[data-book-form]'); f.hidden = !f.hidden; });
+    root.querySelector('[data-dossier]')?.addEventListener('click', () => note(t.dossierD));
+    root.querySelector('[data-notify]')?.addEventListener('click', () => note(t.sentD, t.sent));
+    root.querySelector<HTMLFormElement>('[data-book-form]')?.addEventListener('submit', (e) => { e.preventDefault(); (e.target as HTMLElement).hidden = true; note(t.sentD, `${t.sent} · ${u.id}`); });
+    renderList();
+    if (innerWidth < 900) sheet.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+  $('[data-close]').addEventListener('click', () => open(null, true));
+
+  $$('[data-beds]').forEach((b) => b.addEventListener('click', () => { beds = Number(b.dataset.beds); $$('[data-beds]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); renderList(); }));
+  $<HTMLInputElement>('[data-max]').addEventListener('input', (e) => { max = Number((e.target as HTMLInputElement).value); renderList(); });
+  $<HTMLInputElement>('[data-only-avail]').addEventListener('change', (e) => { onlyAvail = (e.target as HTMLInputElement).checked; renderList(); });
+  $<HTMLInputElement>('[data-plain]').addEventListener('change', (e) => building?.setMode((e.target as HTMLInputElement).checked ? 'plain' : 'status'));
+  const sunIn = $<HTMLInputElement>('[data-sun]');
+  sunIn.addEventListener('input', () => { const h = Number(sunIn.value); $('[data-sun-out]').textContent = `${Math.floor(h)}:${String(Math.round((h % 1) * 60)).padStart(2, '0')}`; building?.setSun(h); });
+
+  // idiomas
+  $$('[data-lang]').forEach((b) => b.addEventListener('click', () => {
+    lang = b.dataset.lang as L;
+    $$('[data-lang]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    $$('[data-t]').forEach((el) => { el.textContent = tr(el.dataset.t!); });
+    document.documentElement.lang = lang;
+    renderList(); if (current) open(current);
+    (window as any).dataLayer?.push({ event: 'demo_idioma', idioma: lang });
+  }));
+
+  // formulario de contacto de la demo
+  $<HTMLFormElement>('[data-demo-form]').addEventListener('submit', (e) => { e.preventDefault(); $('[data-ok]').hidden = false; });
+
+  // edificio 3D
+  import('../../scripts/demo-promotora').then(({ mountBuilding }) => {
+    building = mountBuilding(root, { onPick: (u) => open(u) });
+    renderList();
+    const first = UNITS.find((u) => u.id === '2B')!;
+    setTimeout(() => { if (!current) { building?.select(first.id); open(first); } }, 1400);
+  });
+  renderList();
+  root.addEventListener('unit-hover', ((e: CustomEvent) => { $$('[data-u]').forEach((b) => b.classList.toggle('hov', b.dataset.u === e.detail)); }) as EventListener);
+</script>
+
+<style>
+  .alba{--sand:#F4EFE7;--clay:#B5724F;--ink:#1B1A18;--muted:#6B655C;--line:#DDD5C8;background:#FBF8F3;color:var(--ink)}
+  .a-nav{display:flex;align-items:center;gap:24px;padding:16px clamp(16px,4vw,48px);border-bottom:1px solid var(--line)}
+  .a-logo{display:flex;flex-direction:column;text-decoration:none;color:var(--ink);line-height:1.1}
+  .a-logo b{font-family:var(--wide);letter-spacing:.32em;font-size:20px;font-weight:500}
+  .a-logo span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .a-links{display:flex;gap:22px;margin-left:auto;font-size:14px}
+  .a-links a{color:var(--ink);text-decoration:none}
+  .a-links a:hover{color:var(--clay)}
+  .a-lang{display:flex;border:1px solid var(--ink)}
+  .a-lang button{min-width:40px;min-height:36px;border:0;background:none;font:inherit;font-size:13px;cursor:pointer;color:var(--ink)}
+  .a-lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+  .a-hero{padding:clamp(40px,6vw,88px) clamp(16px,4vw,48px) clamp(24px,3vw,40px)}
+  .a-hero__txt{max-width:1100px}
+  .a-kick{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);margin-bottom:16px}
+  .a-hero h1{font-family:var(--wide);font-weight:500;font-size:clamp(34px,5.4vw,78px);line-height:1.02;letter-spacing:-.03em;max-width:15ch}
+  .a-lead{font-size:clamp(17px,1.5vw,20px);line-height:1.5;color:#3c3934;max-width:56ch;margin-top:22px}
+  .a-stats{display:flex;gap:clamp(24px,5vw,72px);margin-top:32px}
+  .a-stats b{display:block;font-family:var(--wide);font-weight:500;font-size:clamp(26px,3vw,40px)}
+  .a-stats span{font-size:13px;color:var(--muted)}
+  .a-pick{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative}
+  .a-stage{position:relative;min-height:clamp(460px,72vh,780px);background:radial-gradient(120% 90% at 50% 35%,#fffdf9,var(--sand));overflow:hidden;cursor:grab}
+  .a-stage :global(canvas){position:absolute;inset:0;width:100%!important;height:100%!important}
+  .a-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.0}
+  .a-legend{position:absolute;left:16px;top:16px;display:flex;gap:14px;font-size:13px;background:rgba(255,255,255,.85);padding:8px 12px;z-index:2}
+  .a-legend span{display:flex;align-items:center;gap:6px}.a-legend em{font-style:normal}
+  .a-legend i{width:12px;height:12px;border:1px solid #9a948a}
+  .d-s{background:#fff}.d-r{background:#E9C88A}.d-v{background:#8F8D87}
+  .a-sun{position:absolute;left:16px;right:16px;bottom:16px;max-width:420px;display:grid;gap:6px;background:rgba(255,255,255,.88);padding:10px 14px;z-index:2}
+  .a-sun label{display:flex;align-items:center;gap:8px;font-size:13px}
+  .a-sun svg{width:18px;height:18px;color:var(--clay)}
+  .a-sun output{font-weight:500}
+  .a-sun input,.a-filters input[type=range]{width:100%;accent-color:var(--clay)}
+  .a-hint{position:absolute;right:16px;top:16px;font-size:12px;color:var(--muted);background:rgba(255,255,255,.85);padding:6px 10px;z-index:2}
+  .a-side{border-left:1px solid var(--line);background:#fff;display:flex;flex-direction:column;max-height:clamp(460px,72vh,780px)}
+  .a-filters{padding:18px;display:grid;gap:10px;border-bottom:1px solid var(--line)}
+  .a-lab{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .a-lab output{color:var(--ink);text-transform:none;letter-spacing:0;font-weight:500}
+  .a-chips{display:flex;gap:6px}
+  .a-chips button{min-height:38px;padding:6px 14px;border:1px solid var(--line);background:#fff;font:inherit;font-size:14px;cursor:pointer}
+  .a-chips button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .a-check{display:flex;gap:8px;align-items:center;font-size:14px}
+  .a-check input{accent-color:var(--clay);width:16px;height:16px}
+  .a-list{overflow:auto;padding:8px}
+  .a-list :global(.a-u){display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:8px;width:100%;padding:12px 10px;border:0;border-bottom:1px solid #f0ebe3;background:none;text-align:left;font:inherit;font-size:14px;cursor:pointer}
+  .a-list :global(.a-u b){font-family:var(--wide);font-weight:500}
+  .a-list :global(.a-u span){color:var(--muted)}
+  .a-list :global(.a-u em){font-style:normal;font-weight:500}
+  .a-list :global(.a-u.st-v){opacity:.55}.a-list :global(.a-u.st-r em){color:#8a6a2c}
+  .a-list :global(.a-u:hover),.a-list :global(.a-u.hov){background:var(--sand)}
+  .a-list :global(.a-u.on){background:var(--ink);color:#fff}.a-list :global(.a-u.on span){color:#cfc8bd}
+  .a-empty{padding:18px;color:var(--muted)}
+  .a-sheet{position:absolute;right:360px;top:0;bottom:0;width:min(400px,40%);background:#fff;border-left:1px solid var(--line);box-shadow:-24px 0 48px rgba(27,26,24,.08);overflow:auto;padding:22px;z-index:3;animation:sheet .35s var(--ease)}
+  @keyframes sheet{from{transform:translateX(20px);opacity:0}}
+  .a-x{position:absolute;right:12px;top:10px;width:40px;height:40px;border:0;background:none;font-size:26px;cursor:pointer}
+  .a-sheet :global(.s-head h3){font-family:var(--wide);font-weight:500;font-size:40px;letter-spacing:-.02em;margin-top:8px}
+  .a-sheet :global(.s-head p){color:var(--muted);font-size:14px}
+  .a-sheet :global(.s-st){display:inline-block;font-size:12px;padding:3px 9px;border:1px solid}
+  .a-sheet :global(.s-st.st-s){color:#2F6B47}.a-sheet :global(.s-st.st-r){color:#8a6a2c}.a-sheet :global(.s-st.st-v){color:#6b655c}
+  .a-sheet :global(.s-plan){margin:18px 0;background:var(--sand);padding:12px}
+  .a-sheet :global(.plan){width:100%;height:auto;display:block}
+  .a-sheet :global(.pl-o){fill:#fff;stroke:var(--ink);stroke-width:3}
+  .a-sheet :global(.pl-r){fill:none;stroke:var(--ink);stroke-width:1.2}
+  .a-sheet :global(.pl-ter){fill:#efe6d6;stroke:var(--ink);stroke-width:1;stroke-dasharray:4 3}
+  .a-sheet :global(.pl-t){font-size:10px;text-anchor:middle;dominant-baseline:middle;fill:var(--ink);font-family:var(--text)}
+  .a-sheet :global(.pl-s){font-size:9px;fill:var(--clay)}
+  .a-sheet :global(.pl-n){fill:none;stroke:var(--clay);stroke-width:1.5}
+  .a-sheet :global(.s-data){display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .a-sheet :global(.s-data div){background:#faf7f2;padding:10px 12px}
+  .a-sheet :global(.s-data dt){font-size:12px;color:var(--muted)}
+  .a-sheet :global(.s-data dd){font-weight:500;font-size:18px;margin-top:2px}
+  .a-sheet :global(.s-price){margin-top:18px;font-family:var(--wide);font-size:30px;font-weight:500}
+  .a-sheet :global(.s-price span){display:block;font-family:var(--text);font-size:12px;color:var(--muted);font-weight:400}
+  .a-sheet :global(.s-acts){display:grid;gap:8px;margin-top:14px}
+  .a-sheet :global(.s-btn){min-height:46px;padding:10px 16px;border:1px solid var(--ink);background:var(--ink);color:#fff;font:inherit;font-weight:500;cursor:pointer;width:100%}
+  .a-sheet :global(.s-btn--o){background:#fff;color:var(--ink)}
+  .a-sheet :global(.s-book){display:grid;gap:8px;margin-top:14px}
+  .a-sheet :global(.s-book input:not([type=radio])){min-height:44px;padding:8px 12px;border:1px solid var(--line);font:inherit}
+  .a-sheet :global(.s-lab){font-size:12px;color:var(--muted)}
+  .a-sheet :global(.s-days){display:flex;flex-wrap:wrap;gap:6px}
+  .a-sheet :global(.s-days label){cursor:pointer}
+  .a-sheet :global(.s-days input){position:absolute;opacity:0}
+  .a-sheet :global(.s-days span){display:inline-block;padding:7px 10px;border:1px solid var(--line);font-size:13px}
+  .a-sheet :global(.s-days input:checked+span){background:var(--clay);border-color:var(--clay);color:#fff}
+  .a-sheet :global(.s-note){margin-top:14px;padding:12px 14px;background:#eef3ee;border-left:3px solid #2F6B47;font-size:14px}
+  .a-sheet :global(.s-sold){margin-top:16px;color:var(--muted)}
+  .a-sec{padding:clamp(64px,8vw,120px) clamp(16px,4vw,48px)}
+  .a-sec--sand{background:var(--sand)}
+  .a-sec--ink{background:var(--ink);color:#fff}
+  .a-wrap{max-width:1200px;margin:0 auto}
+  .a-sec h2{font-family:var(--wide);font-weight:500;font-size:clamp(28px,3.4vw,48px);letter-spacing:-.025em;line-height:1.08;max-width:20ch}
+  .a-q{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;margin-top:40px}
+  .a-q details{border-top:1px solid var(--line);padding:18px 0}
+  .a-q summary{display:flex;gap:16px;cursor:pointer;font-size:18px;font-weight:500;list-style:none}
+  .a-q summary::-webkit-details-marker{display:none}
+  .a-q summary b{color:var(--clay);font-family:var(--wide);font-weight:500;font-size:14px;padding-top:3px}
+  .a-q p{margin:10px 0 0 34px;color:#4a463f;line-height:1.55}
+  .a-zone{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:center}
+  .a-dist{list-style:none;padding:0;margin-top:28px;display:grid;gap:0}
+  .a-dist li{display:flex;gap:18px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+  .a-dist b{font-family:var(--wide);font-weight:500;min-width:84px}
+  .a-map{width:100%;height:auto;background:#fff}
+  .m-sea{fill:#dfe7ec}.m-coast{fill:none;stroke:#7d97ab;stroke-width:2}.m-road{fill:none;stroke:#e6dfd3;stroke-width:6}
+  .m-poi circle{fill:#fff;stroke:var(--ink);stroke-width:1.5}.m-poi text,.m-me text{font-size:12px;fill:var(--ink);font-family:var(--text)}
+  .m-me rect{fill:var(--clay)}.m-me text{font-weight:600;letter-spacing:.2em}
+  .m-sea-t{font-size:12px;fill:#5d7a8f;font-style:italic;font-family:var(--text)}
+  .m-n{fill:none;stroke:var(--ink);stroke-width:1.5}.m-nt{font-size:11px;font-family:var(--text)}
+  .a-time{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));list-style:none;padding:0;margin-top:44px;counter-reset:t}
+  .a-time li{position:relative;padding:28px 12px 0 0;border-top:2px solid var(--line);font-size:14px}
+  .a-time li::before{content:"";position:absolute;left:0;top:-8px;width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid var(--line)}
+  .a-time li.done{border-color:var(--clay)}.a-time li.done::before{background:var(--clay);border-color:var(--clay)}
+  .a-time li.now{border-image:linear-gradient(90deg,var(--clay) 45%,var(--line) 45%) 1}.a-time li.now::before{border-color:var(--clay);box-shadow:0 0 0 6px rgba(181,114,79,.18)}
+  .a-time b{display:block;font-size:16px}.a-time span{color:var(--muted)}
+  .a-cta{text-align:center;display:grid;justify-items:center;gap:16px}
+  .a-cta h2{max-width:none}
+  .a-cta p{color:#cfc8bd;max-width:50ch}
+  .a-form{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px;max-width:640px}
+  .a-form input{flex:1 1 200px;min-height:48px;padding:10px 14px;border:1px solid #4a463f;background:transparent;color:#fff;font:inherit}
+  .a-form button{min-height:48px;padding:10px 22px;border:0;background:var(--clay);color:#fff;font:inherit;font-weight:500;cursor:pointer}
+  .a-ok{flex-basis:100%;color:#cde3d3;font-size:14px}
+  .a-foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px clamp(16px,4vw,48px);font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+  @media (max-width:900px){
+    .a-links{display:none}.a-lang{margin-left:auto}
+    .a-pick{grid-template-columns:1fr}
+    .a-stage{min-height:auto;aspect-ratio:4/5}
+    .a-side{border-left:0;max-height:none}
+    .a-list{max-height:320px}
+    .a-sheet{position:relative;right:auto;width:auto;border-left:0;border-top:1px solid var(--line);box-shadow:none}
+    .a-hint{display:none}
+    .a-q,.a-zone{grid-template-columns:1fr}
+    .a-time{grid-template-columns:1fr;gap:0}
+    .a-time li{border-top:0;border-left:2px solid var(--line);padding:0 0 22px 22px}
+    .a-time li::before{left:-8px;top:0}
+    .a-time li.now{border-image:none;border-left-color:var(--clay)}
+  }
+</style>

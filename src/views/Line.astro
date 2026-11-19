@@ -27,6 +27,7 @@ const service = {
   url: `https://abgframe.com${r(k, lang)}`,
 };
 const others = LINE_KEYS.filter((x) => x !== k);
+const DEMO_OF = { promotoras: 'demoPromotora', arquitectura: 'demoEstudio', reformas: 'demoReformas', inmobiliarias: 'demoInmobiliaria' } as const;
 ---
 <Base lang={lang} title={c.seoTitle} description={c.seoDesc} route={k} image={`/og/${k}-${lang}.jpg`} breadcrumbs={crumbs} schema={[service, faqLd(c.faq)]}>
   <link slot="head" rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset={[640, 960, 1280, 1920].map((x) => `${c.photo.src}-${x}.webp ${x}w`).join(", ")} imagesizes="(max-width: 860px) 100vw, 38vw" />
@@ -95,6 +96,16 @@ const others = LINE_KEYS.filter((x) => x !== k);
     </div>
   </section>
 
+  <section class="sec--tight ln-demo-s">
+    <div class="wrap">
+      <a class="ln-demo" href={r(DEMO_OF[k], 'es')} data-track={`demo_desde_${k}`}>
+        <span class="kick">{lang === 'es' ? 'Demo · proyecto ficticio' : 'Demo · fictional project'}</span>
+        <span class="h2">{lang === 'es' ? 'Pruébalo: así sería la web de tu negocio.' : 'Try it: this is what your website could be.'}</span>
+        <span class="ln-demo__img"><img src={`/img/demo/thumb-${DEMO_OF[k]}.webp`} alt="" width="1200" height="800" loading="lazy" /></span>
+        <span class="btn">{lang === 'es' ? 'Abrir la demo' : 'Open the demo'} <span class="arrow" aria-hidden="true">→</span></span>
+      </a>
+    </div>
+  </section>
   <ContactBlock lang={lang} preset={k} title={c.ctaTitle} />
 
   <nav class="sec--tight sec--con" aria-label={es ? 'Otras líneas' : 'Other services'}>
@@ -106,6 +117,10 @@ const others = LINE_KEYS.filter((x) => x !== k);
 </Base>
 
 <style>
+  .ln-demo{display:grid;grid-template-columns:1fr 1.2fr;grid-template-rows:auto auto 1fr;gap:12px var(--gap);align-items:start;text-decoration:none;color:var(--papel);background:var(--tinta);padding:clamp(28px,4vw,56px)}
+  .ln-demo .kick{color:#A9A8A3;margin:0}.ln-demo .h2{grid-column:1}.ln-demo .btn{grid-column:1;justify-self:start;align-self:end}
+  .ln-demo__img{grid-column:2;grid-row:1/4}.ln-demo__img img{width:100%;aspect-ratio:3/2;object-fit:cover;object-position:top;outline:1.5px solid var(--acero-claro);outline-offset:8px}
+  @media (max-width:860px){.ln-demo{grid-template-columns:1fr}.ln-demo__img{grid-column:1;grid-row:auto}}
   .lh{align-items:end}
   .lh__txt{grid-column:1/8}
   .lh__fig{grid-column:9/13;margin:10px}

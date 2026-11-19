@@ -1,0 +1,349 @@
+---
+// Demo · Estudio Llum (estudio de arquitectura ficticio). Portfolio editorial, del plano a la obra,
+// proyectos con ficha, maqueta 3D y briefing guiado que enseña cómo le llega el encargo al estudio.
+import Base from '../../layouts/Base.astro';
+import Immersive from '../../components/Immersive.astro';
+const P = [
+  { id: 'aire', img: 'muros', name: 'Casa Aire', place: 'Altea', year: '2025', m2: '240 m²', cat: 'vivienda', type: 'Vivienda unifamiliar', d: 'Tres volúmenes blancos que se escalonan con la pendiente para que todas las estancias miren al mar sin verse entre sí. Patios en sombra en verano y sol bajo en invierno.', team: 'Arquitectura, interiorismo y dirección de obra' },
+  { id: 'mirador', img: 'volumen', name: 'Casa Mirador', place: 'Jávea', year: '2024', m2: '310 m²', cat: 'vivienda', type: 'Vivienda unifamiliar', d: 'Un volumen de hormigón visto que vuela sobre el acceso y enmarca el Montgó. Ventanas profundas que protegen del sol de poniente.', team: 'Arquitectura y dirección de obra' },
+  { id: 'terrazas', img: 'escalonada', name: 'Edificio Terrazas', place: 'Alicante', year: '2024', m2: '2.900 m²', cat: 'vivienda', type: 'Vivienda colectiva · 24 viviendas', d: 'Cada planta retrocede para que todas las viviendas tengan una terraza de verdad, de las que se usan para comer fuera.', team: 'Arquitectura' },
+  { id: 'blanca', img: 'escalera', name: 'Casa Blanca', place: 'Dénia', year: '2023', m2: '135 m²', cat: 'interiorismo', type: 'Reforma integral e interiorismo', d: 'Una casa de pueblo vaciada por dentro: cal, microcemento y una escalera que lleva la luz de la cubierta hasta la planta baja.', team: 'Interiorismo y gestión de obra' },
+  { id: 'sal', img: 'sala', name: 'Galería Sal', place: 'Alicante', year: '2023', m2: '420 m²', cat: 'equipamiento', type: 'Sala de exposiciones', d: 'Una antigua nave convertida en sala de exposiciones: hormigón, luz cenital y un recorrido sin esquinas.', team: 'Arquitectura e interiorismo' },
+  { id: 'paso', img: 'pasarela', name: 'Centro Cívico', place: 'Elche', year: '2022', m2: '1.800 m²', cat: 'equipamiento', type: 'Equipamiento público · concurso', d: 'Primer premio en concurso. Una pasarela de vidrio une los dos edificios existentes y se convierte en la entrada del barrio.', team: 'Arquitectura (en UTE)' },
+];
+const HERO = P.slice(0, 4);
+---
+<Base lang="es" route="demoEstudio" demo={{ sector: 'estudios de arquitectura', tipo: 'arquitectura' }}
+  title="Demo · Estudio Llum, web de estudio de arquitectura | ABGFRAME"
+  description="Demo de ABGFRAME: web de un estudio de arquitectura ficticio con portfolio editorial, del plano a la obra, maqueta 3D y briefing guiado.">
+  <div class="llum" data-llum>
+    <header class="l-nav">
+      <a class="l-logo" href="#top">llum<span>arquitectura · interiorismo · Alicante</span></a>
+      <nav><a href="#proyectos">Proyectos</a><a href="#plano">Método</a><a href="#encargo" class="l-nav__cta">Cuéntanos tu encargo</a></nav>
+    </header>
+
+    <section class="l-hero" id="top" data-hero>
+      <ol class="l-index">
+        {HERO.map((p, i) => (
+          <li><button type="button" data-hi={i} aria-pressed={i === 0 ? 'true' : 'false'}>
+            <span class="n">{String(i + 1).padStart(2, '0')}</span><b>{p.name}</b><span class="m">{p.place} · {p.year}</span>
+          </button></li>
+        ))}
+      </ol>
+      <div class="l-hero__img">
+        {HERO.map((p, i) => <img src={`/img/foto/${p.img}-1280.webp`} srcset={`/img/foto/${p.img}-960.webp 960w, /img/foto/${p.img}-1280.webp 1280w, /img/foto/${p.img}-1920.webp 1920w`} sizes="(max-width: 860px) 100vw, 60vw" alt={`${p.name}, ${p.place}`} class:list={[i === 0 && 'on']} data-himg={i} width="1280" height="1920" loading={i === 0 ? 'eager' : 'lazy'} />)}
+        <p class="l-hero__cap" data-hcap>{HERO[0].type} · {HERO[0].m2}</p>
+      </div>
+      <div class="l-hero__txt">
+        <h1>Casas que se entienden con el lugar.</h1>
+        <p>Proyectamos viviendas, reformas e interiores en la Costa Blanca. Pocos encargos al año, todos llevados de principio a fin por las mismas dos personas.</p>
+      </div>
+    </section>
+
+    <section class="l-sec" id="plano">
+      <div class="l-wrap l-pl">
+        <div class="l-pl__txt">
+          <p class="l-k">Método</p>
+          <h2>Del primer trazo a la obra terminada.</h2>
+          <p>Desliza para pasar del alzado que dibujamos a la casa construida. Así trabajamos: lo que ves en el plano es lo que se construye.</p>
+          <ol class="l-steps">
+            <li><b>Escuchar</b> Visitamos la parcela y entendemos cómo vives.</li>
+            <li><b>Dibujar</b> Anteproyecto, maqueta 3D y presupuesto estimado.</li>
+            <li><b>Construir</b> Proyecto de ejecución y dirección de obra hasta la llave.</li>
+          </ol>
+        </div>
+        <div class="l-cmp" data-cmp style="--p:62%">
+          <img src="/img/foto/muros-1280.webp" alt="Casa Aire terminada" width="1280" height="1920" loading="lazy" />
+          <div class="l-cmp__draw"><img src="/img/demo/muros-linea.webp" alt="Alzado de Casa Aire en línea" width="1280" height="1920" loading="lazy" /></div>
+          <span class="l-cmp__bar" aria-hidden="true"><i></i></span>
+          <span class="l-cmp__t l">Alzado</span><span class="l-cmp__t r">Obra terminada</span>
+          <label class="visually-hidden" for="cmp">Deslizar entre el plano y la obra</label>
+          <input id="cmp" type="range" min="0" max="100" value="62" />
+        </div>
+      </div>
+    </section>
+
+    <section class="l-sec l-sec--paper" id="proyectos">
+      <div class="l-wrap">
+        <div class="l-head"><div><p class="l-k">Proyectos</p><h2>Seis de los últimos.</h2></div>
+          <div class="l-filter" role="group" aria-label="Filtrar proyectos">
+            <button type="button" data-f="*" aria-pressed="true">Todos</button><button type="button" data-f="vivienda" aria-pressed="false">Vivienda</button><button type="button" data-f="interiorismo" aria-pressed="false">Interiorismo</button><button type="button" data-f="equipamiento" aria-pressed="false">Equipamiento</button>
+          </div>
+        </div>
+        <div class="l-grid">
+          {P.map((p, i) => (
+            <button type="button" class:list={['l-card', i === 0 && 'big']} data-cat={p.cat} data-open={p.id}>
+              <span class="l-card__img"><img src={`/img/foto/${p.img}-960.webp`} alt="" width="960" height="1440" loading="lazy" /></span>
+              <span class="l-card__t"><b>{p.name}</b><span>{p.place} · {p.year}</span></span>
+              <span class="l-card__c">{p.type}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <dialog class="l-modal" data-modal>
+      <button type="button" class="l-x" data-x aria-label="Cerrar">×</button>
+      <div class="l-modal__in">
+        <img data-m-img alt="" />
+        <div class="l-modal__txt">
+          <p class="l-k" data-m-type></p>
+          <h3 data-m-name></h3>
+          <p data-m-d></p>
+          <dl class="l-ficha">
+            <div><dt>Ubicación</dt><dd data-m-place></dd></div>
+            <div><dt>Superficie</dt><dd data-m-m2></dd></div>
+            <div><dt>Año</dt><dd data-m-year></dd></div>
+            <div><dt>Encargo</dt><dd data-m-team></dd></div>
+          </dl>
+          <a class="l-btn" href="#encargo" data-m-cta>Quiero algo así</a>
+          <a class="l-link" href="#maqueta" data-m-3d hidden>Ver Casa Aire en 3D →</a>
+        </div>
+      </div>
+    </dialog>
+
+    <div id="maqueta" class="l-mq">
+      <Immersive lang="es" show="maqueta" exampleOnly tone="papel"
+        h2="Casa Aire, en 3D."
+        lead="Antes de construir, el cliente gira la casa, la abre por plantas y toca cada parte. Entiende el proyecto sin saber leer un plano."
+        mqKicker="Maqueta 3D · Casa Aire"
+        mqText="Así presenta Estudio Llum sus anteproyectos: una maqueta que el cliente puede abrir en el móvil y enseñar a su familia." />
+    </div>
+
+    <section class="l-sec l-sec--ink" id="encargo">
+      <div class="l-wrap l-brief" data-brief>
+        <div class="l-brief__q">
+          <p class="l-k">Tu encargo · <span data-step-n>1</span> de 5</p>
+          <div class="l-prog"><i data-prog style="width:20%"></i></div>
+          <fieldset data-step="1"><legend>¿Qué quieres hacer?</legend>
+            <div class="l-opts" data-key="tipo"><button type="button">Casa nueva</button><button type="button">Reforma integral</button><button type="button">Interiorismo</button><button type="button">Local o negocio</button></div></fieldset>
+          <fieldset data-step="2" hidden><legend>¿Dónde?</legend>
+            <div class="l-opts" data-key="lugar"><button type="button">Alicante</button><button type="button">Altea</button><button type="button">Jávea</button><button type="button">Dénia</button><button type="button">Otro sitio</button></div></fieldset>
+          <fieldset data-step="3" hidden><legend>¿Cuántos metros, más o menos?</legend>
+            <div class="l-range"><input type="range" min="40" max="600" step="10" value="180" data-m2 aria-label="Metros cuadrados" /><output data-m2-out>180 m²</output></div>
+            <button type="button" class="l-next" data-next>Siguiente</button></fieldset>
+          <fieldset data-step="4" hidden><legend>¿Qué presupuesto manejas para la obra?</legend>
+            <div class="l-opts" data-key="presupuesto"><button type="button">Menos de 150.000 €</button><button type="button">150.000 – 400.000 €</button><button type="button">Más de 400.000 €</button><button type="button">Aún no lo sé</button></div></fieldset>
+          <fieldset data-step="5" hidden><legend>¿Cuándo te gustaría empezar?</legend>
+            <div class="l-opts" data-key="cuando"><button type="button">Cuanto antes</button><button type="button">En 6 meses</button><button type="button">En un año</button><button type="button">Solo estoy mirando</button></div>
+            <div class="l-contact"><input placeholder="Tu nombre" aria-label="Tu nombre" data-name /><input placeholder="Email o teléfono" aria-label="Email o teléfono" data-contact /><button type="button" class="l-next" data-send>Pedir primera reunión</button></div></fieldset>
+          <div class="l-done" data-done hidden>
+            <h3>Gracias. Te escribimos en dos días.</h3>
+            <p>Demo: así le llega el encargo al estudio, ya ordenado. Nada de "hola, quiero información".</p>
+          </div>
+          <button type="button" class="l-back" data-back hidden>← Atrás</button>
+        </div>
+        <aside class="l-brief__card" aria-live="polite">
+          <p class="l-k">Lo que nos has contado</p>
+          <p class="l-sum" data-sum>Empieza eligiendo qué quieres hacer.</p>
+          <div class="l-mail" data-mail hidden>
+            <p class="l-mail__h"><b>Para:</b> hola@estudiollum.es<br /><b>Asunto:</b> <span data-mail-s></span></p>
+            <pre data-mail-b></pre>
+          </div>
+        </aside>
+      </div>
+    </section>
+    <footer class="l-foot"><span>llum · arquitectura e interiorismo · estudio ficticio de demostración</span><span>Web: ABGFRAME</span></footer>
+  </div>
+</Base>
+
+<script define:vars={{ P, HERO }}>
+  const root = document.querySelector('[data-llum]');
+  const q = (s) => root.querySelector(s), qa = (s) => Array.from(root.querySelectorAll(s));
+  // portada: índice de proyectos que cambia la imagen
+  let hi = 0, timer = 0, touched = false;
+  const setHero = (i) => {
+    hi = i;
+    qa('[data-hi]').forEach((b) => b.setAttribute('aria-pressed', String(Number(b.dataset.hi) === i)));
+    qa('[data-himg]').forEach((im) => im.classList.toggle('on', Number(im.dataset.himg) === i));
+    q('[data-hcap]').textContent = `${HERO[i].type} · ${HERO[i].m2}`;
+  };
+  qa('[data-hi]').forEach((b) => {
+    const go = () => { touched = true; clearInterval(timer); setHero(Number(b.dataset.hi)); };
+    b.addEventListener('mouseenter', go); b.addEventListener('click', go); b.addEventListener('focus', go);
+  });
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) timer = setInterval(() => { if (!touched) setHero((hi + 1) % HERO.length); }, 3800);
+
+  // del plano a la obra
+  const cmp = q('[data-cmp]'), cr = cmp.querySelector('input');
+  const setP = () => cmp.style.setProperty('--p', cr.value + '%');
+  cr.addEventListener('input', setP);
+  // al entrar en pantalla, el alzado "barre" la foto una vez
+  new IntersectionObserver(([e], o) => {
+    if (!e.isIntersecting) return; o.disconnect();
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let v = 100; const t0 = performance.now();
+    const step = (t) => { const k = Math.min(1, (t - t0) / 1800); v = 100 - 62 * (1 - Math.pow(1 - k, 3)) ; cr.value = String(Math.round(v)); setP(); if (k < 1) requestAnimationFrame(step); };
+    cr.value = '100'; setP(); setTimeout(() => requestAnimationFrame(step), 300);
+  }, { threshold: 0.4 }).observe(cmp);
+
+  // proyectos: filtro y ficha
+  qa('[data-f]').forEach((b) => b.addEventListener('click', () => {
+    qa('[data-f]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    qa('[data-cat]').forEach((c) => { c.hidden = b.dataset.f !== '*' && c.dataset.cat !== b.dataset.f; });
+  }));
+  const modal = q('[data-modal]');
+  qa('[data-open]').forEach((c) => c.addEventListener('click', () => {
+    const p = P.find((x) => x.id === c.dataset.open);
+    q('[data-m-img]').src = `/img/foto/${p.img}-1280.webp`; q('[data-m-img]').alt = `${p.name}, ${p.place}`;
+    q('[data-m-type]').textContent = p.type; q('[data-m-name]').textContent = p.name; q('[data-m-d]').textContent = p.d;
+    q('[data-m-place]').textContent = p.place; q('[data-m-m2]').textContent = p.m2; q('[data-m-year]').textContent = p.year; q('[data-m-team]').textContent = p.team;
+    q('[data-m-3d]').hidden = p.id !== 'aire';
+    modal.showModal();
+  }));
+  q('[data-x]').addEventListener('click', () => modal.close());
+  modal.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
+  qa('[data-m-cta],[data-m-3d]').forEach((a) => a.addEventListener('click', () => modal.close()));
+
+  // briefing guiado
+  const ans = { tipo: '', lugar: '', m2: 180, presupuesto: '', cuando: '' };
+  let step = 1;
+  const show = (n) => {
+    step = n;
+    qa('[data-step]').forEach((f) => { f.hidden = Number(f.dataset.step) !== n; });
+    q('[data-step-n]').textContent = String(Math.min(n, 5));
+    q('[data-prog]').style.width = `${Math.min(n, 5) * 20}%`;
+    q('[data-back]').hidden = n === 1 || n > 5;
+  };
+  const summary = () => {
+    const parts = [];
+    if (ans.tipo) parts.push(`<b>${ans.tipo}</b>`);
+    if (ans.lugar) parts.push(`en <b>${ans.lugar}</b>`);
+    if (step > 3) parts.push(`de unos <b>${ans.m2} m²</b>`);
+    if (ans.presupuesto) parts.push(`con un presupuesto de <b>${ans.presupuesto.toLowerCase()}</b>`);
+    if (ans.cuando) parts.push(`para empezar <b>${ans.cuando.toLowerCase()}</b>`);
+    q('[data-sum]').innerHTML = parts.length ? parts.join(' ') + '.' : 'Empieza eligiendo qué quieres hacer.';
+  };
+  qa('[data-key]').forEach((g) => g.querySelectorAll('button').forEach((b) => b.addEventListener('click', () => {
+    g.querySelectorAll('button').forEach((x) => x.classList.toggle('on', x === b));
+    ans[g.dataset.key] = b.textContent;
+    summary();
+    if (g.dataset.key !== 'cuando') setTimeout(() => show(step + 1), 220);
+  })));
+  const m2 = q('[data-m2]');
+  m2.addEventListener('input', () => { ans.m2 = Number(m2.value); q('[data-m2-out]').textContent = `${m2.value} m²`; summary(); });
+  q('[data-next]').addEventListener('click', () => { show(4); summary(); });
+  q('[data-back]').addEventListener('click', () => show(Math.max(1, step - 1)));
+  q('[data-send]').addEventListener('click', () => {
+    const name = q('[data-name]').value.trim() || 'Laura', contact = q('[data-contact]').value.trim() || 'laura@email.com';
+    q('[data-mail-s]').textContent = `Encargo: ${ans.tipo || 'proyecto'} en ${ans.lugar || 'la Costa Blanca'}`;
+    q('[data-mail-b]').textContent = `Nombre: ${name}\nContacto: ${contact}\n\nQué quiere: ${ans.tipo || '—'}\nDónde: ${ans.lugar || '—'}\nSuperficie: unos ${ans.m2} m²\nPresupuesto de obra: ${ans.presupuesto || '—'}\nCuándo: ${ans.cuando || '—'}\n\nVino desde: proyecto Casa Aire → briefing`;
+    q('[data-mail]').hidden = false;
+    show(6); q('[data-done]').hidden = false;
+    window.dataLayer?.push({ event: 'demo_briefing' });
+  });
+</script>
+
+<style>
+  .llum{--bg:#F6F5F1;--ink:#141414;--mute:#707070;--line:#D9D7D0;--ochre:#B8862B;background:var(--bg);color:var(--ink)}
+  .l-nav{display:flex;align-items:center;gap:24px;padding:18px clamp(16px,4vw,48px)}
+  .l-logo{font-family:var(--wide);font-size:28px;font-weight:500;letter-spacing:-.04em;text-decoration:none;color:var(--ink);display:flex;align-items:baseline;gap:14px}
+  .l-logo span{font-family:var(--text);font-size:12px;letter-spacing:.06em;color:var(--mute)}
+  .l-nav nav{margin-left:auto;display:flex;gap:24px;align-items:center;font-size:14px}
+  .l-nav nav a{color:var(--ink);text-decoration:none}
+  .l-nav__cta{border-bottom:1px solid var(--ink)}
+  .l-hero{display:grid;grid-template-columns:minmax(260px,1fr) 1.6fr;grid-template-rows:auto 1fr;gap:0 clamp(24px,4vw,64px);padding:clamp(16px,3vw,32px) clamp(16px,4vw,48px) clamp(48px,6vw,96px)}
+  .l-hero__txt{grid-column:1;grid-row:1;align-self:end;padding-bottom:40px}
+  .l-hero__txt h1{font-family:var(--wide);font-weight:500;font-size:clamp(34px,4.6vw,66px);line-height:1.02;letter-spacing:-.035em}
+  .l-hero__txt p{margin-top:18px;color:#444;max-width:40ch;line-height:1.55}
+  .l-index{grid-column:1;grid-row:2;list-style:none;padding:0;margin:0;border-top:1px solid var(--ink);align-self:end}
+  .l-index button{display:grid;grid-template-columns:36px 1fr auto;align-items:baseline;gap:8px;width:100%;padding:16px 0;border:0;border-bottom:1px solid var(--line);background:none;font:inherit;text-align:left;cursor:pointer;color:var(--mute);transition:color 200ms}
+  .l-index b{font-family:var(--wide);font-weight:500;font-size:clamp(18px,1.6vw,24px);letter-spacing:-.02em}
+  .l-index .n,.l-index .m{font-size:13px}
+  .l-index button[aria-pressed=true]{color:var(--ink)}
+  .l-index button[aria-pressed=true] .n{color:var(--ochre)}
+  .l-hero__img{grid-column:2;grid-row:1/3;position:relative;aspect-ratio:4/5;overflow:hidden;background:#e6e4de}
+  .l-hero__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity 900ms var(--ease),transform 2400ms var(--ease)}
+  .l-hero__img img.on{opacity:1;transform:none}
+  .l-hero__cap{position:absolute;left:16px;bottom:16px;background:var(--bg);padding:6px 12px;font-size:13px}
+  .l-sec{padding:clamp(72px,9vw,140px) clamp(16px,4vw,48px)}
+  .l-sec--paper{background:#EDEBE5}
+  .l-sec--ink{background:var(--ink);color:#f3f2ee}
+  .l-wrap{max-width:1280px;margin:0 auto}
+  .l-k{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre);margin-bottom:14px}
+  .l-sec h2{font-family:var(--wide);font-weight:500;font-size:clamp(30px,3.6vw,54px);line-height:1.04;letter-spacing:-.03em;max-width:16ch}
+  .l-pl{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(32px,5vw,80px);align-items:center}
+  .l-pl__txt>p{margin-top:18px;color:#444;max-width:44ch;line-height:1.55}
+  .l-steps{list-style:none;padding:0;margin-top:32px;counter-reset:s}
+  .l-steps li{counter-increment:s;padding:14px 0;border-top:1px solid var(--line);color:#444}
+  .l-steps li::before{content:"0" counter(s);font-size:12px;color:var(--ochre);margin-right:14px}
+  .l-steps b{color:var(--ink);font-weight:500;margin-right:6px}
+  .l-cmp{position:relative;aspect-ratio:2/3;max-height:82vh;overflow:hidden;background:#fff;user-select:none}
+  .l-cmp>img,.l-cmp__draw img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .l-cmp__draw{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--p)) 0 0);background:#fff}
+  .l-cmp__draw img{mix-blend-mode:multiply;filter:contrast(1.15)}
+  .l-cmp__bar{position:absolute;top:0;bottom:0;left:var(--p);width:2px;background:var(--ochre);transform:translateX(-1px)}
+  .l-cmp__bar i{position:absolute;top:50%;left:50%;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;background:var(--ochre);box-shadow:0 0 0 6px rgba(184,134,43,.2)}
+  .l-cmp__bar i::before,.l-cmp__bar i::after{content:"";position:absolute;top:50%;width:0;height:0;border:6px solid transparent;margin-top:-6px}
+  .l-cmp__bar i::before{left:4px;border-right-color:#fff}.l-cmp__bar i::after{right:4px;border-left-color:#fff}
+  .l-cmp__t{position:absolute;top:14px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.9);padding:5px 10px}
+  .l-cmp__t.l{left:14px}.l-cmp__t.r{right:14px}
+  .l-cmp input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+  .l-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+  .l-filter{display:flex;flex-wrap:wrap;gap:6px}
+  .l-filter button{min-height:40px;padding:6px 14px;border:1px solid var(--ink);background:none;font:inherit;font-size:14px;cursor:pointer}
+  .l-filter button[aria-pressed=true]{background:var(--ink);color:#fff}
+  .l-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,28px)}
+  .l-card{display:grid;gap:8px;padding:0;border:0;background:none;text-align:left;font:inherit;cursor:pointer;color:var(--ink)}
+  .l-card[hidden]{display:none}
+  .l-card.big{grid-column:span 2;grid-row:span 2}
+  .l-card__img{display:block;overflow:hidden;aspect-ratio:4/5;background:#ddd}
+  .l-card.big .l-card__img{aspect-ratio:auto;height:100%;min-height:420px}
+  .l-card__img img{width:100%;height:100%;object-fit:cover;transition:transform 900ms var(--ease)}
+  .l-card:hover img{transform:scale(1.04)}
+  .l-card__t{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+  .l-card__t b{font-family:var(--wide);font-weight:500;font-size:19px}
+  .l-card__t span,.l-card__c{font-size:13px;color:var(--mute)}
+  .l-modal{border:0;padding:0;width:min(1100px,94vw);max-height:90vh;background:var(--bg);color:var(--ink)}
+  .l-modal::backdrop{background:rgba(20,20,20,.6)}
+  .l-modal__in{display:grid;grid-template-columns:1.1fr 1fr}
+  .l-modal__in img{width:100%;height:100%;max-height:90vh;object-fit:cover}
+  .l-modal__txt{padding:clamp(24px,3vw,44px);display:grid;gap:14px;align-content:start;overflow:auto}
+  .l-modal__txt h3{font-family:var(--wide);font-weight:500;font-size:36px;letter-spacing:-.03em}
+  .l-modal__txt>p:not(.l-k){color:#444;line-height:1.55}
+  .l-ficha{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line)}
+  .l-ficha div{padding:10px 0;border-bottom:1px solid var(--line)}
+  .l-ficha dt{font-size:12px;color:var(--mute)}.l-ficha dd{margin-top:2px}
+  .l-btn{justify-self:start;padding:12px 18px;background:var(--ink);color:#fff;text-decoration:none;font-weight:500}
+  .l-link{color:var(--ochre)}
+  .l-x{position:absolute;right:10px;top:8px;width:44px;height:44px;border:0;background:var(--bg);font-size:28px;cursor:pointer;z-index:1}
+  .l-mq :global(.sec){background:var(--bg)}
+  .l-brief{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(32px,5vw,80px);align-items:start}
+  .l-prog{height:2px;background:#333;margin-bottom:28px}.l-prog i{display:block;height:100%;background:var(--ochre);transition:width 400ms var(--ease)}
+  .l-brief fieldset{border:0;padding:0;margin:0}
+  .l-brief fieldset[hidden]{display:none}
+  .l-brief legend{font-family:var(--wide);font-weight:500;font-size:clamp(26px,3vw,42px);letter-spacing:-.03em;line-height:1.08;margin-bottom:24px}
+  .l-opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .l-opts button{min-height:64px;padding:12px 16px;border:1px solid #3a3a3a;background:none;color:#f3f2ee;font:inherit;font-size:16px;text-align:left;cursor:pointer;transition:border-color 200ms,background 200ms}
+  .l-opts button:hover{border-color:#f3f2ee}
+  .l-opts button.on{background:var(--ochre);border-color:var(--ochre);color:#141414}
+  .l-range{display:flex;align-items:center;gap:18px}
+  .l-range input{flex:1;accent-color:var(--ochre)}
+  .l-range output{font-family:var(--wide);font-size:28px;min-width:4.5ch}
+  .l-next{margin-top:24px;min-height:50px;padding:12px 22px;border:0;background:var(--ochre);color:#141414;font:inherit;font-weight:500;cursor:pointer}
+  .l-contact{display:grid;gap:8px;margin-top:20px}
+  .l-contact input{min-height:50px;padding:10px 14px;border:1px solid #3a3a3a;background:transparent;color:#fff;font:inherit}
+  .l-back{margin-top:20px;border:0;background:none;color:#aaa;font:inherit;cursor:pointer}
+  .l-done h3{font-family:var(--wide);font-weight:500;font-size:34px;letter-spacing:-.02em}
+  .l-done p{color:#bbb;margin-top:10px}
+  .l-brief__card{background:#1f1f1f;padding:clamp(20px,3vw,32px);border-left:2px solid var(--ochre)}
+  .l-sum{font-size:20px;line-height:1.5;color:#ddd}
+  .l-sum :global(b){color:#fff;font-weight:500}
+  .l-mail{margin-top:20px;background:#f6f5f1;color:#141414;padding:16px;font-size:13px}
+  .l-mail__h{border-bottom:1px solid #ddd;padding-bottom:10px;margin-bottom:10px;line-height:1.6}
+  .l-mail pre{white-space:pre-wrap;font-family:var(--text);margin:0;line-height:1.55}
+  .l-foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:18px clamp(16px,4vw,48px);font-size:13px;color:var(--mute)}
+  @media (max-width:900px){
+    .l-nav nav a:not(.l-nav__cta){display:none}
+    .l-logo span{display:none}
+    .l-hero{grid-template-columns:1fr;grid-template-rows:auto}
+    .l-hero__txt,.l-index,.l-hero__img{grid-column:1;grid-row:auto}
+    .l-hero__img{aspect-ratio:4/5;margin:8px 0 16px}
+    .l-hero__txt{padding-bottom:16px}
+    .l-pl,.l-brief,.l-modal__in{grid-template-columns:1fr}
+    .l-grid{grid-template-columns:1fr 1fr}
+    .l-card.big{grid-column:span 2;grid-row:auto}.l-card.big .l-card__img{min-height:0;aspect-ratio:4/5}
+    .l-modal__in img{max-height:40vh}
+    .l-opts{grid-template-columns:1fr}
+  }
+</style>

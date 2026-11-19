@@ -11,7 +11,7 @@ export default defineConfig({
   prefetch: { prefetchAll: false, defaultStrategy: 'hover' },
   integrations: [
     sitemap({
-      filter: (page) => !NOINDEX.some((p) => page.endsWith(p)),
+      filter: (page) => !NOINDEX.some((p) => page.endsWith(p) || page.includes('/demo/')),
       i18n: { defaultLocale: 'es', locales: { es: 'es-ES', en: 'en' } },
     }),
   ],

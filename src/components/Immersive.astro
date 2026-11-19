@@ -9,11 +9,16 @@ interface Props {
   show?: 'all' | 'maqueta' | 'pano';
   /** solo Leo Villa, sin selector de la casa de ejemplo (página del caso de Ceyra) */
   ceyraOnly?: boolean;
+  /** solo la casa de ejemplo de dos plantas (demos) */
+  exampleOnly?: boolean;
+  /** texto propio para la maqueta (demos) */
+  mqText?: string;
+  mqKicker?: string;
   h2?: string;
   lead?: string;
   tone?: 'papel' | 'con';
 }
-const { lang, show = 'all', ceyraOnly = false, h2, lead, tone = 'papel' } = Astro.props;
+const { lang, show = 'all', ceyraOnly = false, exampleOnly = false, mqText, mqKicker, h2, lead, tone = 'papel' } = Astro.props;
 const es = lang === 'es';
 const c = es ? {
   h2: 'Que la vean antes de que exista.',
@@ -104,27 +109,27 @@ const rooms = [
   <div class="wrap">
     <div class="head" data-stagger><h2 class="h2 rv" id="imm-t">{h2 ?? c.h2}</h2><p class="rv">{lead ?? c.lead}{!h2 && <><br /><a class="link" style="display:inline-block;margin-top:14px" href={r('tresd', lang)}>{es ? 'Ver el servicio' : 'See the service'} <span class="arrow" aria-hidden="true">→</span></a></>}</p></div>
 
-    {show !== 'pano' && <div class="mq" data-maqueta data-ceyra-only={ceyraOnly ? '' : undefined}>
+    {show !== 'pano' && <div class="mq" data-maqueta data-ceyra-only={ceyraOnly ? '' : undefined} data-first={exampleOnly ? 'ejemplo' : undefined}>
       <div class="mq__txt">
-        <span class="kick">{c.mqKick}</span>
+        <span class="kick">{mqKicker ?? c.mqKick}</span>
         <h3 class="h3">{c.mqT}</h3>
-        <p>{c.mqD}</p>
-        {!ceyraOnly && <div class="mq__sw" role="group" aria-label={c.mqKick}>
+        <p>{mqText ?? c.mqD}</p>
+        {!ceyraOnly && !exampleOnly && <div class="mq__sw" role="group" aria-label={c.mqKick}>
           {c.models.map(([k, n], i) => <button type="button" data-mq-model={k} aria-pressed={i === 0 ? 'true' : 'false'}>{n}</button>)}
         </div>}
-        <div data-mq-set="ceyra" data-name={c.ceyra.name} data-info={c.ceyra.info} data-ex={c.ceyra.ex}>
+        <div data-mq-set="ceyra" data-name={c.ceyra.name} data-info={c.ceyra.info} data-ex={c.ceyra.ex} hidden={exampleOnly}>
           <div class="mq__levels" role="group" aria-label={c.ceyra.name}>
             {c.ceyra.levels.map(([k, n, info]) => <button type="button" data-mq-level={k} data-name={n} data-info={info} aria-pressed="false">{n}</button>)}
           </div>
         </div>
-        {!ceyraOnly && <div data-mq-set="ejemplo" data-name={c.mqDefName} data-info={c.mqDefInfo} data-ex={c.explode} hidden>
+        {!ceyraOnly && <div data-mq-set="ejemplo" data-name={c.mqDefName} data-info={c.mqDefInfo} data-ex={c.explode} hidden={!exampleOnly}>
           <div class="mq__levels" role="group" aria-label={c.mqDefName}>
             {c.levels.map(([k, n, info]) => <button type="button" data-mq-level={k} data-name={n} data-info={info} aria-pressed="false">{n}</button>)}
           </div>
         </div>}
-        <button type="button" class="mq__ex" data-mq-explode aria-pressed="false"><span class="mq__exi" aria-hidden="true"><i></i><i></i><i></i></span><span data-mq-exlabel>{c.ceyra.ex}</span></button>
-        <div class="mq__info" aria-live="polite"><b data-mq-name>{c.ceyra.name}</b><span data-mq-info>{c.ceyra.info}</span></div>
-        <p class="note mq__note" data-for="ceyra">{c.ceyra.note}</p>
+        <button type="button" class="mq__ex" data-mq-explode aria-pressed="false"><span class="mq__exi" aria-hidden="true"><i></i><i></i><i></i></span><span data-mq-exlabel>{exampleOnly ? c.explode : c.ceyra.ex}</span></button>
+        <div class="mq__info" aria-live="polite"><b data-mq-name>{exampleOnly ? c.mqDefName : c.ceyra.name}</b><span data-mq-info>{exampleOnly ? c.mqDefInfo : c.ceyra.info}</span></div>
+        {!exampleOnly && <p class="note mq__note" data-for="ceyra">{c.ceyra.note}</p>}
         {!ceyraOnly && <p class="note mq__note" data-for="ejemplo">{c.sample}</p>}
       </div>
       <Sel class="mq__stage" data-mq-stage data-label={c.mqLabel}>

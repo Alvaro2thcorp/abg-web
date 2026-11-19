@@ -1,0 +1,316 @@
+---
+// Demo · Reformas Llevant (empresa ficticia). Configurador de baño en 3D con presupuesto en vivo,
+// antes y después, visita 360º de una reforma terminada y calculadora para cocinas e integrales.
+import Base from '../../layouts/Base.astro';
+import Immersive from '../../components/Immersive.astro';
+const OPT = {
+  wall: [['blanco', 'Blanco mate', '30×60'], ['salvia', 'Verde salvia', 'Artesanal 7,5×15'], ['arena', 'Arena', '60×120'], ['grafito', 'Grafito', '60×120']],
+  floor: [['gris', 'Porcelánico gris', '60×60'], ['madera', 'Porcelánico madera', 'Lamas'], ['terrazo', 'Terrazo', 'Grano fino'], ['micro', 'Microcemento', 'Continuo']],
+  vanity: [['roble', 'Roble natural', '#b8916a'], ['blanco', 'Blanco lacado', '#f3f1ec'], ['negro', 'Negro mate', '#2a2a2a']],
+  tap: [['cromo', 'Cromo', '#d9dde0'], ['negro', 'Negro mate', '#1d1d1d'], ['oro', 'Oro cepillado', '#c8a464']],
+};
+---
+<Base lang="es" route="demoReformas" demo={{ sector: 'reformas', tipo: 'reformas' }}
+  title="Demo · Reformas Llevant, web de empresa de reformas | ABGFRAME"
+  description="Demo de ABGFRAME: web de una empresa de reformas ficticia con configurador de baño en 3D y presupuesto en vivo, antes y después y visita 360º.">
+  <div class="llev" data-llev>
+    <header class="r-nav">
+      <a class="r-logo" href="#top"><span class="r-mark" aria-hidden="true"></span><b>LLEVANT</b><em>reformas</em></a>
+      <nav><a href="#configura">Configura tu baño</a><a href="#obras">Obras</a><a href="#como">Cómo trabajamos</a></nav>
+      <a class="r-tel" href="#visita">Visita técnica gratis</a>
+    </header>
+
+    <section class="r-hero" id="top">
+      <div class="r-hero__txt">
+        <p class="r-k">Reformas de baños, cocinas e integrales · Alicante</p>
+        <h1>Diseña tu baño y mira lo que cuesta. Ahora.</h1>
+        <p>Cambia azulejos, suelo, mueble y grifería en 3D. El presupuesto orientativo se calcula mientras eliges, partida por partida.</p>
+        <a class="r-btn" href="#configura">Empezar a diseñar</a>
+      </div>
+      <figure class="r-hero__img"><img src="/img/demo/bano-fin-1600.webp" srcset="/img/demo/bano-fin-960.webp 960w, /img/demo/bano-fin-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 55vw" alt="Baño reformado con porcelánico gris y bañera exenta" width="1600" height="1056" /></figure>
+    </section>
+
+    <section class="r-conf" id="configura" data-conf>
+      <div class="r-stage" data-stage data-label="Baño en 3D. Arrastra para girarlo.">
+        <p class="r-stage__tag">Tu baño · arrastra para girarlo</p>
+      </div>
+      <div class="r-panel">
+        <div class="r-tabs" role="tablist">
+          <button role="tab" aria-selected="true" data-tab="wall">Paredes</button><button role="tab" aria-selected="false" data-tab="floor">Suelo</button><button role="tab" aria-selected="false" data-tab="vanity">Mueble</button><button role="tab" aria-selected="false" data-tab="tap">Grifería</button>
+        </div>
+        {Object.entries(OPT).map(([kind, list], ti) => (
+          <div class="r-opts" data-opts={kind} hidden={ti !== 0}>
+            {list.map(([k, n, d], i) => (
+              <button type="button" data-kind={kind} data-k={k} aria-pressed={i === 0 ? 'true' : 'false'}>
+                <span class="sw" data-sw={kind === 'wall' || kind === 'floor' ? `${kind}:${k}` : undefined} style={kind === 'vanity' || kind === 'tap' ? `background:${d}` : undefined}></span>
+                <b>{n}</b><span>{kind === 'wall' || kind === 'floor' ? d : ''}</span>
+              </button>
+            ))}
+          </div>
+        ))}
+        <div class="r-size"><label for="m2">Superficie del baño <output data-m2o>5 m²</output></label><input id="m2" type="range" min="3" max="10" step="0.5" value="5" data-m2 /></div>
+        <div class="r-total">
+          <p>Presupuesto orientativo</p>
+          <output data-total>—</output>
+          <span data-plazo>Plazo de obra: 2 semanas</span>
+        </div>
+        <ul class="r-break" data-break></ul>
+        <a class="r-btn r-btn--full" href="#visita" data-tovisit>Pedir visita técnica con este baño</a>
+        <p class="r-note">Precios orientativos de ejemplo, IVA no incluido. El presupuesto cerrado se hace tras la visita.</p>
+      </div>
+    </section>
+
+    <section class="r-sec" id="obras">
+      <div class="r-wrap r-ba-w">
+        <div>
+          <p class="r-k">Antes y después</p>
+          <h2>Lo que hay detrás de cada reforma.</h2>
+          <p>Desliza para ver una obra en curso y el resultado terminado. Cada obra de la web tiene su antes y su después, con plazos y partidas.</p>
+          <dl class="r-facts"><div><dt>Plazo</dt><dd>3 semanas</dd></div><div><dt>Superficie</dt><dd>9 m²</dd></div><div><dt>Zona</dt><dd>San Juan</dd></div></dl>
+        </div>
+        <div class="r-ba" data-ba2 style="--p:50%">
+          <img src="/img/demo/obra-1600.webp" alt="Obra en curso: tabiques de bloque y techo sin terminar" width="1600" height="1056" loading="lazy" />
+          <div class="r-ba__after"><img src="/img/demo/bano-fin-1600.webp" alt="Baño terminado" width="1600" height="1056" loading="lazy" /></div>
+          <span class="r-ba__line" aria-hidden="true"><i></i></span>
+          <span class="r-ba__t l">En obra</span><span class="r-ba__t r">Terminado</span>
+          <label class="visually-hidden" for="ba2">Deslizar entre la obra y el resultado</label>
+          <input id="ba2" type="range" min="0" max="100" value="50" />
+        </div>
+      </div>
+      <p class="r-wrap r-note">Imágenes de ejemplo.</p>
+    </section>
+
+    <div class="r-360">
+      <Immersive lang="es" show="pano" tone="con"
+        h2="Recorre una vivienda reformada."
+        lead="Fotos 360º de cada estancia terminada. El cliente ve el acabado real antes de llamarte, y llega a la visita sabiendo lo que quiere." />
+    </div>
+
+    <section class="r-sec r-sec--green">
+      <div class="r-wrap r-other" data-other>
+        <div>
+          <p class="r-k">¿Cocina o reforma integral?</p>
+          <h2>Calcula también el resto de la casa.</h2>
+          <div class="r-o-row" role="group" aria-label="Tipo de reforma"><button type="button" data-otype="cocina" aria-pressed="true">Cocina</button><button type="button" data-otype="integral" aria-pressed="false">Reforma integral</button></div>
+          <label class="r-o-l">Metros <output data-om>12 m²</output><input type="range" min="6" max="160" value="12" data-orange /></label>
+          <div class="r-o-row" role="group" aria-label="Calidades"><button type="button" data-oq="1" aria-pressed="false">Básica</button><button type="button" data-oq="1.25" aria-pressed="true">Media</button><button type="button" data-oq="1.6" aria-pressed="false">Alta</button></div>
+          <p class="r-o-res">Entre <output data-ores>—</output></p>
+        </div>
+        <img src="/img/demo/cocina-1600.webp" alt="Cocina blanca reformada con isla de madera" width="1600" height="1056" loading="lazy" />
+      </div>
+    </section>
+
+    <section class="r-sec" id="como">
+      <div class="r-wrap">
+        <p class="r-k">Cómo trabajamos</p>
+        <h2>Sin sorpresas a mitad de obra.</h2>
+        <ol class="r-how">
+          <li><b>01</b><h3>Visita técnica gratis</h3><p>Medimos, vemos instalaciones y hablamos de lo que quieres. 45 minutos.</p></li>
+          <li><b>02</b><h3>Presupuesto por partidas</h3><p>Cada partida con su precio. Lo que firmas es lo que pagas.</p></li>
+          <li><b>03</b><h3>Un jefe de obra</h3><p>Una persona responde de principio a fin. Fotos del avance cada semana.</p></li>
+          <li><b>04</b><h3>Garantía por escrito</h3><p>Repasamos contigo cada detalle antes de entregar las llaves.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="r-sec r-sec--sand" id="visita">
+      <div class="r-wrap r-visit">
+        <div>
+          <h2>Pide tu visita técnica.</h2>
+          <p>Te llamamos para fijar el día. Si has configurado tu baño, nos llega con todo.</p>
+          <div class="r-sum" data-sum></div>
+        </div>
+        <form class="r-form" data-rform>
+          <input placeholder="Nombre" aria-label="Nombre" required />
+          <input placeholder="Teléfono" aria-label="Teléfono" required />
+          <input placeholder="Municipio" aria-label="Municipio" />
+          <button class="r-btn" type="submit">Pedir visita</button>
+          <p class="r-ok" data-rok hidden>Demo: en la web real esta petición te llegaría al momento con el baño elegido, los metros y el presupuesto orientativo. El cliente llega a la visita con la decisión casi tomada.</p>
+        </form>
+      </div>
+    </section>
+    <footer class="r-foot"><span>Llevant reformas · empresa ficticia de demostración</span><span>Web: ABGFRAME</span></footer>
+  </div>
+</Base>
+
+<script>
+  type K = 'wall' | 'floor' | 'vanity' | 'tap';
+  const root = document.querySelector<HTMLElement>('[data-llev]')!;
+  const q = <T extends HTMLElement = HTMLElement>(s: string) => root.querySelector<T>(s)!;
+  const qa = <T extends HTMLElement = HTMLElement>(s: string) => Array.from(root.querySelectorAll<T>(s));
+  const eur = (n: number) => new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0, useGrouping: 'always' } as Intl.NumberFormatOptions).format(n);
+  const state: Record<K, string> = { wall: 'blanco', floor: 'gris', vanity: 'roble', tap: 'cromo' };
+  const NAMES: Record<string, string> = {};
+  qa('[data-kind]').forEach((b) => { NAMES[`${b.dataset.kind}:${b.dataset.k}`] = b.querySelector('b')!.textContent!; });
+  let m2 = 5;
+  // precios de ejemplo (€/m² o €/ud)
+  const P = {
+    wall: { blanco: 38, salvia: 89, arena: 56, grafito: 62 } as Record<string, number>,
+    floor: { gris: 42, madera: 58, terrazo: 96, micro: 115 } as Record<string, number>,
+    vanity: { roble: 890, blanco: 690, negro: 760 } as Record<string, number>,
+    tap: { cromo: 390, negro: 540, oro: 720 } as Record<string, number>,
+  };
+  let shown = 0;
+  const calc = () => {
+    const wallM2 = Math.sqrt(m2) * 4 * 2.3;
+    const parts: [string, number][] = [
+      ['Demolición y retirada', 450 + 70 * m2],
+      ['Fontanería y desagües', 1250],
+      ['Electricidad e iluminación', 420],
+      [`Paredes · ${NAMES['wall:' + state.wall]}`, wallM2 * P.wall[state.wall] + wallM2 * 28],
+      [`Suelo · ${NAMES['floor:' + state.floor]}`, m2 * P.floor[state.floor] + m2 * 22],
+      ['Plato de ducha y mampara', 980],
+      [`Mueble · ${NAMES['vanity:' + state.vanity]}`, P.vanity[state.vanity]],
+      [`Grifería · ${NAMES['tap:' + state.tap]}`, P.tap[state.tap]],
+      ['Sanitarios y accesorios', 640],
+    ];
+    const total = parts.reduce((s, [, v]) => s + v, 0);
+    const lo = Math.round((total * 0.93) / 50) * 50, hi = Math.round((total * 1.07) / 50) * 50;
+    // contador animado
+    const from = shown, t0 = performance.now();
+    const tick = (t: number) => { const k = Math.min(1, (t - t0) / 450); const v = from + (lo - from) * (1 - Math.pow(1 - k, 3)); q('[data-total]').textContent = `${eur(v)} – ${eur(v * hi / lo)}`; if (k < 1) requestAnimationFrame(tick); else shown = lo; };
+    requestAnimationFrame(tick);
+    const max = Math.max(...parts.map(([, v]) => v));
+    q('[data-break]').innerHTML = parts.map(([n, v]) => `<li><span>${n}</span><b>${eur(Math.round(v / 10) * 10)}</b><i style="--w:${(v / max) * 100}%"></i></li>`).join('');
+    const weeks = 2 + (m2 > 6 ? 1 : 0) + (state.wall === 'salvia' || state.floor === 'micro' ? 1 : 0);
+    q('[data-plazo]').textContent = `Plazo de obra: ${weeks} semanas`;
+    q('[data-sum]').innerHTML = `<p class="r-k">Tu configuración</p><p><b>Baño de ${m2} m²</b> · paredes ${NAMES['wall:' + state.wall].toLowerCase()} · suelo ${NAMES['floor:' + state.floor].toLowerCase()} · mueble ${NAMES['vanity:' + state.vanity].toLowerCase()} · grifería ${NAMES['tap:' + state.tap].toLowerCase()}</p><p>Orientativo: <b>${eur(lo)} – ${eur(hi)}</b> · ${weeks} semanas</p>`;
+  };
+
+  let bath: { set: (k: any, v: any) => void; swatch: (kind: 'wall' | 'floor', key: string) => string } | null = null;
+  qa('[data-tab]').forEach((t) => t.addEventListener('click', () => {
+    qa('[data-tab]').forEach((x) => x.setAttribute('aria-selected', String(x === t)));
+    qa('[data-opts]').forEach((o) => { o.hidden = o.dataset.opts !== t.dataset.tab; });
+  }));
+  qa('[data-kind]').forEach((b) => b.addEventListener('click', () => {
+    const kind = b.dataset.kind as K;
+    qa(`[data-kind="${kind}"]`).forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    state[kind] = b.dataset.k!;
+    bath?.set(kind, b.dataset.k);
+    calc();
+    (window as any).dataLayer?.push({ event: 'demo_config', [kind]: b.dataset.k });
+  }));
+  const m2in = q<HTMLInputElement>('[data-m2]');
+  m2in.addEventListener('input', () => { m2 = Number(m2in.value); q('[data-m2o]').textContent = `${String(m2).replace('.', ',')} m²`; calc(); });
+  calc();
+
+  import('../../scripts/demo-reformas').then(({ mountBath }) => {
+    bath = mountBath(q('[data-stage]'));
+    if (!bath) return;
+    qa('[data-sw]').forEach((s) => { const [kind, key] = s.dataset.sw!.split(':'); s.style.backgroundImage = `url(${bath!.swatch(kind as 'wall' | 'floor', key)})`; });
+  });
+
+  // antes / después
+  const ba = q('[data-ba2]'), bar = ba.querySelector('input')!;
+  bar.addEventListener('input', () => ba.style.setProperty('--p', `${bar.value}%`));
+
+  // otras reformas
+  let otype = 'cocina', oq = 1.25;
+  const orange = q<HTMLInputElement>('[data-orange]');
+  const ocalc = () => {
+    const m = Number(orange.value);
+    const base = otype === 'cocina' ? 520 * m + 4200 : 640 * m;
+    const v = base * oq;
+    q('[data-om]').textContent = `${m} m²`;
+    q('[data-ores]').textContent = `${eur(Math.round(v * 0.92 / 100) * 100)} y ${eur(Math.round(v * 1.08 / 100) * 100)}`;
+  };
+  qa('[data-otype]').forEach((b) => b.addEventListener('click', () => {
+    otype = b.dataset.otype!; qa('[data-otype]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    orange.min = otype === 'cocina' ? '6' : '40'; orange.max = otype === 'cocina' ? '30' : '200'; orange.value = otype === 'cocina' ? '12' : '90'; ocalc();
+  }));
+  qa('[data-oq]').forEach((b) => b.addEventListener('click', () => { oq = Number(b.dataset.oq); qa('[data-oq]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); ocalc(); }));
+  orange.addEventListener('input', ocalc); orange.max = '30'; ocalc();
+
+  q<HTMLFormElement>('[data-rform]').addEventListener('submit', (e) => { e.preventDefault(); q('[data-rok]').hidden = false; });
+</script>
+
+<style>
+  .llev{--g:#2F4A3F;--g2:#e7ece8;--sand:#F3EEE6;--ink:#1c1f1d;--mute:#69706b;--line:#dfe2dc;background:#fbfaf7;color:var(--ink)}
+  .r-nav{display:flex;align-items:center;gap:24px;padding:16px clamp(16px,4vw,48px);border-bottom:1px solid var(--line);background:#fff}
+  .r-logo{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink)}
+  .r-mark{width:22px;height:22px;background:var(--g);clip-path:polygon(0 100%,50% 0,100% 100%)}
+  .r-logo b{font-family:var(--wide);font-weight:500;letter-spacing:.14em;font-size:18px}
+  .r-logo em{font-style:normal;color:var(--mute);font-size:14px}
+  .r-nav nav{display:flex;gap:22px;margin-left:auto;font-size:14px}
+  .r-nav nav a{color:var(--ink);text-decoration:none}
+  .r-tel{padding:9px 14px;background:var(--g);color:#fff;text-decoration:none;font-size:14px;font-weight:500}
+  .r-hero{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(40px,6vw,88px) clamp(16px,4vw,48px)}
+  .r-k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--g);margin-bottom:14px;font-weight:500}
+  .r-hero h1{font-family:var(--wide);font-weight:500;font-size:clamp(34px,4.8vw,70px);line-height:1.02;letter-spacing:-.035em}
+  .r-hero__txt>p:not(.r-k){margin-top:18px;font-size:18px;line-height:1.5;color:#3f4541;max-width:46ch}
+  .r-btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:12px 22px;margin-top:26px;background:var(--g);color:#fff;text-decoration:none;font:inherit;font-weight:500;border:0;cursor:pointer}
+  .r-btn--full{width:100%;margin-top:16px}
+  .r-hero__img{margin:0;aspect-ratio:3/2;overflow:hidden}
+  .r-hero__img img{width:100%;height:100%;object-fit:cover}
+  .r-conf{display:grid;grid-template-columns:minmax(0,1fr) 420px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff}
+  .r-stage{position:relative;min-height:clamp(460px,78vh,820px);background:radial-gradient(120% 100% at 40% 30%,#ffffff,#ecebe6);cursor:grab}
+  .r-stage :global(canvas){position:absolute;inset:0;width:100%!important;height:100%!important}
+  .r-stage__tag{position:absolute;left:16px;top:16px;font-size:13px;background:rgba(255,255,255,.9);padding:6px 10px;z-index:1}
+  .r-panel{padding:22px;border-left:1px solid var(--line);display:grid;gap:14px;align-content:start;max-height:clamp(460px,78vh,820px);overflow:auto}
+  .r-tabs{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--ink)}
+  .r-tabs button{min-height:42px;border:0;background:none;font:inherit;font-size:14px;cursor:pointer;color:var(--ink)}
+  .r-tabs button[aria-selected=true]{background:var(--ink);color:#fff}
+  .r-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .r-opts[hidden]{display:none}
+  .r-opts button{display:grid;grid-template-columns:44px 1fr;grid-template-rows:auto auto;column-gap:10px;align-items:center;text-align:left;padding:8px;border:1px solid var(--line);background:#fff;font:inherit;cursor:pointer}
+  .r-opts .sw{grid-row:1/3;width:44px;height:44px;background-size:cover;background-position:center;box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)}
+  .r-opts b{font-weight:500;font-size:14px}.r-opts span:not(.sw){font-size:12px;color:var(--mute)}
+  .r-opts button[aria-pressed=true]{border-color:var(--g);box-shadow:inset 0 0 0 1px var(--g);background:var(--g2)}
+  .r-size label{display:flex;justify-content:space-between;font-size:14px}
+  .r-size output{font-weight:500}
+  .r-size input,.r-o-l input{width:100%;accent-color:var(--g)}
+  .r-total{background:var(--g);color:#fff;padding:16px 18px}
+  .r-total p{font-size:12px;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+  .r-total output{display:block;font-family:var(--wide);font-weight:500;font-size:clamp(22px,2vw,28px);margin:4px 0;font-variant-numeric:tabular-nums}
+  .r-total span{font-size:13px;opacity:.85}
+  .r-break{list-style:none;padding:0;margin:0;display:grid;gap:6px;font-size:13px}
+  .r-break :global(li){display:grid;grid-template-columns:1fr auto;gap:2px 10px}
+  .r-break :global(li span){color:#3f4541}.r-break :global(li b){font-weight:500;font-variant-numeric:tabular-nums}
+  .r-break :global(li i){grid-column:1/-1;height:3px;background:var(--g2);position:relative}
+  .r-break :global(li i::after){content:"";position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--g);transition:width 450ms var(--ease)}
+  .r-note{font-size:12px;color:var(--mute)}
+  .r-sec{padding:clamp(72px,9vw,128px) clamp(16px,4vw,48px)}
+  .r-sec--green{background:var(--g);color:#fff}.r-sec--green .r-k{color:#b9cfc2}
+  .r-sec--sand{background:var(--sand)}
+  .r-wrap{max-width:1240px;margin:0 auto}
+  .r-sec h2{font-family:var(--wide);font-weight:500;font-size:clamp(28px,3.4vw,50px);line-height:1.05;letter-spacing:-.03em;max-width:18ch}
+  .r-ba-w{display:grid;grid-template-columns:1fr 1.5fr;gap:clamp(32px,5vw,72px);align-items:center}
+  .r-ba-w>div>p{margin-top:16px;color:#3f4541;line-height:1.55}
+  .r-facts{display:flex;gap:24px;margin-top:24px}
+  .r-facts dt{font-size:12px;color:var(--mute)}.r-facts dd{font-family:var(--wide);font-size:22px;margin-top:2px}
+  .r-ba{position:relative;aspect-ratio:3/2;overflow:hidden;user-select:none}
+  .r-ba>img,.r-ba__after img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .r-ba__after{position:absolute;inset:0;clip-path:inset(0 0 0 var(--p))}
+  .r-ba__line{position:absolute;top:0;bottom:0;left:var(--p);width:2px;background:#fff}
+  .r-ba__line i{position:absolute;top:50%;left:50%;width:40px;height:40px;margin:-20px;border-radius:50%;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+  .r-ba__t{position:absolute;bottom:14px;background:rgba(255,255,255,.92);padding:5px 10px;font-size:13px}.r-ba__t.l{left:14px}.r-ba__t.r{right:14px}
+  .r-ba input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:ew-resize;margin:0}
+  .r-other{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(32px,5vw,72px);align-items:center}
+  .r-other img{width:100%;aspect-ratio:3/2;object-fit:cover}
+  .r-o-row{display:flex;gap:6px;margin-top:20px;flex-wrap:wrap}
+  .r-o-row button{min-height:42px;padding:8px 16px;border:1px solid #6d8a7d;background:none;color:#fff;font:inherit;cursor:pointer}
+  .r-o-row button[aria-pressed=true]{background:#fff;color:var(--g);border-color:#fff}
+  .r-o-l{display:grid;gap:6px;margin-top:20px;font-size:14px}.r-o-l input{accent-color:#fff}
+  .r-o-res{margin-top:22px;font-size:15px}.r-o-res output{display:block;font-family:var(--wide);font-size:clamp(24px,2.4vw,34px);margin-top:4px}
+  .r-how{list-style:none;padding:0;margin-top:44px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+  .r-how li{border-top:2px solid var(--g);padding-top:16px}
+  .r-how b{font-family:var(--wide);color:var(--g)}.r-how h3{font-size:19px;font-weight:500;margin:10px 0 6px}.r-how p{color:#4b524d;font-size:15px}
+  .r-visit{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);align-items:start}
+  .r-visit>div>p{margin-top:14px;color:#3f4541}
+  .r-sum{margin-top:22px;background:#fff;padding:16px;border-left:3px solid var(--g);font-size:15px;line-height:1.5}
+  .r-sum :global(p+p){margin-top:6px}
+  .r-form{display:grid;gap:8px}
+  .r-form input{min-height:50px;padding:10px 14px;border:1px solid var(--line);font:inherit;background:#fff}
+  .r-form .r-btn{margin-top:4px}
+  .r-ok{font-size:14px;background:#e3efe7;padding:12px;border-left:3px solid var(--g)}
+  .r-foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:18px clamp(16px,4vw,48px);font-size:13px;color:var(--mute)}
+  .r-360 :global(.sec){background:var(--g2)}
+  @media (max-width:960px){
+    .r-nav nav{display:none}.r-tel{margin-left:auto}
+    .r-hero,.r-conf,.r-ba-w,.r-other,.r-visit{grid-template-columns:1fr}
+    .r-stage{min-height:auto;aspect-ratio:1/1}
+    .r-panel{border-left:0;max-height:none}
+    .r-how{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:520px){.r-how{grid-template-columns:1fr}.r-tabs button{font-size:13px}}
+</style>

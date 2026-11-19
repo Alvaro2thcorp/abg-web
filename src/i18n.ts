@@ -14,6 +14,10 @@ export const routes = {
   casos: { es: '/casos/', en: '/en/work/' },
   ceyra: { es: '/casos/ceyra-studio/', en: '/en/work/ceyra-studio/' },
   demo: { es: '/demo/', en: '/en/demo/' },
+  demoPromotora: { es: '/demo/promotora/', en: null },
+  demoEstudio: { es: '/demo/estudio/', en: null },
+  demoReformas: { es: '/demo/reformas/', en: null },
+  demoInmobiliaria: { es: '/demo/inmobiliaria/', en: null },
   tresd: { es: '/maquetas-3d-visitas-virtuales/', en: '/en/3d-models-virtual-tours/' },
   proceso: { es: '/proceso/', en: '/en/process/' },
   estudio: { es: '/estudio/', en: '/en/studio/' },
@@ -101,4 +105,4 @@ export const LINE_KEYS = ['promotoras', 'arquitectura', 'reformas', 'inmobiliari
 export type LineKey = (typeof LINE_KEYS)[number];
 
 // La demo (P2) aún no existe: mientras sea false, no se enlaza desde portada ni casos.
-export const DEMO_READY = false;
+export const DEMO_READY = true;

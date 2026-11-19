@@ -1,0 +1,352 @@
+---
+// Demo · Casa Marina (inmobiliaria ficticia). Buscador sobre el mapa de la Costa Blanca, fichas con galería,
+// visita 360º y calculadora de hipoteca, y valorador en pasos para captar propietarios.
+import Base from '../../layouts/Base.astro';
+import Immersive from '../../components/Immersive.astro';
+const TOWNS: Record<string, [number, number]> = {
+  'Dénia': [318, 46], 'Jávea': [362, 78], 'Moraira': [338, 122], 'Calp': [314, 152], 'Altea': [284, 186], 'Benidorm': [255, 214],
+  'Villajoyosa': [226, 246], 'El Campello': [198, 288], 'San Juan': [182, 312], 'Alicante': [164, 338], 'Santa Pola': [166, 396], 'Torrevieja': [180, 488],
+};
+const H = [
+  { id: 'cm101', t: 'Ático con solárium y vistas al mar', town: 'Altea', type: 'Ático', price: 545000, m2: 128, beds: 3, baths: 2, sea: true, nuevo: true, img: 'escalonada', d: 'Ático en edificio de 2024 con solárium privado de 60 m² y vistas a la bahía. Garaje y trastero incluidos.' },
+  { id: 'cm102', t: 'Villa contemporánea con piscina', town: 'Jávea', type: 'Villa', price: 1250000, m2: 310, beds: 4, baths: 4, sea: true, nuevo: false, img: 'volumen', d: 'Villa de hormigón visto en parcela de 1.100 m² orientada al sur, con piscina desbordante y vistas al Montgó.' },
+  { id: 'cm103', t: 'Piso de diseño a 300 m de la playa', town: 'San Juan', type: 'Piso', price: 389000, m2: 96, beds: 2, baths: 2, sea: false, nuevo: true, img: 'fachada', d: 'Obra nueva con terraza de 14 m², cocina abierta y urbanización con piscina. Entrega en 2028.' },
+  { id: 'cm104', t: 'Casa blanca de líneas puras', town: 'Moraira', type: 'Villa', price: 895000, m2: 240, beds: 4, baths: 3, sea: true, nuevo: false, img: 'muros', d: 'Tres volúmenes blancos escalonados con patios, a cinco minutos a pie de la cala.' },
+  { id: 'cm105', t: 'Loft luminoso en el centro', town: 'Alicante', type: 'Loft', price: 265000, m2: 78, beds: 1, baths: 1, sea: false, nuevo: false, img: 'loft', d: 'Antiguo taller reconvertido en loft con techos de 3,6 m, cocina abierta y mucha luz.' },
+  { id: 'cm106', t: 'Apartamento con celosías frente al mar', town: 'Benidorm', type: 'Piso', price: 329000, m2: 84, beds: 2, baths: 2, sea: true, nuevo: false, img: 'celosia', d: 'Primera línea, terraza con celosía de hormigón, piscina comunitaria y plaza de garaje.' },
+  { id: 'cm107', t: 'Dúplex reformado junto al puerto', town: 'Dénia', type: 'Dúplex', price: 435000, m2: 118, beds: 3, baths: 2, sea: false, nuevo: false, img: 'escalera', d: 'Reforma integral de 2023 con escalera de obra encalada, tres dormitorios y terraza en cubierta.' },
+  { id: 'cm108', t: 'Piso con terraza y piscina', town: 'Santa Pola', type: 'Piso', price: 219000, m2: 82, beds: 2, baths: 1, sea: false, nuevo: true, img: 'cocina', d: 'Piso reformado con cocina nueva, terraza de 10 m² y urbanización con piscina y zonas verdes.' },
+];
+const imgSrc = (k: string) => (k === 'loft' || k === 'cocina' ? `/img/demo/${k}-960.webp` : `/img/foto/${k}-960.webp`);
+---
+<Base lang="es" route="demoInmobiliaria" demo={{ sector: 'inmobiliarias', tipo: 'inmobiliarias' }}
+  title="Demo · Casa Marina, web de inmobiliaria | ABGFRAME"
+  description="Demo de ABGFRAME: web de una inmobiliaria ficticia con buscador sobre el mapa de la Costa Blanca, fichas con visita 360º, hipoteca y valorador.">
+  <div class="mar" data-mar>
+    <header class="m-nav">
+      <a class="m-logo" href="#top"><svg viewBox="0 0 32 20" aria-hidden="true"><path d="M1 13c4-4 7-4 10 0s6 4 10 0 7-4 10 0" fill="none" stroke="currentColor" stroke-width="2.2"/></svg><b>Casa Marina</b><span>Inmobiliaria · Costa Blanca</span></a>
+      <nav><a href="#buscar">Comprar</a><a href="#vender">Vender</a><a href="#visita360">Visitas 360º</a></nav>
+      <a class="m-sell" href="#vender">Valora tu casa gratis</a>
+    </header>
+
+    <section class="m-hero" id="top">
+      <p class="m-k">Dénia · Jávea · Altea · Alicante · Torrevieja</p>
+      <h1>Encuentra casa en la Costa Blanca, sobre el mapa.</h1>
+      <form class="m-search" data-search onsubmit="return false">
+        <label><span>Zona</span><select data-f-town><option value="">Toda la costa</option>{Object.keys(TOWNS).map((t) => <option>{t}</option>)}</select></label>
+        <label><span>Tipo</span><select data-f-type><option value="">Todos</option><option>Piso</option><option>Ático</option><option>Villa</option><option>Dúplex</option><option>Loft</option></select></label>
+        <label><span>Dormitorios</span><select data-f-beds><option value="0">Cualquiera</option><option value="1">1 o más</option><option value="2">2 o más</option><option value="3">3 o más</option><option value="4">4 o más</option></select></label>
+        <label><span>Precio hasta</span><select data-f-max><option value="9999999">Sin límite</option><option value="300000">300.000 €</option><option value="450000">450.000 €</option><option value="700000">700.000 €</option><option value="1000000">1.000.000 €</option></select></label>
+        <label class="m-sea"><input type="checkbox" data-f-sea /> <span>Vistas al mar</span></label>
+      </form>
+    </section>
+
+    <section class="m-split" id="buscar">
+      <div class="m-list">
+        <p class="m-count" data-count></p>
+        <div class="m-cards" data-cards>
+          {H.map((h) => (
+            <article class="m-card" data-h={h.id} data-town={h.town} data-type={h.type} data-beds={h.beds} data-price={h.price} data-sea={h.sea ? '1' : ''}>
+              <button type="button" class="m-card__b" data-open={h.id} aria-label={`Ver ${h.t}`}>
+                <span class="m-card__img"><img src={imgSrc(h.img)} alt="" width="960" height="640" loading="lazy" />{h.nuevo && <em>Nuevo</em>}{h.sea && <em class="sea">Vistas al mar</em>}</span>
+                <span class="m-card__p" data-price-fmt={h.price}></span>
+                <b>{h.t}</b>
+                <span class="m-card__m">{h.type} · {h.town} · {h.m2} m² · {h.beds} dorm. · {h.baths} baños</span>
+              </button>
+            </article>
+          ))}
+        </div>
+      </div>
+      <div class="m-mapw">
+        <svg class="m-map" viewBox="0 0 470 520" role="img" aria-label="Mapa de la Costa Blanca con las viviendas">
+          <defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#cfdde6" stroke-width="1"/></pattern></defs>
+          <rect width="470" height="520" fill="#e8f0f4"/>
+          <rect width="470" height="520" fill="url(#hatch)" opacity=".6"/>
+          <path class="land" d="M0 0 H300 L318 46 L346 58 L362 78 L352 100 L338 122 L326 138 L314 152 L298 170 L284 186 L270 200 L255 214 L240 232 L226 246 L212 266 L198 288 L182 312 L170 326 L164 338 L156 360 L166 396 L160 420 L168 446 L176 470 L180 488 L184 520 H0Z"/>
+          <path class="coast" d="M300 0 L318 46 L346 58 L362 78 L352 100 L338 122 L326 138 L314 152 L298 170 L284 186 L270 200 L255 214 L240 232 L226 246 L212 266 L198 288 L182 312 L170 326 L164 338 L156 360 L166 396 L160 420 L168 446 L176 470 L180 488 L184 520"/>
+          <path class="road" d="M250 0 L270 60 L262 130 L240 190 L208 240 L170 290 L140 340 L132 410 L140 520"/>
+          <text x="300" y="330" class="sea-t">Mar Mediterráneo</text>
+          {Object.entries(TOWNS).map(([n, [x, y]]) => <g class="town" data-tn={n}><circle cx={x} cy={y} r="3"/><text x={x - 8} y={y + 4} text-anchor="end">{n}</text></g>)}
+          <g data-pins></g>
+          <path d="M432 470 l8 -12 l8 12" fill="none" stroke="#1d2b33" stroke-width="1.5"/><text x="436" y="486" font-size="11">N</text>
+        </svg>
+        <p class="m-maphint">Toca un precio para ver la vivienda</p>
+      </div>
+    </section>
+
+    <dialog class="m-modal" data-modal>
+      <button type="button" class="m-x" data-x aria-label="Cerrar">×</button>
+      <div class="m-modal__in">
+        <div class="m-gal"><img data-g-main alt="" /><div class="m-thumbs" data-thumbs></div>
+          <a class="m-360" href="#visita360" data-go360><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><ellipse cx="12" cy="12" rx="9" ry="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Visita virtual 360º</a></div>
+        <div class="m-info">
+          <p class="m-k" data-i-town></p>
+          <h3 data-i-t></h3>
+          <p class="m-price" data-i-price></p>
+          <dl class="m-feats"><div><dt>Superficie</dt><dd data-i-m2></dd></div><div><dt>Dormitorios</dt><dd data-i-beds></dd></div><div><dt>Baños</dt><dd data-i-baths></dd></div><div><dt>Referencia</dt><dd data-i-ref></dd></div></dl>
+          <p data-i-d></p>
+          <div class="m-mort" data-mort>
+            <p class="m-mort__h">Calcula tu hipoteca</p>
+            <label>Entrada <output data-mo-e></output><input type="range" min="10" max="50" value="20" data-mo-ent /></label>
+            <label>Años <output data-mo-y></output><input type="range" min="10" max="35" value="30" data-mo-years /></label>
+            <label>Interés <output data-mo-r></output><input type="range" min="1.5" max="5" step="0.1" value="3" data-mo-rate /></label>
+            <p class="m-mort__res">Cuota aproximada <output data-mo-out></output></p>
+          </div>
+          <form class="m-ask" data-ask><input placeholder="Nombre" aria-label="Nombre" required /><input placeholder="Teléfono o email" aria-label="Teléfono o email" required /><button type="submit">Pedir visita</button><p data-ask-ok hidden>Demo: en la web real te llegaría al momento con la referencia de la vivienda y la cuota que ha calculado el cliente.</p></form>
+        </div>
+      </div>
+    </dialog>
+
+    <div id="visita360" class="m-360w">
+      <Immersive lang="es" show="pano" tone="con" h2="Visítala sin moverte de casa." lead="Cada vivienda con su visita 360º. El comprador de fuera la recorre desde su país y solo pide visita si de verdad le interesa." />
+    </div>
+
+    <section class="m-sec m-sec--navy" id="vender">
+      <div class="m-wrap m-val">
+        <div class="m-val__q">
+          <p class="m-k">¿Vendes tu casa?</p>
+          <h2>Descubre cuánto vale en un minuto.</h2>
+          <ol class="m-steps">
+            <li data-vs="1"><p>¿Dónde está?</p><select data-v-town>{Object.keys(TOWNS).map((t) => <option selected={t === 'San Juan'}>{t}</option>)}</select></li>
+            <li data-vs="2"><p>¿Qué es?</p><div class="m-chips" data-v-type><button type="button" aria-pressed="true" data-m="1">Piso</button><button type="button" aria-pressed="false" data-m="1.08">Ático</button><button type="button" aria-pressed="false" data-m="1.18">Casa o villa</button></div></li>
+            <li data-vs="3"><p>Metros <output data-v-m2o>95 m²</output></p><input type="range" min="40" max="400" step="5" value="95" data-v-m2 /></li>
+            <li data-vs="4"><p>¿Cómo está?</p><div class="m-chips" data-v-state><button type="button" aria-pressed="false" data-m="0.88">Para reformar</button><button type="button" aria-pressed="true" data-m="1">Buen estado</button><button type="button" aria-pressed="false" data-m="1.1">Reformado</button></div></li>
+            <li data-vs="5"><p>Extras</p><div class="m-chips m-chips--multi"><button type="button" aria-pressed="false" data-x="0.08">Vistas al mar</button><button type="button" aria-pressed="false" data-x="0.04">Terraza</button><button type="button" aria-pressed="false" data-x="0.03">Garaje</button><button type="button" aria-pressed="false" data-x="0.05">Piscina</button></div></li>
+          </ol>
+        </div>
+        <div class="m-val__r" aria-live="polite">
+          <p class="m-val__l">Valor orientativo</p>
+          <output class="m-val__n" data-v-out>—</output>
+          <div class="m-val__bar"><i data-v-bar></i></div>
+          <p class="m-val__s" data-v-m2p></p>
+          <p class="m-val__c">Viviendas parecidas en la zona</p>
+          <ul class="m-comps" data-comps></ul>
+          <form class="m-ask m-ask--light" data-vform><input placeholder="Email o teléfono" aria-label="Email o teléfono" required /><button type="submit">Recibir el informe completo</button><p data-v-ok hidden>Demo: así llega un propietario que quiere vender, con la dirección, los metros y el valor que ha visto. El captador ya sabe a quién llamar primero.</p></form>
+          <p class="m-note">Estimación de ejemplo con precios ficticios.</p>
+        </div>
+      </div>
+    </section>
+    <footer class="m-foot"><span>Casa Marina · inmobiliaria ficticia de demostración</span><span>Web: ABGFRAME</span></footer>
+  </div>
+</Base>
+
+<script define:vars={{ H, TOWNS }}>
+  const root = document.querySelector('[data-mar]');
+  const q = (s) => root.querySelector(s), qa = (s) => Array.from(root.querySelectorAll(s));
+  const eur = (n) => new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0, useGrouping: 'always' }).format(n);
+  const short = (n) => (n >= 1e6 ? `${(n / 1e6).toFixed(2).replace('.', ',')} M€` : `${Math.round(n / 1000)}k €`);
+  qa('[data-price-fmt]').forEach((e) => { e.textContent = eur(Number(e.dataset.priceFmt)); });
+  const imgSrc = (k, w = 960) => (k === 'loft' || k === 'cocina' ? `/img/demo/${k}-${w === 960 ? 960 : 1600}.webp` : `/img/foto/${k}-${w}.webp`);
+
+  // pines con precio sobre el mapa (si hay varias en el mismo pueblo, se desplazan)
+  const pins = q('[data-pins]');
+  const seen = {};
+  pins.innerHTML = H.map((h) => {
+    const [x, y] = TOWNS[h.town]; const k = (seen[h.town] = (seen[h.town] || 0) + 1) - 1;
+    const px = x + 16 + k * 6, py = y - 10 - k * 22;
+    return `<g class="pin" data-pin="${h.id}" tabindex="0" role="button" aria-label="${h.t}, ${eur(h.price)}" transform="translate(${px} ${py})"><rect x="0" y="-11" width="${short(h.price).length * 6.4 + 12}" height="20" rx="10"/><text x="6" y="3">${short(h.price)}</text></g>`;
+  }).join('');
+
+  // filtros
+  const f = { town: '', type: '', beds: 0, max: 9999999, sea: false };
+  const apply = () => {
+    let n = 0;
+    qa('[data-h]').forEach((c) => {
+      const ok = (!f.town || c.dataset.town === f.town) && (!f.type || c.dataset.type === f.type) && Number(c.dataset.beds) >= f.beds && Number(c.dataset.price) <= f.max && (!f.sea || c.dataset.sea === '1');
+      c.hidden = !ok; if (ok) n++;
+      root.querySelector(`[data-pin="${c.dataset.h}"]`)?.classList.toggle('off', !ok);
+    });
+    q('[data-count]').textContent = n ? `${n} ${n === 1 ? 'vivienda' : 'viviendas'} en ${f.town || 'la Costa Blanca'}` : 'Ninguna vivienda con estos filtros. Prueba a ampliar la zona.';
+    qa('[data-tn]').forEach((t) => t.classList.toggle('on', t.dataset.tn === f.town));
+  };
+  q('[data-f-town]').addEventListener('change', (e) => { f.town = e.target.value; apply(); });
+  q('[data-f-type]').addEventListener('change', (e) => { f.type = e.target.value; apply(); });
+  q('[data-f-beds]').addEventListener('change', (e) => { f.beds = Number(e.target.value); apply(); });
+  q('[data-f-max]').addEventListener('change', (e) => { f.max = Number(e.target.value); apply(); });
+  q('[data-f-sea]').addEventListener('change', (e) => { f.sea = e.target.checked; apply(); });
+  apply();
+
+  // tarjeta ↔ pin
+  const hl = (id, on) => { root.querySelector(`[data-pin="${id}"]`)?.classList.toggle('hl', on); root.querySelector(`[data-h="${id}"]`)?.classList.toggle('hl', on); };
+  qa('[data-h]').forEach((c) => { c.addEventListener('mouseenter', () => hl(c.dataset.h, true)); c.addEventListener('mouseleave', () => hl(c.dataset.h, false)); });
+  qa('[data-pin]').forEach((p) => {
+    p.addEventListener('mouseenter', () => hl(p.dataset.pin, true)); p.addEventListener('mouseleave', () => hl(p.dataset.pin, false));
+    const go = () => open(p.dataset.pin);
+    p.addEventListener('click', go); p.addEventListener('keydown', (e) => { if (e.key === 'Enter') go(); });
+  });
+
+  // ficha
+  const modal = q('[data-modal]');
+  let cur = null;
+  const mort = () => {
+    if (!cur) return;
+    const e = Number(q('[data-mo-ent]').value), y = Number(q('[data-mo-years]').value), r = Number(q('[data-mo-rate]').value);
+    const P = cur.price * (1 - e / 100), i = r / 100 / 12, n = y * 12;
+    const c = (P * i) / (1 - Math.pow(1 + i, -n));
+    q('[data-mo-e]').textContent = `${e} % · ${eur(cur.price * e / 100)}`; q('[data-mo-y]').textContent = `${y} años`; q('[data-mo-r]').textContent = `${String(r).replace('.', ',')} %`;
+    q('[data-mo-out]').textContent = `${eur(c)}/mes`;
+  };
+  ['[data-mo-ent]', '[data-mo-years]', '[data-mo-rate]'].forEach((s) => q(s).addEventListener('input', mort));
+  const GAL = ['loft', 'cocina'];
+  const open = (id) => {
+    cur = H.find((h) => h.id === id);
+    const pics = [cur.img, ...GAL.filter((g) => g !== cur.img), 'bano-fin'];
+    const big = (k) => (k === 'bano-fin' ? '/img/demo/bano-fin-1600.webp' : k === 'loft' || k === 'cocina' ? `/img/demo/${k}-1600.webp` : `/img/foto/${k}-1280.webp`);
+    q('[data-g-main]').src = big(pics[0]); q('[data-g-main]').alt = cur.t;
+    q('[data-thumbs]').innerHTML = pics.map((k, i) => `<button type="button" data-th="${k}" aria-pressed="${i === 0}"><img src="${k === 'bano-fin' ? '/img/demo/bano-fin-960.webp' : imgSrc(k, 640 === 640 ? 960 : 960)}" alt=""></button>`).join('');
+    qa('[data-th]').forEach((b) => b.addEventListener('click', () => { q('[data-g-main]').src = big(b.dataset.th); qa('[data-th]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); }));
+    q('[data-i-town]').textContent = `${cur.type} · ${cur.town}`; q('[data-i-t]').textContent = cur.t; q('[data-i-price]').textContent = eur(cur.price);
+    q('[data-i-m2]').textContent = `${cur.m2} m²`; q('[data-i-beds]').textContent = cur.beds; q('[data-i-baths]').textContent = cur.baths; q('[data-i-ref]').textContent = cur.id.toUpperCase(); q('[data-i-d]').textContent = cur.d;
+    q('[data-ask-ok]').hidden = true; mort();
+    modal.showModal();
+    window.dataLayer?.push({ event: 'demo_inmueble', ref: id });
+  };
+  qa('[data-open]').forEach((b) => b.addEventListener('click', () => open(b.dataset.open)));
+  q('[data-x]').addEventListener('click', () => modal.close());
+  modal.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
+  q('[data-go360]').addEventListener('click', () => modal.close());
+  q('[data-ask]').addEventListener('submit', (e) => { e.preventDefault(); q('[data-ask-ok]').hidden = false; });
+
+  // valorador
+  const PM2 = { 'Dénia': 3100, 'Jávea': 3900, 'Moraira': 4200, 'Calp': 3300, 'Altea': 3700, 'Benidorm': 3000, 'Villajoyosa': 2500, 'El Campello': 2400, 'San Juan': 2900, 'Alicante': 2300, 'Santa Pola': 2100, 'Torrevieja': 1900 };
+  const pressedM = (sel) => Number(root.querySelector(`${sel} [aria-pressed=true]`)?.dataset.m || 1);
+  let shown = 0;
+  const val = () => {
+    const town = q('[data-v-town]').value, m2 = Number(q('[data-v-m2]').value);
+    const extra = qa('.m-chips--multi [aria-pressed=true]').reduce((s, b) => s + Number(b.dataset.x), 0);
+    const v = PM2[town] * m2 * pressedM('[data-v-type]') * pressedM('[data-v-state]') * (1 + extra);
+    const lo = Math.round(v * 0.94 / 1000) * 1000, hi = Math.round(v * 1.06 / 1000) * 1000;
+    const from = shown, t0 = performance.now();
+    const tick = (t) => { const k = Math.min(1, (t - t0) / 500); const x = from + (lo - from) * (1 - Math.pow(1 - k, 3)); q('[data-v-out]').textContent = `${eur(x)} – ${eur(x * hi / lo)}`; if (k < 1) requestAnimationFrame(tick); else shown = lo; };
+    requestAnimationFrame(tick);
+    q('[data-v-m2o]').textContent = `${m2} m²`;
+    q('[data-v-m2p]').textContent = `≈ ${eur(Math.round(v / m2))}/m² en ${town}`;
+    q('[data-v-bar]').style.width = `${Math.min(100, (v / 1500000) * 100)}%`;
+    const comps = [[0.92, -8, 'hace 2 meses'], [1.04, 6, 'hace 4 meses'], [0.97, -14, 'hace 5 meses']];
+    q('[data-comps]').innerHTML = comps.map(([k, dm, w], i) => `<li><span>${['Piso', 'Ático', 'Piso'][i]} · ${m2 + dm} m² · ${town}</span><b>${eur(Math.round(v * k / 1000) * 1000)}</b><em>${w}</em></li>`).join('');
+  };
+  q('[data-v-town]').addEventListener('change', val);
+  q('[data-v-m2]').addEventListener('input', val);
+  qa('[data-v-type] button, [data-v-state] button').forEach((b) => b.addEventListener('click', () => { b.parentElement.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); val(); }));
+  qa('.m-chips--multi button').forEach((b) => b.addEventListener('click', () => { b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true')); val(); }));
+  val();
+  q('[data-vform]').addEventListener('submit', (e) => { e.preventDefault(); q('[data-v-ok]').hidden = false; window.dataLayer?.push({ event: 'demo_valoracion' }); });
+</script>
+
+<style>
+  .mar{--navy:#1d2b33;--sea:#3e6f8a;--sand:#f4efe6;--ink:#17222a;--mute:#66727a;--line:#dfe4e7;--coral:#d26a4e;background:#fafbfb;color:var(--ink)}
+  .m-nav{display:flex;align-items:center;gap:24px;padding:14px clamp(16px,4vw,48px);background:#fff;border-bottom:1px solid var(--line)}
+  .m-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--navy)}
+  .m-logo svg{width:32px;height:20px;color:var(--sea)}
+  .m-logo b{font-family:var(--wide);font-weight:500;font-size:19px;letter-spacing:-.02em}
+  .m-logo span{font-size:12px;color:var(--mute)}
+  .m-nav nav{display:flex;gap:22px;margin-left:auto;font-size:14px}.m-nav nav a{color:var(--ink);text-decoration:none}
+  .m-sell{padding:9px 14px;background:var(--coral);color:#fff;text-decoration:none;font-size:14px;font-weight:500}
+  .m-hero{padding:clamp(40px,5vw,72px) clamp(16px,4vw,48px) 28px;background:linear-gradient(180deg,#fff,#fafbfb)}
+  .m-k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sea);margin-bottom:14px;font-weight:500}
+  .m-hero h1{font-family:var(--wide);font-weight:500;font-size:clamp(32px,4.6vw,64px);line-height:1.03;letter-spacing:-.035em;max-width:18ch}
+  .m-search{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:0;margin-top:28px;background:#fff;box-shadow:0 0 0 1px var(--line),0 14px 34px rgba(23,34,42,.06)}
+  .m-search label{display:grid;gap:2px;padding:12px 16px;border-right:1px solid var(--line);font-size:12px;color:var(--mute)}
+  .m-search select{border:0;background:none;font:inherit;font-size:16px;color:var(--ink);padding:2px 0;cursor:pointer}
+  .m-search .m-sea{display:flex;align-items:center;gap:8px;border-right:0;font-size:14px;color:var(--ink)}
+  .m-sea input{accent-color:var(--sea);width:18px;height:18px}
+  .m-split{display:grid;grid-template-columns:1.25fr 1fr;gap:0;border-top:1px solid var(--line)}
+  .m-list{padding:20px clamp(16px,3vw,32px)}
+  .m-count{font-size:14px;color:var(--mute);margin-bottom:14px}
+  .m-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  .m-card[hidden]{display:none}
+  .m-card__b{display:grid;gap:6px;width:100%;padding:0;border:0;background:none;text-align:left;font:inherit;color:inherit;cursor:pointer}
+  .m-card__img{position:relative;display:block;aspect-ratio:3/2;overflow:hidden;background:#e5e9eb}
+  .m-card__img img{width:100%;height:100%;object-fit:cover;transition:transform 700ms var(--ease)}
+  .m-card:hover img,.m-card.hl img{transform:scale(1.04)}
+  .m-card__img em{position:absolute;left:10px;top:10px;font-style:normal;font-size:12px;background:#fff;padding:3px 8px}
+  .m-card__img em.sea{left:auto;right:10px;background:var(--sea);color:#fff}
+  .m-card__p{font-family:var(--wide);font-weight:500;font-size:22px;margin-top:4px}
+  .m-card b{font-weight:500}
+  .m-card__m{font-size:13px;color:var(--mute)}
+  .m-card.hl .m-card__b b{color:var(--sea)}
+  .m-mapw{position:sticky;top:48px;height:calc(100vh - 48px);border-left:1px solid var(--line);background:#e8f0f4}
+  .m-map{width:100%;height:100%;display:block}
+  .m-map .land{fill:#f4efe6}
+  .m-map .coast{fill:none;stroke:#7e9fb2;stroke-width:1.6}
+  .m-map .road{fill:none;stroke:#e6dccb;stroke-width:3}
+  .m-map .sea-t{font-size:12px;fill:#6b8ea3;font-style:italic;font-family:var(--text)}
+  .m-map .town circle{fill:#fff;stroke:#1d2b33;stroke-width:1}
+  .m-map .town text{font-size:11px;fill:#1d2b33;font-family:var(--text)}
+  .m-map .town.on text{font-weight:700;fill:var(--coral)}
+  .m-map :global(.pin){cursor:pointer;transition:opacity 250ms}
+  .m-map :global(.pin rect){fill:var(--navy);transition:fill 200ms}
+  .m-map :global(.pin text){fill:#fff;font-size:10.5px;font-weight:600;font-family:var(--text)}
+  .m-map :global(.pin:hover rect),.m-map :global(.pin.hl rect),.m-map :global(.pin:focus rect){fill:var(--coral)}
+  .m-map :global(.pin.off){opacity:.15;pointer-events:none}
+  .m-maphint{position:absolute;left:12px;bottom:12px;font-size:12px;background:#fff;padding:5px 9px;color:var(--mute)}
+  .m-modal{border:0;padding:0;width:min(1120px,95vw);max-height:92vh;background:#fff;color:var(--ink)}
+  .m-modal::backdrop{background:rgba(23,34,42,.6)}
+  .m-modal__in{display:grid;grid-template-columns:1.2fr 1fr;max-height:92vh}
+  .m-gal{position:relative;background:#111;display:grid;grid-template-rows:1fr auto}
+  .m-gal>img{width:100%;height:100%;min-height:320px;max-height:70vh;object-fit:cover}
+  .m-thumbs{display:flex;gap:4px;padding:4px;background:#111}
+  .m-thumbs :global(button){flex:1;padding:0;border:2px solid transparent;background:none;cursor:pointer;aspect-ratio:3/2;overflow:hidden}
+  .m-thumbs :global(button[aria-pressed=true]){border-color:var(--coral)}
+  .m-thumbs :global(img){width:100%;height:100%;object-fit:cover}
+  .m-360{position:absolute;left:14px;top:14px;display:flex;align-items:center;gap:8px;padding:8px 12px;background:#fff;color:var(--navy);text-decoration:none;font-size:14px;font-weight:500}
+  .m-360 svg{width:20px;height:20px}
+  .m-info{padding:clamp(20px,3vw,36px);overflow:auto;display:grid;gap:12px;align-content:start}
+  .m-info h3{font-family:var(--wide);font-weight:500;font-size:28px;letter-spacing:-.02em;line-height:1.1}
+  .m-price{font-family:var(--wide);font-size:30px;font-weight:500;color:var(--sea)}
+  .m-feats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+  .m-feats div{background:#f2f5f6;padding:8px 10px}.m-feats dt{font-size:11px;color:var(--mute)}.m-feats dd{font-weight:500}
+  .m-info>p:not(.m-k):not(.m-price){color:#3f4a51;line-height:1.55}
+  .m-mort{background:var(--sand);padding:14px 16px;display:grid;gap:8px}
+  .m-mort__h{font-weight:500}
+  .m-mort label{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:13px}
+  .m-mort label output{text-align:right;font-weight:500}
+  .m-mort input{grid-column:1/-1;accent-color:var(--coral)}
+  .m-mort__res{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid #e0d6c6;padding-top:8px;font-size:14px}
+  .m-mort__res output{font-family:var(--wide);font-size:22px;font-weight:500}
+  .m-ask{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .m-ask input{min-height:46px;padding:8px 12px;border:1px solid var(--line);font:inherit}
+  .m-ask button{grid-column:1/-1;min-height:48px;border:0;background:var(--navy);color:#fff;font:inherit;font-weight:500;cursor:pointer}
+  .m-ask p{grid-column:1/-1;font-size:13px;background:#eaf2ed;padding:10px;border-left:3px solid #3f8a62}
+  .m-x{position:absolute;right:8px;top:6px;width:44px;height:44px;border:0;background:#fff;font-size:28px;cursor:pointer;z-index:2}
+  .m-360w :global(.sec){background:#eef3f5}
+  .m-sec{padding:clamp(72px,9vw,128px) clamp(16px,4vw,48px)}
+  .m-sec--navy{background:var(--navy);color:#fff}
+  .m-sec--navy .m-k{color:#9cc0d4}
+  .m-wrap{max-width:1240px;margin:0 auto}
+  .m-sec h2{font-family:var(--wide);font-weight:500;font-size:clamp(28px,3.4vw,50px);letter-spacing:-.03em;line-height:1.05;max-width:16ch}
+  .m-val{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,5vw,72px);align-items:start}
+  .m-steps{list-style:none;padding:0;margin-top:30px;counter-reset:v}
+  .m-steps li{counter-increment:v;display:grid;gap:10px;padding:16px 0 16px 44px;border-top:1px solid #36454f;position:relative}
+  .m-steps li::before{content:counter(v);position:absolute;left:0;top:16px;width:28px;height:28px;border-radius:50%;border:1px solid #9cc0d4;display:grid;place-items:center;font-size:13px;color:#9cc0d4}
+  .m-steps p{font-weight:500;display:flex;justify-content:space-between}
+  .m-steps select{min-height:46px;padding:8px 12px;background:transparent;color:#fff;border:1px solid #4a5b66;font:inherit}
+  .m-steps select option{color:#000}
+  .m-steps input[type=range]{accent-color:var(--coral)}
+  .m-chips{display:flex;flex-wrap:wrap;gap:6px}
+  .m-chips button{min-height:42px;padding:8px 14px;border:1px solid #4a5b66;background:none;color:#fff;font:inherit;font-size:14px;cursor:pointer}
+  .m-chips button[aria-pressed=true]{background:#fff;color:var(--navy);border-color:#fff}
+  .m-val__r{background:#fff;color:var(--ink);padding:clamp(22px,3vw,36px);position:sticky;top:70px}
+  .m-val__l{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+  .m-val__n{display:block;font-family:var(--wide);font-weight:500;font-size:clamp(26px,2.8vw,40px);letter-spacing:-.02em;margin:6px 0 12px;font-variant-numeric:tabular-nums}
+  .m-val__bar{height:6px;background:#eef2f4}.m-val__bar i{display:block;height:100%;background:linear-gradient(90deg,var(--sea),var(--coral));transition:width 500ms var(--ease)}
+  .m-val__s{font-size:14px;color:var(--mute);margin-top:8px}
+  .m-val__c{margin-top:20px;font-weight:500;font-size:14px}
+  .m-comps{list-style:none;padding:0;margin:8px 0 16px}
+  .m-comps :global(li){display:grid;grid-template-columns:1fr auto;gap:0 10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .m-comps :global(li em){grid-column:1/-1;font-style:normal;font-size:12px;color:var(--mute)}
+  .m-ask--light button{background:var(--coral)}
+  .m-note{font-size:12px;color:var(--mute);margin-top:10px}
+  .m-foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:18px clamp(16px,4vw,48px);font-size:13px;color:var(--mute)}
+  @media (max-width:960px){
+    .m-nav nav,.m-logo span{display:none}.m-sell{margin-left:auto}
+    .m-search{grid-template-columns:1fr 1fr}.m-search label:nth-child(2){border-right:0}.m-search label{border-bottom:1px solid var(--line)}
+    .m-split{grid-template-columns:1fr}
+    .m-mapw{position:relative;top:0;height:auto;aspect-ratio:4/5;order:-1;border-left:0;border-bottom:1px solid var(--line)}
+    .m-cards{grid-template-columns:1fr}
+    .m-modal__in,.m-val{grid-template-columns:1fr}
+    .m-gal>img{max-height:42vh}
+    .m-feats{grid-template-columns:1fr 1fr}
+    .m-val__r{position:relative;top:0}
+  }
+</style>

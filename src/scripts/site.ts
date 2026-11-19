@@ -181,6 +181,12 @@ const lazyMount = (sel: string, load: (el: HTMLElement) => Promise<unknown>) => 
 lazyMount('[data-maqueta]', (el) => import('./maqueta').then((m) => m.mountMaqueta(el)));
 lazyMount('[data-pano]', (el) => import('./pano').then((m) => m.mountPano(el)));
 
+/* Si se llega desde una demo (?tipo=…), el formulario ya trae marcado el tipo de empresa */
+try {
+  const tipo = new URLSearchParams(location.search).get('tipo');
+  if (tipo) $$<HTMLInputElement>(`input[name="tipo"][value="${CSS.escape(tipo)}"]`).forEach((i) => (i.checked = true));
+} catch {}
+
 /* Formulario de contacto (Formspree, sin salir de la página) */
 $$<HTMLFormElement>('form[data-form]').forEach((f) => {
   const status = $('.status', f)!;
